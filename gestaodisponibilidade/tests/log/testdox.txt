@@ -1,0 +1,7 @@
+PHPUnit_Framework_Warning
+ [ ] Warning
+
+Application_Model_Sala
+ [ ] Get numero
+ [ ] Set get descricao
+
