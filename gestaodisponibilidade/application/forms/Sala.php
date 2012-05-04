@@ -36,7 +36,7 @@ class Application_Form_Sala extends Zend_Form {
         $this->addElement($element);
 
         $element = new Zend_Form_Element_Text('responsavel');
-        $element->setLabel('Responsavel: ')
+        $element->setLabel('Responsável: ')
                 ->setAttrib('class', 'i-format');
         $this->addElement($element);
 
@@ -60,7 +60,7 @@ class Application_Form_Sala extends Zend_Form {
         $this->addElement($element);
 
         $element = new Zend_Form_Element_Text('info_adicionais');
-        $element->setLabel('Informações adicionais:')
+        $element->setLabel('Informações Adicionais:')
                 ->setAttrib('size', '90')
                 ->setAttrib('class', 'i-format')
                 ->addFilter(new Zend_Filter_StripTags());
@@ -88,9 +88,9 @@ class Application_Form_Sala extends Zend_Form {
 
 
         $element = new Zend_Form_Element_Select('status_disponibilidade');
-        $element->addMultiOption(true, 'Ativo');
-        $element->addMultiOption(false, 'Inativo');
-        $element->setLabel('Status do produto:')
+        $element->addMultiOption(true, 'Disponível');
+        $element->addMultiOption(false, 'Indisponível');
+        $element->setLabel('Status de Disponibilidade para agendamentos:')
                 ->setRequired(true)
                 ->setAttrib('class', 'block_content');
 
