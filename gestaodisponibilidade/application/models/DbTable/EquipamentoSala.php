@@ -33,9 +33,11 @@ class Application_Model_DbTable_EquipamentoSala extends Zend_Db_Table_Abstract {
     }
     
     public function getEquipamentosSala($numero_sala) {
-        $where = 'numero_sala = ' . $numero_sala;
-        $order = 'id_equipamento_sala asc';
-        return $this->fetchAll($where, $order);
+        $select = $this->select()->where('numero_sala = ' . $numero_sala)
+                ->order('id_equipamento_sala asc');
+        var_dump($select);
+        die();
+        return $this->fetchAll($select);
     }
 
 }

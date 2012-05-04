@@ -68,10 +68,7 @@ class Application_Form_Sala extends Zend_Form {
 
 
         $modelEquipamentos = new Application_Model_DbTable_Equipamento();
-        $where = 'numero = ' . $this->getAttrib('numero');
-        $order = '';
-        //$order = 'descricao asc';
-        $arrayEquipamentos = $modelEquipamentos->fetchAll($where, $order);
+        $arrayEquipamentos = $modelEquipamentos->listarTodos();
         $lista = array();
         foreach ($arrayEquipamentos as $item) {
             $lista[$item['id_equipamento']] = $item['descricao'];
