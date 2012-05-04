@@ -24,7 +24,7 @@ class Application_Form_Sala extends Zend_Form {
                 ->setAttrib('size', '30')
                 ->addValidator($validator)
                 ->setAttrib('class', 'i-format')
-                ->addValidator(new Zend_Validate_StringLength(array('max' => 60))) 
+                ->addValidator(new Zend_Validate_StringLength(array('max' => 60)))
                 ->addFilter(new Zend_Filter_StripTags())
                 ->setAllowEmpty(false)
                 ->setRequired(true);
@@ -70,21 +70,23 @@ class Application_Form_Sala extends Zend_Form {
         $modelEquipamentos = new Application_Model_DbTable_Equipamento();
         $arrayEquipamentos = $modelEquipamentos->listarTodos();
         $lista = array();
-        foreach ($arrayEquipamentos as $item){
-            $lista['id_equipamento'] = $item['id_equipamento'];
-            $lista['descricao'] = $item['descricao'];
+        foreach ($arrayEquipamentos as $item) {
+//            $lista['id_equipamento'] = $item['id_equipamento'];
+//            $lista['descricao'] = $item['descricao'];
+            $lista[$item['id_equipamento']] = $item['descricao'];
         }
-        $element = new Zend_Form_Element_Checkbox(Application_Model_DbTable_Equipamento::getPrimaryKeyName());
-        
-
-        $element->setAttrib('class', 'block_content')
-                ->setOptions($lista)
-                ->setLabel('Selecione os equipamentos da sala:');
-        
-        
+//        $element = new Zend_Form_Element_Checkbox(Application_Model_DbTable_Equipamento::getPrimaryKeyName());
+//        $element->setAttrib('class', 'block_content')
+//                ->setOptions($lista)
+//                ->setLabel('Selecione os equipamentos da sala:');
+//        $this->addElement($element);
+//        
+        $element = new Zend_Form_Element_MultiCheckbox(Application_Model_DbTable_Equipamento::getPrimaryKeyName());
+        $element->setLabel('Selecione os equipamentos da sala:');
+        $element->addMultiOptions($lista);
         $this->addElement($element);
 
-        
+
         $element = new Zend_Form_Element_Select('status_disponibilidade');
         $element->addMultiOption(true, 'Ativo');
         $element->addMultiOption(false, 'Inativo');
