@@ -355,8 +355,7 @@ position:absolute;
 margin:0;
 top: 26px;
 height: 48px;
-width: 233px;
-background: url(../images/logo_on_footer.png) no-repeat 0 0 scroll;
+width: 233px; /* background: url(../images/logo_on_footer.png) no-repeat 0 0 scroll; */
 outline: none;
 }
 

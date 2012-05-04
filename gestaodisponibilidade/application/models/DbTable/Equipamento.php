@@ -7,7 +7,6 @@ class Application_Model_DbTable_Equipamento extends Zend_Db_Table_Abstract
     protected $rowClass = 'Application_Model_Equipamento';
   
     public function listarTodos(){
-     
         $select = $this->select()->order('descricao asc');
         return $this->fetchAll($select);
      }

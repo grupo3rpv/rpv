@@ -68,22 +68,20 @@ class Application_Form_Sala extends Zend_Form {
 
 
         $modelEquipamentos = new Application_Model_DbTable_Equipamento();
-        $arrayEquipamentos = $modelEquipamentos->listarTodos();
+        $where = 'numero = ' . $this->getAttrib('numero');
+        $order = '';
+        //$order = 'descricao asc';
+        $arrayEquipamentos = $modelEquipamentos->fetchAll($where, $order);
         $lista = array();
         foreach ($arrayEquipamentos as $item) {
-//            $lista['id_equipamento'] = $item['id_equipamento'];
-//            $lista['descricao'] = $item['descricao'];
             $lista[$item['id_equipamento']] = $item['descricao'];
         }
-//        $element = new Zend_Form_Element_Checkbox(Application_Model_DbTable_Equipamento::getPrimaryKeyName());
-//        $element->setAttrib('class', 'block_content')
-//                ->setOptions($lista)
-//                ->setLabel('Selecione os equipamentos da sala:');
-//        $this->addElement($element);
-//        
+        
+        $numero_sala = $this->getAttrib('numero');
         $element = new Zend_Form_Element_MultiCheckbox(Application_Model_DbTable_Equipamento::getPrimaryKeyName());
         $element->setLabel('Selecione os equipamentos da sala:');
         $element->addMultiOptions($lista);
+        $element->setValue(Application_Model_DbTable_EquipamentoSala::getEquipamentosSala($numero_sala));
         $this->addElement($element);
 
 

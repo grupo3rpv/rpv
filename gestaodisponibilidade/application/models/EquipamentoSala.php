@@ -1,16 +1,13 @@
 <?php
 
-class Application_Model_EquipamentoSala extends Zend_Db_Table_Row_Abstract
-{
-  
+class Application_Model_EquipamentoSala extends Zend_Db_Table_Row_Abstract {
 
-    
-    public function getId_equipamento() {
+    public function getId_equipamento_sala() {
         return $this->id_equipamento;
     }
 
-    public function setId_equipamento($id_equipamento) {
-        $this->id_equipamento = $id_equipamento;
+    public function setId_equipamento_sala($id_equipamento) {
+        $this->id_equipamento_sala = $id_equipamento;
     }
 
     public function getNumero_sala() {
@@ -28,8 +25,6 @@ class Application_Model_EquipamentoSala extends Zend_Db_Table_Row_Abstract
     public function setQuantidade($quantidade) {
         $this->quantidade = $quantidade;
     }
-
-
 
 }
 
