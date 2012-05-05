@@ -51,6 +51,11 @@ class Application_Model_DbTable_Sala extends Zend_Db_Table_Abstract {
         return $this->fetchAll($select);
     }
 
+        public function listaSala() {
+        $select = $this->select();
+        return $this->fetchAll($select);
+    }
+
     /**
      * Salva os dados no banco de dados. Ele faz um insert/update
      * inteligente, e recarrega as propriedades da tabela em caso

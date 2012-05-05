@@ -84,7 +84,7 @@ class Application_Form_Sala extends Zend_Form {
         $element->addMultiOption(true, 'Disponível');
         $element->addMultiOption(false, 'Indisponível');
         $element->setLabel('Status de Disponibilidade para agendamentos:')
-                ->setRequired(true)
+                #->setRequired(true)
                 ->setAttrib('class', 'block_content');
 
         $this->addElement($element);
