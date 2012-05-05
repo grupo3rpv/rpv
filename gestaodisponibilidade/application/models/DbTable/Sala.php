@@ -51,6 +51,11 @@ class Application_Model_DbTable_Sala extends Zend_Db_Table_Abstract {
         return $this->fetchAll($select);
     }
 
+        public function listaSala() {
+        $select = $this->select()->order('numero asc');
+        return $this->fetchAll($select);
+    }
+
     /**
      * Salva os dados no banco de dados. Ele faz um insert/update
      * inteligente, e recarrega as propriedades da tabela em caso
@@ -75,8 +80,8 @@ class Application_Model_DbTable_Sala extends Zend_Db_Table_Abstract {
 
         $chave = $sala->save();
 
-
         $equipamentoSalaModel = new Application_Model_DbTable_EquipamentoSala();
+        $equipamentoSalaModel->removerEquipamentosDaSala($sala->getNumero());
         foreach ($dados['id_equipamento'] as $key => $value) {
             $equipamentoSalaModel->cadastraEquipamentoSala(array(
                 'id_equipamento_sala' => $value, 'numero_sala' => $chave, 'quantidade' => 1));
@@ -90,6 +95,11 @@ class Application_Model_DbTable_Sala extends Zend_Db_Table_Abstract {
         $model = new $class;
         $info = $model->info();
         return $info['primary'][1];
+    }
+    
+    public function removerSala($idSala) {
+        $sala = $this->find($idSala)->current();
+        return $sala->delete();
     }
 
 }

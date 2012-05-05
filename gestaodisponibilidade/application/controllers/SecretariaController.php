@@ -8,7 +8,7 @@ class SecretariaController extends Zend_Controller_Action {
 
     public function indexAction() {
         $modelSala = new Application_Model_DbTable_Sala();
-        $listaSalas = $modelSala->listaSalaPor('status_disponibilidade', true);
+        $listaSalas = $modelSala->listaSala();        
         $this->view->listaSalas = $listaSalas;
     }
 
@@ -34,13 +34,9 @@ class SecretariaController extends Zend_Controller_Action {
         $numero = $this->getRequest()->getParam(Application_Model_DbTable_Sala::getPrimaryKeyName());
 
         $salaModel = new Application_Model_DbTable_Sala();
-
         $arraySala = $salaModel->find($numero)->current()->toArray();
 
-
         $modelEquipamentoSala = new Application_Model_DbTable_EquipamentoSala();
-        $modelEquipameto = new Application_Model_DbTable_Equipamento();
-
         $listaEquiSala = $modelEquipamentoSala->getEquipamentosSala($numero);
 
         $equipamentos = array();
@@ -61,6 +57,13 @@ class SecretariaController extends Zend_Controller_Action {
         }
 
         $this->view->form = $form;
+    }
+    
+    public function removerSalaAction() {
+        $idSala = $this->_getParam('id_sala');
+        $salaModel = new Application_Model_DbTable_Sala();
+        $salaModel->removerSala($idSala);
+        $this->_redirect('/secretaria/index');
     }
 
 }
