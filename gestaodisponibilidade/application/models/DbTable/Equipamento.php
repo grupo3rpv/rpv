@@ -5,8 +5,10 @@ class Application_Model_DbTable_Equipamento extends Zend_Db_Table_Abstract
 
     protected $_name = 'equipamento';
     protected $rowClass = 'Application_Model_Equipamento';
+    
+    
   
-    public function listarTodos(){
+    public  function listarTodos(){
         $select = $this->select()->order('descricao asc');
         return $this->fetchAll($select);
      }
@@ -18,7 +20,7 @@ class Application_Model_DbTable_Equipamento extends Zend_Db_Table_Abstract
         return $info['primary'][1];
     }
     
-     public static function getValuesToSelectElement($order = 'descricao asc'){
+     public  function getValuesToSelectElement($order = 'descricao asc'){
         $class = get_called_class();
         $model = new $class;
         $info = $model->info();
@@ -30,7 +32,13 @@ class Application_Model_DbTable_Equipamento extends Zend_Db_Table_Abstract
         endforeach;
         return $resultArray;
     }
-            
+      
+    public function buscaEquipamento($id_equipamento){
+        $select = $this->select()->where('id_equipamento = ?',$id_equipamento);
+        return $this->fetchRow($select);
+  
+        
+    }
     
 
 }

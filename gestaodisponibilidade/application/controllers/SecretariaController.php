@@ -31,17 +31,30 @@ class SecretariaController extends Zend_Controller_Action {
 
     public function editarSalaAction() {
         $form = new Application_Form_Sala;
-
         $numero = $this->getRequest()->getParam(Application_Model_DbTable_Sala::getPrimaryKeyName());
 
 
         $salaModel = new Application_Model_DbTable_Sala();
-
-        $form->populate($salaModel->find($numero)->current()->toArray());
-
+        
+        $arraySala = $salaModel->find($numero)->current()->toArray();
+        
+        $modelEquipamentoSala = new Application_Model_DbTable_EquipamentoSala();
+        $listaEquipamentos = $equipamentoSala->getEquipamentosSala($arraySala['numero']);
+        foreach ($listaEquipamentos as $item)
+            $equipamentos[] = $item->getDescricao();
+           
+        }
+        
+        
+        
+        
+        
+       
+        $form->populate();
         if ($this->getRequest()->isPost()) {
             if ($form->isValid($_POST)) {
                 $dados = $form->getValues();
+               
                 $salaModel->editarSala($dados);
             }
         }

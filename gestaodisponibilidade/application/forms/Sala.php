@@ -74,11 +74,12 @@ class Application_Form_Sala extends Zend_Form {
             $lista[$item['id_equipamento']] = $item['descricao'];
         }
         
-        $numero_sala = $this->getAttrib('numero');
+        
+        
         $element = new Zend_Form_Element_MultiCheckbox(Application_Model_DbTable_Equipamento::getPrimaryKeyName());
         $element->setLabel('Selecione os equipamentos da sala:');
         $element->addMultiOptions($lista);
-        $element->setValue(Application_Model_DbTable_EquipamentoSala::getEquipamentosSala($numero_sala));
+       //$element->setValue(Application_Model_DbTable_EquipamentoSala::getEquipamentosSala(Application_Model_DbTable_Sala::getPrimaryKeyName()));
         $this->addElement($element);
 
 
