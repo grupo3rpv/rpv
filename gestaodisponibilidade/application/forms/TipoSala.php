@@ -1,11 +1,9 @@
 <?php
 
-class Application_Form_TipoSala extends Zend_Form
-{
+class Application_Form_TipoSala extends Zend_Form {
 
-    public function init()
-    {
-         $this->setMethod('POST');
+    public function init() {
+        $this->setMethod('POST');
 
         $element = new Zend_Form_Element_Text('id_tipo_sala');
         $element->setLabel('Identificador: ')
@@ -15,12 +13,14 @@ class Application_Form_TipoSala extends Zend_Form
                 ->addFilter(new Zend_Filter_StripTags())
                 ->setAllowEmpty(false);
         $this->addElement($element);
-        
+
         $element = new Zend_Form_Element_Text('descricao');
         $element->setLabel('Descrição: ')
-                ->setAttrib('class', 'i-format');
+                ->setAttrib('class', 'i-format')
+                ->setAllowEmpty(false)
+                ->setRequired(true);
         $this->addElement($element);
-        
+
         /**
          * Cria no formulario o botão de "enviar" define tambem o tamanho do mesmo.
          */
@@ -31,6 +31,5 @@ class Application_Form_TipoSala extends Zend_Form
         $this->addElement($element);
     }
 
-    
 }
 
