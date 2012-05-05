@@ -3,7 +3,7 @@
 class Application_Model_EquipamentoSala extends Zend_Db_Table_Row_Abstract {
 
     public function getId_equipamento_sala() {
-        return $this->id_equipamento;
+        return $this->id_equipamento_sala;
     }
 
     public function setId_equipamento_sala($id_equipamento) {

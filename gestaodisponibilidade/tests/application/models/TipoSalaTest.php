@@ -17,8 +17,8 @@ class Application_Model_TipoSalaTest extends PHPUnit_Framework_TestCase {
     public function testGetId_sala() {
         $tipoSalaModel = new Application_Model_DbTable_Sala();
         $tipoSala = $tipoSalaModel->createRow();
-        $tipoSala->setId_sala(1);
-        $this->assertSame(1, $tipoSala->getId_sala());
+        $tipoSala->setId_tipo_sala(1);
+        $this->assertSame(1, $tipoSala->getId_tipo_sala());
         
     }
 
