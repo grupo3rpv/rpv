@@ -9,7 +9,7 @@ class Application_Form_Equipamento extends Zend_Form {
         $element->setLabel('Identificador: ')
                 ->setAttrib('size', '30')
                 ->setAttrib('class', 'i-format')
-                ->setAttribs(array('disabled' => 'disabled'))
+                ->setAttrib('readonly', 'true')
                 ->addFilter(new Zend_Filter_StripTags())
                 ->setAllowEmpty(false);
         $this->addElement($element);

@@ -42,6 +42,8 @@ class EquipamentoController extends Zend_Controller_Action {
             if ($form->isValid($_POST)) {
                 $dados = $form->getValues();
                 $equipamentoModel->editarEquipamento($dados);
+                
+                $this->_redirect('/equipamento/index');
             }
         }
 

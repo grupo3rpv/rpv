@@ -46,7 +46,6 @@ class Application_Model_DbTable_Equipamento extends Zend_Db_Table_Abstract {
 
     public function editarEquipamento(array $dados) {
         $equipamento = $this->find($dados['id_equipamento'])->current();
-        var_dump($equipamento);die();
         $equipamento->setDescricao($dados['descricao']);
 
         return $equipamento->save();
