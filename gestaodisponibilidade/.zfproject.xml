@@ -21,6 +21,7 @@
       </controllersDirectory>
       <formsDirectory>
         <formFile formName="Sala"/>
+        <formFile formName="Equipamento"/>
       </formsDirectory>
       <layoutsDirectory>
         <layoutScriptsDirectory>
@@ -48,6 +49,15 @@
           <viewControllerScriptsDirectory forControllerName="Equipamento">
             <viewScriptFile forActionName="index"/>
           </viewControllerScriptsDirectory>
+<<<<<<< HEAD
+=======
+          <viewControllerScriptsDirectory forControllerName="Equipamento">
+            <viewScriptFile forActionName="adicionar-equipamento"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Equipamento">
+            <viewScriptFile forActionName="editar-equipamento"/>
+          </viewControllerScriptsDirectory>
+>>>>>>> b7ad374a4a3c72d589ae149c38771bf79e72389f
         </viewScriptsDirectory>
         <viewHelpersDirectory/>
         <viewFiltersDirectory enabled="false"/>
