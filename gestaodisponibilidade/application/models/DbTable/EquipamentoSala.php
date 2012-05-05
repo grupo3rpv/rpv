@@ -11,32 +11,29 @@ class Application_Model_DbTable_EquipamentoSala extends Zend_Db_Table_Abstract {
             'refColumns' => 'numero_sala'
         )
     );
-    
+
     public function cadastraEquipamentoSala(array $dados) {
         $equipamentoSala = $this->createRow();
-        
+
         $equipamentoSala->setId_equipamento_sala($dados['id_equipamento_sala']);
         $equipamentoSala->setNumero_sala($dados['numero_sala']);
         $equipamentoSala->setQuantidade($dados['quantidade']);
-        
+
         return $equipamentoSala->save();
     }
-    
+
     public function editaEquipamentoSala(array $dados) {
         $equipamentoSala = $this->find(array($dados['id_equipamento_sala'], $dados['numero_sala']))->current();
-        
+
         $equipamentoSala->setId_equipamento_sala($dados['id_equipamento_sala']);
         $equipamentoSala->setNumero_sala($dados['numero_sala']);
         $equipamentoSala->setQuantidade($dados['quantidade']);
-        
+
         return $equipamentoSala->save();
     }
-    
+
     public function getEquipamentosSala($numero_sala) {
-       
         $select = $this->select()->where('numero_sala = ?', $numero_sala);
-       
-     
         return $this->fetchAll($select);
     }
 
