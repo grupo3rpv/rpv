@@ -62,6 +62,13 @@ class SecretariaController extends Zend_Controller_Action {
 
         $this->view->form = $form;
     }
+    
+    public function removerSalaAction() {
+        $idSala = $this->_getParam('id_sala');
+        $salaModel = new Application_Model_DbTable_Sala();
+        $salaModel->removerSala($idSala);
+        $this->_redirect('/secretaria/index');
+    }
 
 }
 

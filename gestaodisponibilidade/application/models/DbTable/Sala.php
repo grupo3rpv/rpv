@@ -91,6 +91,11 @@ class Application_Model_DbTable_Sala extends Zend_Db_Table_Abstract {
         $info = $model->info();
         return $info['primary'][1];
     }
+    
+    public function removerSala($idSala) {
+        $sala = $this->find($idSala)->current();
+        return $sala->delete();
+    }
 
 }
 
