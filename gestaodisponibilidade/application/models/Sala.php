@@ -9,7 +9,7 @@ class Application_Model_Sala extends Zend_Db_Table_Row_Abstract {
 //  private $responsavel;
 //  private $status_disponibilidade;
 //  private $info_adicionais;
-//    private $id_tipo_sala;
+//  private $id_tipo_sala;
 
     public function getId_tipo_sala() {
         return $this->id_tipo_sala;

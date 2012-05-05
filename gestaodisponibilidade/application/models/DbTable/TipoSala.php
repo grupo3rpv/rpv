@@ -23,6 +23,26 @@ class Application_Model_DbTable_TipoSala extends Zend_Db_Table_Abstract {
         return $resultArray;
     }
 
+    public function listaTipoSalaPor($value) {
+        $select = $this->select()->order($value);
+        return $this->fetchAll($select);
+    }
+    
+     public function cadastraTipoSala($dados) {
+        $tipoSala = $this->createRow();
+
+        $tipoSala->setId_tipo_sala($dados['id_tipo_sala']);
+        $tipoSala->setDescricao($dados['descricao']);
+
+        return $tipoSala->save();
+    }
+
+    public function editarTipoSala(array $dados) {
+        $tipoSala = $this->find($dados['id_tipo_sala'])->current();
+        $tipoSala->setDescricao($dados['descricao']);
+
+        return $tipoSala->save();
+    }
     /**
      * 
      * @return string
