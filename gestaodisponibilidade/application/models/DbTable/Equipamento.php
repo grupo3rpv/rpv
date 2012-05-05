@@ -9,7 +9,7 @@ class Application_Model_DbTable_Equipamento extends Zend_Db_Table_Abstract {
         $select = $this->select()->order('descricao asc');
         return $this->fetchAll($select);
     }
-    
+
     public function listaEquipamentosPor($value) {
         $select = $this->select()->order($value);
         return $this->fetchAll($select);
@@ -35,5 +35,22 @@ class Application_Model_DbTable_Equipamento extends Zend_Db_Table_Abstract {
         return $resultArray;
     }
 
+    public function cadastraEquipamento($dados) {
+        $equipamento = $this->createRow();
+
+        $equipamento->setId_equipamento($dados['id_equipamento']);
+        $equipamento->setDescricao($dados['descricao']);
+
+        return $equipamento->save();
+    }
+
+    public function editarEquipamento(array $dados) {
+        $equipamento = $this->find($dados['id_equipamento'])->current();
+        
+        $equipamento->setDescricao($dados['descricao']);
+
+        return $equipamento->save();
+    }
+    
 }
 

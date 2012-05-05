@@ -34,7 +34,6 @@ class SecretariaController extends Zend_Controller_Action {
 
         $numero = $this->getRequest()->getParam(Application_Model_DbTable_Sala::getPrimaryKeyName());
 
-
         $salaModel = new Application_Model_DbTable_Sala();
 
         $form->populate($salaModel->find($numero)->current()->toArray());

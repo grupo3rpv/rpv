@@ -12,5 +12,41 @@ class EquipamentoController extends Zend_Controller_Action {
         $this->view->listaEquipamentos = $listaEquipamentos;
     }
 
+    public function adicionarEquipamentoAction() {
+        $form = new Application_Form_Equipamento();
+
+        if ($this->getRequest()->isPost()) {
+
+            if ($form->isValid($_POST)) {
+                $dados = $form->getValues();
+
+                $model = new Application_Model_DbTable_Equipamento();
+                $model->cadastraEquipamento($dados);
+
+                $this->_redirect('/equipamento/index');
+            }
+        }
+        $this->view->form = $form;
+    }
+
+    public function editarEquipamentoAction() {
+        $form = new Application_Form_Equipamento();
+
+        $numero = $this->getRequest()->getParam(Application_Model_DbTable_Equipamento::getPrimaryKeyName());
+
+        $equipamentoModel = new Application_Model_DbTable_Equipamento();
+
+        $form->populate($equipamentoModel->find($numero)->current()->toArray());
+
+        if ($this->getRequest()->isPost()) {
+            if ($form->isValid($_POST)) {
+                $dados = $form->getValues();
+                $equipamentoModel->editarEquipamento($dados);
+            }
+        }
+
+        $this->view->form = $form;
+    }
+
 }
 
