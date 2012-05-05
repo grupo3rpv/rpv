@@ -52,7 +52,7 @@ class Application_Model_DbTable_Sala extends Zend_Db_Table_Abstract {
     }
 
         public function listaSala() {
-        $select = $this->select();
+        $select = $this->select()->order('numero asc');
         return $this->fetchAll($select);
     }
 
