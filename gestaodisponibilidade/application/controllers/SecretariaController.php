@@ -8,7 +8,7 @@ class SecretariaController extends Zend_Controller_Action {
 
     public function indexAction() {
         $modelSala = new Application_Model_DbTable_Sala();
-        $listaSalas = $modelSala->listaClientePor('status_disponibilidade', true);
+        $listaSalas = $modelSala->listaSalaPor('status_disponibilidade', true);
         $this->view->listaSalas = $listaSalas;
     }
 

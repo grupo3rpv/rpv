@@ -26,12 +26,13 @@ class Application_Model_DbTable_Sala extends Zend_Db_Table_Abstract {
 
         $chave = $sala->save();
 
-        $equipamentoSalaModel = new Application_Model_DbTable_EquipamentoSala();
-        foreach ($dados['id_equipamento'] as $key => $value) {
-            $equipamentoSalaModel->cadastraEquipamentoSala(array(
-                'id_equipamento_sala' => $value, 'numero_sala' => $chave, 'quantidade' => 1));
-        }
-
+        
+            $equipamentoSalaModel = new Application_Model_DbTable_EquipamentoSala();
+            foreach ($dados['id_equipamento'] as $key => $value) {
+                $equipamentoSalaModel->cadastraEquipamentoSala(array(
+                    'id_equipamento_sala' => $value, 'numero_sala' => $chave, 'quantidade' => 1));
+            }
+        
         return $chave;
     }
 
@@ -40,7 +41,7 @@ class Application_Model_DbTable_Sala extends Zend_Db_Table_Abstract {
         return $this->fetchRow($select);
     }
 
-    public function listaClientePor($alias, $value) {
+    public function listaSalaPor($alias, $value) {
         $select = $this->select()->where($alias . ' = ?', $value);
         return $this->fetchAll($select);
     }
