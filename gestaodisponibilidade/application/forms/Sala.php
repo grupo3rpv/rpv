@@ -22,7 +22,7 @@ class Application_Form_Sala extends Zend_Form {
         $element = new Zend_Form_Element_Text('numero');
         $element->setLabel('Numero:')
                 ->setAttrib('size', '30')
-               // ->addValidator($validator)
+                // ->addValidator($validator)
                 ->setAttrib('class', 'i-format')
                 ->addValidator(new Zend_Validate_StringLength(array('max' => 60)))
                 ->addFilter(new Zend_Filter_StripTags())
@@ -73,8 +73,6 @@ class Application_Form_Sala extends Zend_Form {
         foreach ($arrayEquipamentos as $item) {
             $lista[$item['id_equipamento']] = $item['descricao'];
         }
-        
-
 
         $element = new Zend_Form_Element_MultiCheckbox(Application_Model_DbTable_Equipamento::getPrimaryKeyName());
         $element->setLabel('Selecione os equipamentos da sala:');
