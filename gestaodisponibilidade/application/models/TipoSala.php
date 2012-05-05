@@ -2,11 +2,11 @@
 
 class Application_Model_TipoSala extends Zend_Db_Table_Row_Abstract {
 
-    public function getIdSala() {
+    public function getId_sala() {
         return $this->sala;
     }
 
-    public function setIdSala($sala) {
+    public function setId_sala($sala) {
         $this->sala = $sala;
     }
 

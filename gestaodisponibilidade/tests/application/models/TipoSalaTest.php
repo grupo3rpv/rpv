@@ -14,11 +14,12 @@ class Application_Model_TipoSalaTest extends PHPUnit_Framework_TestCase {
         $this->assertSame('Laboratorio', $tipoSala->getDescricao());
     }
 
-    public function testIdSala() {
+    public function testGetId_sala() {
         $tipoSalaModel = new Application_Model_DbTable_Sala();
         $tipoSala = $tipoSalaModel->createRow();
-        $tipoSala->setIdSala($sala);
-        $this->assertSame($sala, $tipoSala->getIdSala($sala));
+        $tipoSala->setId_tipo_sala(1);
+        $this->assertSame(1, $tipoSala->getId_tipo_sala());
+        
     }
 
 }

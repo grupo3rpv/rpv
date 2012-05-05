@@ -1,10 +1,7 @@
 <?php
 
-class Application_Model_Equipamento extends Zend_Db_Table_Row_Abstract
-{
+class Application_Model_Equipamento extends Zend_Db_Table_Row_Abstract {
 
-
-    
     public function getId_equipamento() {
         return $this->id_equipamento;
     }
@@ -20,8 +17,6 @@ class Application_Model_Equipamento extends Zend_Db_Table_Row_Abstract
     public function setDescricao($descricao) {
         $this->descricao = $descricao;
     }
-
-
 
 }
 
