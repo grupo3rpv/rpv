@@ -75,8 +75,8 @@ class Application_Model_DbTable_Sala extends Zend_Db_Table_Abstract {
 
         $chave = $sala->save();
 
-
         $equipamentoSalaModel = new Application_Model_DbTable_EquipamentoSala();
+        $equipamentoSalaModel->removerEquipamentosDaSala($sala->getNumero());
         foreach ($dados['id_equipamento'] as $key => $value) {
             $equipamentoSalaModel->cadastraEquipamentoSala(array(
                 'id_equipamento_sala' => $value, 'numero_sala' => $chave, 'quantidade' => 1));

@@ -34,13 +34,9 @@ class SecretariaController extends Zend_Controller_Action {
         $numero = $this->getRequest()->getParam(Application_Model_DbTable_Sala::getPrimaryKeyName());
 
         $salaModel = new Application_Model_DbTable_Sala();
-
         $arraySala = $salaModel->find($numero)->current()->toArray();
 
-
         $modelEquipamentoSala = new Application_Model_DbTable_EquipamentoSala();
-        $modelEquipameto = new Application_Model_DbTable_Equipamento();
-
         $listaEquiSala = $modelEquipamentoSala->getEquipamentosSala($numero);
 
         $equipamentos = array();
