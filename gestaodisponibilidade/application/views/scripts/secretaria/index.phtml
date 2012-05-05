@@ -10,7 +10,7 @@
             <th>Status</th>
             <th>Tipo de sala</th>
             <th>Responsável</th>
-            <th>Ação</th>
+            <th colspan="2">Ação</th>
         </tr> 
     </thead> 
     <? foreach ($this->listaSalas as $item): ?> 
@@ -26,6 +26,9 @@
                 <td><?= $item->getResponsavel() ?></td> 
                 <td>
                     <a href="<?= $this->baseUrl('/secretaria/editar-sala/') ?><?= $item->getNumero() ?>">Editar</a>
+                </td>
+                <td>
+                    <a href="<?= $this->baseUrl('/secretaria/remover-sala/id_sala/') ?><?= $item->getNumero() ?>">Remover</a>
                 </td>
             </tr>
         </tbody>
