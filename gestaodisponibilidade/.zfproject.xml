@@ -22,6 +22,7 @@
       <formsDirectory>
         <formFile formName="Sala"/>
         <formFile formName="Equipamento"/>
+        <formFile formName="TipoSala"/>
       </formsDirectory>
       <layoutsDirectory>
         <layoutScriptsDirectory>
@@ -54,6 +55,12 @@
           </viewControllerScriptsDirectory>
           <viewControllerScriptsDirectory forControllerName="Equipamento">
             <viewScriptFile forActionName="editar-equipamento"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="TipoSala">
+            <viewScriptFile forActionName="cadastrar-tipo_sala"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="TipoSala">
+            <viewScriptFile forActionName="editar-tipo-sala"/>
           </viewControllerScriptsDirectory>
         </viewScriptsDirectory>
         <viewHelpersDirectory/>
