@@ -32,7 +32,7 @@ class Application_Model_DbTable_Sala extends Zend_Db_Table_Abstract {
         return $this->fetchRow($select);
     }
 
-    public function listaClientePor($alias, $value) {
+    public function listaSalaPor($alias, $value) {
         $select = $this->select()->where($alias . ' = ?', $value);
         return $this->fetchAll($select);
     }
