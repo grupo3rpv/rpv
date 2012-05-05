@@ -61,9 +61,9 @@ class Application_Model_Sala extends Zend_Db_Table_Row_Abstract {
 
     public function getStatus_disponibilidade() {
         if ($this->status_disponibilidade == '1' || $this->status_disponibilidade == true) {
-            return true;
+            return 'Disponivel';
         }
-        return false;
+        return 'Indisponivel';
     }
 
     public function setStatus_disponibilidade($status_disponibilidade) {
