@@ -88,7 +88,7 @@ INSERT INTO `sala` (`numero`, `descricao`, `capacidade`, `capacidade_desc`, `res
 --
 
 CREATE TABLE IF NOT EXISTS `tipo_sala` (
-  `id_tipo_sala` int(11) NOT NULL DEFAULT '0',
+  `id_tipo_sala` int(11) NOT NULL AUTO_INCREMENT,
   `descricao` varchar(255) NOT NULL,
   PRIMARY KEY (`id_tipo_sala`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
