@@ -5,10 +5,17 @@ class Application_Model_DbTable_Sala extends Zend_Db_Table_Abstract {
     protected $_name = 'sala';
     protected $_rowClass = 'Application_Model_Sala';
     protected $_referenceMap = array(
+        
         'SalaTipoSala' => array(
             'refTableClass' => 'Application_Model_DbTable_TipoSala',
             'columns' => array('id_categoria'),
             'refColumns' => 'id_categoria'
+        ),
+        
+        'SalaEquipamentoSala' => array(
+            'refTableClass' => 'Application_Model_DbTable_EquipamentoSala',
+            'columns' => array('numero_sala'),
+            'refColumns' => 'numero'
         )
     );
 

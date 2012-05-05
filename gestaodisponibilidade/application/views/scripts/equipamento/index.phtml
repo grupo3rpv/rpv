@@ -1,4 +1,7 @@
+
+
 <p><a href="<?= $this->baseUrl('/equipamento/adicionar-equipamento/') ?>">Adicionar Equipamento</a></p>
+
 <table class="style2"> 
     <thead> 
         <tr> 
@@ -13,7 +16,11 @@
                 <td><?= $item->getId_equipamento() ?></td> 
                 <td><?= $item->getDescricao() ?></td>
                 <td>
+
+                    <a href="<?= $this->baseUrl('/equipamento/editar-equipamento/') ?><?= $item->getId_equipamento() ?>">Editar</a>
+
                     <a href="<?= $this->baseUrl('/equipamento/editar-equipamento/id_equipamento/') ?><?= $item->getId_equipamento() ?>">Editar</a>
+
                 </td>
             </tr>
         <? endforeach; ?>
