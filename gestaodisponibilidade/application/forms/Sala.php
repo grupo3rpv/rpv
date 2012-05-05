@@ -74,16 +74,10 @@ class Application_Form_Sala extends Zend_Form {
             $lista[$item['id_equipamento']] = $item['descricao'];
         }
         
-<<<<<<< HEAD
-        
-        
-=======
+
         $numero_sala = $this->getAttrib('numero');
         var_dump($numero_sala);
-<<<<<<< HEAD
->>>>>>> branch 'master' of https://github.com/grupo3rpv/rpv.git
-=======
->>>>>>> b7ad374a4a3c72d589ae149c38771bf79e72389f
+
         $element = new Zend_Form_Element_MultiCheckbox(Application_Model_DbTable_Equipamento::getPrimaryKeyName());
         $element->setLabel('Selecione os equipamentos da sala:');
         $element->addMultiOptions($lista);

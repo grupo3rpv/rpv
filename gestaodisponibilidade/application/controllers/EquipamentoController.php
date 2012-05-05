@@ -12,8 +12,7 @@ class EquipamentoController extends Zend_Controller_Action {
         $this->view->listaEquipamentos = $listaEquipamentos;
     }
 
-<<<<<<< HEAD
-=======
+
     public function adicionarEquipamentoAction() {
         $form = new Application_Form_Equipamento();
 
@@ -52,6 +51,5 @@ class EquipamentoController extends Zend_Controller_Action {
         $this->view->form = $form;
     }
 
->>>>>>> b7ad374a4a3c72d589ae149c38771bf79e72389f
 }
 

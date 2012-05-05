@@ -39,16 +39,10 @@ class SecretariaController extends Zend_Controller_Action {
         
         $modelEquipamentoSala = new Application_Model_DbTable_EquipamentoSala();
         $listaEquipamentos = $equipamentoSala->getEquipamentosSala($arraySala['numero']);
-        foreach ($listaEquipamentos as $item)
+        foreach ($listaEquipamentos as $item){
             $equipamentos[] = $item->getDescricao();
-           
-        }
-        
-        
-        
-        
-        
-       
+         }
+         
         $form->populate();
         if ($this->getRequest()->isPost()) {
             if ($form->isValid($_POST)) {
