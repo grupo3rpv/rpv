@@ -51,5 +51,9 @@ class Application_Model_DbTable_Equipamento extends Zend_Db_Table_Abstract {
         return $equipamento->save();
     }
     
+    public function removerEquipamento($idEquipamento) {
+        $equipamento = $this->find($idEquipamento)->current();
+        return $equipamento->delete();
+    }
 }
 

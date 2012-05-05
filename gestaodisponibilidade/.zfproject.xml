@@ -55,6 +55,9 @@
           <viewControllerScriptsDirectory forControllerName="Equipamento">
             <viewScriptFile forActionName="editar-equipamento"/>
           </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Equipamento">
+            <viewScriptFile forActionName="remover-equipamento"/>
+          </viewControllerScriptsDirectory>
         </viewScriptsDirectory>
         <viewHelpersDirectory/>
         <viewFiltersDirectory enabled="false"/>
