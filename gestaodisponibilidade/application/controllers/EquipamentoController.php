@@ -43,12 +43,19 @@ class EquipamentoController extends Zend_Controller_Action {
             if ($form->isValid($_POST)) {
                 $dados = $form->getValues();
                 $equipamentoModel->editarEquipamento($dados);
-                
+
                 $this->_redirect('/equipamento/index');
             }
         }
 
         $this->view->form = $form;
+    }
+
+    public function removerEquipamentoAction() {
+        $idEquipamento = $this->_getParam('id_equipamento');
+        $equipamentoModel = new Application_Model_DbTable_Equipamento();
+        $equipamentoModel->removerEquipamento($idEquipamento);
+        $this->_redirect('/equipamento/index');
     }
 
 }

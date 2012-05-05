@@ -37,18 +37,30 @@ class SecretariaController extends Zend_Controller_Action {
         
         $arraySala = $salaModel->find($numero)->current()->toArray();
         
+        
         $modelEquipamentoSala = new Application_Model_DbTable_EquipamentoSala();
-        $listaEquipamentos = $equipamentoSala->getEquipamentosSala($arraySala['numero']);
-        foreach ($listaEquipamentos as $item){
-            $equipamentos[] = $item->getDescricao();
+        $modelEquipameto =  new Application_Model_DbTable_Equipamento();
+        
+        $listaEquiSala = $modelEquipamentoSala->getEquipamentosSala($numero);
+        
+        $equipamentos =array();
+        foreach ($listaEquiSala as $item){
+            $equipamentos = $modelEquipameto->getDescricaoPorId($item['id_equipamento_sala']);
          }
-         
-        $form->populate();
+         foreach ($equipamentos as $value){
+           $arraySala['id_equipamento'][]= $value['descricao']; 
+         }
+        
+        //var_dump($arraySala);
+        
+        
+        $form->populate($arraySala);
         if ($this->getRequest()->isPost()) {
             if ($form->isValid($_POST)) {
                 $dados = $form->getValues();
                
                 $salaModel->editarSala($dados);
+                $this->_redirect('/secretaria/index');
             }
         }
 

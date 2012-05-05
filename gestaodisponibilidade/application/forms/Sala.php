@@ -15,14 +15,14 @@ class Application_Form_Sala extends Zend_Form {
          * Cria no formulario o campo de "nome" e já atribui o nome do campo na interface.
          */
         //Validador de Email existente
-        $validator = new Zend_Validate_Db_NoRecordExists('sala', 'numero');
+        //$validator = new Zend_Validate_Db_NoRecordExists('sala', 'numero');
         // seta a mensagem de erro
-        $validator->setMessage('A Sala já existe.');
+        //$validator->setMessage('A Sala já existe.');
 
         $element = new Zend_Form_Element_Text('numero');
         $element->setLabel('Numero:')
                 ->setAttrib('size', '30')
-                ->addValidator($validator)
+               // ->addValidator($validator)
                 ->setAttrib('class', 'i-format')
                 ->addValidator(new Zend_Validate_StringLength(array('max' => 60)))
                 ->addFilter(new Zend_Filter_StripTags())
@@ -75,8 +75,6 @@ class Application_Form_Sala extends Zend_Form {
         }
         
 
-        $numero_sala = $this->getAttrib('numero');
-        var_dump($numero_sala);
 
         $element = new Zend_Form_Element_MultiCheckbox(Application_Model_DbTable_Equipamento::getPrimaryKeyName());
         $element->setLabel('Selecione os equipamentos da sala:');

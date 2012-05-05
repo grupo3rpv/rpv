@@ -14,6 +14,11 @@ class Application_Model_DbTable_Equipamento extends Zend_Db_Table_Abstract {
         $select = $this->select()->order($value);
         return $this->fetchAll($select);
     }
+    
+     public function getDescricaoPorId($id) {
+        $select = $this->select()->where('id_equipamento = ?', $id);
+        return $this->fetchRow($select);
+    }
 
     public static function getPrimaryKeyName() {
         $class = get_called_class();
@@ -51,5 +56,9 @@ class Application_Model_DbTable_Equipamento extends Zend_Db_Table_Abstract {
         return $equipamento->save();
     }
     
+    public function removerEquipamento($idEquipamento) {
+        $equipamento = $this->find($idEquipamento)->current();
+        return $equipamento->delete();
+    }
 }
 
