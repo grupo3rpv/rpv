@@ -3,16 +3,15 @@
 class Application_Model_DbTable_Equipamento extends Zend_Db_Table_Abstract {
 
     protected $_name = 'equipamento';
-    protected $rowClass = 'Application_Model_Equipamento';
+    protected $_rowClass = 'Application_Model_Equipamento';
 
     public function listarTodos() {
         $select = $this->select()->order('descricao asc');
         return $this->fetchAll($select);
     }
     
-    public function listaEquipamentosPor($alias, $value) {
-        $select = $this->select()->where($alias . ' = ?', $value);
-        var_dump($select);die;
+    public function listaEquipamentosPor($value) {
+        $select = $this->select()->order($value);
         return $this->fetchAll($select);
     }
 

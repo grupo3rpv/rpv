@@ -7,8 +7,8 @@
             <th>Ação</th>
         </tr> 
     </thead> 
-    <? foreach ($this->listaEquipamentos as $item): ?> 
-        <tbody> 
+    <tbody> 
+        <? foreach ($this->listaEquipamentos as $item): ?> 
             <tr> 
                 <td><?= $item->getId_equipamento() ?></td> 
                 <td><?= $item->getDescricao() ?></td>
@@ -16,6 +16,6 @@
                     <a href="<?= $this->baseUrl('/equipamento/editar-equipamento/') ?><?= $item->getId_equipamento() ?>">Editar</a>
                 </td>
             </tr>
-        </tbody>
-    <? endforeach; ?>
+        <? endforeach; ?>
+    </tbody>
 </table>

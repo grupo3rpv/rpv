@@ -8,7 +8,7 @@ class EquipamentoController extends Zend_Controller_Action {
 
     public function indexAction() {
         $modelEquipamento = new Application_Model_DbTable_Equipamento();
-        $listaEquipamentos = $modelEquipamento->listaEquipamentosPor('descricao', 'asc');
+        $listaEquipamentos = $modelEquipamento->listaEquipamentosPor('descricao asc');
         $this->view->listaEquipamentos = $listaEquipamentos;
     }
 
