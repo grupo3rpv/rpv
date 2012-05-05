@@ -22,6 +22,7 @@
       <formsDirectory>
         <formFile formName="Sala"/>
         <formFile formName="Equipamento"/>
+        <formFile formName="TipoSala"/>
       </formsDirectory>
       <layoutsDirectory>
         <layoutScriptsDirectory>
@@ -49,61 +50,3 @@
           <viewControllerScriptsDirectory forControllerName="Equipamento">
             <viewScriptFile forActionName="index"/>
           </viewControllerScriptsDirectory>
-<<<<<<< HEAD
-=======
-          <viewControllerScriptsDirectory forControllerName="Equipamento">
-            <viewScriptFile forActionName="adicionar-equipamento"/>
-          </viewControllerScriptsDirectory>
-          <viewControllerScriptsDirectory forControllerName="Equipamento">
-            <viewScriptFile forActionName="editar-equipamento"/>
-          </viewControllerScriptsDirectory>
->>>>>>> b7ad374a4a3c72d589ae149c38771bf79e72389f
-        </viewScriptsDirectory>
-        <viewHelpersDirectory/>
-        <viewFiltersDirectory enabled="false"/>
-      </viewsDirectory>
-      <bootstrapFile filesystemName="Bootstrap.php"/>
-    </applicationDirectory>
-    <dataDirectory enabled="false">
-      <cacheDirectory enabled="false"/>
-      <searchIndexesDirectory enabled="false"/>
-      <localesDirectory enabled="false"/>
-      <logsDirectory enabled="false"/>
-      <sessionsDirectory enabled="false"/>
-      <uploadsDirectory enabled="false"/>
-    </dataDirectory>
-    <docsDirectory>
-      <file filesystemName="README.txt"/>
-    </docsDirectory>
-    <libraryDirectory>
-      <zfStandardLibraryDirectory enabled="false"/>
-    </libraryDirectory>
-    <publicDirectory>
-      <publicStylesheetsDirectory enabled="false"/>
-      <publicScriptsDirectory enabled="false"/>
-      <publicImagesDirectory enabled="false"/>
-      <publicIndexFile filesystemName="index.php"/>
-      <htaccessFile filesystemName=".htaccess"/>
-    </publicDirectory>
-    <projectProvidersDirectory enabled="false"/>
-    <temporaryDirectory enabled="false"/>
-    <testsDirectory>
-      <testPHPUnitConfigFile filesystemName="phpunit.xml"/>
-      <testPHPUnitBootstrapFile filesystemName="bootstrap.php"/>
-      <testApplicationDirectory>
-        <testApplicationControllerDirectory>
-          <testApplicationControllerFile forControllerName="Index">
-            <testApplicationActionMethod forActionName="index"/>
-          </testApplicationControllerFile>
-          <testApplicationControllerFile forControllerName="Secretaria">
-            <testApplicationActionMethod forActionName="index"/>
-          </testApplicationControllerFile>
-          <testApplicationControllerFile forControllerName="Equipamento">
-            <testApplicationActionMethod forActionName="index"/>
-          </testApplicationControllerFile>
-        </testApplicationControllerDirectory>
-      </testApplicationDirectory>
-      <testLibraryDirectory/>
-    </testsDirectory>
-  </projectDirectory>
-</projectProfile>
