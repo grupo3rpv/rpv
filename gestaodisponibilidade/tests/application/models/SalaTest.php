@@ -67,8 +67,9 @@ class Application_Model_SalaTest extends PHPUnit_Framework_TestCase {
 
     public function testCadastraSala() {
         $salaModel = new Application_Model_DbTable_Sala();
+        $equipamentos = array('id_equipamento_sala' => '1');
         $salaArray = array(
-            'numero' => $this->_numeroSala,
+            'numero' => '30908',
             'descricao' => 'Laboratório',
             'capacidade' => '20',
             'capacidade_desc' => 'pessoas',
@@ -76,10 +77,11 @@ class Application_Model_SalaTest extends PHPUnit_Framework_TestCase {
             'status_disponibilidade' => true,
             'id_tipo_sala' => '1',
             'responsavel' => 'Bruno',
+            'id_equipamento'=> $equipamentos
         );
         $id_sala = $salaModel->cadastraSala($salaArray);
         /* @var $produto Application_Model_Sala */
-        $this->assertSame('1000', $id_sala);
+        $this->assertSame('30908', $id_sala);
     }
 
     public function testAlterarSala() {
