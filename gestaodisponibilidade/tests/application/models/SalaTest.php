@@ -9,7 +9,7 @@ class Application_Model_SalaTest extends PHPUnit_Framework_TestCase {
         parent::setUp();
     }
 
-    public function testgetId_tipo_sala() {
+    public function testGetId_tipo_sala() {
         $salaModel = new Application_Model_DbTable_Sala();
         $sala = $salaModel->createRow();
         $sala->setId_tipo_sala(2);
@@ -37,7 +37,7 @@ class Application_Model_SalaTest extends PHPUnit_Framework_TestCase {
         $this->assertSame('50', $sala->getCapacidade());
     }
 
-    public function testgetInfo_adicionais() {
+    public function testGetInfo_adicionais() {
         $salaModel = new Application_Model_DbTable_Sala();
         $sala = $salaModel->createRow();
         $sala->setInfo_adicionais('teste');
