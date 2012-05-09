@@ -47,8 +47,8 @@ class Application_Model_SalaTest extends PHPUnit_Framework_TestCase {
     public function testGetStatus_disponibilidade() {
         $salaModel = new Application_Model_DbTable_Sala();
         $sala = $salaModel->createRow();
-        $sala->setStatus_disponibilidade(true);
-        $this->assertSame(true, $sala->getStatus_disponibilidade());
+        $sala->setStatus_disponibilidade('Disponivel');
+        $this->assertSame('Disponivel', $sala->getStatus_disponibilidade());
     }
 
     public function testGetResponsavel() {
@@ -94,7 +94,7 @@ class Application_Model_SalaTest extends PHPUnit_Framework_TestCase {
             'capacidade' => '20',
             'capacidade_desc' => 'pessoas',
             'info_adicionais' => 'sala para fazer teste',
-            'status_disponibilidade' => true,
+            'status_disponibilidade' => 'disponivel',
             'id_tipo_sala' => '1',
             'responsavel' => 'Bruno',
         );
