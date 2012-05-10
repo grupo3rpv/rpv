@@ -2,21 +2,18 @@
 <table class="style2"> 
     <thead> 
         <tr> 
-            
+            <th>Identificador</th>
             <th>Descrição</th>
-            <th colspan=2>Ação</th>
+            <th>Ação</th>
         </tr> 
     </thead> 
     <tbody> 
         <? foreach ($this->listaTipoSala as $item): ?> 
             <tr> 
-                
+                <td><?= $item->getId_tipo_sala() ?></td> 
                 <td><?= $item->getDescricao() ?></td>
                 <td>
                     <a href="<?= $this->baseUrl('/tipo-sala/editar-tipo-sala/id_tipo_sala/') ?><?= $item->getId_tipo_sala() ?>">Editar</a>
-                </td>
-                <td>
-                    <a href="<?= $this->baseUrl('/tipo-sala/remover-tipo-sala/id_tipo_sala/') ?><?= $item->getId_tipo_sala() ?>">Remover</a>
                 </td>
             </tr>
         <? endforeach; ?>

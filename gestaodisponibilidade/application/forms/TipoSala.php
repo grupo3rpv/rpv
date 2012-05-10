@@ -7,14 +7,14 @@ class Application_Form_TipoSala extends Zend_Form
     {
          $this->setMethod('POST');
 
-        $element = new Zend_Form_Element_Text('id_tipo_sala');
-        $element->setLabel('Identificador: ')
-                ->setAttrib('size', '30')
-                ->setAttrib('class', 'i-format')
-                ->setAttrib('readonly', 'true')
-                ->addFilter(new Zend_Filter_StripTags())
-                ->setAllowEmpty(false);
-        $this->addElement($element);
+//        $element = new Zend_Form_Element_Text('id_tipo_sala');
+//        $element->setLabel('Identificador: ')
+//                ->setAttrib('size', '30')
+//                ->setAttrib('class', 'i-format')
+//                ->setAttrib('readonly', 'true')
+//                ->addFilter(new Zend_Filter_StripTags())
+//                ->setAllowEmpty(false);
+//        $this->addElement($element);
         
         $element = new Zend_Form_Element_Text('descricao');
         $element->setLabel('Descrição: ')
