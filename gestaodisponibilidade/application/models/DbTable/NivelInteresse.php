@@ -42,10 +42,11 @@ class Application_Model_DbTable_NivelInteresse extends Zend_Db_Table_Abstract {
         return $nivelInteresse->save();
     }
 
-    public function getNivelInteresse($id_professor) {
+    public function getNiveisInteresse($id_professor) {
         $select = $this->select()->where('id_professor= ?', $id_professor);
         return $this->fetchAll($select);
     }
+    
     
     public function removerNivelInteresse($id_professor, $id_nivelinteresse) {
         $nivelInteresse = $this->find(array($id_professor, $id_nivelinteresse))->current();
