@@ -34,10 +34,10 @@ class ProfessorController extends Zend_Controller_Action {
         $form = new Application_Form_Professor();
 
         $numero = $this->getRequest()->getParam(Application_Model_DbTable_Professor::getPrimaryKeyName());
-
         $professorModel = new Application_Model_DbTable_Professor();
-
-        $form->populate($professorModel->find($numero)->current()->toArray());
+        
+        $professor = $professorModel->find($numero)->current()->toArray();
+        $form->populate($professor);
 
         if ($this->getRequest()->isPost()) {
             if ($form->isValid($_POST)) {
