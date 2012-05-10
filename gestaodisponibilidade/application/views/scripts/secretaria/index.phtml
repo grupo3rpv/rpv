@@ -3,12 +3,12 @@
     <thead> 
         <tr> 
             <th>Número</th> 
+            <th>Tipo de sala</th>
             <th>Descrição</th> 
-            <th>Capacidade</th> 
+            <th>Capacidade </th> 
             <th>Tipo</th> 
             <th>Informações adicionais</th>
             <th>Status</th>
-            <th>Tipo de sala</th>
             <th>Responsável</th>
             <th colspan="2">Ação</th>
         </tr> 
@@ -17,12 +17,12 @@
         <tbody> 
             <tr> 
                 <td><?= $item->getNumero() ?></td> 
+                <td><?= $item->getId_tipo_sala() ?></td> 
                 <td><?= $item->getDescricao() ?></td> 
                 <td><?= $item->getCapacidade() ?></td> 
                 <td><?= $item->getCapacidade_desc() ?></td>
                 <td><?= $item->getInfo_adicionais() ?></td> 
                 <td><?= $item->getStatus_disponibilidade() ?></td>
-                <td><?= $item->getInfo_adicionais() ?></td> 
                 <td><?= $item->getResponsavel() ?></td> 
                 <td>
                     <a href="<?= $this->baseUrl('/secretaria/editar-sala/') ?><?= $item->getNumero() ?>">Editar</a>
