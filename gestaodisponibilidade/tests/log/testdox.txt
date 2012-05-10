@@ -1,7 +1,35 @@
 PHPUnit_Framework_Warning
  [ ] Warning
 
+TipoSalaController
+ [ ] Index action
+
+Application_Model_Curso
+ [ ] Cadastro curso
+
+Application_Model_EquipamentoSala
+ [x] testGetId equipamento sala
+ [x] testGetNumero sala
+ [x] Get quantidade
+
+Application_Model_Equipamento
+ [x] testgetId equipamento
+ [x] Get descricao
+
 Application_Model_Sala
- [ ] Get numero
- [ ] Set get descricao
+ [x] testGetId tipo sala
+ [x] Get numero
+ [x] Get descricao
+ [x] Get capacidade
+ [x] testGetInfo adicionais
+ [x] testGetStatus disponibilidade
+ [x] Get responsavel
+ [x] testCapacidade desc
+ [x] Cadastra sala
+ [ ] Alterar sala
+ [ ] Remover sala
+
+Application_Model_TipoSala
+ [x] Get descricao
+ [x] testGetId sala
 
