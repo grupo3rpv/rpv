@@ -13,11 +13,11 @@
 class Application_Model_Disciplina extends Zend_Db_Table_Row_Abstract {
 
     public function getId_disciplina() {
-        return $this->id_equipamento;
+        return $this->id_disciplina;
     }
 
-    public function setId_disciplina($id_equipamento) {
-        $this->id_equipamento = $id_equipamento;
+    public function setId_disciplina($id_disciplina) {
+        $this->id_disciplina = $id_disciplina;
     }
 
     public function getCodigo() {
