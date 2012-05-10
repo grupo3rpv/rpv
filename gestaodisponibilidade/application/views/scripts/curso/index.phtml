@@ -7,23 +7,23 @@
         <tr> 
             <th>Codigo</th>
             <th>Nome</th>
-            <th>Editar</th>
-            <th>Remover</th>
+            <th colspan="2">Ação</th>
+           
             
         </tr> 
     </thead> 
     <tbody> 
         <? foreach ($this->listarTodos as $item): ?> 
             <tr> 
-                <td><?= $item->getId_curso() ?></td> 
+                <td><?= $item->getCodigo() ?></td> 
                 <td><?= $item->getNome() ?></td>
                 
                 
                 <td>
-                    <a href="<?= $this->baseUrl('/curso/editar-curso/id_curso/') ?><?= $item->getId_curso() ?>">Editar Curso</a>
+                    <a href="<?= $this->baseUrl('/curso/editar-curso/id_curso/') ?><?= $item->getId_curso() ?>">Editar</a>
                 </td>
                 <td>
-                    <a href="<?= $this->baseUrl('/curso/remover-curso/id_curso/') ?><?= $item->getId_curso() ?>">Remover Curso</a>
+                    <a href="<?= $this->baseUrl('/curso/remover-curso/id_curso/') ?><?= $item->getId_curso() ?>">Remover</a>
                 </td>
             </tr>
         <? endforeach; ?>
