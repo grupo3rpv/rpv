@@ -54,5 +54,10 @@ class Application_Model_DbTable_TipoSala extends Zend_Db_Table_Abstract {
         return $info['primary'][1];
     }
 
+    public function removerTipoSala($id_tipo_sala) {
+        $tipoSala = $this->find($id_tipo_sala)->current();
+        return $tipoSala->delete();
+    }
+
 }
 

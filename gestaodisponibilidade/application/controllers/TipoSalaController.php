@@ -11,7 +11,7 @@ class TipoSalaController extends Zend_Controller_Action {
         $listaTipoSala = $modelTipoSala->listaTipoSalaPor('descricao asc');
         $this->view->listaTipoSala = $listaTipoSala;
     }
-    
+
     public function cadastrarTipoSalaAction() {
         $form = new Application_Form_TipoSala();
 
@@ -42,7 +42,7 @@ class TipoSalaController extends Zend_Controller_Action {
             if ($form->isValid($_POST)) {
                 $dados = $form->getValues();
                 $tipoSalaModel->editarTipoSala($dados);
-                
+
                 $this->_redirect('/tipo-sala/index');
             }
         }
@@ -50,6 +50,12 @@ class TipoSalaController extends Zend_Controller_Action {
         $this->view->form = $form;
     }
 
+    public function removerTipoSalaAction() {
+        $id_tipo_sala = $this->_getParam('id_tipo_sala');
+        $tipoSalaModel = new Application_Model_DbTable_TipoSala();
+        $tipoSalaModel->removerTipoSala( $id_tipo_sala);
+        $this->_redirect('/tipo-sala/index');
+    }
 
 }
 
