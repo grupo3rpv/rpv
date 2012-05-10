@@ -18,7 +18,7 @@ class Application_Model_CursoTest extends PHPUnit_Framework_TestCase {
          );
          $id = $modelCurso->cadastraCurso($dados);
      
-         $this->assertSame($id, 23);
+         $this->assertSame('23', $id);
          
      }
     
