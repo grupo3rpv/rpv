@@ -51,6 +51,7 @@ class Application_Model_DbTable_Curso extends Zend_Db_Table_Abstract {
     }
 
     public function cadastraCurso($dados) {
+        
         $curso = $this->createRow();
 
         $curso ->setId_curso($dados['id_curso']);
