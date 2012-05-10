@@ -1,13 +1,15 @@
 
 
-<p><a href="<?= $this->baseUrl('/curso/adicionar-curso/') ?>">Adicionar Equipamento</a></p>
+<p><a href="<?= $this->baseUrl('/curso/adicionar-curso/') ?>">Adicionar Curso</a></p>
 
 <table class="style2"> 
     <thead> 
         <tr> 
-            <th>Nome</th>
             <th>Codigo</th>
-            <th colspan="2">Ação</th>
+            <th>Nome</th>
+            <th>Editar</th>
+            <th>Remover</th>
+            
         </tr> 
     </thead> 
     <tbody> 
@@ -15,7 +17,8 @@
             <tr> 
                 <td><?= $item->getId_curso() ?></td> 
                 <td><?= $item->getNome() ?></td>
-                <td><?= $item->getCodigo() ?></td>
+                
+                
                 <td>
                     <a href="<?= $this->baseUrl('/curso/editar-curso/id_curso/') ?><?= $item->getId_curso() ?>">Editar Curso</a>
                 </td>
