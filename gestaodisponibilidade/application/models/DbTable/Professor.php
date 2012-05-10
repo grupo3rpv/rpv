@@ -27,7 +27,7 @@ class Application_Model_DbTable_Professor extends Zend_Db_Table_Abstract {
         )
     );
 
-    public function cadastraProfessor($dados) {
+    public function cadastrarProfessor($dados) {
         $professor = $this->createRow();
         /* @var $professor Application_Model_Professor */
         $professor->setId_professor($dados['id_professor']);
@@ -85,6 +85,26 @@ class Application_Model_DbTable_Professor extends Zend_Db_Table_Abstract {
         $select = $this->select()->order('id_professor asc');
         return $this->fetchAll($select);
     }
+
+    public static function getPrimaryKeyName() {
+        $class = get_called_class();
+        $model = new $class;
+        $info = $model->info();
+        return $info['primary'][1];
+    }
+        public static function getValuesToSelectElement($order = 'nome asc') {
+        $class = get_called_class();
+        $model = new $class;
+        $info = $model->info();
+        $select = $model->select()->order($order);
+        $result = $model->fetchAll($select);
+        $resultArray = array();
+        foreach ($result as $row):
+            $resultArray[$row->$info['primary'][1]] = $row->nome;
+        endforeach;
+        return $resultArray;
+    }
+
 
 }
 

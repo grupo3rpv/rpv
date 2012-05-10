@@ -18,16 +18,13 @@ class Application_Form_Professor extends Zend_Form {
         //$validator = new Zend_Validate_Db_NoRecordExists('sala', 'numero');
         // seta a mensagem de erro
         //$validator->setMessage('A Sala já existe.');
-
         $element = new Zend_Form_Element_Text('id_professor');
-        $element->setLabel('Numero:')
+        $element->setLabel('Identificador: ')
                 ->setAttrib('size', '30')
-                // ->addValidator($validator)
                 ->setAttrib('class', 'i-format')
-                ->addValidator(new Zend_Validate_StringLength(array('max' => 60)))
+                ->setAttrib('readonly', 'true')
                 ->addFilter(new Zend_Filter_StripTags())
-                ->setAllowEmpty(false)
-                ->setRequired(true);
+                ->setAllowEmpty(false);
         $this->addElement($element);
 
         $element = new Zend_Form_Element_Text('nome');
