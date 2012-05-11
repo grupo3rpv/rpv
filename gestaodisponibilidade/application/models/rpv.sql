@@ -160,7 +160,7 @@ ENGINE = InnoDB;
 -- Table `area`
 -- -----------------------------------------------------
 CREATE  TABLE IF NOT EXISTS `area` (
-  `id_area` INT NOT NULL ,
+  `id_area` INT NOT NULL AUTO_INCREMENT,
   `nome` VARCHAR(255) NULL ,
   `descricao` TEXT NULL ,
   PRIMARY KEY (`id_area`) )
