@@ -11,6 +11,7 @@
  * @author Helison
  */
 class Application_Model_DbTable_Professor extends Application_Model_DbTable_Usuario {
+    protected $_rowClass = 'Application_Model_Professor';
 
     public function cadastrarUsuario($dados) {
         $usuario = $this->createRow();
@@ -51,8 +52,4 @@ class Application_Model_DbTable_Professor extends Application_Model_DbTable_Usua
         return $chave;
     }
 
-    public function removerUsuario($id_usuario) {
-        $usuario = $this->find($id_usuario)->current();
-        return $usuario->delete();
-    }
 }
