@@ -37,7 +37,7 @@ class Application_Model_CursoTest extends PHPUnit_Framework_TestCase {
      public function testExcluirCurso(){
          $modelCurso = new Application_Model_DbTable_Curso();
          $numLinhas = $modelCurso->removerCurso('23');
-         $this->assertSame('1', $numLinhas);
+         $this->assertSame(1, $numLinhas);
          
      }
      

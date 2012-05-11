@@ -48,11 +48,11 @@ if (APPLICATION_ENV == 'development' || APPLICATION_ENV == 'staging'):
      * Insere valores na tabela equipamento-sala 
      */
     
-//    $db->insert('equipamento_sala', array('numero_sala' => '3', 'quantidade' => '20'));
-//    $db->insert('equipamento_sala', array('numero_sala' => '4', 'quantidade' => '10'));
-//    $db->insert('equipamento_sala', array('numero_sala' => '5', 'quantidade' => '50'));
-//    $db->insert('equipamento_sala', array('numero_sala' => '6', 'quantidade' => '30'));
-//    $db->insert('equipamento_sala', array('numero_sala' => '7', 'quantidade' => '3'));
+    $db->insert('equipamento_sala', array('id_equipamento_sala' => '', 'numero_sala' => '3', 'quantidade' => '20'));
+    $db->insert('equipamento_sala', array('numero_sala' => '4', 'quantidade' => '10'));
+    $db->insert('equipamento_sala', array('numero_sala' => '5', 'quantidade' => '50'));
+    $db->insert('equipamento_sala', array('numero_sala' => '6', 'quantidade' => '30'));
+    $db->insert('equipamento_sala', array('numero_sala' => '7', 'quantidade' => '3'));
     
     /**
      * Insere valores na tabela 
