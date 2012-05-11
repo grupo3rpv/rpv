@@ -6,83 +6,83 @@
  */
 
 /**
- * Description of Professor
+ * Description of Usuario
  *
  * @author Helison
  */
-class Application_Model_DbTable_Professor extends Application_Model_DbTable_Usuario {
+class Application_Model_DbTable_Usuario extends Zend_Db_Table_Abstract {
 
-    protected $_name = 'professor';
-    protected $_rowClass = 'Application_Model_professor';
+    protected $_name = 'usuario';
+    protected $_rowClass = 'Application_Model_usuario';
     protected $_referenceMap = array(
-        'ProfessorDisciplina' => array(
+        'UsuarioDisciplina' => array(
             'refTableClass' => 'Application_Model_DbTable_Disciplina',
             'columns' => array('IdDisciplina'),
             'refColumns' => 'id_disciplina'
         ),
-        'ProfessorNivelInteresse' => array(
+        'UsuarioNivelInteresse' => array(
             'refTableClass' => 'Application_Model_DbTable_NivelInteresse',
             'columns' => array('idInteresse'),
             'refColumns' => 'id_nivelInteresse'
         )
     );
 
-    public function cadastrarProfessor($dados) {
-        $professor = $this->createRow();
-        /* @var $professor Application_Model_Professor */
-        $professor->setId_professor($dados['id_professor']);
-        $professor->setNome($dados['nome']);
-        $professor->setMatricula($dados['matricula']);
+    public function cadastrarUsuario($dados) {
+        $usuario = $this->createRow();
+        /* @var $usuario Application_Model_Usuario */
+        $usuario->setId_usuario($dados['id_usuario']);
+        $usuario->setNome($dados['nome']);
+        $usuario->setMatricula($dados['matricula']);
 
-        $chave = $professor->save();
+        $chave = $usuario->save();
 
 
-        $nivelInteresseProfessorModel = new Application_Model_DbTable_NivelInteresse();
-        foreach ($dados['id_professor'] as $key => $value) {
-            $$nivelInteresseProfessorModel->cadastraNivelInteresse(array(
+        $nivelInteresseUsuarioModel = new Application_Model_DbTable_NivelInteresse();
+        foreach ($dados['id_usuario'] as $key => $value) {
+            $$nivelInteresseUsuarioModel->cadastraNivelInteresse(array(
                 'id_nivelInteresse' => $value, 'idInteresse' => $chave, 'nivelInteresse' => 1));
         }
 
         return $chave;
     }
 
-    public function editarSala(array $dados) {
-        $professor = $this->find($dados['id_professor'])->current();
-        /* @var $professor Application_Model_Sala */
-        //$professor->setNumero($dados['numero']);
-        $professor->setNome($dados['nome']);
-        $professor->setMatricula($dados['matricula']);
+    public function editarUsuario(array $dados) {
+        $usuario = $this->find($dados['id_usuario'])->current();
+        /* @var $usuario Application_Model_Sala */
+        //$usuario->setNumero($dados['numero']);
+        $usuario->setNome($dados['nome']);
+        $usuario->setMatricula($dados['matricula']);
 
 
-        $chave = $professor->save();
+        $chave = $usuario->save();
 
-        $nivelInteresseProfessorModel = new Application_Model_DbTable_NivelInteresse();
-        $nivelInteresseProfessorModel->removerNivelInteresse($professor->getId_professor());
+        $nivelInteresseUsuarioModel = new Application_Model_DbTable_NivelInteresse();
+        $nivelInteresseUsuarioModel->removerNivelInteresse($usuario->getId_usuario());
         foreach ($dados['id_disciplina'] as $key => $value) {
-            $nivelInteresseProfessorModel->cadastraNivelInteresse(array(
+            $nivelInteresseUsuarioModel->cadastraNivelInteresse(array(
                 'id_nivelInteresse' => $value, 'idInteresse' => $chave, 'nivelInteresse' => 1));
         }
 
         return $chave;
     }
 
-    public function buscarProfessorPor($alias, $value) {
+    public function buscarUsuarioPor($alias, $value) {
         $select = $this->select()->where($alias . ' = ?', $value);
         return $this->fetchRow($select);
     }
 
-    public function listaProfessorPor($alias, $value) {
+    public function listaUsuarioPor($alias, $value) {
         $select = $this->select()->where($alias . ' = ?', $value);
         return $this->fetchAll($select);
     }
 
-    public function removerProfessor($id_professor) {
-        $professor = $this->find($id_professor)->current();
-        return $professor->delete();
+    public function removerUsuario($id_usuario) {
+        $usuario = $this->find($id_usuario)->current();
+        return $usuario->delete();
     }
 
-    public function listaProfessor() {
-        $select = $this->select()->order('id_professor asc');
+    public function listaUsuario() {
+        $select = $this->select()->order('id_usuario asc');
         return $this->fetchAll($select);
     }
 

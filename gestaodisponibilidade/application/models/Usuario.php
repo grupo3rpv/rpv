@@ -6,18 +6,18 @@
  */
 
 /**
- * Description of Professor
+ * Description of Usuario
  *
  * @author Helison
  */
-class Application_Model_Professor extends Application_Model_Usuario{
+class Application_Model_Usuario extends Zend_Db_Table_Row_Abstract {
     
-    public function getId_professor() {
-        return $this->id_professor;
+    public function getId_usuario() {
+        return $this->id_usuario;
     }
 
-    public function setId_professor($id_professor) {
-        $this->id_professor = $id_professor;
+    public function setId_usuario($id_usuario) {
+        $this->id_usuario = $id_usuario;
     }
 
     public function getNome() {

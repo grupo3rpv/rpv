@@ -10,10 +10,10 @@
  *
  * @author Helison
  */
-class Application_Model_DbTable_Area_Professor extends Zend_Db_Table_Abstract {
-
+class Application_Model_DbTable_AreaProfessor extends Zend_Db_Table_Abstract {
+    
     protected $_name = 'area_professor';
-    protected $_rowClass = 'Application_Model_Area_Professor';
+    protected $_rowClass = 'Application_Model_AreaProfessor';
     protected $_referenceMap = array(
         'AreaProfessorProfessor' => array(
             'refTableClass' => 'Application_Model_DbTable_Professor',
