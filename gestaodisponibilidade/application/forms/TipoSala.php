@@ -16,9 +16,8 @@ class Application_Form_TipoSala extends Zend_Form
 //                ->setAllowEmpty(false);
 //        $this->addElement($element);
         
-        $element = new Zend_Form_Element_Text('descricao');
-        $element->setLabel('Descrição: ')
-                ->setAttrib('class', 'i-format')
+        $element = new Zend_Form_Element_Hidden('descricao');
+        $element->setAttrib('class', 'i-format')
                 ->setAllowEmpty(false)
                 ->setRequired(true);
         $this->addElement($element);

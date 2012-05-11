@@ -18,9 +18,8 @@ class Application_Form_Professor extends Zend_Form {
         //$validator = new Zend_Validate_Db_NoRecordExists('sala', 'numero');
         // seta a mensagem de erro
         //$validator->setMessage('A Sala já existe.');
-        $element = new Zend_Form_Element_Text('id_usuario');
-        $element->setLabel('Identificador: ')
-                ->setAttrib('size', '30')
+        $element = new Zend_Form_Element_Hidden('id_usuario');
+        $element->setAttrib('size', '30')
                 ->setAttrib('class', 'i-format')
                 ->setAttrib('readonly', 'true')
                 ->addFilter(new Zend_Filter_StripTags())

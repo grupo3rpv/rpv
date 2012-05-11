@@ -5,9 +5,8 @@ class Application_Form_Equipamento extends Zend_Form {
     public function init() {
         $this->setMethod('POST');
 
-        $element = new Zend_Form_Element_Text('id_equipamento');
-        $element->setLabel('Identificador: ')
-                ->setAttrib('size', '30')
+        $element = new Zend_Form_Element_Hidden('id_equipamento');
+        $element->setAttrib('size', '30')
                 ->setAttrib('class', 'i-format')
                 ->setAttrib('readonly', 'true')
                 ->addFilter(new Zend_Filter_StripTags())

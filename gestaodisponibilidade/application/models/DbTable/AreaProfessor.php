@@ -51,7 +51,7 @@ class Application_Model_DbTable_AreaProfessor extends Zend_Db_Table_Abstract {
         $areaProfessor->setId_area($dados['id_area']);
         $areaProfessor->setDescricao($dados['descricao']);
         $areaProfessor->setNome($dados['nome']);
-        return $area->save();
+        return $areaProfessor->save();
     }
 
     public function editarArea(array $dados) {
