@@ -5,17 +5,16 @@
             <th>Codigo</th>
             <th>Nome</th>
             <th>Ementa</th>
-            <th>Carga Horaria</th>
+            <th colspan ="2">Acao</th>
         </tr> 
     </thead> 
     <tbody> 
         <? foreach ($this->listarTodos as $item): ?> 
             <tr> 
-                <td><?= $item->getId_disciplina() ?></td> 
+
                 <td><?= $item->getCodigo() ?></td>
                 <td><?= $item->getNome() ?></td>
                 <td><?= $item->getEmenta() ?></td>
-                <td><?= $item->getCargaHoraria() ?></td>
                 <td>
                     <a href="<?= $this->baseUrl('/disciplina/editar-disciplina/id_disciplina/') ?><?= $item->getId_disciplina() ?>">Editar</a>
                 </td>

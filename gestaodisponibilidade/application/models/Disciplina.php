@@ -41,7 +41,7 @@ class Application_Model_Disciplina extends Zend_Db_Table_Row_Abstract {
     public function setEmenta($ementa){
         $this->ementa = $ementa;
     }
-    public function getCargaHoraria(){
+    public function getCarga_horaria(){
         return $this->carga_horaria;
     }
     public function setCarga_horaria($carga_horaria){

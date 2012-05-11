@@ -39,12 +39,12 @@ class Application_Form_Disciplina extends Zend_Form {
                 ->setAttrib('class', 'i-format');
         $this->addElement($element);
 
-        $element = new Zend_Form_Element_Text('cargaHoraria');
+        $element = new Zend_Form_Element_Text('carga_horaria');
         $element->setLabel('Carga Horária: ')
                 ->setAttrib('class', 'i-format');
         $this->addElement($element);
         
-        $element = new Zend_Form_Element_Text('infoAdicionais');
+        $element = new Zend_Form_Element_Text('info_adicionais');
         $element->setLabel('Informações Adicionais: ')
                 ->setAttrib('class', 'i-format');
         $this->addElement($element);
