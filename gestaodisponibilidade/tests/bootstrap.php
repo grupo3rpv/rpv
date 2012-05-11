@@ -85,13 +85,15 @@ $application->getBootstrap()->bootstrap('db');
 //$application->getBootstrap()->bootstrap('salt');
 //$application->getBootstrap()->bootstrap('cache');
 $db = Zend_Db_Table::getDefaultAdapter();
-echo 'Criando tabelas'.BREAK_LINE;
-$db->beginTransaction();
-$sql = file_get_contents(APPLICATION_PATH . '/models/rpv.sql');
-$db->query($sql);
-$db->commit();
-
-
+echo 'Criando tabelas' . BREAK_LINE;
+try {
+    $db->beginTransaction();
+    $sql = file_get_contents(APPLICATION_PATH . '/models/rpv.sql');
+    $db->query($sql);
+    $db->commit();
+} catch (Exception $e) {
+    echo "Exceção ", $e->getMessage();
+}
 require_once APPLICATION_PATH . '/../public/db/fixtures.php';
 
 
