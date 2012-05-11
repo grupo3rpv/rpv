@@ -38,20 +38,20 @@ class Application_Model_Disciplina extends Zend_Db_Table_Row_Abstract {
     public function getEmenta(){
         return $this->ementa;
     }
-    public function setEmanta($ementa){
+    public function setEmenta($ementa){
         $this->ementa = $ementa;
     }
     public function getCargaHoraria(){
-        return $this->cargaHoraria;
+        return $this->carga_horaria;
     }
-    public function setCargaHoraria($cargaHoraria){
-        $this->cargaHoraria = $cargaHoraria;
+    public function setCarga_horaria($carga_horaria){
+        $this->carga_horaria = $carga_horaria;
     }
-    public function getInfoAdicionais(){
-        return $this->infoAdicionais;
+    public function getInfo_adicionais(){
+        return $this->info_adicionais;
     }
-    public function setinfoAdicionais($infoAdicionais){
-        $this->infoAdicionais = $infoAdicionais;
+    public function setinfo_adicionais($info_adicionais){
+        $this->info_adicionais = $info_adicionais;
     }
     
     
