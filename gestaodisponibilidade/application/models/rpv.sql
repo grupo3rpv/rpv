@@ -78,7 +78,7 @@ DEFAULT CHARACTER SET = utf8;
 -- -----------------------------------------------------
 CREATE  TABLE IF NOT EXISTS `curso` (
   `id_curso` INT NOT NULL AUTO_INCREMENT ,
-  `codigo` FLOAT NULL ,
+  `codigo` CHAR(12) NULL ,
   `nome` VARCHAR(255) NULL ,
   PRIMARY KEY (`id_curso`) )
 ENGINE = InnoDB;
@@ -127,7 +127,7 @@ ENGINE = InnoDB;
 CREATE  TABLE IF NOT EXISTS `usuario` (
   `id_usuario` INT NOT NULL AUTO_INCREMENT ,
   `nome` VARCHAR(255) NULL ,
-  `matricula` FLOAT NULL ,
+  `matricula` CHAR(12) NULL ,
   PRIMARY KEY (`id_usuario`) )
 ENGINE = InnoDB;
 
@@ -160,7 +160,7 @@ ENGINE = InnoDB;
 -- Table `area`
 -- -----------------------------------------------------
 CREATE  TABLE IF NOT EXISTS `area` (
-  `id_area` INT NOT NULL AUTO_INCREMENT,
+  `id_area` INT NOT NULL AUTO_INCREMENT ,
   `nome` VARCHAR(255) NULL ,
   `descricao` TEXT NULL ,
   PRIMARY KEY (`id_area`) )
