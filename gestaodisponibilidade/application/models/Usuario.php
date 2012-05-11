@@ -27,13 +27,7 @@ class Application_Model_Usuario extends Zend_Db_Table_Row_Abstract {
     public function setNome($nome) {
         $this->nome = $nome;
     }
-    public function getMatricula(){
-        return $this->matricula;
-    }
-    public function setMatricula($matricula){
-        $this->matricula = $matricula;
-   
-    }
+
 }
 
 ?>

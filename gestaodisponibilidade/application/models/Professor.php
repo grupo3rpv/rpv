@@ -12,21 +12,6 @@
  */
 class Application_Model_Professor extends Application_Model_Usuario{
     
-    public function getId_professor() {
-        return $this->id_professor;
-    }
-
-    public function setId_professor($id_professor) {
-        $this->id_professor = $id_professor;
-    }
-
-    public function getNome() {
-        return $this->nome;
-    }
-
-    public function setNome($nome) {
-        $this->nome = $nome;
-    }
     public function getMatricula(){
         return $this->matricula;
     }
@@ -35,5 +20,3 @@ class Application_Model_Professor extends Application_Model_Usuario{
    
     }
 }
-
-?>

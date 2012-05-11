@@ -8,7 +8,7 @@ class ProfessorController extends Zend_Controller_Action {
 
     public function indexAction() {
         $modelProfessor = new Application_Model_DbTable_Professor();
-        $listaProfessores = $modelProfessor->listaProfessor();
+        $listaProfessores = $modelProfessor->listaUsuario();
         $this->view->listaProfessor = $listaProfessores;
     }
 
@@ -21,7 +21,7 @@ class ProfessorController extends Zend_Controller_Action {
                 $dados = $form->getValues();
 
                 $model = new Application_Model_DbTable_Professor();
-                $model->cadastrarProfessor($dados);
+                $model->cadastrarUsuario($dados);
 
                 $this->_redirect('/professor/index');
             }
@@ -42,7 +42,7 @@ class ProfessorController extends Zend_Controller_Action {
         if ($this->getRequest()->isPost()) {
             if ($form->isValid($_POST)) {
                 $dados = $form->getValues();
-                $professorModel->editarProfessor($dados);
+                $professorModel->editarUsuario($dados);
 
                 $this->_redirect('/professor/index');
             }
@@ -82,9 +82,9 @@ class ProfessorController extends Zend_Controller_Action {
      */
 
     public function removerProfessorAction() {
-        $idProfessor = $this->_getParam('id_professor');
+        $idUsuario = $this->_getParam('id_usuario');
         $professorModel = new Application_Model_DbTable_Professor();
-        $professorModel->removerProfessor($idProfessor);
+        $professorModel->removerUsuario($idUsuario);
         $this->_redirect('/professor/index');
     }
 
