@@ -1,0 +1,31 @@
+
+
+<p><a href="<?= $this->baseUrl('/area/adicionar-area/') ?>">Adicionar Area</a></p>
+
+<table class="style2"> 
+    <thead> 
+        <tr> 
+            <th>Nome</th>
+            <th>Descricao</th>
+            <th colspan="2">Ação</th>
+
+
+        </tr> 
+    </thead> 
+    <tbody> 
+        <? foreach ($this->listarTodos as $item): ?> 
+            <tr> 
+                <td><?= $item->getNome() ?></td> 
+                <td><?= $item->getDescricao() ?></td>
+
+
+                <td>
+                    <a href="<?= $this->baseUrl('/area/editar-area/id_area/') ?><?= $item->getId_area() ?>">Editar</a>
+                </td>
+                <td>
+                    <a href="<?= $this->baseUrl('/area/remover-area/id_area/') ?><?= $item->getId_area() ?>">Remover</a>
+                </td>
+            </tr>
+        <? endforeach; ?>
+    </tbody>
+</table>
