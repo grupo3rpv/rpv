@@ -56,20 +56,20 @@ class Application_Model_DbTable_Disciplina extends Zend_Db_Table_Abstract {
         $disciplina->setCodigo($dados['codigo']);
         $disciplina->setNome($dados['nome']);
         $disciplina->setEmenta($dados['ementa']);
-        $disciplina->setCargaHoraria($dados['cargaHoaria']);
-        $disciplina->setInfoAdicionais($dados['infoAdicionais']);
+        $disciplina->setCarga_horaria($dados['carga_horaria']);
+        $disciplina->setInfo_adicionais($dados['info_adicionais']);
 
         return $disciplina->save();
     }
 
-    public function editarEquipamento(array $dados) {
+    public function editarDisciplina(array $dados) {
         $disciplina= $this->find($dados['id_disciplina'])->current();
         
         $disciplina->setCodigo($dados['codigo']);
         $disciplina->setNome($dados['nome']);
         $disciplina->setEmenta($dados['ementa']);
-        $disciplina->setCargaHoraria($dados['cargaHoaria']);
-        $disciplina->setInfoAdicionais($dados['infoAdicionais']);
+        $disciplina->setCarga_horaria($dados['carga_horaria']);
+        $disciplina->setInfo_adicionais($dados['info_adicionais']);
 
         return $disciplina->save();
     }

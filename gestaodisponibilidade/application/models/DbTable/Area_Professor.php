@@ -6,16 +6,28 @@
  */
 
 /**
- * Description of Area
+ * Description of Area_Professor
  *
  * @author Helison
  */
-class Application_Model_DbTable_Area extends Zend_Db_Table_Abstract {
+class Application_Model_DbTable_Area_Professor extends Zend_Db_Table_Abstract {
 
-    protected $_name = 'area';
-    protected $_rowClass = 'Application_Model_Area';
-
-    public static function getValuesToSelectElement($order = 'descricao asc') {
+    protected $_name = 'area_professor';
+    protected $_rowClass = 'Application_Model_Area_Professor';
+    protected $_referenceMap = array(
+        'AreaProfessorProfessor' => array(
+            'refTableClass' => 'Application_Model_DbTable_Professor',
+            'columns' => array('idProfessor'),
+            'refColumns' => 'id_professor'
+        ),
+        'AreaProfessorArea' => array(
+            'refTableClass' => 'Application_Model_DbTable_Area',
+            'columns' => array('idArea'),
+            'refColumns' => 'id_area'
+        )
+    );
+/*
+    function getValuesToSelectElement($order = ' asc') {
         $class = get_called_class();
         $model = new $class;
         $info = $model->info();
@@ -27,18 +39,18 @@ class Application_Model_DbTable_Area extends Zend_Db_Table_Abstract {
         endforeach;
         return $resultArray;
     }
-
-    public function listaAreaPor($value) {
+*/
+    public function listaAreaProfessorPor($value) {
         $select = $this->select()->order($value);
         return $this->fetchAll($select);
     }
 
-    public function cadastraArea($dados) {
-        $area = $this->createRow();
+    public function cadastraAreaProfessor($dados) {
+        $areaProfessor = $this->createRow();
 
-        $area->setId_area($dados['id_area']);
-        $area->setDescricao($dados['descricao']);
-        $area->setNome($dados['nome']);
+        $areaProfessor->setId_area($dados['id_area']);
+        $areaProfessor->setDescricao($dados['descricao']);
+        $areaProfessor->setNome($dados['nome']);
         return $area->save();
     }
 
@@ -48,11 +60,6 @@ class Application_Model_DbTable_Area extends Zend_Db_Table_Abstract {
         $area->setDescricao($dados['descricao']);
 
         return $area->save();
-    }
-
-    public function removerArea($id_area) {
-        $area = $this->find($id_area)->current();
-        return $area->delete();
     }
 
     public static function getPrimaryKeyName() {

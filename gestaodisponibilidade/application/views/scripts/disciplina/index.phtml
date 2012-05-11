@@ -5,24 +5,21 @@
             <th>Codigo</th>
             <th>Nome</th>
             <th>Ementa</th>
-            <th>Carga Horaria</th>
-            <th>Informações Adicionais</th>
+            <th colspan ="2">Acao</th>
         </tr> 
     </thead> 
     <tbody> 
         <? foreach ($this->listarTodos as $item): ?> 
             <tr> 
-                <td><?= $item->getId_disciplina() ?></td> 
+
                 <td><?= $item->getCodigo() ?></td>
                 <td><?= $item->getNome() ?></td>
                 <td><?= $item->getEmenta() ?></td>
-                <td><?= $item->getCargaHoraria() ?></td>
-                <td><?= $item->getInfoAdicionais() ?></td>
                 <td>
-                    <a href="<?= $this->baseUrl('/disciplina/editar-disciplina/id_disciplina/') ?><?= $item->getId_disciplina() ?>">Editar Disciplina</a>
+                    <a href="<?= $this->baseUrl('/disciplina/editar-disciplina/id_disciplina/') ?><?= $item->getId_disciplina() ?>">Editar</a>
                 </td>
                 <td>
-                    <a href="<?= $this->baseUrl('/disciplina/remover-disciplina/id_disciplina/') ?><?= $item->getDisciplina() ?>">Remover Disciplina</a>
+                    <a href="<?= $this->baseUrl('/disciplina/remover-disciplina/id_disciplina/') ?><?= $item->getId_disciplina() ?>">Remover</a>
                 </td>
             </tr>
         <? endforeach; ?>

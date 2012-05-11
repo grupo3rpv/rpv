@@ -2,11 +2,15 @@
 
 // Define path to application directory
 defined('APPLICATION_PATH')
-        || define('APPLICATION_PATH', realpath(dirname(__FILE__) . '/../application'));
+        || define('APPLICATION_PATH', realpath(dirname(__FILE__) . '/../../application'));
+
+// Define path to application directory
+defined('LIBRARY_PATH')
+        || define('LIBRARY_PATH', realpath(dirname(__FILE__) . '/../../library'));
 
 // Define application environment
 defined('APPLICATION_ENV')
-        || define('APPLICATION_ENV', (getenv('APPLICATION_ENV') ? getenv('APPLICATION_ENV') : 'testing'));
+        || define('APPLICATION_ENV', (getenv('APPLICATION_ENV') ? getenv('APPLICATION_ENV') : 'development'));
 
 // Ensure library/ is on include_path
 set_include_path(implode(PATH_SEPARATOR, array(
@@ -14,18 +18,14 @@ set_include_path(implode(PATH_SEPARATOR, array(
             get_include_path(),
         )));
 
-require_once 'Zend/Loader/Autoloader.php';
-Zend_Loader_Autoloader::getInstance();
+/** Zend_Application */
+require_once 'Zend/Application.php';
 
 // Create application, bootstrap, and run
 $application = new Zend_Application(
                 APPLICATION_ENV,
                 APPLICATION_PATH . '/configs/application.ini'
 );
-
-//$application->bootstrap();
-
-Zend_Session::start();
 
 
 $options = $application->getOptions();
@@ -34,6 +34,7 @@ $options = $application->getOptions();
 if (!key_exists('db', $options['resources'])) {
     die('Você não possui configuração de banco de dados no application.ini');
 }
+
 $sapi_type = php_sapi_name();
 if (substr($sapi_type, 0, 3) == 'cli') {
     $type = PHP_EOL;
@@ -83,17 +84,12 @@ $db->closeConnection();
 //Inicia o banco de dados
 $application->getBootstrap()->bootstrap('db');
 //$application->getBootstrap()->bootstrap('salt');
-//$application->getBootstrap()->bootstrap('cache');
 $db = Zend_Db_Table::getDefaultAdapter();
-echo 'Criando tabelas' . BREAK_LINE;
-try {
-    $db->beginTransaction();
-    $sql = file_get_contents(APPLICATION_PATH . '/models/rpv.sql');
-    $db->query($sql);
-    $db->commit();
-} catch (Exception $e) {
-    echo "Exceção ", $e->getMessage();
-}
-require_once APPLICATION_PATH . '/../public/db/fixtures.php';
+echo 'Criando tabelas <br/>'.BREAK_LINE;
+$db->beginTransaction();
+$sql = file_get_contents(APPLICATION_PATH . '/models/rpv.sql');
+$db->query($sql);
+$db->commit();
 
 
+require_once 'fixtures.php';
