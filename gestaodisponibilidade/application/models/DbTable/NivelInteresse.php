@@ -25,7 +25,6 @@ class Application_Model_DbTable_NivelInteresse extends Zend_Db_Table_Abstract {
     public function cadastraNivelInteresse(array $dados) {
         $nivelInteresse = $this->createRow();
 
-        $nivelInteresse->setId_nivelInteresse($dados['id_nivelInteresse']);
         $nivelInteresse->setId_professor($dados['id_professor']);
         $nivelInteresse->setNivelInteresse($dados['nivelInteresse']);
 
