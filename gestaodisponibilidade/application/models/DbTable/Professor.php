@@ -36,5 +36,6 @@ class Application_Model_DbTable_Professor extends Application_Model_DbTable_Usua
     public function removerProfessor($id_professor) {
         return parent::removerUsuario($id_professor);
     }
+    
 
 }
