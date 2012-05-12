@@ -21,13 +21,17 @@ class Application_Model_DbTable_NivelInteresse extends Zend_Db_Table_Abstract {
             'refColumns' => 'id_professor'
         )
     );
-
+    public function getDadosPorId($id_professor){
+    
+       $select = $this->select()->where('id_professor = ?', $id_professor);
+        return $this->fetchRow($select);
+    }
     public function cadastraNivelInteresse(array $dados) {
         $nivelInteresse = $this->createRow();
 
         $nivelInteresse->setId_professor($dados['id_professor']);
         $nivelInteresse->setNivelInteresse($dados['nivel_interesse']);
-
+        $nivelInteresse->setId_disciplina($dados['id_disciplina']);
         return $nivelInteresse->save();
     }
 

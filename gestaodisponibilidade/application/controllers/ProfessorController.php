@@ -100,14 +100,29 @@ class ProfessorController extends Zend_Controller_Action {
             unset($dados['module']);
             foreach ($dados as $key => $item) {
                 $disciplina = $modelDisciplina->listaDisciplinaPorCodigo($key);
-                $lista['id_disciplina']= $disciplina->getId_disciplina();
-                $lista['nivel_interesse'] =$item[$key];
+                $lista['id_disciplina'] = $disciplina->getId_disciplina();
+                //var_dump($lista['id_disciplina']);die();
+                $lista['nivel_interesse'] = $item[$key];
                 $lista['id_professor'] = '1';
-                //var_dump($lista);die();
-                $modelNivelInteresse->cadastraNivelInteresse($lista); 
+                $modelNivelInteresse->cadastraNivelInteresse($lista);
+                unset($lista);
+                ///var_dump($lista);die();
             }
-            $this->_redirect('/professor/index');
+            
+        
+            
+            //var_dump($lista);die();
+            $this->_redirect('/curso/listar-cursos');
         }
+    }
+    public function perfilAction(){
+       $modelNivelInteresse = new Application_Model_DbTable_NivelInteresse();
+       $rowNivelInteresse = $modelNivelInteresse->getDadosPorId('1');
+       
+       $modelProfessor = new Application_Model_DbTable_Professor();
+       $professor = $modelProfessor->listaProfessorPorID($rowNivelInteresse->getId_professor());
+      //var_dump($professor);die();
+       $this->view->professor=$professor;
     }
 
 }
