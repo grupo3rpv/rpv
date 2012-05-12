@@ -74,22 +74,22 @@ class CursoController extends Zend_Controller_Action {
     }
     
     public function disciplinaAction(){
+      
         $modelDisciplina = new Application_Model_DbTable_Disciplina();
         $id = $this->getRequest()->getParams(Application_Model_DbTable_Curso::getPrimaryKeyName());
-        
         $modelDisciplinaCurso = new Application_Model_DbTable_DisciplinaCurso();
-        $idDisciplinas = $modelDisciplinaCurso->getIdDisciplinas($id);
-        var_dump($idDisciplinas);
-                die();
-        $listaDisciplinas =  array();
+        
+//        $idDisciplinas = $modelDisciplinaCurso->fetchAll('id_curso ='.$id['id']);
+//        var_dump($idDisciplinas);die();
+       
+        $idDisciplinas = $modelDisciplinaCurso->getIdDisciplinas($id['id']);
+         $listaDisciplinas =  array();
         
         foreach ($idDisciplinas as $value) {
-           $listaDisciplinas[]= $modelDisciplina->listaDisciplinasPorID($value['id_disciplina']); 
+            
+           $listaDisciplinas[] = $modelDisciplina->getCodigoPorId($value['id_disciplina']); 
         }
-        var_dump($listaDisciplinas);
-        die();
-        $listaDisciplina = $modelDisciplina->listaDisciplinasPor('nome asc');
-        $this->view->listarTodos = $listaDisciplina;
+         $this->view->listarTodos = $listaDisciplinas;
         
        
     }
