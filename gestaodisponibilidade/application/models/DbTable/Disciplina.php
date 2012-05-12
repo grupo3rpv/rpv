@@ -92,7 +92,7 @@ class Application_Model_DbTable_Disciplina extends Zend_Db_Table_Abstract {
         $chave = $disciplina->save();
 
         $disciplinaCursoModel = new Application_Model_DbTable_DisciplinaCurso();
-        $disciplinaCursoModel->removerCursosDaDisciplina($disciplina->getId_disciplina());
+        $this->removerCursosDaDisciplina($disciplinaCursoModel, $disciplina);
         $this->cadastrarDisciplinaCurso($dados, $disciplinaCursoModel, $chave);
         
         return $chave;
@@ -100,6 +100,8 @@ class Application_Model_DbTable_Disciplina extends Zend_Db_Table_Abstract {
     
     public function removerDisciplina($id_disciplina) {
         $disciplina = $this->find($id_disciplina)->current();
+        $disciplinaCursoModel = new Application_Model_DbTable_DisciplinaCurso();
+        $this->removerCursosDaDisciplina($disciplinaCursoModel, $disciplina);
         return $disciplina->delete();
     }
     
@@ -108,6 +110,10 @@ class Application_Model_DbTable_Disciplina extends Zend_Db_Table_Abstract {
             $disciplinaCursoModel->cadastraDisciplinaCurso(array(
                 'id_curso' => $value, 'id_disciplina' => $chave));
         }
+    }
+    
+    private function removerCursosDaDisciplina($disciplinaCursoModel, $disciplina) {
+        $disciplinaCursoModel->removerCursosDaDisciplina($disciplina->getId_disciplina());
     }
 
 }
