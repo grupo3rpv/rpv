@@ -88,6 +88,11 @@ class ProfessorController extends Zend_Controller_Action {
         $this->_redirect('/professor/index');
     }
      
+  
+    public function nivelInteresseAction(){
+        $id = $this->_getParam('id');
+        var_dump($id);die();
+    }
     
 }
 
