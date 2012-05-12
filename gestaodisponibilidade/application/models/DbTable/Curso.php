@@ -14,6 +14,14 @@ class Application_Model_DbTable_Curso extends Zend_Db_Table_Abstract {
 
     protected $_name = 'curso';
     protected $_rowClass = 'Application_Model_Curso';
+    protected $_primary = 'id_curso';
+    
+     protected $_referenceMap   = array(
+        'CursoDisciplina' => array(
+            'columns'           => 'id_curso',
+            'refTableClass'     => 'DisciplinaCurso',
+            'refColumns'        => 'id_curso'
+     )); 
 
     public function listarTodos() {
         $select = $this->select()->order('nome asc');

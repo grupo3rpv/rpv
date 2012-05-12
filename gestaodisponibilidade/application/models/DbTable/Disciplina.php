@@ -13,8 +13,16 @@
 class Application_Model_DbTable_Disciplina extends Zend_Db_Table_Abstract {
     protected $_name = 'disciplina';
     protected $_rowClass = 'Application_Model_Disciplina';
+    protected $_primary='id_disciplina';
+    
+    protected $_referenceMap   = array(
+        'DisciplinaCurso' => array(
+            'columns'           => 'id_disciplina',
+            'refTableClass'     => 'DisciplinaCurso',
+            'refColumns'        => 'id_disciplina'
+     )); 
 
-        public function listarTodos() {
+    public function listarTodos() {
         $select = $this->select()->order('codigo asc');
         return $this->fetchAll($select);
     }
@@ -25,7 +33,7 @@ class Application_Model_DbTable_Disciplina extends Zend_Db_Table_Abstract {
     }
     
     public function listaDisciplinasPorID($id) {
-        $select = $this->select()->where('id_curso =?',$id);
+        $select = $this->select()->where('id_disciplina =?',$id);
         return $this->fetchAll($select);
     }
     
