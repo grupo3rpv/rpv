@@ -36,5 +36,24 @@ class Application_Model_DbTable_Professor extends Application_Model_DbTable_Usua
     public function removerProfessor($id_professor) {
         return parent::removerUsuario($id_professor);
     }
+        public static function getPrimaryKeyName() {
+        $class = get_called_class();
+        $model = new $class;
+        $info = $model->info();
+        return $info['primary'][1];
+    }
+
+    public static function getValuesToSelectElement($order = 'nome asc') {
+        $class = get_called_class();
+        $model = new $class;
+        $info = $model->info();
+        $select = $model->select()->order($order);
+        $result = $model->fetchAll($select);
+        $resultArray = array();
+        foreach ($result as $row):
+            $resultArray[$row->$info['primary'][1]] = $row->nome;
+        endforeach;
+        return $resultArray;
+    }
 
 }
