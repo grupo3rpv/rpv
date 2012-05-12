@@ -47,7 +47,10 @@ class Application_Form_Disciplina extends Zend_Form {
         $element->setLabel('Informações Adicionais: ')
                 ->setAttrib('class', 'i-format');
         $this->addElement($element);
-
+        
+        $element = new Zend_Form_Element_MultiCheckbox(Application_Model_DbTable_Curso::getPrimaryKeyName());
+        $element->setLabel('Selecione os cursos dessa disciplina: ');
+        $this->addElement($element);
         
         /**
          * Cria no formulario o botão de "enviar" define tambem o tamanho do mesmo.
