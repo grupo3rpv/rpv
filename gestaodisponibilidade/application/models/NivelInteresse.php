@@ -29,11 +29,11 @@ class Application_Model_NivelInteresse extends Zend_Db_Table_Row_Abstract {
     }
 
     public function getNivelInteresse() {
-        return $this->nivelInteresse;
+        return $this->nivel_interesse;
     }
 
     public function setNivelInteresse($nivelInteresse) {
-        $this->nivelInteresse = $nivelInteresse;
+        $this->nivel_interesse = $nivelInteresse;
     }
 
 }
