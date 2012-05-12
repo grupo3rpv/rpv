@@ -90,8 +90,18 @@ class ProfessorController extends Zend_Controller_Action {
      
   
     public function nivelInteresseAction(){
-        $id = $this->_getParam('id');
-        var_dump($id);die();
+        if ($this->getRequest()->isPost()) {
+           $dados =  $this->getRequest()->getParams();
+                
+              var_dump($dados);die();
+              $modelNivelInteresse = new Application_Model_DbTable_NivelInteresse();
+              foreach ($dados as $value) {
+                  var_dump($value);die();
+              }
+              $modelNivelInteresse->
+                $this->_redirect('/professor/index');
+            
+        }
     }
     
 }
