@@ -41,6 +41,25 @@ class Application_Model_CursoTest extends PHPUnit_Framework_TestCase {
          
      }
      
+    public function testGetId_curso() {
+        $modelCurso = new Application_Model_DbTable_Curso();
+        $disciplina = $modelCurso->createRow();
+        $disciplina->setId_curso(2);
+        $this->assertSame(2, $disciplina->getId_curso());
+    }
+
+     public function testGetNome() {
+        $modelCurso = new Application_Model_DbTable_Curso();
+        $disciplina = $modelCurso->createRow();
+        $disciplina->setNome('Engenharia Aeronautica');
+        $this->assertSame('Engenharia Aeronautica', $disciplina->getNome());
+    }
     
+     public function testGetCodigo() {
+        $modelCurso = new Application_Model_DbTable_Curso();
+        $disciplina = $modelCurso->createRow();
+        $disciplina->setCodigo('1234');
+        $this->assertSame('1234', $disciplina->getCodigo());
+    }
 
 }
