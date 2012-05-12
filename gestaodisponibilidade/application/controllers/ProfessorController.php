@@ -35,7 +35,7 @@ class ProfessorController extends Zend_Controller_Action {
 
         $numero = $this->getRequest()->getParam(Application_Model_DbTable_Professor::getPrimaryKeyName());
         $professorModel = new Application_Model_DbTable_Professor();
-        
+
         $professor = $professorModel->find($numero)->current()->toArray();
         $form->populate($professor);
 
@@ -87,22 +87,28 @@ class ProfessorController extends Zend_Controller_Action {
         $professorModel->removerProfessor($idUsuario);
         $this->_redirect('/professor/index');
     }
-     
-  
-    public function nivelInteresseAction(){
+
+    public function nivelInteresseAction() {
         if ($this->getRequest()->isPost()) {
-           $dados =  $this->getRequest()->getParams();
-                
-              var_dump($dados);die();
-              $modelNivelInteresse = new Application_Model_DbTable_NivelInteresse();
-              foreach ($dados as $value) {
-                  var_dump($value);die();
-              }
-              $modelNivelInteresse->
-                $this->_redirect('/professor/index');
-            
+            $dados = $this->getRequest()->getParams();
+
+            $modelNivelInteresse = new Application_Model_DbTable_NivelInteresse();
+            $lista = array();
+
+            unset($dados['controller']);
+            unset($dados['action']);
+            unset($dados['module']);
+            var_dump($dados);
+            die();
+            foreach ($dados as $key => $item) {
+                  
+            }
+            var_dump($lista);
+            die();
+            $modelNivelInteresse->
+            $this->_redirect('/professor/index');
         }
     }
-    
+
 }
 
