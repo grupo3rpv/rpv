@@ -25,6 +25,17 @@ protected function _initRotas() {
                         )
         );
         $router->addRoute('curso', $route);
+        
+         $route = new Zend_Controller_Router_Route(
+                        'professor/nivel-interesse/:id',
+                        array(
+                            'module' => 'default',
+                            'controller' => 'professor',
+                            'action' => 'nivel-interesse',
+                            
+                        )
+        );
+        $router->addRoute('profAdd', $route);
       
 
 }

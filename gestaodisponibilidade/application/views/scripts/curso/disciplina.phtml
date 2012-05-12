@@ -1,10 +1,32 @@
+
 <table class="style2"> 
+    <script>
+// começo o jquery
+$(function($){
+ 
+    // no id #enviar assim que clicar vai executar um função
+    $('#enviar').click(function(){
+ 
+    /* veja que eu criei variaveis para guardar os item
+     * e sómente precisei usar a função val() para
+     * retornar o valor dos campo para a varivel
+     */
+ 
+        var valor = $('#valor').val();
+       
+    // só parar testar coloco as variveis em um alert só para testar mesmo
+    alert(valor);
+ 
+    });
+ 
+});
+</script>
     <thead> 
         <tr> 
             <th>Codigo</th>
             <th>Nome</th>
             <th>Ementa</th>
-            <th>Nivel de interesse</th>
+            <th>Nivel de interesse  (1 a 5)</th>
  
         </tr> 
     </thead> 
@@ -15,8 +37,16 @@
                 <td><?= $item->getCodigo() ?></td>
                 <td><?= $item->getNome() ?></td>
                 <td><?= $item->getEmenta() ?></td>
+                <td><form method="post" >
+                        <input type="text" id="valor" name="valor">
+                        <br/>
+                        <INPUT  id="enviar" TYPE="submit" VALUE="Salvar" class="button blue small">      
+                </form>
+                </td>
                 
             </tr>
         <? endforeach; ?>
     </tbody>
 </table>
+
+<INPUT TYPE="submit" VALUE="Cadastrar Dados" class="button black xlarge">
