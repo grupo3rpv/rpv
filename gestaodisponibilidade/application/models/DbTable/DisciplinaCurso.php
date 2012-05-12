@@ -12,6 +12,12 @@ class Application_Model_DbTable_DisciplinaCurso extends Zend_Db_Table_Abstract {
         return $this->fetchAll($select);
     }
 
-    
+    public function cadastraDisciplinaCurso($dados) {
+        $disciplinaCurso = $this->createRow();
+        $disciplinaCurso->setId_disciplina_curso($dados['id_disciplina_curso']);
+        $disciplinaCurso->setId_curso($dados['id_curso']);
+        $disciplinaCurso->setId_disciplina($dados['id_disciplina']);
+        return $disciplinaCurso->save();
+    }
 
 }

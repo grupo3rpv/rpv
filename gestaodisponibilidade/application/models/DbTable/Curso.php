@@ -51,22 +51,20 @@ class Application_Model_DbTable_Curso extends Zend_Db_Table_Abstract {
     }
 
     public function cadastraCurso($dados) {
-        
+
         $curso = $this->createRow();
 
-        $curso ->setId_curso($dados['id_curso']);
-        $curso ->setNome($dados['nome']);
-        $curso ->setCodigo($dados['codigo']);
+        $curso->setId_curso($dados['id_curso']);
+        $curso->setNome($dados['nome']);
+        $curso->setCodigo($dados['codigo']);
 
         return $curso->save();
     }
 
     public function editarCurso(array $dados) {
         $curso = $this->find($dados['id_curso'])->current();
-        $curso ->setNome($dados['nome']);
-        $curso ->setCodigo($dados['codigo']);
-
-
+        $curso->setNome($dados['nome']);
+        $curso->setCodigo($dados['codigo']);
         return $curso->save();
     }
 
@@ -75,6 +73,13 @@ class Application_Model_DbTable_Curso extends Zend_Db_Table_Abstract {
         return $curso->delete();
     }
 
-}
+    public function getIdsENomesTodosCursos() {
+        $cursos = $this->listarTodos();
+        $lista = array();
+        foreach ($cursos as $item) {
+            $lista[$item['id_curso']] = $item['nome'];
+        }
+        return $lista;
+    }
 
-?>
+}

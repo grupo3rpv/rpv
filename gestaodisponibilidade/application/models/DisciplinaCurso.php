@@ -2,9 +2,9 @@
 
 class Application_Model_DisciplinaCurso extends Zend_Db_Table_Row_Abstract {
       
-   private $id_curso;
-   private $id_disciplina;
-   private $id_disciplina_curso;
+//   private $id_curso;
+//   private $id_disciplina;
+//   private $id_disciplina_curso;
    
    public function getId_curso() {
        return $this->id_curso;

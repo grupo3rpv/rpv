@@ -64,7 +64,15 @@ class Application_Model_DbTable_Disciplina extends Zend_Db_Table_Abstract {
         $disciplina->setCarga_horaria($dados['carga_horaria']);
         $disciplina->setInfo_adicionais($dados['info_adicionais']);
 
-        return $disciplina->save();
+        $chave = $disciplina->save();
+
+        $disciplinaCursoModel = new Application_Model_DbTable_DisciplinaCurso();
+        foreach ($dados['id_curso'] as $key => $value) {
+            $disciplinaCursoModel->cadastraDisciplinaCurso(array(
+                'id_curso' => $value, 'id_disciplina' => $chave));
+        }
+
+        return $chave;
     }
 
     public function editarDisciplina(array $dados) {
@@ -84,8 +92,4 @@ class Application_Model_DbTable_Disciplina extends Zend_Db_Table_Abstract {
         return $disciplina->delete();
     }
 
-
-
 }
-
-?>

@@ -22,10 +22,13 @@ class DisciplinaController extends Zend_Controller_Action {
         $this->view->listarTodos = $listaDisciplina;
     }
 
-
     public function cadastrarDisciplinaAction() {
         $form = new Application_Form_Disciplina();
-
+        $element = $form->getElement(Application_Model_DbTable_Curso::getPrimaryKeyName());
+        $modelCurso = new Application_Model_DbTable_Curso();
+        $element->addMultiOptions($modelCurso->getIdsENomesTodosCursos());
+        $form->addElement($element);
+        
         if ($this->getRequest()->isPost()) {
 
             if ($form->isValid($_POST)) {
