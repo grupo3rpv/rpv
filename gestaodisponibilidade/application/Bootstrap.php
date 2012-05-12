@@ -15,6 +15,17 @@ protected function _initRotas() {
         );
         $router->addRoute('secretaria', $route);
       
+        $route = new Zend_Controller_Router_Route(
+                        'curso/disciplina/:id',
+                        array(
+                            'module' => 'default',
+                            'controller' => 'curso',
+                            'action' => 'disciplina',
+                            
+                        )
+        );
+        $router->addRoute('curso', $route);
+      
 
 }
 }

@@ -1,0 +1,20 @@
+<table class="style2"> 
+    <thead> 
+        <tr> 
+            <th>Codigo</th>
+            <th>Nome</th>
+            <th>Ementa</th>
+ 
+        </tr> 
+    </thead> 
+    <tbody> 
+        <? foreach ($this->listarTodos as $item): ?> 
+            <tr> 
+
+                <td><?= $item->getCodigo() ?></td>
+                <td><?= $item->getNome() ?></td>
+                <td><?= $item->getEmenta() ?></td>
+            </tr>
+        <? endforeach; ?>
+    </tbody>
+</table>

@@ -22,7 +22,6 @@ class CursoController extends Zend_Controller_Action {
         $this->view->listarTodos = $listaCurso;
     }
 
-
     public function adicionarCursoAction() {
         $form = new Application_Form_Curso();
 
@@ -66,6 +65,33 @@ class CursoController extends Zend_Controller_Action {
         $cursoModel = new Application_Model_DbTable_Curso();
         $cursoModel->removerCurso($id_curso);
         $this->_redirect('/curso/index');
+    }
+
+    public function listarCursosAction() {
+        $modelCurso = new Application_Model_DbTable_Curso();
+        $listaCurso = $modelCurso->listaCursoPor('nome asc');
+        $this->view->listarTodos = $listaCurso;
+    }
+    
+    public function disciplinaAction(){
+        $modelDisciplina = new Application_Model_DbTable_Disciplina();
+        $id = $this->getRequest()->getParams(Application_Model_DbTable_Curso::getPrimaryKeyName());
+        
+        $modelDisciplinaCurso = new Application_Model_DbTable_DisciplinaCurso();
+        $idDisciplinas = $modelDisciplinaCurso->getIdDisciplinas($id);
+        var_dump($idDisciplinas);
+                die();
+        $listaDisciplinas =  array();
+        
+        foreach ($idDisciplinas as $value) {
+           $listaDisciplinas[]= $modelDisciplina->listaDisciplinasPorID($value['id_disciplina']); 
+        }
+        var_dump($listaDisciplinas);
+        die();
+        $listaDisciplina = $modelDisciplina->listaDisciplinasPor('nome asc');
+        $this->view->listarTodos = $listaDisciplina;
+        
+       
     }
 
 }

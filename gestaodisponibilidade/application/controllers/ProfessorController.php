@@ -87,6 +87,7 @@ class ProfessorController extends Zend_Controller_Action {
         $professorModel->removerProfessor($idUsuario);
         $this->_redirect('/professor/index');
     }
+     
     
 }
 

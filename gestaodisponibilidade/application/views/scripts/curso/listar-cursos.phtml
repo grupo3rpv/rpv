@@ -1,0 +1,28 @@
+
+
+<p><a href="<?= $this->baseUrl('/curso/adicionar-curso/') ?>">Adicionar Curso</a></p>
+
+<table class="style2"> 
+    <thead> 
+        <tr> 
+            <th>Codigo</th>
+            <th>Nome</th>
+            <th colspan="2">Ação</th>
+           
+            
+        </tr> 
+    </thead> 
+    <tbody> 
+        <? foreach ($this->listarTodos as $item): ?> 
+            <tr> 
+                <td><?= $item->getCodigo() ?></td> 
+                <td><?= $item->getNome() ?></td>
+                
+                
+                <td>
+                    <a href="<?= $this->baseUrl('/curso/disciplina/'.$item->getId_curso()) ?>">Ver lista de disciplinas</a>
+                </td>
+            </tr>
+        <? endforeach; ?>
+    </tbody>
+</table>
