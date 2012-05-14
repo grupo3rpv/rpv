@@ -9,12 +9,13 @@ class ProfessorController extends Zend_Controller_Action {
     public function indexAction() {
         $modelProfessor = new Application_Model_DbTable_Professor();
         $listaProfessores = $modelProfessor->listaUsuario();
-             $modelProfessor = new Application_Model_DbTable_Professor();
-   $this->view->listaProfessor = $listaProfessores;
+        $modelProfessor = new Application_Model_DbTable_Professor();
+        $this->view->listaProfessor = $listaProfessores;
     }
 
     public function cadastrarProfessorAction() {
         $form = new Application_Form_Professor();
+        $this->inserirAreaForm($form);
 
         if ($this->getRequest()->isPost()) {
 
@@ -37,8 +38,11 @@ class ProfessorController extends Zend_Controller_Action {
         $numero = $this->getRequest()->getParam(Application_Model_DbTable_Professor::getPrimaryKeyName());
         $professorModel = new Application_Model_DbTable_Professor();
 
-        $professor = $professorModel->find($numero)->current()->toArray();
-        $form->populate($professor);
+        $dados = $professorModel->find($numero)->current()->toArray();
+
+        $this->inserirAreaForm($form);
+
+        $form->populate($dados);
 
         if ($this->getRequest()->isPost()) {
             if ($form->isValid($_POST)) {
@@ -52,35 +56,12 @@ class ProfessorController extends Zend_Controller_Action {
         $this->view->form = $form;
     }
 
-    /* $form = new Application_Form_Professor();
-      $numero = $this->getRequest()->getParam(Application_Model_DbTable_Professor::getPrimaryKeyName());
-
-      $professorModel = new Application_Model_DbTable_Professor();
-      $arrayProfessor = $professorModel->find($numero)->current()->toArray();
-
-      $modelProfessorNivelInteresse = new Application_Model_DbTable_NivelInteresse();
-      $listaNivelInteresse = $modelProfessorNivelInteresse->getNiveisInteresse($numero);
-
-      $niveisInteresse = array();
-      $i = 0;
-      foreach ($listaNivelInteresse as $item) {
-      $niveisInteresse[$i] = $item['id_nivelInteresse'];
-      $i++;
-      }
-      $arrayProfessor['id_disciplina'] = $disciplina;
-
-      $form->populate($arrayProfessor);
-      if ($this->getRequest()->isPost()) {
-      if ($form->isValid($_POST)) {
-      $dados = $form->getValues();
-      $professorModel->editarProfessor($dados);
-      $this->_redirect('/professor/index');
-      }
-      }
-
-      $this->view->form = $form;
-      }
-     */
+    private function inserirAreaForm($form) {
+        $element = $form->getElement(Application_Model_DbTable_Area::getPrimaryKeyName());
+        $modelArea = new Application_Model_DbTable_Area();
+        $element->addMultiOptions($modelArea->getIdsENomesTodasAreas());
+        $form->addElement($element);
+    }
 
     public function removerProfessorAction() {
         $idUsuario = $this->_getParam('id_usuario');
@@ -102,28 +83,25 @@ class ProfessorController extends Zend_Controller_Action {
 
             foreach ($dados as $key => $item) {
                 $disciplina = $modelDisciplina->listaDisciplinaPorCodigo($key);
-                $lista['id_disciplina']= $disciplina->getId_disciplina();
-                $lista['nivel_interesse'] =$item[$key];
+                $lista['id_disciplina'] = $disciplina->getId_disciplina();
+                $lista['nivel_interesse'] = $item[$key];
                 $lista['id_professor'] = 1;
-                $modelNivelInteresse->cadastraNivelInteresse($lista); 
+                $modelNivelInteresse->cadastraNivelInteresse($lista);
                 unset($lista);
                 ///var_dump($lista);die();
-          }
-            
-        
-            
+            }
             //var_dump($lista);die();
             $this->_redirect('/curso/listar-cursos');
         }
     }
-    public function perfilAction(){
-       $modelNivelInteresse = new Application_Model_DbTable_NivelInteresse();
-       $rowNivelInteresse = $modelNivelInteresse->getDadosPorId('1');
-       $modelProfessor = new Application_Model_DbTable_Professor();
-       $professor = $modelProfessor->listaProfessorPorID($rowNivelInteresse->getId_professor());
-       $this->view->professor=$professor;
-       $this->view->nivelInteresse = $rowNivelInteresse;
-               
+
+    public function perfilAction() {
+        $modelNivelInteresse = new Application_Model_DbTable_NivelInteresse();
+        $rowNivelInteresse = $modelNivelInteresse->getDadosPorId('1');
+        $modelProfessor = new Application_Model_DbTable_Professor();
+        $professor = $modelProfessor->listaProfessorPorID($rowNivelInteresse->getId_professor());
+        $this->view->professor = $professor;
+        $this->view->nivelInteresse = $rowNivelInteresse;
     }
 
 }
