@@ -13,6 +13,7 @@
 class Application_Model_Professor extends Application_Model_Usuario{
     
     public function getMatricula(){
+        
         return $this->matricula;
     }
     public function setMatricula($matricula){
