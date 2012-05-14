@@ -9,7 +9,8 @@ class ProfessorController extends Zend_Controller_Action {
     public function indexAction() {
         $modelProfessor = new Application_Model_DbTable_Professor();
         $listaProfessores = $modelProfessor->listaUsuario();
-        $this->view->listaProfessor = $listaProfessores;
+             $modelProfessor = new Application_Model_DbTable_Professor();
+   $this->view->listaProfessor = $listaProfessores;
     }
 
     public function cadastrarProfessorAction() {
