@@ -21,12 +21,15 @@ class Application_Form_Area extends Zend_Form {
                 ->setAttrib('class', 'i-format')
                 ->setAttrib('readonly', 'true')
                 ->addFilter(new Zend_Filter_StripTags())
+                ->setRequired(true)
                 ->setAllowEmpty(false);
         $this->addElement($element);
         
         $element = new Zend_Form_Element_Text('nome');
         $element->setLabel('Nome: ')
-                ->setAttrib('class', 'i-format');
+                ->setAttrib('class', 'i-format')
+                ->setRequired(true)
+                ->setAllowEmpty(false);
         $this->addElement($element);
         
         $element = new Zend_Form_Element_Text('descricao');
