@@ -5,16 +5,38 @@ TipoSalaController
  [ ] Index action
 
 Application_Model_Curso
- [ ] Cadastro curso
+ [x] Cadastro curso
+ [x] Editar curso
+ [x] Excluir curso
+ [x] testGetId curso
+ [x] Get nome
+ [x] Get codigo
+
+Application_Model_Disciplina
+ [x] Cadastro disciplina
+ [x] Editar disciplina
+ [x] Excluir disciplina
+ [x] testGetId disciplina
+ [x] testGet codigo
+ [x] testGet nome
+ [x] testGet ementa
+ [x] testGet carga horaria
+ [x] testGet carga horaria falha
+ [x] testGet info adicionais
 
 Application_Model_EquipamentoSala
- [x] testGetId equipamento sala
- [x] testGetNumero sala
- [x] Get quantidade
+ [ ] testGetId equipamento sala
+ [ ] testGetNumero sala
+ [ ] Get quantidade
 
 Application_Model_Equipamento
  [x] testgetId equipamento
  [x] Get descricao
+
+Application_Model_NivelInteresse
+ [ ] Cadastro nivel interesse
+ [x] testGetId nivelInteresse
+ [x] testGetId professor
 
 Application_Model_Sala
  [x] testGetId tipo sala
@@ -25,7 +47,7 @@ Application_Model_Sala
  [x] testGetStatus disponibilidade
  [x] Get responsavel
  [x] testCapacidade desc
- [x] Cadastra sala
+ [ ] Cadastra sala
  [ ] Alterar sala
  [ ] Remover sala
 
