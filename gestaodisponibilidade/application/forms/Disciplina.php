@@ -25,17 +25,23 @@ class Application_Form_Disciplina extends Zend_Form {
         
         $element = new Zend_Form_Element_Text('codigo');
         $element->setLabel('Codigo: ')
-                ->setAttrib('class', 'i-format');
+                ->setAttrib('class', 'i-format')
+                ->setRequired(true)
+                ->setAllowEmpty(false);
         $this->addElement($element);
         
         $element = new Zend_Form_Element_Text('nome');
         $element->setLabel('Nome: ')
-                ->setAttrib('class', 'i-format');
+                ->setAttrib('class', 'i-format')
+                ->setRequired(true)
+                ->setAllowEmpty(false);
         $this->addElement($element);
 
         $element = new Zend_Form_Element_Text('ementa');
         $element->setLabel('Ementa: ')
-                ->setAttrib('class', 'i-format');
+                ->setAttrib('class', 'i-format')
+                ->setRequired(true)
+                ->setAllowEmpty(false);
         $this->addElement($element);
 
         $element = new Zend_Form_Element_Text('carga_horaria');

@@ -37,5 +37,8 @@ class Application_Model_DbTable_Professor extends Application_Model_DbTable_Usua
         return parent::removerUsuario($id_professor);
     }
     
-
+    public function listaProfessorPorID($id) {
+        $select = $this->select()->where('id_usuario =?',$id);
+        return $this->fetchRow($select);
+    }
 }
