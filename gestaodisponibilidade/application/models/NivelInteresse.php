@@ -27,6 +27,7 @@ class Application_Model_NivelInteresse extends Zend_Db_Table_Row_Abstract {
     public function setId_professor($id_professor) {
         $this->id_professor = $id_professor;
     }
+<<<<<<< HEAD
    public function setId_disciplina($id_disciplina) {
        $this->id_disciplina = $id_disciplina;
    }
@@ -35,6 +36,9 @@ class Application_Model_NivelInteresse extends Zend_Db_Table_Row_Abstract {
        return $this->id_disciplina;
    }
 
+=======
+  
+>>>>>>> branch 'master' of https://github.com/grupo3rpv/rpv.git
     public function getNivelInteresse() {
         return $this->nivel_interesse;
     }
