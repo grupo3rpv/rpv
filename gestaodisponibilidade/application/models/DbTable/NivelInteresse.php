@@ -33,10 +33,14 @@ class Application_Model_DbTable_NivelInteresse extends Zend_Db_Table_Abstract {
         $nivelInteresse->setNivelInteresse($dados['nivel_interesse']);
         $nivelInteresse->setId_disciplina($dados['id_disciplina']);
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
 >>>>>>> 87a7cb4fcd8aa8a782aadc89ec07be9eb46ea3bd
         return $nivelInteresse->save();
+=======
+      return $nivelInteresse->save();
+>>>>>>> branch 'master' of https://github.com/grupo3rpv/rpv.git
     }
 
     public function editarNivelInteresse(array $dados) {
