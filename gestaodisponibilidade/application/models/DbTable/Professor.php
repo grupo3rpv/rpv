@@ -11,7 +11,7 @@
  * @author Helison
  */
 class Application_Model_DbTable_Professor extends Application_Model_DbTable_Usuario {
-    protected $_rowClass = 'Application_Model_Usuario';
+    protected $_rowClass = 'Application_Model_Professor';
      protected $_name = 'usuario';
 
     public function cadastrarProfessor($dados) {
