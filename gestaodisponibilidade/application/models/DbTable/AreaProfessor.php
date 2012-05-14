@@ -46,12 +46,9 @@ class Application_Model_DbTable_AreaProfessor extends Zend_Db_Table_Abstract {
     }
 
     public function cadastraAreaProfessor($dados) {
-        $areaProfessor = $this->createRow();
-
-        $areaProfessor->setId_area($dados['id_area']);
-        $areaProfessor->setDescricao($dados['descricao']);
-        $areaProfessor->setNome($dados['nome']);
-        return $areaProfessor->save();
+        //$areaProfessor->id_area($dados['id_area']);
+        //$areaProfessor->id_professor($dados['id_professor']);
+        return $areaProfessor = $this->insert($dados);
     }
 
     public function editarArea(array $dados) {
@@ -68,7 +65,10 @@ class Application_Model_DbTable_AreaProfessor extends Zend_Db_Table_Abstract {
         $info = $model->info();
         return $info['primary'][1];
     }
+    
+    public function removerAreasProfessor($id_professor) {
+        $where = $this->getAdapter()->quoteInto('id_professor = ?', $id_professor);
+        $this->delete($where);
+    }
 
 }
-
-?>

@@ -14,9 +14,9 @@ class ProfessorController extends Zend_Controller_Action {
 
     public function cadastrarProfessorAction() {
         $form = new Application_Form_Professor();
+        $this->inserirAreaForm($form);
 
         if ($this->getRequest()->isPost()) {
-
             if ($form->isValid($_POST)) {
                 $dados = $form->getValues();
 
@@ -30,14 +30,16 @@ class ProfessorController extends Zend_Controller_Action {
     }
 
     public function editarProfessorAction() {
-
         $form = new Application_Form_Professor();
 
         $numero = $this->getRequest()->getParam(Application_Model_DbTable_Professor::getPrimaryKeyName());
         $professorModel = new Application_Model_DbTable_Professor();
-        
-        $professor = $professorModel->find($numero)->current()->toArray();
-        $form->populate($professor);
+
+        $dados = $professorModel->find($numero)->current()->toArray();
+
+        $this->inserirAreaForm($form);
+
+        $form->populate($dados);
 
         if ($this->getRequest()->isPost()) {
             if ($form->isValid($_POST)) {
@@ -87,22 +89,29 @@ class ProfessorController extends Zend_Controller_Action {
         $professorModel->removerProfessor($idUsuario);
         $this->_redirect('/professor/index');
     }
-     
-  
-    public function nivelInteresseAction(){
+
+    public function nivelInteresseAction() {
         if ($this->getRequest()->isPost()) {
-           $dados =  $this->getRequest()->getParams();
-                
-              var_dump($dados);die();
-              $modelNivelInteresse = new Application_Model_DbTable_NivelInteresse();
-              foreach ($dados as $value) {
-                  var_dump($value);die();
-              }
-              $modelNivelInteresse->
-                $this->_redirect('/professor/index');
-            
+            $dados = $this->getRequest()->getParams();
+
+            var_dump($dados);
+            die();
+            $modelNivelInteresse = new Application_Model_DbTable_NivelInteresse();
+            foreach ($dados as $value) {
+                var_dump($value);
+                die();
+            }
+            $modelNivelInteresse->
+            $this->_redirect('/professor/index');
         }
     }
-    
+
+    private function inserirAreaForm($form) {
+        $element = $form->getElement(Application_Model_DbTable_Area::getPrimaryKeyName());
+        $modelArea = new Application_Model_DbTable_Area();
+        $element->addMultiOptions($modelArea->getIdsENomesTodasAreas());
+        $form->addElement($element);
+    }
+
 }
 
