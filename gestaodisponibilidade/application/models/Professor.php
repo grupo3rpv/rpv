@@ -19,4 +19,12 @@ class Application_Model_Professor extends Application_Model_Usuario{
         $this->matricula = $matricula;
    
     }
+        public function getNome() {
+        return $this->nome;
+    }
+
+    public function setNome($nome) {
+        $this->nome = $nome;
+    }
+
 }

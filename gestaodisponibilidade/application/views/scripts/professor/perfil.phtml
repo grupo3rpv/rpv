@@ -1,0 +1,20 @@
+<div class=""><p><a href="<?= $this->baseUrl('/professor/cadastrar-professor/') ?>">Adicionar Professor</a></p></div>
+<table class="style2"> 
+    <thead> 
+        <tr> 
+            <th>Nome</th> 
+            <th>Matricula</th>
+
+            <th colspan="2">Ação</th>
+        </tr> 
+    </thead> 
+    <? foreach ($this->professor as $item): ?> 
+        <tbody> 
+            <tr> 
+                <td><?= $item->getNome() ?></td> 
+                <td><?= $item->getMatricula() ?></td> 
+            </tr>
+        </tbody>
+    <? endforeach; ?>
+</table>
+

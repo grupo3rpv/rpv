@@ -11,7 +11,7 @@
  * @author Helison
  */
 class Application_Model_DbTable_NivelInteresse extends Zend_Db_Table_Abstract {
-    protected $_name = 'nivelInteresse';
+    protected $_name = 'nivel_interesse';
     protected $_rowClass = 'Application_Model_NivelInteresse';
 
         protected $_referenceMap = array(
@@ -21,22 +21,30 @@ class Application_Model_DbTable_NivelInteresse extends Zend_Db_Table_Abstract {
             'refColumns' => 'id_professor'
         )
     );
-
+    public function getDadosPorId($id_professor){
+    
+       $select = $this->select()->where('id_professor = ?', $id_professor);
+        return $this->fetchRow($select);
+    }
     public function cadastraNivelInteresse(array $dados) {
         $nivelInteresse = $this->createRow();
 
         $nivelInteresse->setId_professor($dados['id_professor']);
-        $nivelInteresse->setNivelInteresse($dados['nivelInteresse']);
+        $nivelInteresse->setNivelInteresse($dados['nivel_interesse']);
+        $nivelInteresse->setId_disciplina($dados['id_disciplina']);
+<<<<<<< HEAD
 
+=======
+>>>>>>> 87a7cb4fcd8aa8a782aadc89ec07be9eb46ea3bd
         return $nivelInteresse->save();
     }
 
     public function editarNivelInteresse(array $dados) {
-        $nivelInteresse = $this->find(array($dados['id_nivelInteresse'], $dados['id_professor']))->current();
+        $nivelInteresse = $this->find(array($dados['id_nivel_interesse'], $dados['id_professor']))->current();
 
-        $nivelInteresse->setId_nivelInteresse($dados['id_nivelInteresse']);
+        $nivelInteresse->setId_nivelInteresse($dados['id_nivel_interesse']);
         $nivelInteresse->setId_professor($dados['id_professor']);
-        $nivelInteresse->setNivelInteresse($dados['nivelInteresse']);
+        $nivelInteresse->setNivelInteresse($dados['nivel_interesse']);
 
         return $nivelInteresse->save();
     }

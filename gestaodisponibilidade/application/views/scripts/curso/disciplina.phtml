@@ -7,7 +7,7 @@
             <th>Codigo</th>
             <th>Nome</th>
             <th>Ementa</th>
-            <th>Nivel de interesse(1 a 5)</th>
+            <th>Nivel de interesse</th>
  
         </tr> 
     </thead> 
@@ -19,7 +19,12 @@
                 <td><?= $item->getNome() ?></td>
                 <td><?= $item->getEmenta() ?></td>
                 <td>
-                        <input type="text" id="<?= $item->getCodigo() ?>" name="<?= $item->getCodigo() ?>">
+<!--                        <input type="text" id="" name="<?= $item->getCodigo() ?>">-->
+                    <input type="radio" name="<?= $item->getCodigo() ?>" value="1" /> 1<br />
+                       <input type="radio" name="<?= $item->getCodigo() ?>" value="2" /> 2<br />
+                       <input type="radio" name="<?= $item->getCodigo() ?>" value="3" /> 3<br />
+                       <input type="radio" name="<?= $item->getCodigo() ?>" value="4" /> 4<br />
+                       <input type="radio" name="<?= $item->getCodigo() ?>" value="5" /> 5<br />
                         <br/>
 <!--                        <INPUT  id="enviar" TYPE="submit" VALUE="Salvar" class="button blue small">      
                

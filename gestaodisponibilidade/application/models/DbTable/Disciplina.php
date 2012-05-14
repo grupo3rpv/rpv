@@ -37,6 +37,11 @@ class Application_Model_DbTable_Disciplina extends Zend_Db_Table_Abstract {
         return $this->fetchAll($select);
     }
     
+    public function listaDisciplinaPorCodigo($codigo) {
+        $select = $this->select()->where('codigo =?',$codigo);
+        return $this->fetchRow($select);
+    }
+    
      public function getCodigoPorId($id) {
         $select = $this->select()->where('id_disciplina = ?', $id);
         return $this->fetchRow($select);
