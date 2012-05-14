@@ -27,14 +27,7 @@ class Application_Model_NivelInteresse extends Zend_Db_Table_Row_Abstract {
     public function setId_professor($id_professor) {
         $this->id_professor = $id_professor;
     }
-   public function setId_disciplina($id_disciplina) {
-       $this->id_disciplina = $id_disciplina;
-   }
-
-   public function getId_disciplina() {
-       return $this->id_disciplina;
-   }
-
+  
     public function getNivelInteresse() {
         return $this->nivel_interesse;
     }
