@@ -101,13 +101,6 @@ class ProfessorController extends Zend_Controller_Action {
             unset($dados['module']);
             foreach ($dados as $key => $item) {
                 $disciplina = $modelDisciplina->listaDisciplinaPorCodigo($key);
-<<<<<<< HEAD
-                
-                $lista['id_disciplina']= $disciplina->getId_disciplina();
-                $lista['nivel_interesse'] =$item[$key];
-                $lista['id_professor'] = 1;
-                $modelNivelInteresse->cadastraNivelInteresse($lista); 
-=======
                 $lista['id_disciplina'] = $disciplina->getId_disciplina();
                 //var_dump($lista['id_disciplina']);die();
                 $lista['nivel_interesse'] = $item[$key];
@@ -115,7 +108,6 @@ class ProfessorController extends Zend_Controller_Action {
                 $modelNivelInteresse->cadastraNivelInteresse($lista);
                 unset($lista);
                 ///var_dump($lista);die();
->>>>>>> 87a7cb4fcd8aa8a782aadc89ec07be9eb46ea3bd
             }
             
         
