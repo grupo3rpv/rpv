@@ -58,6 +58,7 @@ CREATE  TABLE IF NOT EXISTS `equipamento_sala` (
   `quantidade` INT(11) NOT NULL ,
   INDEX `numero_sala_numero` (`numero_sala` ASC) ,
   INDEX `id_equipamento_sala_id_equipamento` (`id_equipamento_sala` ASC) ,
+  PRIMARY KEY (`id_equipamento_sala`, `numero_sala`) ,
   CONSTRAINT `numero_sala_numero`
     FOREIGN KEY (`numero_sala` )
     REFERENCES `sala` (`numero` )

@@ -17,6 +17,7 @@ class Application_Form_TipoSala extends Zend_Form
         
         $element = new Zend_Form_Element_Text('descricao');
         $element->setAttrib('class', 'i-format')
+                ->setLabel('Nome da Categoria de Sala')
                 ->setAllowEmpty(false)
                 ->setRequired(true);
         $this->addElement($element);

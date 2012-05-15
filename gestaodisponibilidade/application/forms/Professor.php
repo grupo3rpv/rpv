@@ -35,29 +35,31 @@ class Application_Form_Professor extends Zend_Form {
         $element->setLabel('Matricula: ')
                 ->setAttrib('class', 'i-format');
         $this->addElement($element);
-
-
-/*
-        $modelDisciplina = new Application_Model_DbTable_Disciplina();
-        $arrayDisciplinas = $modelDisciplina->listarTodos();
-        $lista = array();
-        foreach ($arrayDisciplinas as $item) {
-            $lista[$item['id_disciplina']] = $item['nome'];
-        }
         
-        $element = new Zend_Form_Element_MultiCheckbox(Application_Model_DbTable_Disciplina::getPrimaryKeyName());
-        $element->setLabel('Selecione as Disciplinas de Interesse:');
-        $element->addMultiOptions($lista);
+        $element = new Zend_Form_Element_Select(Application_Model_DbTable_Area::getPrimaryKeyName());
+        $element->setLabel('Áreas disponíveis: ')
+                ->setAttrib('size', '5');
         $this->addElement($element);
-
-
-
+        
+        $element = new Zend_Form_Element_Button('adicionar');
+        $element->setLabel('Adicionar área')
+                ->setAttrib('size', '50')
+                ->setAttrib('class', 'button normal blue')
+                ->setAttrib('onClick', 'adicionaAreaInteresse()');
+        $this->addElement($element);
+        
+        $element = new Zend_Form_Element_Multiselect(Application_Model_DbTable_AreaProfessor::getPrimaryKeyName());
+        $element->setLabel('Áreas selecionadas: ')
+                ->setRegisterInArrayValidator(false);
+        $this->addElement($element);
+        
         /**
          * Cria no formulario o botão de "enviar" define tambem o tamanho do mesmo.
          */
         $element = new Zend_Form_Element_Submit('enviar');
         $element->setLabel('Cadastrar Professor')
                 ->setAttrib('size', '50')
+                ->setAttrib('onClick', 'selecionarTodosElementos()')
                 ->setAttrib('class', 'button normal blue');
         $this->addElement($element);
     }

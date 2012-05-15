@@ -120,4 +120,3 @@ class ProfessorController extends Zend_Controller_Action {
        }
 
 }
-

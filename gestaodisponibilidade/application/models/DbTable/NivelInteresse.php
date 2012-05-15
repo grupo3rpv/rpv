@@ -32,7 +32,7 @@ class Application_Model_DbTable_NivelInteresse extends Zend_Db_Table_Abstract {
         $nivelInteresse->setId_professor($dados['id_professor']);
         $nivelInteresse->setNivelInteresse($dados['nivel_interesse']);
         $nivelInteresse->setId_disciplina($dados['id_disciplina']);
-      return $nivelInteresse->save();
+        return $nivelInteresse->save();
     }
 
     public function editarNivelInteresse(array $dados) {

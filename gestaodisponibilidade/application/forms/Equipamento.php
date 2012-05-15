@@ -12,12 +12,14 @@ class Application_Form_Equipamento extends Zend_Form {
                 ->addFilter(new Zend_Filter_StripTags())
                 ->setAllowEmpty(false);
         $this->addElement($element);
-        
+
         $element = new Zend_Form_Element_Text('descricao');
         $element->setLabel('Descrição: ')
-                ->setAttrib('class', 'i-format');
+                ->setAttrib('class', 'i-format')
+                ->setRequired(true)
+                ->setAllowEmpty(false);
         $this->addElement($element);
-        
+
         /**
          * Cria no formulario o botão de "enviar" define tambem o tamanho do mesmo.
          */

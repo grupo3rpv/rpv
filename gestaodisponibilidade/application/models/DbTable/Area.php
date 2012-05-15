@@ -61,7 +61,14 @@ class Application_Model_DbTable_Area extends Zend_Db_Table_Abstract {
         $info = $model->info();
         return $info['primary'][1];
     }
+    
+    public function getIdsENomesTodasAreas() {
+        $areas = $this->listaAreaPor('nome asc');
+        $lista = array();
+        foreach ($areas as $item) {
+            $lista[$item['id_area']] = $item['nome'];
+        }
+        return $lista;
+    }
 
 }
-
-?>
