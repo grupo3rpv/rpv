@@ -27,5 +27,10 @@ class Application_Model_Professor extends Application_Model_Usuario{
     public function setNome($nome) {
         $this->nome = $nome;
     }
+    
+    public function getAreasInteresse() {
+        $modelAreaProfessor = new Application_Model_DbTable_AreaProfessor();
+        return $modelAreaProfessor->getAreasInteresse(parent::getId_usuario());
+    }
 
 }

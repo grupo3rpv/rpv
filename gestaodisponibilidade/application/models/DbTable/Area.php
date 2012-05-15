@@ -70,5 +70,9 @@ class Application_Model_DbTable_Area extends Zend_Db_Table_Abstract {
         }
         return $lista;
     }
+    
+    public function getArea($idArea) {
+        return $this->find($idArea)->current();
+    }
 
 }

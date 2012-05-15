@@ -15,7 +15,7 @@ class ProfessorController extends Zend_Controller_Action {
 
     public function cadastrarProfessorAction() {
         $form = new Application_Form_Professor();
-        $this->inserirAreaForm($form);
+        //$this->inserirAreaForm($form);
 
         if ($this->getRequest()->isPost()) {
 
@@ -32,7 +32,6 @@ class ProfessorController extends Zend_Controller_Action {
     }
 
     public function editarProfessorAction() {
-
         $form = new Application_Form_Professor();
 
         $numero = $this->getRequest()->getParam(Application_Model_DbTable_Professor::getPrimaryKeyName());
@@ -40,7 +39,7 @@ class ProfessorController extends Zend_Controller_Action {
 
         $dados = $professorModel->find($numero)->current()->toArray();
 
-        $this->inserirAreaForm($form);
+        //$this->inserirAreaForm($form);
 
         $form->populate($dados);
 
@@ -56,12 +55,12 @@ class ProfessorController extends Zend_Controller_Action {
         $this->view->form = $form;
     }
 
-    private function inserirAreaForm($form) {
-        $element = $form->getElement(Application_Model_DbTable_Area::getPrimaryKeyName());
-        $modelArea = new Application_Model_DbTable_Area();
-        $element->addMultiOptions($modelArea->getIdsENomesTodasAreas());
-        $form->addElement($element);
-    }
+//    private function inserirAreaForm($form) {
+//        $element = $form->getElement(Application_Model_DbTable_Area::getPrimaryKeyName());
+//        $modelArea = new Application_Model_DbTable_Area();
+//        $element->addMultiOptions($modelArea->getIdsENomesTodasAreas());
+//        $form->addElement($element);
+//    }
 
     public function removerProfessorAction() {
         $idUsuario = $this->_getParam('id_usuario');
