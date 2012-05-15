@@ -1,19 +1,5 @@
-<table class="style2"> 
-    <thead> 
-        <tr> 
-            <th>Nome</th> 
-            <th>Matricula</th>
 
-            <th colspan="2">Ação</th>
-        </tr> 
-    </thead> 
-    <? foreach ($this->professor as $item): ?> 
-        <tbody> 
-            <tr> 
-                <td><?= $item->getNome() ?></td> 
-                <td><?= $item->getMatricula() ?></td> 
-            </tr>
-</table>
+
 <table class="style2"> 
     <thead> 
         <tr> 
@@ -45,8 +31,8 @@
 <!--            <th colspan="2">Ação</th>-->
         </tr> 
     </thead> 
-       <tbody>    
-      <? for ($i =0;  $i<count($this->listaDisciplinas['codigo']); $i++): ?>
+       <tbody>
+       <? for ($i =0;  $i<count($this->listaDisciplinas['codigo']); $i++): ?>
           <? for ($i =0;  $i<count($this->listaDisciplinas['nome']); $i++): ?>
              <? for ($i =0;  $i<count($this->listaDisciplinas['nivel_interesse']); $i++): ?>
            
@@ -59,7 +45,8 @@
             </tr>
       <? endfor; ?>  
       <? endfor; ?>  
-      <? endfor; ?>  
+      <? endfor; ?> 
+         
                   
      
        
