@@ -93,6 +93,13 @@ choques. Rotação de corpos rígidos. Gravitação.', 'carga_horaria' => '75h',
     $db->insert('disciplina_curso', array('id_curso' => '4', 'id_disciplina' => '3'));
     $db->insert('disciplina_curso', array('id_curso' => '6', 'id_disciplina' => '4'));
     $db->insert('disciplina_curso', array('id_curso' => '6', 'id_disciplina' => '5'));
+    
+        /**
+         * Insere valores na tabela usuario 
+         */
+    $db->insert('usuario', array('nome' => 'Joelma', 'matricula' => '509840384'));
+    $db->insert('usuario', array('nome' => 'Krug', 'matricula' => '38469624'));
+    
 endif;
 
 if (APPLICATION_ENV == 'testing'):

@@ -37,5 +37,3 @@ class Application_Model_Area extends Zend_Db_Table_Row_Abstract {
     }
 
 }
-
-?>

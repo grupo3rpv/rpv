@@ -15,7 +15,7 @@ class ProfessorController extends Zend_Controller_Action {
 
     public function cadastrarProfessorAction() {
         $form = new Application_Form_Professor();
-        $this->inserirAreaForm($form);
+        //$this->inserirAreaForm($form);
 
         if ($this->getRequest()->isPost()) {
 
@@ -32,7 +32,6 @@ class ProfessorController extends Zend_Controller_Action {
     }
 
     public function editarProfessorAction() {
-
         $form = new Application_Form_Professor();
 
         $numero = $this->getRequest()->getParam(Application_Model_DbTable_Professor::getPrimaryKeyName());
@@ -40,7 +39,7 @@ class ProfessorController extends Zend_Controller_Action {
 
         $dados = $professorModel->find($numero)->current()->toArray();
 
-        $this->inserirAreaForm($form);
+        //$this->inserirAreaForm($form);
 
         $form->populate($dados);
 
@@ -56,12 +55,12 @@ class ProfessorController extends Zend_Controller_Action {
         $this->view->form = $form;
     }
 
-    private function inserirAreaForm($form) {
-        $element = $form->getElement(Application_Model_DbTable_Area::getPrimaryKeyName());
-        $modelArea = new Application_Model_DbTable_Area();
-        $element->addMultiOptions($modelArea->getIdsENomesTodasAreas());
-        $form->addElement($element);
-    }
+//    private function inserirAreaForm($form) {
+//        $element = $form->getElement(Application_Model_DbTable_Area::getPrimaryKeyName());
+//        $modelArea = new Application_Model_DbTable_Area();
+//        $element->addMultiOptions($modelArea->getIdsENomesTodasAreas());
+//        $form->addElement($element);
+//    }
 
     public function removerProfessorAction() {
         $idUsuario = $this->_getParam('id_usuario');
@@ -114,32 +113,30 @@ class ProfessorController extends Zend_Controller_Action {
     public function perfilAction() {
         $modelNivelInteresse = new Application_Model_DbTable_NivelInteresse();
         $rowNivelInteresse = $modelNivelInteresse->getDadosPorId('1');
-        
+
         $modelProfessor = new Application_Model_DbTable_Professor();
         $professor = $modelProfessor->listaProfessorPorID('1');
         $this->view->professor = $professor;
 
         $listadisciplinas = array();
         $disciplinaModel = new Application_Model_DbTable_Disciplina();
-        if(count($rowNivelInteresse)>0){
-        foreach ($rowNivelInteresse as $item) {
-              
-         $disciplina = $disciplinaModel->getCodigoPorId($item['id_disciplina']);
-         $listadisciplinas['nome'][]=$disciplina->getNome();
-         $listadisciplinas['codigo'][] =$disciplina->getCodigo();
-         $listadisciplinas['nivel_interesse'][] = $item['nivel_interesse'];
-         
+        if (count($rowNivelInteresse) > 0) {
+            foreach ($rowNivelInteresse as $item) {
+
+                $disciplina = $disciplinaModel->getCodigoPorId($item['id_disciplina']);
+                $listadisciplinas['nome'][] = $disciplina->getNome();
+                $listadisciplinas['codigo'][] = $disciplina->getCodigo();
+                $listadisciplinas['nivel_interesse'][] = $item['nivel_interesse'];
+            }
+        } else {
+            $listadisciplinas['nome'][] = 'Ainda não informado';
+            $listadisciplinas['codigo'][] = 'Ainda não informado';
+            $listadisciplinas['nivel_interesse'][] = 'Ainda não informado';
         }
-        }
-        else{
-         $listadisciplinas['nome'][]='Ainda não informado';
-         $listadisciplinas['codigo'][] ='Ainda não informado';
-         $listadisciplinas['nivel_interesse'][] = 'Ainda não informado';
-         
-        }
-       // var_dump($listadisciplinas);die();
-  
+        // var_dump($listadisciplinas);die();
+
         $this->view->listaDisciplinas = $listadisciplinas;
+<<<<<<< HEAD
        }
        
        public function editarNivelInteresseAction(){
@@ -198,5 +195,8 @@ class ProfessorController extends Zend_Controller_Action {
        
         $this->view->arrayListaAtualizada = $arrayListaAtualizada;
        }
+=======
+    }
+>>>>>>> 26bb2d87d07e7a776e72c7a5c01b1e78bb7b6e0f
 
 }

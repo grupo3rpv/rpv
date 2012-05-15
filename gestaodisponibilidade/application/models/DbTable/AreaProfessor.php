@@ -11,9 +11,8 @@
  * @author Helison
  */
 class Application_Model_DbTable_AreaProfessor extends Zend_Db_Table_Abstract {
-    
+
     protected $_name = 'area_professor';
-    protected $_rowClass = 'Application_Model_AreaProfessor';
     protected $_referenceMap = array(
         'AreaProfessorProfessor' => array(
             'refTableClass' => 'Application_Model_DbTable_Professor',
@@ -26,20 +25,22 @@ class Application_Model_DbTable_AreaProfessor extends Zend_Db_Table_Abstract {
             'refColumns' => 'id_area'
         )
     );
-/*
-    function getValuesToSelectElement($order = ' asc') {
-        $class = get_called_class();
-        $model = new $class;
-        $info = $model->info();
-        $select = $model->select()->order($order);
-        $result = $model->fetchAll($select);
-        $resultArray = array();
-        foreach ($result as $row):
-            $resultArray[$row->$info['primary'][1]] = $row->nome;
-        endforeach;
-        return $resultArray;
-    }
-*/
+
+    /*
+      function getValuesToSelectElement($order = ' asc') {
+      $class = get_called_class();
+      $model = new $class;
+      $info = $model->info();
+      $select = $model->select()->order($order);
+      $result = $model->fetchAll($select);
+      $resultArray = array();
+      foreach ($result as $row):
+      $resultArray[$row->$info['primary'][1]] = $row->nome;
+      endforeach;
+      return $resultArray;
+      }
+     */
+
     public function listaAreaProfessorPor($value) {
         $select = $this->select()->order($value);
         return $this->fetchAll($select);
@@ -65,10 +66,22 @@ class Application_Model_DbTable_AreaProfessor extends Zend_Db_Table_Abstract {
         $info = $model->info();
         return $info['primary'][1];
     }
-    
+
     public function removerAreasProfessor($id_professor) {
         $where = $this->getAdapter()->quoteInto('id_professor = ?', $id_professor);
         $this->delete($where);
+    }
+
+    public function getAreasInteresse($idProfessor) {
+        $select = $this->select()->where("id_professor = ?", $idProfessor);
+        $areasInteresse = $this->fetchAll($select);
+        $lista = array();
+        $modelArea = new Application_Model_DbTable_Area();
+        foreach ($areasInteresse as $item) {
+            $area = $modelArea->getArea($item['id_area']);
+            $lista[$area->getId_area()] = $area->getNome();
+        }
+        return $lista;
     }
 
 }
