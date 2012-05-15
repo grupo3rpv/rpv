@@ -105,13 +105,20 @@ class ProfessorController extends Zend_Controller_Action {
 
         $listadisciplinas = array();
         $disciplinaModel = new Application_Model_DbTable_Disciplina();
-        
+        if(count($rowNivelInteresse)>0){
         foreach ($rowNivelInteresse as $item) {
               
          $disciplina = $disciplinaModel->getCodigoPorId($item['id_disciplina']);
          $listadisciplinas['nome'][]=$disciplina->getNome();
          $listadisciplinas['codigo'][] =$disciplina->getCodigo();
          $listadisciplinas['nivel_interesse'][] = $item['nivel_interesse'];
+         
+        }
+        }
+        else{
+         $listadisciplinas['nome'][]='Ainda não informado';
+         $listadisciplinas['codigo'][] ='Ainda não informado';
+         $listadisciplinas['nivel_interesse'][] = 'Ainda não informado';
          
         }
        // var_dump($listadisciplinas);die();
