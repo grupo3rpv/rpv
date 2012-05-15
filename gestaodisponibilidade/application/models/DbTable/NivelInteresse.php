@@ -24,7 +24,7 @@ class Application_Model_DbTable_NivelInteresse extends Zend_Db_Table_Abstract {
     public function getDadosPorId($id_professor){
     
        $select = $this->select()->where('id_professor = ?', $id_professor);
-        return $this->fetchRow($select);
+        return $this->fetchAll($select);
     }
     public function cadastraNivelInteresse(array $dados) {
         $nivelInteresse = $this->createRow();

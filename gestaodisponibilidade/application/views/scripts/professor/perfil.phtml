@@ -4,16 +4,53 @@
             <th>Nome</th> 
             <th>Matricula</th>
 
-            <th colspan="2">Ação</th>
+<!--            <th colspan="2">Ação</th>-->
         </tr> 
     </thead> 
     
-    <? foreach ($this->professor as $item): ?> 
         <tbody> 
             <tr> 
-                 <td><?= $item->getNome() ?></td> 
+               
+                <td><?= $this->professor['nome'] ?></td> 
+                 <td><?= $this->professor['matricula'] ?></td> 
                  </tr>
         </tbody>
-    <? endforeach; ?>
+    
+</table>
+
+
+<table class="style2"> 
+    <thead> 
+        <tr> 
+            <th>Codigo</th> 
+            <th>Disciplina</th>
+            <th>Nivel de Interesse</th>
+
+<!--            <th colspan="2">Ação</th>-->
+        </tr> 
+    </thead> 
+       <tbody>    
+      <? for ($i =0;  $i<count($this->listaDisciplinas['codigo']); $i++): ?>
+          <? for ($i =0;  $i<count($this->listaDisciplinas['nome']); $i++): ?>
+             <? for ($i =0;  $i<count($this->listaDisciplinas['nivel_interesse']); $i++): ?>
+           
+            <tr>
+               <td><?= $this->listaDisciplinas['codigo'][$i] ?></td> 
+              <td><?= $this->listaDisciplinas['nome'][$i] ?></td> 
+              <td><?= $this->listaDisciplinas['nivel_interesse'][$i] ?></td> 
+             
+             
+            </tr>
+      <? endfor; ?>  
+      <? endfor; ?>  
+      <? endfor; ?>  
+                  
+     
+       
+         
+               
+        </tbody>
+
+   
 </table>
 

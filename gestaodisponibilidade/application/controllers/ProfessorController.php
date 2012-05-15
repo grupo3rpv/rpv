@@ -91,18 +91,33 @@ class ProfessorController extends Zend_Controller_Action {
                 ///var_dump($lista);die();
             }
             //var_dump($lista);die();
-            $this->_redirect('/curso/listar-cursos');
+            $this->_redirect('/professor/perfil');
         }
     }
 
     public function perfilAction() {
         $modelNivelInteresse = new Application_Model_DbTable_NivelInteresse();
         $rowNivelInteresse = $modelNivelInteresse->getDadosPorId('1');
+        
         $modelProfessor = new Application_Model_DbTable_Professor();
-        $professor = $modelProfessor->listaProfessorPorID($rowNivelInteresse->getId_professor());
+        $professor = $modelProfessor->listaProfessorPorID('1');
         $this->view->professor = $professor;
-        $this->view->nivelInteresse = $rowNivelInteresse;
-    }
+
+        $listadisciplinas = array();
+        $disciplinaModel = new Application_Model_DbTable_Disciplina();
+        
+        foreach ($rowNivelInteresse as $item) {
+              
+         $disciplina = $disciplinaModel->getCodigoPorId($item['id_disciplina']);
+         $listadisciplinas['nome'][]=$disciplina->getNome();
+         $listadisciplinas['codigo'][] =$disciplina->getCodigo();
+         $listadisciplinas['nivel_interesse'][] = $item['nivel_interesse'];
+         
+        }
+       // var_dump($listadisciplinas);die();
+  
+        $this->view->listaDisciplinas = $listadisciplinas;
+       }
 
 }
 
