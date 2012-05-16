@@ -29,17 +29,47 @@ class Application_Model_DbTable_NivelInteresse extends Zend_Db_Table_Abstract {
     }
 
     public function cadastraNivelInteresse(array $dados) {
+         $modelNivelInteresse = new Application_Model_DbTable_NivelInteresse();
+        $rowNivelInteresse = $modelNivelInteresse->getDadosPorId($dados['id_professor']);
+       
+        //verifica se ja possui niveis de interesse cadastrados
+        if (count($rowNivelInteresse) > 0) {
+            for ($index = 0; $index < 1; $index++) {
+            
+               foreach ($rowNivelInteresse as $item) {
+                if ( $item['id_disciplina']==$dados['id_disciplina']){
+                    unset($dados);
+                }
+                
+               }
+            if(count($dados)>0){   
+            $nivelInteresse = $this->createRow();
+
+            $nivelInteresse->setId_professor($dados['id_professor']);
+            $nivelInteresse->setNivelInteresse($dados['nivel_interesse']);
+            $nivelInteresse->setId_disciplina($dados['id_disciplina']);
+            $nivelInteresse->save();
+            $return = true;
+            }
+          }
+        }
+        else{
         $nivelInteresse = $this->createRow();
 
         $nivelInteresse->setId_professor($dados['id_professor']);
         $nivelInteresse->setNivelInteresse($dados['nivel_interesse']);
         $nivelInteresse->setId_disciplina($dados['id_disciplina']);
-        return $nivelInteresse->save();
+        $nivelInteresse->save();
+        $return = true;
+
+        return $return;
+        }
+       
     }
 
     public function editarNivelInteresse(array $dados) {
         $this->delete('id_professor = ' . $dados['id_professor']);
-        $id_prof =  $dados['id_professor'];
+        $id_prof = $dados['id_professor'];
         unset($dados['id_professor']);
         $modelDisciplina = new Application_Model_DbTable_Disciplina();
 
