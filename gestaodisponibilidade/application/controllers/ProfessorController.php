@@ -136,7 +136,7 @@ class ProfessorController extends Zend_Controller_Action {
         // var_dump($listadisciplinas);die();
 
         $this->view->listaDisciplinas = $listadisciplinas;
-<<<<<<< HEAD
+
        }
        
        public function editarNivelInteresseAction(){
@@ -152,7 +152,8 @@ class ProfessorController extends Zend_Controller_Action {
         $disciplinaModel = new Application_Model_DbTable_Disciplina();
         if(count($rowNivelInteresse)>0){
         foreach ($rowNivelInteresse as $item) {
-          /*
+         
+           /*
            * Aqui recupero lista do professor
            */
              
@@ -195,8 +196,7 @@ class ProfessorController extends Zend_Controller_Action {
        
         $this->view->arrayListaAtualizada = $arrayListaAtualizada;
        }
-=======
-    }
->>>>>>> 26bb2d87d07e7a776e72c7a5c01b1e78bb7b6e0f
 
-}
+    }
+
+
