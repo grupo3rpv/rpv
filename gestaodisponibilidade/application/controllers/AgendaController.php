@@ -15,23 +15,14 @@ class AgendaController extends Zend_Controller_Action {
         $listaEventos = $modelEvento->getNomePorIdProfessor('1');
         
         foreach ($listaEventos as $value) {
-           list($anoI, $mesI, $diaI) =explode("-", $value['data_inicial']); 
-           list($anoF, $mesF, $diaF) = explode("-", $value['data_final']); 
-           list($horaF, $mimF) = explode(":", $value['hora2']); 
-           list($horaI, $mimI) = explode(":", $value['hora1']);
-           $arrayEventos['anoInicio'][] = $anoI;
-           $arrayEventos['anoFim'][] =$anoF;
-           $arrayEventos['mesInicio'][]=$mesI;
-           $arrayEventos['mesFim'][]=$mesF;
-           $arrayEventos['diaInicio'][]=$diaI;
-           $arrayEventos['diaFim'][]=$mesF;
-           $arrayEventos['horaInicio'][]=$horaI;
-           $arrayEventos['horaFim'][]=$horaF;
-           $arrayEventos['minutoInicio'][] =$mimI;
-           $arrayEventos['minutoFim'][]=$mimF;
-           $arrayEventos['titulo'][]= $value['titulo'];
+
+             $arrayEventos['dataInicial'][]= $value['data_inicial'];
+             $arrayEventos['dataFinal'][]= $value['data_inicial'];
+             $arrayEventos['hora1'][]= $value['hora1'];
+             $arrayEventos['hora2'][]= $value['hora2'];
+             $arrayEventos['titulo'][]= $value['titulo'];
+             $arrayEventos['id_evento'][]= $value['id_evento'];
         } 
-        
         $this->view->listaEventos = $arrayEventos;
         $this->view->professor = $professor;
     }
