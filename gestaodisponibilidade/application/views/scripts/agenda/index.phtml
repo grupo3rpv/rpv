@@ -1,9 +1,19 @@
 <div class=""><p><a href="<?= $this->baseUrl('/agenda/adicionar/') ?>">Adicionar</a><a href="<?= $this->baseUrl('/agenda/editar     /') ?>">Adicionar</a></p></div>
 <div id='calendar'></div>
-
-
-
-
+     <?= $cont = count($this->listaEventos['anoInicio']);?>
+ 
+    <? for ($i = 0; $i<$cont; $i++):?>
+    
+    <?$anoIni = $this->listaEventos['anoInicio'][$i];?> 
+    <?$anoFim = $this->listaEventos['anoFim'][$i];?> 
+    <?$mesIni = $this->listaEventos['mesInicio'][$i];?> 
+    <?$mesFim = $this->listaEventos['mesFim'][$i];?> 
+    <?$horaIni = $this->listaEventos['horaInicio'][$i];?>
+    <?$horaFim = $this->listaEventos['horaFim'][$i];?>
+    <?$mimIni = $this->listaEventos['minutoInicio'][$i];?>
+    <?$mimFim = $this->listaEventos['minutoFim'][$i];?>
+      <?$titulo = $this->listaEventos['titulo'][$i];?>
+<?=var_dump($mesIni)?>
 <script type='text/javascript'>
 
 	$(document).ready(function() {
@@ -40,18 +50,21 @@
 			events: [
 				
 				{
-					title: 'Teste tesnte tes',
-					start: new Date(y, m, d, 12, 0),
-					end: new Date(y, m, d, 14, 0),
-					allDay: true,
+					title: '<?=$titulo?>',
+					start: new Date(y, m, 28),
+					end: new Date(y, m, 29),
 					url: 'http://google.com/'
-				}
+                                       
+				},
 			]
 		});
 		
 	});
 
 </script>
+
+ <? endfor; ?> 
+
 <style type='text/css'>
 
 	body {

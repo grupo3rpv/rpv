@@ -8,11 +8,14 @@
 /**
  * Description of Area
  *
- * @author Helison
+ * @author Marcelo
  */
 class Application_Model_Evento extends Zend_Db_Table_Row_Abstract {
 
   
+  
+
+   
    
    public function getId_evento() {
        return $this->id_evento;
@@ -45,20 +48,21 @@ class Application_Model_Evento extends Zend_Db_Table_Row_Abstract {
    }
 
    public function getHora1() {
-       return $this->hora1;
-   }
+          return $this->hora1;
+  }
 
    public function setHora1($hora1) {
-       $this->hora1 = $hora1;
+          $this->hora1 = $hora1;
    }
 
    public function getHora2() {
-       return $this->hora2;
+        return $this->hora2;
+       
    }
 
    public function setHora2($hora2) {
-       $this->hora2 = $hora2;
-   }
+        $this->hora2 = $hora2;
+    }
 
    public function getTitulo() {
        return $this->titulo;

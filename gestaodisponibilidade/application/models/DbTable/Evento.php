@@ -30,7 +30,7 @@ class Application_Model_DbTable_Evento extends Zend_Db_Table_Abstract {
 
     public function getNomePorIdProfessor($id) {
         $select = $this->select()->where('id_professor = ?', $id);
-        return $this->fetchRow($select);
+        return $this->fetchAll($select);
     }
 
     public static function getPrimaryKeyName() {
@@ -62,6 +62,7 @@ class Application_Model_DbTable_Evento extends Zend_Db_Table_Abstract {
         $evento->setHora1($dados['hora1']);
         $evento->setHora2($dados['hora2']);
         $evento->setId_professor($dados['id_professor']);
+        $evento->setTitulo($dados['titulo']);
    
 
         return $evento->save();
