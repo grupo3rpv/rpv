@@ -1,0 +1,31 @@
+<link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css" rel="stylesheet" type="text/css"/>
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js"></script>
+  <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"></script>
+  <script src="<?= $this->baseUrl('/perifer-timePicker-b5195df/jquery.timePicker.js') ?>" type="text/javascript"></script>
+  <script src="<?= $this->baseUrl('/perifer-timePicker-b5195df/jquery.timePicker.min.js') ?>" type="text/javascript"></script>
+  <link rel="stylesheet" href="<?= $this->baseUrl('/perifer-timePicker-b5195df/timePicker.css') ?>">
+ 
+  <script>
+  $(document).ready(function() {
+    $("#datepickerInicial").datepicker();
+  });
+  $(document).ready(function() {
+    $("#datepickerFinal").datepicker();
+  });
+  $(document).ready(function() {
+   $("#hora1").timePicker();
+  });
+  $(document).ready(function() {
+   $("#hora2").timePicker();
+  });
+  
+  </script>
+  <form method="POST" action="<?=$this->baseUrl('agenda/add-evento')?>">
+    Data Inicial :<input class="subscr_email" id="datepickerInicial" name="inputDateInicial" type="text" size="20px"/>
+    Data Final   :<input class="subscr_email" id="datepickerFinal" name="inputDateInicial" type="text" /><p/>
+    Hora Inicial:  <input name="hora1"  class="subscr_email" type="text" id="hora1"  size="5" maxlength="5">
+    Hora Final:  <input name="hora2" class="subscr_email"  type="text" id="hora2"  on ="Verifica_Hora2()" size="5" maxlength="5"><p/>
+    Titulo do evento:  <input id="titulo" class="i-format" type="text" /><p/>
+    
+    <INPUT TYPE="submit" VALUE="Cadastrar evento"  class="button white large">
+</form>
