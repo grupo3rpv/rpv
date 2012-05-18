@@ -137,7 +137,7 @@ ENGINE = InnoDB;
 -- Table `nivel_interesse`
 -- -----------------------------------------------------
 CREATE  TABLE IF NOT EXISTS `nivel_interesse` (
-  `id_nivel_interesse` INT NOT NULL ,
+  `id_nivel_interesse` INT NOT NULL AUTO_INCREMENT ,
   `id_professor` INT NOT NULL ,
   `id_disciplina` INT NOT NULL ,
   `nivel_interesse` CHAR(45) NULL ,
