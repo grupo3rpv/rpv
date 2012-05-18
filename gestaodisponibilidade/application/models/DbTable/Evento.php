@@ -28,7 +28,7 @@ class Application_Model_DbTable_Evento extends Zend_Db_Table_Abstract {
         return $this->fetchAll($select);
     }
 
-    public function getNomePorIdProfessor($id) {
+    public function listaEventosPorIdProfessor($id) {
         $select = $this->select()->where('id_professor = ?', $id);
         return $this->fetchAll($select);
     }

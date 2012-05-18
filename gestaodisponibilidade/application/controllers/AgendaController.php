@@ -12,7 +12,7 @@ class AgendaController extends Zend_Controller_Action {
         $modelProfessor = new Application_Model_DbTable_Professor();
         $professor = $modelProfessor->find($id_professor)->current();
         $modelEvento = new Application_Model_DbTable_Evento();
-        $listaEventos = $modelEvento->getNomePorIdProfessor('1');
+        $listaEventos = $modelEvento->listaEventosPorIdProfessor('1');
         
         foreach ($listaEventos as $value) {
 
