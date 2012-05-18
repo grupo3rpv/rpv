@@ -7,10 +7,10 @@
  
   <script>
   $(document).ready(function() {
-    $("#datepickerInicial").datepicker();
+    $("#data_inicial").datepicker();
   });
   $(document).ready(function() {
-    $("#datepickerFinal").datepicker();
+    $("#data_final").datepicker();
   });
   $(document).ready(function() {
    $("#hora1").timePicker();
@@ -21,10 +21,10 @@
   
   </script>
   <form method="POST" action="<?=$this->baseUrl('agenda/add-evento')?>">
-    Data Inicial :<input class="subscr_email" id="datepickerInicial" name="inputDateInicial" type="text" size="20px"/>
-    Data Final   :<input class="subscr_email" id="datepickerFinal" name="inputDateInicial" type="text" /><p/>
+    Data Inicial :<input class="subscr_email" id="data_inicial" name="data_inicial" type="text" />
+    Data Final   :<input class="subscr_email" id="data_final" name="data_final" type="text" /><p/>
     Hora Inicial:  <input name="hora1"  class="subscr_email" type="text" id="hora1"  size="5" maxlength="5">
-    Hora Final:  <input name="hora2" class="subscr_email"  type="text" id="hora2"  on ="Verifica_Hora2()" size="5" maxlength="5"><p/>
+    Hora Final:  <input name="hora2" class="subscr_email"  type="text" id="hora2"   size="5" maxlength="5"><p/>
     Titulo do evento:  <input id="titulo" class="i-format" type="text" /><p/>
     
     <INPUT TYPE="submit" VALUE="Cadastrar evento"  class="button white large">
