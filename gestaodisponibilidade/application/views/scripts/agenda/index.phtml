@@ -42,7 +42,7 @@
                             start  : '<?=$this->listaEventos['dataInicial'][$i]?> <?=$this->listaEventos['hora1'][$i]?>',
                             end    : '<?=$this->listaEventos['dataFinal'][$i]?> <?=$this->listaEventos['hora2'][$i]?>',
                             allDay: false,
-                            url: '<?=$this->baseUrl('/agenda/cadastrar-evento')?>'
+                            url: '<?=$this->baseUrl('/agenda/cadastrar-evento/'.$this->listaEventos['id_evento'][$i])?>'
                         },
                         <? endfor;?>
 			
