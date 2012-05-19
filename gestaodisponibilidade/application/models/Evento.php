@@ -31,7 +31,7 @@ class Application_Model_Evento extends Zend_Db_Table_Row_Abstract {
 
    public function setData_inicial($data_inicial) {
        $data = $data_inicial;
-       list($mes, $dia, $ano) = split ('[/.-]', $data);
+       list($mes, $dia, $ano) = explode('/', $data,3);
        $this->data_inicial = $ano.'-'.$mes.'-'.$dia;
    }
 
@@ -41,7 +41,7 @@ class Application_Model_Evento extends Zend_Db_Table_Row_Abstract {
 
    public function setData_final($data_final) {
        $data = $data_final;
-       list($mes, $dia, $ano) = split ('[/.-]', $data);
+       list($mes, $dia, $ano) = explode('/', $data);
        $this->data_final = $ano.'-'.$mes.'-'.$dia;
    
       
