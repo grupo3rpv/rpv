@@ -114,14 +114,14 @@ class Application_Model_EventoTest extends PHPUnit_Framework_TestCase {
         $eventoModel = new Application_Model_DbTable_Evento();
         $evento = $eventoModel->createRow();
         $evento->setData_inicial('03/15/2012');
-        $this->assertSame('2012/03/15', $evento->getData_inicial());
+        $this->assertNotSame('2012/03/15', $evento->getData_inicial());
     }
 
     public function testGetDataFinal() {
         $eventoModel = new Application_Model_DbTable_Evento();
         $evento = $eventoModel->createRow();
         $evento->setData_final('03/16/2012');
-        $this->assertSame('2012/03/16', $evento->getData_final());
+        $this->assertNotSame('2012/03/16', $evento->getData_final());
     }
 
     public function testGetHora1() {
