@@ -28,11 +28,11 @@ class Application_Model_EventoTest extends PHPUnit_Framework_TestCase {
             'hora2' => '15:00:00',
             'id_professor' => '1',
             'titulo' => "Reniao tal",
-            'id_evento' => '10',
+            //'id_evento' => '1',
         );
         $id_evento = $eventoModel->cadastraEvento($eventoArray);
         /* @var $produto Application_Model_Sala */
-        $this->assertSame('10', $id_evento);
+        $this->assertSame('1', $id_evento);
     }
 
     public function testCadastraEventoDataComLetra() {
@@ -45,11 +45,11 @@ class Application_Model_EventoTest extends PHPUnit_Framework_TestCase {
             'hora2' => '15:00:00',
             'id_professor' => '1',
             'titulo' => "Prova marcada",
-            'id_evento' => '10',
+            //'id_evento' => '1',
         );
         $id_evento = $eventoModel->cadastraEvento($eventoArray);
         /* @var $produto Application_Model_Sala */
-        $this->assertSame('10', $id_evento);
+        $this->assertSame('1', $id_evento);
     }
 
     public function testCadastraEventoFinalAtrasado() {
@@ -62,11 +62,11 @@ class Application_Model_EventoTest extends PHPUnit_Framework_TestCase {
             'hora2' => '14:00:00',
             'id_professor' => '1',
             'titulo' => "Prova marcada",
-            'id_evento' => '10',
+            //'id_evento' => '1',
         );
         $id_evento = $eventoModel->cadastraEvento($eventoArray);
         /* @var $produto Application_Model_Sala */
-        $this->assertSame('10', $id_evento);
+        $this->assertSame('1', $id_evento);
     }
 
     public function testCadastraEventoMes13() {
@@ -79,11 +79,11 @@ class Application_Model_EventoTest extends PHPUnit_Framework_TestCase {
             'hora2' => '14:00:00',
             'id_professor' => '1',
             'titulo' => "Prova marcada",
-            'id_evento' => '10',
+            //'id_evento' => '1',
         );
         $id_evento = $eventoModel->cadastraEvento($eventoArray);
         /* @var $produto Application_Model_Sala */
-        $this->assertSame('10', $id_evento);
+        $this->assertSame('1', $id_evento);
     }
 
     public function testCadastraEventoMesmaHora() {
@@ -96,11 +96,11 @@ class Application_Model_EventoTest extends PHPUnit_Framework_TestCase {
             'hora2' => '14:00:00',
             'id_professor' => '1',
             'titulo' => "Prova marcada",
-            'id_evento' => '10',
+           // 'id_evento' => '1',
         );
         $id_evento = $eventoModel->cadastraEvento($eventoArray);
         /* @var $produto Application_Model_Sala */
-        $this->assertSame('10', $id_evento);
+        $this->assertSame('1', $id_evento);
     }
 
     public function testGetId_evento() {
