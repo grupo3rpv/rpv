@@ -42,14 +42,14 @@ if (APPLICATION_ENV == 'development' || APPLICATION_ENV == 'staging'):
     /**
      * Insere valores na tabela equipamento-sala 
      */
-    $db->insert('equipamento_sala', array('id_equipamento_sala' => '2', 'numero_sala' => '212', 'quantidade' => '24'));
-    $db->insert('equipamento_sala', array('id_equipamento_sala' => '3', 'numero_sala' => '212', 'quantidade' => '48'));
-    $db->insert('equipamento_sala', array('id_equipamento_sala' => '7', 'numero_sala' => '212', 'quantidade' => '1'));
-    $db->insert('equipamento_sala', array('id_equipamento_sala' => '2', 'numero_sala' => '210', 'quantidade' => '24'));
-    $db->insert('equipamento_sala', array('id_equipamento_sala' => '3', 'numero_sala' => '210', 'quantidade' => '48'));
-    $db->insert('equipamento_sala', array('id_equipamento_sala' => '7', 'numero_sala' => '210', 'quantidade' => '1'));
-    $db->insert('equipamento_sala', array('id_equipamento_sala' => '8', 'numero_sala' => '203', 'quantidade' => '1'));
-    $db->insert('equipamento_sala', array('id_equipamento_sala' => '4', 'numero_sala' => '203', 'quantidade' => '60'));
+    $db->insert('equipamento_sala', array('id_equipamento_sala' => '4', 'numero_sala' => '212', 'quantidade' => '24'));
+    $db->insert('equipamento_sala', array('id_equipamento_sala' => '5', 'numero_sala' => '212', 'quantidade' => '48'));
+    $db->insert('equipamento_sala', array('id_equipamento_sala' => '9', 'numero_sala' => '212', 'quantidade' => '1'));
+    $db->insert('equipamento_sala', array('id_equipamento_sala' => '4', 'numero_sala' => '210', 'quantidade' => '24'));
+    $db->insert('equipamento_sala', array('id_equipamento_sala' => '5', 'numero_sala' => '210', 'quantidade' => '48'));
+    $db->insert('equipamento_sala', array('id_equipamento_sala' => '9', 'numero_sala' => '210', 'quantidade' => '1'));
+    $db->insert('equipamento_sala', array('id_equipamento_sala' => '10', 'numero_sala' => '203', 'quantidade' => '1'));
+    $db->insert('equipamento_sala', array('id_equipamento_sala' => '6', 'numero_sala' => '203', 'quantidade' => '60'));
 
     /**
      * Insere valores na tabela area
