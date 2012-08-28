@@ -93,7 +93,7 @@ class ProfessorController extends Zend_Controller_Action {
             $this->_redirect('/professor/perfil');
         }
     }
-    
+
     public function nivelInteresseEditAction() {
         if ($this->getRequest()->isPost()) {
             $dados = $this->getRequest()->getParams();
@@ -101,12 +101,12 @@ class ProfessorController extends Zend_Controller_Action {
             unset($dados['controller']);
             unset($dados['action']);
             unset($dados['module']);
-            $dados['id_professor']='1';
-           
-             $modelNivelInteresse->editarNivelInteresse($dados);
-             
-             
-           $this->_redirect('/professor/perfil');
+            $dados['id_professor'] = '1';
+
+            $modelNivelInteresse->editarNivelInteresse($dados);
+
+
+            $this->_redirect('/professor/perfil');
         }
     }
 
@@ -136,67 +136,55 @@ class ProfessorController extends Zend_Controller_Action {
         // var_dump($listadisciplinas);die();
 
         $this->view->listaDisciplinas = $listadisciplinas;
+    }
 
-       }
-       
-       public function editarNivelInteresseAction(){
-     
+    public function editarNivelInteresseAction() {
+
         $modelNivelInteresse = new Application_Model_DbTable_NivelInteresse();
         $rowNivelInteresse = $modelNivelInteresse->getDadosPorId('1');
-        
+
         $modelProfessor = new Application_Model_DbTable_Professor();
         $professor = $modelProfessor->listaProfessorPorID('1');
         $this->view->professor = $professor;
 
         $listadisciplinas = array();
         $disciplinaModel = new Application_Model_DbTable_Disciplina();
-        if(count($rowNivelInteresse)>0){
-        foreach ($rowNivelInteresse as $item) {
-         
-           /*
-           * Aqui recupero lista do professor
-           */
-             
-         $disciplina = $disciplinaModel->getCodigoPorId($item['id_disciplina']);
-         $listadisciplinas['nome'][]=$disciplina->getNome();
-         $listadisciplinas['codigo'][] =$disciplina->getCodigo();
-         $listadisciplinas['ementa'][]=$disciplina->getEmenta();
-         $listadisciplinas['nivel_interesse'][] = $item['nivel_interesse'];
-         $listadisciplinas['id_nivel_interesse'][] = $item['id_nivel_interesse'];
-         
-        
+        if (count($rowNivelInteresse) > 0) {
+            foreach ($rowNivelInteresse as $item) {
+
+                /*
+                 * Aqui recupero lista do professor
+                 */
+
+                $disciplina = $disciplinaModel->getCodigoPorId($item['id_disciplina']);
+                $listadisciplinas['nome'][] = $disciplina->getNome();
+                $listadisciplinas['codigo'][] = $disciplina->getCodigo();
+                $listadisciplinas['ementa'][] = $disciplina->getEmenta();
+                $listadisciplinas['nivel_interesse'][] = $item['nivel_interesse'];
+                $listadisciplinas['id_nivel_interesse'][] = $item['id_nivel_interesse'];
+            }
         }
-        
-        }
-        
-         
+
+
         $disciplinasTotal = array();
         $arrayListaAtualizada = array();
         $allDisciplinas = $disciplinaModel->listarTodos();
-        
-       foreach ($allDisciplinas as $value) {
-           
-            for ($index1 = 0; $index1 < count($listadisciplinas['codigo']); $index1++) {
-          
-                if($value['codigo']==$listadisciplinas['codigo'][$index1]){  
-                  $arrayListaAtualizada['codigo'][]=$value['codigo'];
-                   $arrayListaAtualizada['ementa'][]=$value['ementa'];
-                   $arrayListaAtualizada['nome'][]=$value['nome'];
-                   $arrayListaAtualizada['nivel_interesse'][]=$listadisciplinas['nivel_interesse'][$index1];
-                
-                      
-                }
-                          
-             
-            }
-             
-                   
-               
-        }
-       
-        $this->view->arrayListaAtualizada = $arrayListaAtualizada;
-       }
 
+        foreach ($allDisciplinas as $value) {
+
+            for ($index1 = 0; $index1 < count($listadisciplinas['codigo']); $index1++) {
+
+                if ($value['codigo'] == $listadisciplinas['codigo'][$index1]) {
+                    $arrayListaAtualizada['codigo'][] = $value['codigo'];
+                    $arrayListaAtualizada['ementa'][] = $value['ementa'];
+                    $arrayListaAtualizada['nome'][] = $value['nome'];
+                    $arrayListaAtualizada['nivel_interesse'][] = $listadisciplinas['nivel_interesse'][$index1];
+                }
+            }
+        }
+
+        $this->view->arrayListaAtualizada = $arrayListaAtualizada;
     }
 
+}
 
