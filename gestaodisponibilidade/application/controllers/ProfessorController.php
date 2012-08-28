@@ -192,8 +192,11 @@ class ProfessorController extends Zend_Controller_Action {
     public function recebeDisponibilidadeAulaAction(){
         $id_usuario = $this->getRequest()->getParam('id_usuario');
         $classe = $this->getRequest()->getParam('id');
-        
+        list($hora, $dia) = explode('-', $classe);
+        $disciplinaModel = new Application_Model_DbTable_DisponibilidadeAula();
+        $disciplinaModel->gravarDados($id_usuario, $dia, $hora);
     }
+    
 
 }
 
