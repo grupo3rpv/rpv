@@ -186,5 +186,14 @@ class ProfessorController extends Zend_Controller_Action {
         $this->view->arrayListaAtualizada = $arrayListaAtualizada;
     }
 
+    public function disponibilidadeAulaAction() {
+       
+    }
+    public function recebeDisponibilidadeAulaAction(){
+        $id_usuario = $this->getRequest()->getParam('id_usuario');
+        $classe = $this->getRequest()->getParam('id');
+        
+    }
+
 }
 
