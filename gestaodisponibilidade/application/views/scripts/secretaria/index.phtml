@@ -19,7 +19,9 @@
         </nav><!-- End of menu -->
     </div>
 </section>
-<div class=""><p><a href="<?= $this->baseUrl('/secretaria/adicionar-sala/') ?>">Adicionar Sala</a></p></div>
+<div class=""><p>
+        <a class="button orange small" href="<?= $this->baseUrl('/secretaria/adicionar-sala/') ?>">Adicionar Sala</a></p></div>
+<!--        <a href="<?= $this->baseUrl('/secretaria/adicionar-sala/') ?>">Adicionar Sala</a></p></div>-->
 <table class="style2"> 
     <thead> 
         <tr> 
@@ -46,10 +48,10 @@
                 <td><?= $item->getStatus_disponibilidade() ?></td>
                 <td><?= $item->getResponsavel() ?></td> 
                 <td>
-                    <a href="<?= $this->baseUrl('/secretaria/editar-sala/') ?><?= $item->getNumero() ?>">Editar</a>
+                    <a class="button green small" href="<?= $this->baseUrl('/secretaria/editar-sala/') ?><?= $item->getNumero() ?>">Editar</a>
                 </td>
                 <td>
-                    <a href="<?= $this->baseUrl('/secretaria/remover-sala/id_sala/') ?><?= $item->getNumero() ?>">Remover</a>
+                    <a class="button red small"href="<?= $this->baseUrl('/secretaria/remover-sala/id_sala/') ?><?= $item->getNumero() ?>">Remover</a>
                 </td>
             </tr>
         </tbody>
