@@ -1,9 +1,6 @@
 <?php
 
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
+
 
 /**
  * Description of Professor
@@ -30,14 +27,13 @@ class Application_Model_DbTable_DisponibilidadeAula extends Zend_Db_Table_Abstra
     }
 
     public function verificaCelulaSelecionada($id_usuario, $dia, $hora) {
-     $select = $this->select()->where('id_usuario = ' . $id_usuario . ' and dia = "' . $dia . '" and hora = "' . $hora . '"');
+        $select = $this->select()->where('id_usuario = ' . $id_usuario . ' and dia = "' . $dia . '" and hora = "' . $hora . '"');
         return $this->fetchAll($select)->count();
-        
     }
-    
-    public function listaDisponibilidadesPorId($id_usuario){
-        $select = $this->select()->where('id_usuario = '.$id_usuario);
-       return $this->fetchAll($select);
+
+    public function listaDisponibilidadesPorId($id_usuario) {
+        $select = $this->select()->where('id_usuario = ' . $id_usuario);
+        return $this->fetchAll($select);
     }
 
 }

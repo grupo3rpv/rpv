@@ -2,6 +2,13 @@
     background-color: white;
 }
 
+.branco:hover{
+    background-color: #FF0000;
+}
 .verde {
-    background-color: greenyellow;
+    background-color: lawngreen;
+}
+
+.verde:hover{
+    background-color: #FF0000;
 }
