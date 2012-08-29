@@ -212,6 +212,24 @@ CREATE  TABLE IF NOT EXISTS `evento` (
 ENGINE = InnoDB;
 
 
+-- -----------------------------------------------------
+-- Table `disponibilidade_aula`
+-- -----------------------------------------------------
+CREATE  TABLE IF NOT EXISTS `disponibilidade_aula` (
+  `id_disponibilidade_aula` INT NOT NULL AUTO_INCREMENT ,
+  `dia` VARCHAR(45) NULL ,
+  `hora` TIME NULL ,
+  `id_usuario` INT NOT NULL ,
+  PRIMARY KEY (`id_disponibilidade_aula`) ,
+  INDEX `fk_disponibilidade_aula_usuario1` (`id_usuario` ASC) ,
+  CONSTRAINT `fk_disponibilidade_aula_usuario1`
+    FOREIGN KEY (`id_usuario` )
+    REFERENCES `usuario` (`id_usuario` )
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
 
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;

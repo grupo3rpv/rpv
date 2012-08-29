@@ -187,13 +187,26 @@ class ProfessorController extends Zend_Controller_Action {
     }
 
     public function disponibilidadeAulaAction() {
+       $id_usuario = $this->getRequest()->getParam('id_usuario');
+       $modelDisponibilidadeAula = new Application_Model_DbTable_DisponibilidadeAula();
        
+       $this->view->listaDisponibilidades = $modelDisponibilidadeAula->listaDisponibilidadesPorId($id_usuario); 
     }
     public function recebeDisponibilidadeAulaAction(){
         $id_usuario = $this->getRequest()->getParam('id_usuario');
         $classe = $this->getRequest()->getParam('id');
-        
+        list($hora, $dia) = explode('-', $classe);
+        $disponibilidadeAula = new Application_Model_DbTable_DisponibilidadeAula();
+        $celula = $disponibilidadeAula->verificaCelulaSelecionada($id_usuario, $dia, $hora);
+        echo $celula;
+        if($celula >0){
+            $disponibilidadeAula->removeDados($id_usuario, $dia, $hora);
+        }
+        if($celula==0){
+            $disponibilidadeAula->gravarDados($id_usuario, $dia, $hora);
+        }
     }
+    
 
 }
 

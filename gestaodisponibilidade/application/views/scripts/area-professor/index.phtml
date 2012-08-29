@@ -1,11 +1,11 @@
-<h3>Area do professor</h3>
+<h3>Area do Professor</h3>
 <table> 
     <thead> 
         <tr> 
             <!--<th>Areas de interesse</th> -->
-            <th>Disciplinas de interesse</th> 
-            <th>Meus dados</th> 
-            <th>Minha agenda</th> 
+            <th>Disciplinas de Interesse</th> 
+            <th>Meus Dados</th> 
+            <th>Minha Agenda</th> 
 
         </tr> 
     </thead> 
@@ -17,7 +17,7 @@
             </td> -->
             <td>
                 <a class="button blue small" href="<?= $this->baseUrl('professor/perfil') ?>">Visualizar</a>
-                <a class="button red small" href="<?= $this->baseUrl('professor/editar-nivel-interesse') ?>">Editar dados</a>
+                <a class="button red small" href="<?= $this->baseUrl('professor/editar-nivel-interesse') ?>">Editar Dados</a>
                 <a class="button orange small" href="<?= $this->baseUrl('curso/listar-cursos') ?>">Adicionar mais disciplinas</a>
 
             </td>
@@ -27,11 +27,22 @@
             </td>
             <td>
                 <a class="button blue small" href="<?= $this->baseUrl('agenda/') ?>">Visualizar</a>
-                <a class="button orange small" href="<?= $this->baseUrl('agenda/cadastrar-evento') ?>">Cadastrar evento</a>
+                <a class="button orange small" href="<?= $this->baseUrl('agenda/cadastrar-evento') ?>">Cadastrar Evento</a>
             </td>
 
 
         </tr> 
 
+        <tr> 
+
+            <th>Horários Disponíveis de Aula</th> 
+
+
+        </tr> 
+        <tr>
+            <td>
+                <a class="button blue small" href="<?= $this->baseUrl('professor/disponibilidade-aula/id_usuario/1') ?>">Marcar Horários</a>
+            </td>
+        </tr>
     </tbody>
 </table>
