@@ -218,7 +218,7 @@ ENGINE = InnoDB;
 CREATE  TABLE IF NOT EXISTS `disponibilidade_aula` (
   `id_disponibilidade_aula` INT NOT NULL AUTO_INCREMENT ,
   `dia` VARCHAR(45) NULL ,
-  `hora` TIME NULL ,
+  `hora` VARCHAR(10) NULL ,
   `id_usuario` INT NOT NULL ,
   PRIMARY KEY (`id_disponibilidade_aula`) ,
   INDEX `fk_disponibilidade_aula_usuario1` (`id_usuario` ASC) ,
