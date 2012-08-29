@@ -2,11 +2,19 @@
 <? $id_usuario = 1; ?>
 
 <script type="text/javascript">
+    $(document).ready(function(){
+        <? foreach ($this->listaDisponibilidades as $value) :?>
+                muda("<?=$value['hora'] . '-' . $value['dia']?>");
+        <?endforeach;?>
+    });
+</script>
+
+</div>
+<script type="text/javascript">
+
+    
     function gravaDados(id)
     {   
-
-
-
         if (id=="")
         {
             document.getElementById("txtHint").innerHTML="";
@@ -43,8 +51,6 @@
     }
 </script>
 
-
-
 <table border="5">
     <tbody>
         <tr>
@@ -59,38 +65,38 @@
         <tr>
             <th align="center"> 07:30</th>
             <td class="branco" title="07:30-segunda" onclick="gravaDados(this.id)" id="07:30-segunda" align="center"></td>
-            <td class="branco" onclick="muda(this.id)" id="07:30-terca" align="center"></td>
-            <td class="branco" onclick="muda(this.id)" id="07:30-quarta" align="center"></td>
-            <td class="branco" onclick="muda(this.id)" id="07:30-quinta" align="center"></td>
-            <td class="branco" onclick="muda(this.id)" id="07:30-sexta" align="center"></td>
-            <td class="branco" onclick="muda(this.id)" id="07:30-sabado" align="center"></td>
+            <td class="branco" onclick="gravaDados(this.id)" id="07:30-terca" align="center"></td>
+            <td class="branco" onclick="gravaDados(this.id)" id="07:30-quarta" align="center"></td>
+            <td class="branco" onclick="gravaDados(this.id)" id="07:30-quinta" align="center"></td>
+            <td class="branco" onclick="gravaDados(this.id)" id="07:30-sexta" align="center"></td>
+            <td class="branco" onclick="gravaDados(this.id)" id="07:30-sabado" align="center"></td>
         </tr>
         <tr>
             <th align="center"> 08:30</th>
-            <td id="08:30-segunda" align="center"></td>
-            <td id="08:30-terca" align="center"></td>
-            <td id="08:30-quarta" align="center"></td>
-            <td id="08:30-quinta" align="center"></td>
-            <td id="08:30-sexta" align="center"></td>
-            <td id="08:30-sabado" align="center"></td>
+            <td class="branco" onclick="gravaDados(this.id)" id="08:30-segunda" align="center"></td>
+            <td class="branco" onclick="gravaDados(this.id)" id="08:30-terca" align="center"></td>
+            <td class="branco" onclick="gravaDados(this.id)" id="08:30-quarta" align="center"></td>
+            <td class="branco" onclick="gravaDados(this.id)" id="08:30-quinta" align="center"></td>
+            <td class="branco" onclick="gravaDados(this.id)" id="08:30-sexta" align="center"></td>
+            <td class="branco" onclick="gravaDados(this.id)" id="08:30-sabado" align="center"></td>
         </tr>
         <tr>
             <th align="center"> 09:30</th>
-            <td id="09:30-segunda" align="center"></td>
-            <td id="09:30-terca" align="center"></td>
-            <td id="09:30-quarta" align="center"></td>
-            <td id="09:30-quinta" align="center"></td>
-            <td id="09:30-sexta" align="center"></td>
-            <td id="09:30-sabado" align="center"></td>
+            <td class="branco" onclick="gravaDados(this.id)" id="09:30-segunda" align="center"></td>
+            <td class="branco" onclick="gravaDados(this.id)" id="09:30-terca" align="center"></td>
+            <td class="branco" onclick="gravaDados(this.id)" id="09:30-quarta" align="center"></td>
+            <td class="branco" onclick="gravaDados(this.id)" id="09:30-quinta" align="center"></td>
+            <td class="branco" onclick="gravaDados(this.id)" id="09:30-sexta" align="center"></td>
+            <td class="branco" onclick="gravaDados(this.id)" id="09:30-sabado" align="center"></td>
         </tr>
         <tr>
             <th align="center"> 10:30</th>
-            <td id="10:30-segunda" align="center"></td>
-            <td id="10:30-terca" align="center"></td>
-            <td id="10:30-quarta" align="center"></td>
-            <td id="10:30-quinta" align="center"></td>
-            <td id="10:30-sexta" align="center"></td>
-            <td id="10:30-sabado" align="center"></td>
+            <td onclick="gravaDados(this.id)" id="10:30-segunda" align="center"></td>
+            <td onclick="gravaDados(this.id)" id="10:30-terca" align="center"></td>
+            <td onclick="gravaDados(this.id)" id="10:30-quarta" align="center"></td>
+            <td onclick="gravaDados(this.id)" id="10:30-quinta" align="center"></td>
+            <td onclick="gravaDados(this.id)" id="10:30-sexta" align="center"></td>
+            <td onclick="gravaDados(this.id)" id="10:30-sabado" align="center"></td>
         </tr>
         <tr>
             <th align="center"> 11:30</th>
@@ -184,3 +190,4 @@
         </tr>
     </tbody>
 </table>
+<!--<div id="txtHint">iuhiugig</div>-->
