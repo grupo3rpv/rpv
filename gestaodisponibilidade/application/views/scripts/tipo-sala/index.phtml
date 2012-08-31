@@ -19,7 +19,7 @@
                                 </nav><!-- End of menu -->
                             </div>
                         </section>
-<p><a href="<?= $this->baseUrl('/tipo-sala/cadastrar-tipo-sala') ?>">Cadastrar Categoria de Sala</a></p>
+<p><a class="button orange small" href="<?= $this->baseUrl('/tipo-sala/cadastrar-tipo-sala') ?>">Cadastrar Categoria de Sala</a></p>
 <table class="style2"> 
     <thead> 
         <tr> 
@@ -34,10 +34,10 @@
                 
                 <td><?= $item->getDescricao() ?></td>
                 <td>
-                    <a href="<?= $this->baseUrl('/tipo-sala/editar-tipo-sala/id_tipo_sala/') ?><?= $item->getId_tipo_sala() ?>">Editar</a>
+                    <a class="button green small" href="<?= $this->baseUrl('/tipo-sala/editar-tipo-sala/id_tipo_sala/') ?><?= $item->getId_tipo_sala() ?>">Editar</a>
                 </td>
                 <td>
-                    <a href="<?= $this->baseUrl('/tipo-sala/remover-tipo-sala/id_tipo_sala/') ?><?= $item->getId_tipo_sala() ?>">Remover</a>
+                    <a class="button red small" href="<?= $this->baseUrl('/tipo-sala/remover-tipo-sala/id_tipo_sala/') ?><?= $item->getId_tipo_sala() ?>">Remover</a>
                 </td>
             </tr>
         <? endforeach; ?>
