@@ -35,5 +35,4 @@ class Application_Model_DbTable_DisponibilidadeAula extends Zend_Db_Table_Abstra
         $select = $this->select()->where('id_usuario = ' . $id_usuario);
         return $this->fetchAll($select);
     }
-
 }
