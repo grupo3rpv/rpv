@@ -198,7 +198,6 @@ class ProfessorController extends Zend_Controller_Action {
         list($hora, $dia) = explode('-', $classe);
         $disponibilidadeAula = new Application_Model_DbTable_DisponibilidadeAula();
         $celula = $disponibilidadeAula->verificaCelulaSelecionada($id_usuario, $dia, $hora);
-        echo $celula;
         if($celula >0){
             $disponibilidadeAula->removeDados($id_usuario, $dia, $hora);
         }
