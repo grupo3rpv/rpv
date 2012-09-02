@@ -9,7 +9,6 @@ class ProfessorController extends Zend_Controller_Action {
     public function indexAction() {
         $modelProfessor = new Application_Model_DbTable_Professor();
         $listaProfessores = $modelProfessor->listaUsuario();
-        $modelProfessor = new Application_Model_DbTable_Professor();
         $this->view->listaProfessor = $listaProfessores;
     }
 
@@ -206,7 +205,4 @@ class ProfessorController extends Zend_Controller_Action {
             $disponibilidadeAula->gravarDados($id_usuario, $dia, $hora);
         }
     }
-    
-
 }
-
