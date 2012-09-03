@@ -204,4 +204,10 @@ class ProfessorController extends Zend_Controller_Action {
             $disponibilidadeAula->gravarDados($id_usuario, $dia, $hora);
         }
     }
+    
+    public function testeAction() {
+        $professorDAO = new Application_Model_DbTable_Usuario();
+        $professor = $professorDAO->find(1)->current();
+        $professor->getEventos();
+    }
 }

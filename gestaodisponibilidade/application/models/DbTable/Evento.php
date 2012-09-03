@@ -1,10 +1,5 @@
 <?php
 
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
 /**
  * Description of Curso
  *
@@ -16,6 +11,7 @@ class Application_Model_DbTable_Evento extends Zend_Db_Table_Abstract {
     protected $_rowClass = 'Application_Model_Evento';
     protected $_primary = 'id_evento';
     
+    protected $_dependentTables = array('Application_Model_DbTable_EventoUsuario');
     
 
     public function listarTodos() {

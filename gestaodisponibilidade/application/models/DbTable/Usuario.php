@@ -14,10 +14,11 @@ class Application_Model_DbTable_Usuario extends Zend_Db_Table_Abstract {
 
     protected $_name = 'usuario';
     protected $_rowClass = 'Application_Model_Usuario';
+    protected $_dependentTables = array('Application_Model_DbTable_EventoUsuario');
     protected $_referenceMap = array(
         'UsuarioDisciplina' => array(
             'refTableClass' => 'Application_Model_DbTable_Disciplina',
-            'columns' => array('IdDisciplina'),
+            'columns' => array('idDisciplina'),
             'refColumns' => 'id_disciplina'
         ),
         'UsuarioNivelInteresse' => array(

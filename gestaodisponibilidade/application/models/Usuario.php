@@ -1,10 +1,5 @@
 <?php
 
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
 /**
  * Description of Usuario
  *
@@ -27,7 +22,10 @@ class Application_Model_Usuario extends Zend_Db_Table_Row_Abstract {
     public function setNome($nome) {
         $this->nome = $nome;
     }
+    
+    public function getEventos() {
+        var_dump($this->findManyToManyRowset('Application_Model_DbTable_Evento', 'Application_Model_DbTable_EventoUsuario'));
+        die();
+    }
 
 }
-
-?>
