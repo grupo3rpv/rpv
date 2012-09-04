@@ -13,39 +13,36 @@ class AgendaController extends Zend_Controller_Action {
         $professor = $modelProfessor->find($id_professor)->current();
         $modelEvento = new Application_Model_DbTable_Evento();
         $listaEventos = $modelEvento->listaEventosPorIdProfessor('1');
-        
+
         foreach ($listaEventos as $value) {
 
-             $arrayEventos['dataInicial'][]= $value['data_inicial'];
-             $arrayEventos['dataFinal'][]= $value['data_inicial'];
-             $arrayEventos['hora1'][]= $value['hora1'];
-             $arrayEventos['hora2'][]= $value['hora2'];
-             $arrayEventos['titulo'][]= $value['titulo'];
-             $arrayEventos['id_evento'][]= $value['id_evento'];
-        } 
+            $arrayEventos['dataInicial'][] = $value['data_inicial'];
+            $arrayEventos['dataFinal'][] = $value['data_inicial'];
+            $arrayEventos['hora1'][] = $value['hora1'];
+            $arrayEventos['hora2'][] = $value['hora2'];
+            $arrayEventos['titulo'][] = $value['titulo'];
+            $arrayEventos['id_evento'][] = $value['id_evento'];
+        }
         $this->view->listaEventos = $arrayEventos;
         $this->view->professor = $professor;
     }
-    public function addEventoAction() {
-       if ($this->getRequest()->isPost()) {
-            $dados = $this->getRequest()->getParams();
-          
-               
-                $modelEvento = new Application_Model_DbTable_Evento();
-                unset($dados['controller']);
-                unset($dados['action']);
-                unset($dados['module']);
-                $dados['id_professor']='1';
-               
-                $modelEvento->cadastraEvento($dados); 
 
-                
-               $this->_redirect('/agenda/index');
-               
-            }
+    public function addEventoAction() {
+        if ($this->getRequest()->isPost()) {
+            $dados = $this->getRequest()->getParams();
+            $modelEvento = new Application_Model_DbTable_Evento();
+            unset($dados['controller']);
+            unset($dados['action']);
+            unset($dados['module']);
+            $dados['id_professor'] = '1';
+
+            $modelEvento->cadastraEvento($dados);
+            $this->_redirect('/agenda/index');
+        }
+    }
+
+    public function cadastrarEventoAction() {
         
     }
-     public function cadastrarEventoAction() {
-        
-    }
+
 }
