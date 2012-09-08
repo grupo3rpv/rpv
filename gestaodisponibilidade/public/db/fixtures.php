@@ -102,8 +102,10 @@ choques. Rotação de corpos rígidos. Gravitação.', 'carga_horaria' => '75h',
     /**
      * Insere valores na tabela usuario 
      */
-    $db->insert('usuario', array('nome' => 'Sergio Mergen', 'matricula' => '123456'));
-    $db->insert('usuario', array('nome' => 'João Pablo', 'matricula' => '654321'));
+    $db->insert('usuario', array('nome' => 'Sergio Mergen', 'matricula' => '123456','email'=>'mergen.sergio@gmail.com'));
+    $db->insert('usuario', array('nome' => 'João Pablo', 'matricula' => '654321', 'email'=>'joaosilva@unipampa.edu.br'));
+    $db->insert('usuario', array('nome' => 'Aline Melo', 'matricula' => '9812749', 'email'=>'alinemello@unipampa.edu.br'));
+    $db->insert('usuario', array('nome' => 'Cleo Billa', 'matricula' => '346320', 'email'=>'cleobilla@unipampa.edu.br'));
 
     /**
      * Insere valores na tabela area_professor 
@@ -125,9 +127,12 @@ choques. Rotação de corpos rígidos. Gravitação.', 'carga_horaria' => '75h',
     /**
      * Insere valores na tabela evento 
      */
-    $db->insert('evento', array('data_inicial' => '2012-05-19', 'data_final' => '2012-05-19', 'hora1' => '08:30:00', 'hora2' => '12:30:00', 'titulo' => 'Apresentação do 2º Check-point', 'id_professor' => '1'));
-    $db->insert('evento', array('data_inicial' => '2012-05-19', 'data_final' => '2012-05-19', 'hora1' => '08:30:00', 'hora2' => '12:30:00', 'titulo' => 'Apresentação do 2º Check-point', 'id_professor' => '2'));
-
+    $db->insert('evento', array('data_inicial' => '2012-09-19', 'data_final' => '2012-09-08', 'hora1' => '08:30:00', 'hora2' => '12:30:00', 'titulo' => 'Apresentação do 2º Check-point', 'id_professor' => '1'));
+    $db->insert('evento', array('data_inicial' => '2012-09-06', 'data_final' => '2012-09-06', 'hora1' => '09:30:00', 'hora2' => '12:30:00', 'titulo' => 'Apresentação de TCC', 'id_professor' => '2'));
+    $db->insert('evento', array('data_inicial' => '2012-09-22', 'data_final' => '2012-09-22', 'hora1' => '09:30:00', 'hora2' => '13:30:00', 'titulo' => 'Teste de sistema', 'id_professor' => '3'));
+    $db->insert('evento', array('data_inicial' => '2012-09-21', 'data_final' => '2012-09-21', 'hora1' => '09:30:00', 'hora2' => '12:30:00', 'titulo' => 'Apresentação de trabalho', 'id_professor' => '2'));
+    $db->insert('evento', array('data_inicial' => '2012-09-21', 'data_final' => '2012-09-21', 'hora1' => '09:30:00', 'hora2' => '22:30:00', 'titulo' => 'Shopping', 'id_professor' => '4'));
+    $db->insert('evento', array('data_inicial' => '2012-09-19', 'data_final' => '2012-05-19', 'hora1' => '09:30:00', 'hora2' => '12:30:00', 'titulo' => 'Apresentação de TCC', 'id_professor' => '2'));
 endif;
 
 if (APPLICATION_ENV == 'testing'):
