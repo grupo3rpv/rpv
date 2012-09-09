@@ -46,6 +46,8 @@ class AgendaController extends Zend_Controller_Action {
         
     }
      public function cadastrarEventoAction() {
-        
+       $professores = new Application_Model_DbTable_Professor();
+       $listaDeProfessores = $professores->listaUsuario();
+       $this->view->professores = $listaDeProfessores;
     }
 }

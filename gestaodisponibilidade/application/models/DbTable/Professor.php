@@ -66,5 +66,10 @@ class Application_Model_DbTable_Professor extends Application_Model_DbTable_Usua
     private function removerAreasDoProfessor(Application_Model_DbTable_AreaProfessor $areaProfessorModel, $id_professor) {
         $areaProfessorModel->removerAreasProfessor($id_professor);
     }
+    
+    public function buscaProfessorPorNome($nome){
+        $select = $this->select()->where('nome = "'.$nome.'"');
+        return $this->fetchRow($select);
+    }
 
 }
