@@ -6,25 +6,65 @@
 <link rel="stylesheet" href="<?= $this->baseUrl('/perifer-timePicker-b5195df/timePicker.css') ?>">
 <script>
     $(document).ready(function() {
+        var date = new Date();
+	var d = date.getDate();
+	var m = date.getMonth();
+	var y = date.getFullYear();
+        var i=0;
+	
+	var calendar = $('#calendar').fullCalendar({
+            header: {
+                left: 'prev,next today',
+		center: 'title',
+		right: 'month,agendaWeek,agendaDay'
+            },
+            selectable: true,
+            selectHelper: true,
+            select: function(start, end, allDay) {
+                var title = prompt('Event Title:');
+		if (title) {
+                    calendar.fullCalendar('renderEvent', {
+                        title: title,
+                        start: start,
+                        end: end,
+                        allDay: allDay
+                    },
+                    true // make the event "stick"
+                    );
+                        }
+                        calendar.fullCalendar('unselect');
+			},
+                        editable: true,
+			events: [
+                        <? //for($i=0;$i<count($this->listaEventos['titulo']);$i++):?>
+                         {
+                            id     : '<?//$this->listaEventos['id_evento'][$i]?>', 
+                            title  : '<?//$this->listaEventos['titulo'][$i]?>',
+                            start  : '<?//$this->listaEventos['dataInicial'][$i]?> <?//$this->listaEventos['hora1'][$i]?>',
+                            end    : '<?//$this->listaEventos['dataFinal'][$i]?> <?//$this->listaEventos['hora2'][$i]?>',
+                            allDay: false,
+                            url: '<?//$this->baseUrl('/agenda/cadastrar-evento/'.$this->listaEventos['id_evento'][$i])?>'
+                        },
+                        <? //endfor;?>
+			]
+		});
+	});
+    
+    $(document).ready(function() {
         $("#data_inicial").datepicker();
-    });
-    $(document).ready(function() {
         $("#data_final").datepicker();
-    });
-    $(document).ready(function() {
         $("#hora1").timePicker();
-    });
-    $(document).ready(function() {
         $("#hora2").timePicker();
     });
     
    function adicionarProfessor(nome){
-       alert(nome);
+       /*alert(nome);
        var array = new Array();
        array.push(nome);
        for(i = 0; i < array.length; i++){
            $("#profConvidado").append(array[i]);
-       }
+       }*/
+        $("#profConvidado").append(nome);
    }
 </script>
 
@@ -55,7 +95,9 @@
 
         Adicionar convidado:<input id="convidados" type="text" class="i-format" />
         <a onclick="adicionarProfessor($('#convidados').val())" class="button">Adicionar</a><p/>
-        <div id="profConvidado"></div>
+        <div id="profConvidado">
+            <div id='calendar'></div>
+        </div>
         
     </div> 
    <INPUT style="margin-left: 25%;" TYPE="submit" VALUE="Cadastrar evento" class="button white large">

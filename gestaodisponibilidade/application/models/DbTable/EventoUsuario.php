@@ -18,7 +18,7 @@ class Application_Model_DbTable_EventoUsuario extends Zend_Db_Table_Abstract {
         ),
         'Usuario'   => array(
             'refTableClass'  => 'Application_Model_DbTable_Usuario',
-            'columns'        => array('id_usuario'),
+            'columns'        => array('id_professor'),
             'refColumns'     => 'id_usuario'
         )
     );

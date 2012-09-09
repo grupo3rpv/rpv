@@ -9,10 +9,16 @@ class AgendaController extends Zend_Controller_Action {
     public function indexAction() {
         $id_professor = '1';
         $arrayEventos = array();
-        $modelProfessor = new Application_Model_DbTable_Professor();
+        
+        /*$modelProfessor = new Application_Model_DbTable_Professor();
         $professor = $modelProfessor->find($id_professor)->current();
         $modelEvento = new Application_Model_DbTable_Evento();
-        $listaEventos = $modelEvento->listaEventosPorIdProfessor('1');
+        $listaEventos = $modelEvento->listaEventosPorIdProfessor('1');*/
+        
+        $usuarioDAO = new Application_Model_DbTable_Usuario();
+        /* @var $usuario Application_Model_Usuario */
+        $usuario = $usuarioDAO->find($id_professor)->current();
+        $listaEventos = $usuario->getEventos();
 
         foreach ($listaEventos as $value) {
 
@@ -24,7 +30,8 @@ class AgendaController extends Zend_Controller_Action {
             $arrayEventos['id_evento'][] = $value['id_evento'];
         }
         $this->view->listaEventos = $arrayEventos;
-        $this->view->professor = $professor;
+        //$this->view->professor = $professor;
+        $this->view->professor = $usuario;
     }
 
     public function addEventoAction() {

@@ -7,7 +7,7 @@
  */
 class Application_Model_Usuario extends Zend_Db_Table_Row_Abstract {
     
-    private $eventos;
+    protected $eventos;
 
     public function getId_usuario() {
         return $this->id_usuario;
