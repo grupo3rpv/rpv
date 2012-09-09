@@ -34,10 +34,10 @@
 	
  var availableTags =[<?$virgula = false; for($index=0;$index<count($this->lista);$index++) {
                      if ($virgula == false) {
-                        echo $this->lista[$index];
+                        echo '"' . $this->lista[$index] . '"';
                         $virgula = true;
                      } else {
-                        echo ", " . $this->lista[$index];
+                        echo ', "' . $this->lista[$index] . '"';
                      }
                     }?>];
                       
