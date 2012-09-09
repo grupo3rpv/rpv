@@ -67,7 +67,7 @@ class Application_Model_SalaTest extends PHPUnit_Framework_TestCase {
 
     public function testCadastraSala() {
         $salaModel = new Application_Model_DbTable_Sala();
-        $equipamentos = array('id_equipamento_sala' => '1');
+        $equipamentos = array('id_equipamento_sala' => '4');
         $salaArray = array(
             'numero' => '30908',
             'descricao' => 'Laboratório',
