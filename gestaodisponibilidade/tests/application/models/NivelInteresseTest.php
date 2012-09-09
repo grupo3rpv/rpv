@@ -14,7 +14,6 @@ class Application_Model_NivelInteresseTest extends PHPUnit_Framework_TestCase {
              'id_professor'=>'1',
              'id_disciplina' => '1',
              'nivel_interesse' => '5',
-             
          );
          $id = $modelNivelInteresse->cadastraNivelInteresse($dados);
      
