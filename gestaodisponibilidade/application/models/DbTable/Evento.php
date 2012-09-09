@@ -82,5 +82,10 @@ class Application_Model_DbTable_Evento extends Zend_Db_Table_Abstract {
         }
         return $lista;
     }
+    
+    public static function listaEventosPorID(){
+        $select = $this->select()->where('id_professor = ?', $id);
+        return $this->fetchAll($select);
+    }
 
 }

@@ -27,4 +27,11 @@ class Application_Model_Professor extends Application_Model_Usuario {
         $modelAreaProfessor = new Application_Model_DbTable_AreaProfessor();
         return $modelAreaProfessor->getAreasInteresse(parent::getId_usuario());
     }
+    
+    public function getEventos(){
+       $modelEventos = new Application_Model_DbTable_Evento();
+       return $modelEventos->listaEventosPorIdProfessor($this->id_usuario);
+    }
+   
+
 }
