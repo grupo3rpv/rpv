@@ -208,6 +208,6 @@ class ProfessorController extends Zend_Controller_Action {
     public function testeAction() {
         $professorDAO = new Application_Model_DbTable_Usuario();
         $professor = $professorDAO->find(1)->current();
-        $professor->getEventos();
+        var_dump($professor->getEventos());
     }
 }

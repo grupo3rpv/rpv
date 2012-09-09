@@ -57,9 +57,7 @@ class Application_Model_DbTable_Evento extends Zend_Db_Table_Abstract {
         $evento->setData_final($dados['data_inicial']);
         $evento->setHora1($dados['hora1']);
         $evento->setHora2($dados['hora2']);
-        $evento->setId_professor($dados['id_professor']);
         $evento->setTitulo($dados['titulo']);
-   
 
         return $evento->save();
     }

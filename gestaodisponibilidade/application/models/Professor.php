@@ -8,7 +8,6 @@
 class Application_Model_Professor extends Application_Model_Usuario {
 
     public function getMatricula() {
-
         return $this->matricula;
     }
 
@@ -28,5 +27,4 @@ class Application_Model_Professor extends Application_Model_Usuario {
         $modelAreaProfessor = new Application_Model_DbTable_AreaProfessor();
         return $modelAreaProfessor->getAreasInteresse(parent::getId_usuario());
     }
-
 }
