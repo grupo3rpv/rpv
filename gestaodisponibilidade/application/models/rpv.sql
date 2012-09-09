@@ -123,13 +123,31 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
+-- Table `tipo_usuario`
+-- -----------------------------------------------------
+CREATE  TABLE IF NOT EXISTS `tipo_usuario` (
+  `id_tipo_usuario` INT NOT NULL AUTO_INCREMENT ,
+  `nome` VARCHAR(100) NULL ,
+  PRIMARY KEY (`id_tipo_usuario`) )
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
 -- Table `usuario`
 -- -----------------------------------------------------
 CREATE  TABLE IF NOT EXISTS `usuario` (
   `id_usuario` INT NOT NULL AUTO_INCREMENT ,
-  `nome` VARCHAR(255) NULL ,
+  `id_tipo_usuario` INT NOT NULL ,
+  `nome` VARCHAR(255) NOT NULL ,
   `matricula` CHAR(12) NULL ,
-  PRIMARY KEY (`id_usuario`) )
+  `email` VARCHAR(255) NOT NULL ,
+  PRIMARY KEY (`id_usuario`) ,
+  INDEX `fk_usuario_tipo_usuario1` (`id_tipo_usuario` ASC) ,
+  CONSTRAINT `fk_usuario_tipo_usuario1`
+    FOREIGN KEY (`id_tipo_usuario` )
+    REFERENCES `tipo_usuario` (`id_tipo_usuario` )
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
@@ -201,14 +219,8 @@ CREATE  TABLE IF NOT EXISTS `evento` (
   `hora1` TIME NULL ,
   `hora2` TIME NULL ,
   `titulo` VARCHAR(255) NULL ,
-  `id_professor` INT NOT NULL ,
-  PRIMARY KEY (`id_evento`) ,
-  INDEX `fk_evento_usuario1` (`id_professor` ASC) ,
-  CONSTRAINT `fk_evento_usuario1`
-    FOREIGN KEY (`id_professor` )
-    REFERENCES `usuario` (`id_usuario` )
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+  `privado` TINYINT(1) NULL ,
+  PRIMARY KEY (`id_evento`) )
 ENGINE = InnoDB;
 
 
@@ -224,6 +236,28 @@ CREATE  TABLE IF NOT EXISTS `disponibilidade_aula` (
   INDEX `fk_disponibilidade_aula_usuario1` (`id_usuario` ASC) ,
   CONSTRAINT `fk_disponibilidade_aula_usuario1`
     FOREIGN KEY (`id_usuario` )
+    REFERENCES `usuario` (`id_usuario` )
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `evento_usuario`
+-- -----------------------------------------------------
+CREATE  TABLE IF NOT EXISTS `evento_usuario` (
+  `id_evento` INT NOT NULL ,
+  `id_professor` INT NOT NULL ,
+  PRIMARY KEY (`id_evento`, `id_professor`) ,
+  INDEX `fk_evento_has_usuario_usuario1` (`id_professor` ASC) ,
+  INDEX `fk_evento_has_usuario_evento1` (`id_evento` ASC) ,
+  CONSTRAINT `fk_evento_has_usuario_evento1`
+    FOREIGN KEY (`id_evento` )
+    REFERENCES `evento` (`id_evento` )
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_evento_has_usuario_usuario1`
+    FOREIGN KEY (`id_professor` )
     REFERENCES `usuario` (`id_usuario` )
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)

@@ -28,7 +28,6 @@ class Application_Model_EventoTest extends PHPUnit_Framework_TestCase {
             'hora2' => '15:00:00',
             'id_professor' => '1',
             'titulo' => "Reniao tal",
-            //'id_evento' => '1',
         );
         $id_evento = $eventoModel->cadastraEvento($eventoArray);
         /* @var $produto Application_Model_Sala */

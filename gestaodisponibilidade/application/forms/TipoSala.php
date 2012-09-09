@@ -28,7 +28,7 @@ class Application_Form_TipoSala extends Zend_Form
         $element = new Zend_Form_Element_Submit('enviar');
         $element->setLabel('Cadastrar')
                 ->setAttrib('size', '50')
-                ->setAttrib('class', 'button normal blue');
+                ->setAttrib('class', 'button normal orange');
         $this->addElement($element);
     }
 

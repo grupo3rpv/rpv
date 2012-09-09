@@ -96,4 +96,3 @@ try {
 }
 require_once APPLICATION_PATH . '/../public/db/fixtures.php';
 
-

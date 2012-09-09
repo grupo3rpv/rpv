@@ -20,9 +20,7 @@ class Application_Form_Area extends Zend_Form {
         $element->setAttrib('size', '30')
                 ->setAttrib('class', 'i-format')
                 ->setAttrib('readonly', 'true')
-                ->addFilter(new Zend_Filter_StripTags())
-                ->setRequired(true)
-                ->setAllowEmpty(false);
+                ->addFilter(new Zend_Filter_StripTags());
         $this->addElement($element);
         
         $element = new Zend_Form_Element_Text('nome');

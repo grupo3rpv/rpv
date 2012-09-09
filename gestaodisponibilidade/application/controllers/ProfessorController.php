@@ -9,7 +9,6 @@ class ProfessorController extends Zend_Controller_Action {
     public function indexAction() {
         $modelProfessor = new Application_Model_DbTable_Professor();
         $listaProfessores = $modelProfessor->listaUsuario();
-        $modelProfessor = new Application_Model_DbTable_Professor();
         $this->view->listaProfessor = $listaProfessores;
     }
 
@@ -198,7 +197,6 @@ class ProfessorController extends Zend_Controller_Action {
         list($hora, $dia) = explode('-', $classe);
         $disponibilidadeAula = new Application_Model_DbTable_DisponibilidadeAula();
         $celula = $disponibilidadeAula->verificaCelulaSelecionada($id_usuario, $dia, $hora);
-        echo $celula;
         if($celula >0){
             $disponibilidadeAula->removeDados($id_usuario, $dia, $hora);
         }
@@ -219,6 +217,9 @@ class ProfessorController extends Zend_Controller_Action {
        
     }
     
-
+    public function testeAction() {
+        $professorDAO = new Application_Model_DbTable_Usuario();
+        $professor = $professorDAO->find(1)->current();
+        $professor->getEventos();
+    }
 }
-
