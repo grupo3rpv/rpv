@@ -20,11 +20,11 @@
     
    function adicionarProfessor(nome){
          alert('as');
-//          var array = new Array();
-//          array.push(nome);
-//          for(i=0;i<array.length;i++){
-//               document.getElementById("profConvidado").innerHTML=array[i];
-//          }
+          var array = new Array();
+          array.push(nome);
+          for(i=0;i<array.length;i++){
+               document.getElementById("profConvidado").innerHTML=array[i];
+          }
         
     }
 </script>
@@ -57,7 +57,9 @@
         Hora Final:  <input name="hora2" class="subscr_email"  type="text" id="hora2"   size="5" maxlength="5"><p/>
 
         Adicionar convidado:<input id="convidados" type="text" class="i-format"/>
-        <a href="#" class="button">Adicionar</a>
+        <a href="#" onclick="adicionarProfessor(this.convidado.value)" class="button">Adicionar</a><p/>
+        <div id="profConvidado"></div>
+        
     </div> 
    <INPUT style="margin-left: 25%;"  TYPE="submit" VALUE="Cadastrar evento"  class="button white large">
   

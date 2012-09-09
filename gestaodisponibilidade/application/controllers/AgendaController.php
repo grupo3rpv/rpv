@@ -49,6 +49,6 @@ class AgendaController extends Zend_Controller_Action {
            $arrayProfessores[]=$item->getNome();
        }
      $this->view->lista = $arrayProfessores;
-     var_dump($arrayProfessores);     
+      
      }
 }
