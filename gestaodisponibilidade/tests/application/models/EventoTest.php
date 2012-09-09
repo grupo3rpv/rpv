@@ -1,10 +1,5 @@
 <?php
 
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
 /**
  * Description of EventoTest
  *
@@ -12,7 +7,6 @@
  */
 class Application_Model_EventoTest extends PHPUnit_Framework_TestCase {
 
-    //put your code here
     public function setUp() {
         $this->bootstrap = new Zend_Application(APPLICATION_ENV, APPLICATION_PATH . '/configs/application.ini');
         parent::setUp();
@@ -26,12 +20,11 @@ class Application_Model_EventoTest extends PHPUnit_Framework_TestCase {
             'data_final' => '05/18/2012',
             'hora1' => '14:00:00',
             'hora2' => '15:00:00',
-            'id_professor' => '1',
             'titulo' => "Reniao tal",
         );
         $id_evento = $eventoModel->cadastraEvento($eventoArray);
         /* @var $produto Application_Model_Sala */
-        $this->assertSame('1', $id_evento);
+        $this->assertSame('7', $id_evento);
     }
 
     public function testCadastraEventoDataComLetra() {
@@ -42,13 +35,17 @@ class Application_Model_EventoTest extends PHPUnit_Framework_TestCase {
             'data_final' => '05/18/2012',
             'hora1' => '14:00:00',
             'hora2' => '15:00:00',
-            'id_professor' => '1',
             'titulo' => "Prova marcada",
-            //'id_evento' => '1',
         );
-        $id_evento = $eventoModel->cadastraEvento($eventoArray);
-        /* @var $produto Application_Model_Sala */
-        $this->assertSame('1', $id_evento);
+        
+        $passou = true;
+        try {
+            $eventoModel->cadastraEvento($eventoArray);
+            $passou = false;
+        } catch (Exception $e) {
+            echo $e;
+        }
+        $this->assertTrue($passou);
     }
 
     public function testCadastraEventoFinalAtrasado() {
@@ -59,13 +56,16 @@ class Application_Model_EventoTest extends PHPUnit_Framework_TestCase {
             'data_final' => '05/18/2011',
             'hora1' => '14:00:00',
             'hora2' => '14:00:00',
-            'id_professor' => '1',
             'titulo' => "Prova marcada",
-            //'id_evento' => '1',
         );
-        $id_evento = $eventoModel->cadastraEvento($eventoArray);
-        /* @var $produto Application_Model_Sala */
-        $this->assertSame('1', $id_evento);
+        $passou = true;
+        try {
+            $eventoModel->cadastraEvento($eventoArray);
+            $passou = false;
+        } catch (Exception $e) {
+            echo $e;
+        }
+        $this->assertTrue($passou);
     }
 
     public function testCadastraEventoMes13() {
@@ -76,13 +76,16 @@ class Application_Model_EventoTest extends PHPUnit_Framework_TestCase {
             'data_final' => '13/18/2012',
             'hora1' => '14:00:00',
             'hora2' => '14:00:00',
-            'id_professor' => '1',
             'titulo' => "Prova marcada",
-            //'id_evento' => '1',
         );
-        $id_evento = $eventoModel->cadastraEvento($eventoArray);
-        /* @var $produto Application_Model_Sala */
-        $this->assertSame('1', $id_evento);
+        $passou = true;
+        try {
+            $eventoModel->cadastraEvento($eventoArray);
+            $passou = false;
+        } catch (Exception $e) {
+            echo $e;
+        }
+        $this->assertTrue($passou);
     }
 
     public function testCadastraEventoMesmaHora() {
@@ -93,13 +96,16 @@ class Application_Model_EventoTest extends PHPUnit_Framework_TestCase {
             'data_final' => '05/18/2012',
             'hora1' => '14:00:00',
             'hora2' => '14:00:00',
-            'id_professor' => '1',
             'titulo' => "Prova marcada",
-           // 'id_evento' => '1',
         );
-        $id_evento = $eventoModel->cadastraEvento($eventoArray);
-        /* @var $produto Application_Model_Sala */
-        $this->assertSame('1', $id_evento);
+        $passou = true;
+        try {
+            $eventoModel->cadastraEvento($eventoArray);
+            $passou = false;
+        } catch (Exception $e) {
+            echo $e;
+        }
+        $this->assertTrue($passou);
     }
 
     public function testGetId_evento() {

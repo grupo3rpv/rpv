@@ -1,10 +1,5 @@
 <?php
 
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
 /**
  * Description of Area
  *
@@ -63,13 +58,4 @@ class Application_Model_Evento extends Zend_Db_Table_Row_Abstract {
     public function setTitulo($titulo) {
         $this->titulo = $titulo;
     }
-
-    public function getId_professor() {
-        return $this->id_professor;
-    }
-
-    public function setId_professor($id_professor) {
-        $this->id_professor = $id_professor;
-    }
-
 }
