@@ -19,20 +19,18 @@
     });
     
    function adicionarProfessor(nome){
-         alert('as');
-          var array = new Array();
-          array.push(nome);
-          for(i=0;i<array.length;i++){
-               document.getElementById("profConvidado").innerHTML=array[i];
-          }
-        
-    }
+       alert(nome);
+       var array = new Array();
+       array.push(nome);
+       for(i = 0; i < array.length; i++){
+           $("#profConvidado").append(array[i]);
+       }
+   }
 </script>
 
 <script>
-	$(function() {
-	
- var availableTags =[<?$virgula = false; for($index=0;$index<count($this->lista);$index++) {
+    $(function() {
+        var availableTags = [<?$virgula = false; for($index=0;$index<count($this->lista);$index++) {
                      if ($virgula == false) {
                         echo '"' . $this->lista[$index] . '"';
                         $virgula = true;
@@ -40,13 +38,12 @@
                         echo ', "' . $this->lista[$index] . '"';
                      }
                     }?>];
-                      
-		$( "#convidados" ).autocomplete({
+
+		$("#convidados").autocomplete({
 			source: availableTags
 		});
 	});
-       
-	</script>
+</script>
 
 <form method="POST" action="<?= $this->baseUrl('agenda/add-evento') ?>">
     <div style="margin-left: 25%;width: 50%">
@@ -56,23 +53,10 @@
         Hora Inicial:  <input name="hora1"  class="subscr_email" type="text" id="hora1"  size="5" maxlength="5"><p/>
         Hora Final:  <input name="hora2" class="subscr_email"  type="text" id="hora2"   size="5" maxlength="5"><p/>
 
-        Adicionar convidado:<input id="convidados" type="text" class="i-format"/>
-        <a href="#" onclick="adicionarProfessor(this.convidado.value)" class="button">Adicionar</a><p/>
+        Adicionar convidado:<input id="convidados" type="text" class="i-format" />
+        <a onclick="adicionarProfessor($('#convidados').val())" class="button">Adicionar</a><p/>
         <div id="profConvidado"></div>
         
     </div> 
-   <INPUT style="margin-left: 25%;"  TYPE="submit" VALUE="Cadastrar evento"  class="button white large">
-  
-
+   <INPUT style="margin-left: 25%;" TYPE="submit" VALUE="Cadastrar evento" class="button white large">
  </form>
-        
-
-
-
-
-   
-
-
-
-
-
