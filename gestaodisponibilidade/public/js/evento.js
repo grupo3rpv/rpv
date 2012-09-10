@@ -58,6 +58,18 @@ var Eventos = {
     }
 }
 
+/*var Eventos = {
+    eventos : new Array(),
+    
+    addEvento : function (evento) {
+        this.eventos.push(evento);
+    },
+    
+    removeEvento : function(position) {
+        this.eventos.splice(position, 1);
+    }
+}*/
+
 function converteDataDBToPTBR(data) {
     data = data.replace(/\"/g, "");
     var array = data.split("-");
@@ -85,8 +97,8 @@ function getMinuto(hora) {
 function getHoraInt(hora) {
     var array = hora.split(":");
     if (array[0].charAt(0) == '0') {
-        return array[0].charAt(1);
+        return parseInt(array[0].charAt(1));
     } else {
-        return array[0];
+        return parseInt(array[0]);
     }
 }
