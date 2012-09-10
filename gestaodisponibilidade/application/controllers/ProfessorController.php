@@ -218,9 +218,30 @@ class ProfessorController extends Zend_Controller_Action {
     }
     
     public function getEventosAction() {
+        $this->_helper->layout->disableLayout();
+        $this->_helper->viewRenderer->setNoRender(true);
+
         $id = $this->getRequest()->getParam('id');
         $professorDAO = new Application_Model_DbTable_Usuario();
         $professor = $professorDAO->find($id)->current();
-        var_dump($professor->getEventos());die();
+        $eventos = $professor->getEventos();
+        
+        $arrayEventos = "";
+        $isFirstTime = true;
+        /* @var $evento Application_Model_Evento */
+        foreach ($eventos as $evento) {
+            if ($isFirstTime) {
+                $arrayEventos .= $evento->getId_evento() . '|';
+                $isFirstTime = false;
+            } else {
+                $arrayEventos .= '<->' . $evento->getId_evento() . '|';
+            }
+            $arrayEventos .= $evento->getTitulo() . '|';
+            $arrayEventos .= $evento->getData_inicial() . '|';
+            $arrayEventos .= $evento->getData_final() . '|';
+            $arrayEventos .= $evento->getHora1() . '|';
+            $arrayEventos .= $evento->getHora2();
+        }
+        echo $arrayEventos;
     }
 }

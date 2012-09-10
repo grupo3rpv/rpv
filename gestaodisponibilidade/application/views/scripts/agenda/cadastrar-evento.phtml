@@ -4,6 +4,13 @@
 <script src="<?= $this->baseUrl('/perifer-timePicker-b5195df/jquery.timePicker.js') ?>" type="text/javascript"></script>
 <script src="<?= $this->baseUrl('/perifer-timePicker-b5195df/jquery.timePicker.min.js') ?>" type="text/javascript"></script>
 <link rel="stylesheet" href="<?= $this->baseUrl('/perifer-timePicker-b5195df/timePicker.css') ?>">
+
+<script src="<?= $this->baseUrl('/js/evento.js') ?>"></script>
+<style type="text/css">
+    .over {
+        background: #03c;
+    }
+</style>
 <script type='text/javascript'>
     $(document).ready(function() {
         $("#data_inicial").datepicker();
@@ -11,7 +18,26 @@
         $("#hora1").timePicker();
         $("#hora2").timePicker();
         $("div#profConvidado").hide();
+        var dia, mes, ano;
+        date = new Date();
+        dia = date.getDate();
+        mes = date.getMonth() + 1;
+        ano = date.getYear() + 1900;
+        $("#dia").append(ajeitaData(dia, mes, ano));
     });
+    
+    function ajeitaData (dia, mes, ano) {
+        dia = addZero(dia);
+        mes = addZero(mes);
+        return dia + "/" + mes + "/" + ano;
+    }
+    
+    function addZero(data) {
+        if (data < 10) {
+            data = "0" + data;
+        }
+        return data;
+    }
     
    function adicionarProfessor(nome){
        var professores = new Array();
@@ -27,8 +53,18 @@
                     context: this,
                     async: false,
                     success: function(data) {
-                        alert(data);
-                        
+                        var eventos = data.split("<->");
+                        for (var y in eventos) {
+                            var evento = eventos[y].split("|");
+                            var i = 0;
+                            Evento.setIdEvento(evento[i++]);
+                            Evento.setTitulo(evento[i++]);
+                            Evento.setDataInicial(evento[i++]);
+                            Evento.setDataFinal(evento[i++]);
+                            Evento.setHora1(evento[i++]);
+                            Evento.setHora2(evento[i++]);
+                            Eventos.addEvento(Evento);
+                        }
                     }
                 });
                 
@@ -38,7 +74,29 @@
                     $("div#profConvidado").show();
                     isHiden = false;
                 }
-                $("tbody#profConvidado").append('<tr><td>' + nome + '</td></tr>');
+                
+                var professor = '<tr><td>' + nome + '</td>';
+                for (var j = 0; j < 24; j++) {
+                    var horaCorreta = addZero(j);
+                    professor += '<td id="' + x + '-' + horaCorreta + ':00:00"></td>';
+                }
+                professor += '</tr>';
+                $("tbody#profConvidado").append(professor);
+                
+                for (var index in Eventos.eventos) {
+                    if (Eventos.eventos[index].dataInicial == $("#dia").text() || 
+                        Eventos.eventos[index].dataFinal == $("#dia").text()) {
+                        
+                        var id = '"#' + x + '-' + getHora(Eventos.eventos[index].hora1) + ':00:00"';
+                        alert(id);
+                        
+                        $(id).addClass('over');
+                        $("#2-10:00:00").addClass('over');
+                        //$(id).css("background-color", "white");
+                    }
+                }
+                
+                break;
             }
         }
    }
@@ -72,13 +130,18 @@
         Adicionar convidado:<input id="convidados" type="text" class="i-format" />
         <a onclick="adicionarProfessor($('#convidados').val())" class="button">Adicionar</a><p/>
         <div id="profConvidado">
-            <center><span>Dia 01/01/2000</span></center>
+            <center><span id="dia"></span></center>
             <table id="profConvidado">
                 <thead>
                     <tr>
                         <td></td>
                         <? for ($i = 0; $i < 24; $i++) {
-                            echo '<td>' . $i . ':30</td>';
+                            if ($i < 10) {
+                                $j = '0' . $i;
+                            } else {
+                                $j = $i;
+                            }
+                            echo '<td id="' . $j . ':00:00">' . $j . ':00</td>';
                         } ?>
                     </tr>
                 </thead>

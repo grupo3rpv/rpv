@@ -55,8 +55,6 @@ class AgendaController extends Zend_Controller_Action {
         foreach ($listaDeProfessores as $item) {
             $arrayProfessores[$item->getId_usuario()] = $item->getNome();
         }
-        //var_dump($arrayProfessores);
-        //var_dump($listaDeProfessores);
         $this->view->lista = $arrayProfessores;
     }
 }
