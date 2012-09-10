@@ -8,7 +8,7 @@
 <script src="<?= $this->baseUrl('/js/evento.js') ?>"></script>
 <style type="text/css">
     .over {
-        background: #03c;
+        background-color: red;
     }
 </style>
 <script type='text/javascript'>
@@ -78,21 +78,43 @@
                 var professor = '<tr><td>' + nome + '</td>';
                 for (var j = 0; j < 24; j++) {
                     var horaCorreta = addZero(j);
-                    professor += '<td id="' + x + '-' + horaCorreta + ':00:00"></td>';
+                    professor += '<td id="' + x + '-' + horaCorreta + '"></td>';
                 }
                 professor += '</tr>';
-                $("tbody#profConvidado").append(professor);
+                $("table tbody").append(professor);
                 
                 for (var index in Eventos.eventos) {
-                    if (Eventos.eventos[index].dataInicial == $("#dia").text() || 
+                    if (Eventos.eventos[index].dataInicial == $("#dia").text() && 
                         Eventos.eventos[index].dataFinal == $("#dia").text()) {
                         
-                        var id = '"#' + x + '-' + getHora(Eventos.eventos[index].hora1) + ':00:00"';
-                        alert(id);
+                        var horas = getHora(Eventos.eventos[index].hora2) - getHora(Eventos.eventos[index].hora1);
                         
-                        $(id).addClass('over');
-                        $("#2-10:00:00").addClass('over');
-                        //$(id).css("background-color", "white");
+                        for (var abc = 0; abc < horas; abc++) {
+                            var soma = parseInt(getHoraInt(Eventos.eventos[index].hora1)) + abc
+                            var id = '#' + x + '-' + addZero(soma);
+                            alert(id);
+                            $(id).addClass('over');
+                        }
+                        
+                    } else if (Eventos.eventos[index].dataInicial == $("#dia").text() &&
+                        Eventos.eventos[index].dataFinal != $("#dia").text()) {
+                        
+                        var horas = 24 - getHora(Eventos.eventos[index].hora1);
+                        
+                        for (var abc = 0; abc < horas; abc++) {
+                            var soma = parseInt(getHoraInt(Eventos.eventos[index].hora1)) + abc
+                            var id = '#' + x + '-' + addZero(soma);
+                            alert(id);
+                            $(id).addClass('over');
+                        }
+                        
+                    } else {
+                        
+                    }
+                        
+                        //var id = '#' + x + '-' + getHora(Eventos.eventos[index].hora1);
+                        //alert(id);
+                        //$(id).addClass('over');
                     }
                 }
                 
@@ -124,14 +146,14 @@
         Descrição do evento:  <input id="titulo" name="titulo" class="i-format" type="text" /><p/>
         Data Inicial :<input class="subscr_email" id="data_inicial" name="data_inicial" type="text" /><p/>
         Data Final   :<input class="subscr_email" id="data_final" name="data_final" type="text" /><p/>
-        Hora Inicial:  <input name="hora1"  class="subscr_email" type="text" id="hora1"  size="5" maxlength="5"><p/>
-        Hora Final:  <input name="hora2" class="subscr_email"  type="text" id="hora2"   size="5" maxlength="5"><p/>
-
-        Adicionar convidado:<input id="convidados" type="text" class="i-format" />
-        <a onclick="adicionarProfessor($('#convidados').val())" class="button">Adicionar</a><p/>
+        Hora Inicial:  <input name="hora1"  class="subscr_email" type="text" id="hora1"  size="5" maxlength="5" /><p/>
+        Hora Final:  <input name="hora2" class="subscr_email"  type="text" id="hora2"   size="5" maxlength="5" /><p/>
+        Privacidade: <input id="" name="privacidade" type="radio" value="publico" checked />Público <input id="" name="privacidade" type="radio" value="privado" />Privado
+        <br /><br />
+        Adicionar convidado: <input id="convidados" type="text" class="i-format" /><a onclick="adicionarProfessor($('#convidados').val())" class="button">Adicionar</a><p/>
         <div id="profConvidado">
             <center><span id="dia"></span></center>
-            <table id="profConvidado">
+            <table>
                 <thead>
                     <tr>
                         <td></td>
@@ -145,7 +167,7 @@
                         } ?>
                     </tr>
                 </thead>
-                <tbody id="profConvidado">
+                <tbody>
                 </tbody>
             </table>
         </div>

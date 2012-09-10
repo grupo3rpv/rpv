@@ -76,3 +76,12 @@ function getHora(hora) {
     var array = hora.split(":");
     return array[0];
 }
+
+function getHoraInt(hora) {
+    var array = hora.split(":");
+    if (array[0].charAt(0) == '0') {
+        return array[0].charAt(1);
+    } else {
+        return array[0];
+    }
+}
