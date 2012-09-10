@@ -77,6 +77,11 @@ function getHora(hora) {
     return array[0];
 }
 
+function getMinuto(hora) {
+    var array = hora.split(":");
+    return array[1];
+}
+
 function getHoraInt(hora) {
     var array = hora.split(":");
     if (array[0].charAt(0) == '0') {

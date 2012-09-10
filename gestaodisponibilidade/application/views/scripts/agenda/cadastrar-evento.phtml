@@ -85,13 +85,18 @@
                 $("table tbody").append(professor);
                 
                 for (var index in Eventos.eventos) {
-                    var horas, hora;
+                    var horas, hora, minutos = 0;
+                    
+                    if (getMinuto(Eventos.eventos[index].hora2) > 2) {
+                        minutos = 1;
+                    }
                     
                     // se a hora inicial e final eh no mesmo dia
                     if (Eventos.eventos[index].dataInicial == $("#dia").text() && 
                         Eventos.eventos[index].dataFinal == $("#dia").text()) {
                         
-                        horas = getHora(Eventos.eventos[index].hora2) - getHora(Eventos.eventos[index].hora1);
+                        horas = getHoraInt(Eventos.eventos[index].hora2) - getHoraInt(Eventos.eventos[index].hora1);
+                        horas += minutos;
                         hora = parseInt(getHoraInt(Eventos.eventos[index].hora1));
                         
                     // se o evento começar no dia
@@ -106,6 +111,7 @@
                         Eventos.eventos[index].dataFinal == $("#dia").text()) {
                         
                         horas = getHora(Eventos.eventos[index].hora2);
+                        horas += minutos;
                         hora = 0;
                         
                     }
