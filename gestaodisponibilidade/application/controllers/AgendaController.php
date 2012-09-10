@@ -9,12 +9,12 @@ class AgendaController extends Zend_Controller_Action {
     public function indexAction() {
         $id_professor = '1';
         $arrayEventos = array();
-        
-        /*$modelProfessor = new Application_Model_DbTable_Professor();
-        $professor = $modelProfessor->find($id_professor)->current();
-        $modelEvento = new Application_Model_DbTable_Evento();
-        $listaEventos = $modelEvento->listaEventosPorIdProfessor('1');*/
-        
+
+        /* $modelProfessor = new Application_Model_DbTable_Professor();
+          $professor = $modelProfessor->find($id_professor)->current();
+          $modelEvento = new Application_Model_DbTable_Evento();
+          $listaEventos = $modelEvento->listaEventosPorIdProfessor('1'); */
+
         $usuarioDAO = new Application_Model_DbTable_Usuario();
         /* @var $usuario Application_Model_Usuario */
         $usuario = $usuarioDAO->find($id_professor)->current();
@@ -48,14 +48,15 @@ class AgendaController extends Zend_Controller_Action {
         }
     }
 
-     public function cadastrarEventoAction() {
-       $professores = new Application_Model_DbTable_Professor();
-       $listaDeProfessores = $professores->listaUsuario();
-       $arrayProfessores = array();
-       foreach($listaDeProfessores as $item){
-           $arrayProfessores[]=$item->getNome();
-       }
-     $this->view->lista = $arrayProfessores;
-      
-     }
+    public function cadastrarEventoAction() {
+        $professores = new Application_Model_DbTable_Professor();
+        $listaDeProfessores = $professores->listaUsuario();
+        $arrayProfessores = array();
+        foreach ($listaDeProfessores as $item) {
+            $arrayProfessores[$item->getId_usuario()] = $item->getNome();
+        }
+        //var_dump($arrayProfessores);
+        //var_dump($listaDeProfessores);
+        $this->view->lista = $arrayProfessores;
+    }
 }

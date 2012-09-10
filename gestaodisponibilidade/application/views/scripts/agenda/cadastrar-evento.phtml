@@ -4,78 +4,53 @@
 <script src="<?= $this->baseUrl('/perifer-timePicker-b5195df/jquery.timePicker.js') ?>" type="text/javascript"></script>
 <script src="<?= $this->baseUrl('/perifer-timePicker-b5195df/jquery.timePicker.min.js') ?>" type="text/javascript"></script>
 <link rel="stylesheet" href="<?= $this->baseUrl('/perifer-timePicker-b5195df/timePicker.css') ?>">
-<script>
-    $(document).ready(function() {
-        var date = new Date();
-	var d = date.getDate();
-	var m = date.getMonth();
-	var y = date.getFullYear();
-        var i=0;
-	
-	var calendar = $('#calendar').fullCalendar({
-            header: {
-                left: 'prev,next today',
-		center: 'title',
-		right: 'month,agendaWeek,agendaDay'
-            },
-            selectable: true,
-            selectHelper: true,
-            select: function(start, end, allDay) {
-                var title = prompt('Event Title:');
-		if (title) {
-                    calendar.fullCalendar('renderEvent', {
-                        title: title,
-                        start: start,
-                        end: end,
-                        allDay: allDay
-                    },
-                    true // make the event "stick"
-                    );
-                        }
-                        calendar.fullCalendar('unselect');
-			},
-                        editable: true,
-			events: [
-                        <? //for($i=0;$i<count($this->listaEventos['titulo']);$i++):?>
-                         {
-                            id     : '<?//$this->listaEventos['id_evento'][$i]?>', 
-                            title  : '<?//$this->listaEventos['titulo'][$i]?>',
-                            start  : '<?//$this->listaEventos['dataInicial'][$i]?> <?//$this->listaEventos['hora1'][$i]?>',
-                            end    : '<?//$this->listaEventos['dataFinal'][$i]?> <?//$this->listaEventos['hora2'][$i]?>',
-                            allDay: false,
-                            url: '<?//$this->baseUrl('/agenda/cadastrar-evento/'.$this->listaEventos['id_evento'][$i])?>'
-                        },
-                        <? //endfor;?>
-			]
-		});
-	});
-    
+<script type='text/javascript'>
     $(document).ready(function() {
         $("#data_inicial").datepicker();
         $("#data_final").datepicker();
         $("#hora1").timePicker();
         $("#hora2").timePicker();
+        $("div#profConvidado").hide();
     });
     
    function adicionarProfessor(nome){
-       /*alert(nome);
-       var array = new Array();
-       array.push(nome);
-       for(i = 0; i < array.length; i++){
-           $("#profConvidado").append(array[i]);
-       }*/
-        $("#profConvidado").append(nome);
+       var professores = new Array();
+        <? foreach ($this->lista as $idProfessor => $nomeProfessor) {
+            echo 'professores[' . $idProfessor . '] = "' . $nomeProfessor . '";';
+        }?>
+        var x;
+        for (x in professores) {
+            if (professores[x] == nome) {
+                
+                $.ajax({
+                    url: '<?=$this->baseUrl('/professor/get-eventos/id/') ?>' + x,
+                    context: this,
+                    async: false,
+                    success: function(data) {
+                        alert(data);
+                    }
+                });
+                
+                var isHiden = true;
+                if (isHiden) {
+                    $("div#profConvidado").css({'overflow' : 'scroll', 'width' : '850px'});
+                    $("div#profConvidado").show();
+                    isHiden = false;
+                }
+                $("tbody#profConvidado").append('<tr><td>' + nome + '</td></tr>');
+            }
+        }
    }
 </script>
 
-<script>
+<script type='text/javascript'>
     $(function() {
-        var availableTags = [<?$virgula = false; for($index=0;$index<count($this->lista);$index++) {
+        var availableTags = [<?$virgula = false; foreach ($this->lista as $idProfessor => $nomeProfessor) {
                      if ($virgula == false) {
-                        echo '"' . $this->lista[$index] . '"';
+                        echo '"' . $nomeProfessor . '"';
                         $virgula = true;
                      } else {
-                        echo ', "' . $this->lista[$index] . '"';
+                        echo ', "' . $nomeProfessor . '"';
                      }
                     }?>];
 
@@ -86,7 +61,7 @@
 </script>
 
 <form method="POST" action="<?= $this->baseUrl('agenda/add-evento') ?>">
-    <div style="margin-left: 25%;width: 50%">
+    <div style="margin-left: 5%;width: 50%">
         Descrição do evento:  <input id="titulo" name="titulo" class="i-format" type="text" /><p/>
         Data Inicial :<input class="subscr_email" id="data_inicial" name="data_inicial" type="text" /><p/>
         Data Final   :<input class="subscr_email" id="data_final" name="data_final" type="text" /><p/>
@@ -96,9 +71,22 @@
         Adicionar convidado:<input id="convidados" type="text" class="i-format" />
         <a onclick="adicionarProfessor($('#convidados').val())" class="button">Adicionar</a><p/>
         <div id="profConvidado">
-            <div id='calendar'></div>
+            <center><span>Dia 01/01/2000</span></center>
+            <table id="profConvidado">
+                <thead>
+                    <tr>
+                        <td></td>
+                        <? for ($i = 0; $i < 24; $i++) {
+                            echo '<td>' . $i . ':30</td>';
+                        } ?>
+                    </tr>
+                </thead>
+                <tbody id="profConvidado">
+                </tbody>
+            </table>
         </div>
         
-    </div> 
+    </div>
+    <br />
    <INPUT style="margin-left: 25%;" TYPE="submit" VALUE="Cadastrar evento" class="button white large">
  </form>
