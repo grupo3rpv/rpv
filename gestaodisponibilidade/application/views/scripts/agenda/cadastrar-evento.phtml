@@ -57,13 +57,14 @@
                         for (var y in eventos) {
                             var evento = eventos[y].split("|");
                             var i = 0;
-                            Evento.setIdEvento(evento[i++]);
-                            Evento.setTitulo(evento[i++]);
-                            Evento.setDataInicial(evento[i++]);
-                            Evento.setDataFinal(evento[i++]);
-                            Evento.setHora1(evento[i++]);
-                            Evento.setHora2(evento[i++]);
-                            Eventos.addEvento(Evento);
+                            var eve = new Evento();
+                            eve.setIdEvento(evento[i++]);
+                            eve.setTitulo(evento[i++]);
+                            eve.setDataInicial(evento[i++]);
+                            eve.setDataFinal(evento[i++]);
+                            eve.setHora1(evento[i++]);
+                            eve.setHora2(evento[i++]);
+                            Eventos.addEvento(eve);
                         }
                     }
                 });
@@ -84,40 +85,39 @@
                 $("table tbody").append(professor);
                 
                 for (var index in Eventos.eventos) {
+                    var horas, hora;
+                    
+                    // se a hora inicial e final eh no mesmo dia
                     if (Eventos.eventos[index].dataInicial == $("#dia").text() && 
                         Eventos.eventos[index].dataFinal == $("#dia").text()) {
                         
-                        var horas = getHora(Eventos.eventos[index].hora2) - getHora(Eventos.eventos[index].hora1);
+                        horas = getHora(Eventos.eventos[index].hora2) - getHora(Eventos.eventos[index].hora1);
+                        hora = parseInt(getHoraInt(Eventos.eventos[index].hora1));
                         
-                        for (var abc = 0; abc < horas; abc++) {
-                            var soma = parseInt(getHoraInt(Eventos.eventos[index].hora1)) + abc
-                            var id = '#' + x + '-' + addZero(soma);
-                            alert(id);
-                            $(id).addClass('over');
-                        }
-                        
+                    // se o evento começar no dia
                     } else if (Eventos.eventos[index].dataInicial == $("#dia").text() &&
                         Eventos.eventos[index].dataFinal != $("#dia").text()) {
                         
-                        var horas = 24 - getHora(Eventos.eventos[index].hora1);
+                        horas = 24 - getHora(Eventos.eventos[index].hora1);
+                        hora = parseInt(getHoraInt(Eventos.eventos[index].hora1));
+                    
+                    // se o evento terminar no dia
+                    } else if (Eventos.eventos[index].dataInicial != $("#dia").text() &&
+                        Eventos.eventos[index].dataFinal == $("#dia").text()) {
                         
-                        for (var abc = 0; abc < horas; abc++) {
-                            var soma = parseInt(getHoraInt(Eventos.eventos[index].hora1)) + abc
-                            var id = '#' + x + '-' + addZero(soma);
-                            alert(id);
-                            $(id).addClass('over');
-                        }
-                        
-                    } else {
+                        horas = getHora(Eventos.eventos[index].hora2);
+                        hora = 0;
                         
                     }
-                        
-                        //var id = '#' + x + '-' + getHora(Eventos.eventos[index].hora1);
+                    
+                    for (var abc = 0; abc < horas; abc++) {
+                        var soma = hora + abc
+                        var id = '#' + x + '-' + addZero(soma);
                         //alert(id);
-                        //$(id).addClass('over');
+                        $(id).addClass('over');
                     }
+                    
                 }
-                
                 break;
             }
         }
