@@ -137,11 +137,12 @@ choques. Rotação de corpos rígidos. Gravitação.', 'carga_horaria' => '75h',
     //$data = new Zend_Date();
     
     //$db->insert('evento', array('data_inicial' => $data->getYear().'-'.$data->getMonth().'-'.$data->getDay(), 'data_final' =>$data->getYear().'-'.$data->getMonth().'-'.$data->getDay(), 'hora1' => '02:30:00', 'hora2' => '06:00:00', 'titulo' => 'Dormindo'));
-    $db->insert('evento', array('data_inicial' => '2012-09-10', 'data_final' => '2012-09-10', 'hora1' => '07:30:00', 'hora2' => '10:00:00', 'titulo' => 'Apresentação de TCC'));
-    $db->insert('evento', array('data_inicial' => '2012-09-10', 'data_final' => '2012-09-10', 'hora1' => '13:30:00', 'hora2' => '16:30:00', 'titulo' => 'Teste de sistema'));
-    $db->insert('evento', array('data_inicial' => '2012-09-10', 'data_final' => '2012-09-10', 'hora1' => '09:30:00', 'hora2' => '12:30:00', 'titulo' => 'Apresentação de trabalho'));
-    $db->insert('evento', array('data_inicial' => '2012-09-10', 'data_final' => '2012-09-10', 'hora1' => '14:30:00', 'hora2' => '20:30:00', 'titulo' => 'Aula'));
-//    $db->insert('evento', array('data_inicial' => '2012-09-19', 'data_final' => '2012-05-19', 'hora1' => '09:30:00', 'hora2' => '12:30:00', 'titulo' => 'Apresentação de TCC'));
+    $db->insert('evento', array('data_inicial' => '2012-09-10', 'data_final' => '2012-09-10', 'hora1' => '07:00:00', 'hora2' => '10:00:00', 'titulo' => 'Apresentação de TCC'));
+    $db->insert('evento', array('data_inicial' => '2012-09-10', 'data_final' => '2012-09-10', 'hora1' => '13:00:00', 'hora2' => '16:00:00', 'titulo' => 'Teste de sistema'));
+    $db->insert('evento', array('data_inicial' => '2012-09-10', 'data_final' => '2012-09-10', 'hora1' => '09:00:00', 'hora2' => '12:00:00', 'titulo' => 'Apresentação de trabalho'));
+    $db->insert('evento', array('data_inicial' => '2012-09-10', 'data_final' => '2012-09-10', 'hora1' => '14:00:00', 'hora2' => '20:00:00', 'titulo' => 'Aula'));
+    $db->insert('evento', array('data_inicial' => '2012-09-10', 'data_final' => '2012-09-10', 'hora1' => '21:00:00', 'hora2' => '22:00:00', 'titulo' => 'Pesquisa'));
+    $db->insert('evento', array('data_inicial' => '2012-09-10', 'data_final' => '2012-09-10', 'hora1' => '20:00:00', 'hora2' => '21:30:00', 'titulo' => 'Pesquisa'));
 
     /**
      * Insere os valores na tabela evento_usuario
@@ -150,8 +151,8 @@ choques. Rotação de corpos rígidos. Gravitação.', 'carga_horaria' => '75h',
     $db->insert('evento_usuario', array('id_evento' => '2', 'id_professor' => '1'));
     $db->insert('evento_usuario', array('id_evento' => '3', 'id_professor' => '2'));
     $db->insert('evento_usuario', array('id_evento' => '4', 'id_professor' => '2'));
-//    $db->insert('evento_usuario', array('id_evento' => '5', 'id_professor' => '4'));
-//    $db->insert('evento_usuario', array('id_evento' => '6', 'id_professor' => '2'));
+    $db->insert('evento_usuario', array('id_evento' => '5', 'id_professor' => '2'));
+    $db->insert('evento_usuario', array('id_evento' => '6', 'id_professor' => '1'));
     
 endif;
 
