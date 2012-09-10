@@ -39,13 +39,17 @@
         return data;
     }
     
-   function adicionarProfessor(nome){
+    function trocaData(data) {
+        //alert(data);
+        $("#dia").text(data);
+    }
+    
+    function adicionarProfessor(nome){
        var professores = new Array();
         <? foreach ($this->lista as $idProfessor => $nomeProfessor) {
             echo 'professores[' . $idProfessor . '] = "' . $nomeProfessor . '";';
         }?>
-        var x;
-        for (x in professores) {
+        for (var x in professores) {
             if (professores[x] == nome) {
                 
                 $.ajax({
@@ -53,6 +57,7 @@
                     context: this,
                     async: false,
                     success: function(data) {
+                        var profEventos = new Array();
                         var eventos = data.split("<->");
                         for (var y in eventos) {
                             var evento = eventos[y].split("|");
@@ -65,7 +70,10 @@
                             eve.setHora1(evento[i++]);
                             eve.setHora2(evento[i++]);
                             Eventos.addEvento(eve);
+                            profEventos[y] = eve;
                         }
+                        professores[x].eventos = profEventos;
+                        //alert(professores[x].eventos);
                     }
                 });
                 
@@ -110,7 +118,7 @@
                     } else if (Eventos.eventos[index].dataInicial != $("#dia").text() &&
                         Eventos.eventos[index].dataFinal == $("#dia").text()) {
                         
-                        horas = getHora(Eventos.eventos[index].hora2);
+                        horas = getHoraInt(Eventos.eventos[index].hora2);
                         horas += minutos;
                         hora = 0;
                         
@@ -150,7 +158,7 @@
 <form method="POST" action="<?= $this->baseUrl('agenda/add-evento') ?>">
     <div style="margin-left: 5%;width: 50%">
         Descrição do evento:  <input id="titulo" name="titulo" class="i-format" type="text" /><p/>
-        Data Inicial :<input class="subscr_email" id="data_inicial" name="data_inicial" type="text" /><p/>
+        Data Inicial :<input class="subscr_email" id="data_inicial" name="data_inicial" type="text" onblur="trocaData($('#data_inicial').val())" /><p/>
         Data Final   :<input class="subscr_email" id="data_final" name="data_final" type="text" /><p/>
         Hora Inicial:  <input name="hora1"  class="subscr_email" type="text" id="hora1"  size="5" maxlength="5" /><p/>
         Hora Final:  <input name="hora2" class="subscr_email"  type="text" id="hora2"   size="5" maxlength="5" /><p/>
