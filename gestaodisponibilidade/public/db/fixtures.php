@@ -133,22 +133,27 @@ choques. Rotação de corpos rígidos. Gravitação.', 'carga_horaria' => '75h',
     /**
      * Insere valores na tabela evento 
      */
-    $db->insert('evento', array('data_inicial' => '2012-09-19', 'data_final' => '2012-09-08', 'hora1' => '08:30:00', 'hora2' => '12:30:00', 'titulo' => 'Apresentação do 2º Check-point'));
-    $db->insert('evento', array('data_inicial' => '2012-09-06', 'data_final' => '2012-09-06', 'hora1' => '09:30:00', 'hora2' => '12:30:00', 'titulo' => 'Apresentação de TCC'));
-    $db->insert('evento', array('data_inicial' => '2012-09-22', 'data_final' => '2012-09-22', 'hora1' => '09:30:00', 'hora2' => '13:30:00', 'titulo' => 'Teste de sistema'));
-    $db->insert('evento', array('data_inicial' => '2012-09-21', 'data_final' => '2012-09-21', 'hora1' => '09:30:00', 'hora2' => '12:30:00', 'titulo' => 'Apresentação de trabalho'));
-    $db->insert('evento', array('data_inicial' => '2012-09-21', 'data_final' => '2012-09-21', 'hora1' => '09:30:00', 'hora2' => '22:30:00', 'titulo' => 'Shopping'));
-    $db->insert('evento', array('data_inicial' => '2012-09-19', 'data_final' => '2012-05-19', 'hora1' => '09:30:00', 'hora2' => '12:30:00', 'titulo' => 'Apresentação de TCC'));
+
+    $mes = date('m');
+    $dia = date('d');
+    $ano = date('Y');
+    $hoje = $ano . '-' . $mes . '-' . $dia;
+    $db->insert('evento', array('data_inicial' => $hoje, 'data_final' => $hoje, 'hora1' => '07:00:00', 'hora2' => '10:00:00', 'titulo' => 'Apresentação de TCC'));
+    $db->insert('evento', array('data_inicial' => $hoje, 'data_final' => $hoje, 'hora1' => '13:00:00', 'hora2' => '16:00:00', 'titulo' => 'Teste de sistema'));
+    $db->insert('evento', array('data_inicial' => $hoje, 'data_final' => $hoje, 'hora1' => '09:00:00', 'hora2' => '12:00:00', 'titulo' => 'Apresentação de trabalho'));
+    $db->insert('evento', array('data_inicial' => $hoje, 'data_final' => $hoje, 'hora1' => '14:00:00', 'hora2' => '20:00:00', 'titulo' => 'Aula'));
+    $db->insert('evento', array('data_inicial' => $hoje, 'data_final' => $hoje, 'hora1' => '21:00:00', 'hora2' => '22:00:00', 'titulo' => 'Pesquisa'));
+    $db->insert('evento', array('data_inicial' => $hoje, 'data_final' => $hoje, 'hora1' => '20:00:00', 'hora2' => '21:30:00', 'titulo' => 'Pesquisa'));
 
     /**
      * Insere os valores na tabela evento_usuario
      */
     $db->insert('evento_usuario', array('id_evento' => '1', 'id_professor' => '1'));
-    $db->insert('evento_usuario', array('id_evento' => '2', 'id_professor' => '2'));
-    $db->insert('evento_usuario', array('id_evento' => '3', 'id_professor' => '3'));
+    $db->insert('evento_usuario', array('id_evento' => '2', 'id_professor' => '1'));
+    $db->insert('evento_usuario', array('id_evento' => '3', 'id_professor' => '2'));
     $db->insert('evento_usuario', array('id_evento' => '4', 'id_professor' => '2'));
-    $db->insert('evento_usuario', array('id_evento' => '5', 'id_professor' => '4'));
-    $db->insert('evento_usuario', array('id_evento' => '6', 'id_professor' => '2'));
+    $db->insert('evento_usuario', array('id_evento' => '5', 'id_professor' => '2'));
+    $db->insert('evento_usuario', array('id_evento' => '6', 'id_professor' => '1'));
     
 endif;
 
@@ -279,21 +284,25 @@ choques. Rotação de corpos rígidos. Gravitação.', 'carga_horaria' => '75h',
     /**
      * Insere valores na tabela evento 
      */
-    $db->insert('evento', array('data_inicial' => '2012-09-19', 'data_final' => '2012-09-08', 'hora1' => '08:30:00', 'hora2' => '12:30:00', 'titulo' => 'Apresentação do 2º Check-point'));
-    $db->insert('evento', array('data_inicial' => '2012-09-06', 'data_final' => '2012-09-06', 'hora1' => '09:30:00', 'hora2' => '12:30:00', 'titulo' => 'Apresentação de TCC'));
-    $db->insert('evento', array('data_inicial' => '2012-09-22', 'data_final' => '2012-09-22', 'hora1' => '09:30:00', 'hora2' => '13:30:00', 'titulo' => 'Teste de sistema'));
-    $db->insert('evento', array('data_inicial' => '2012-09-21', 'data_final' => '2012-09-21', 'hora1' => '09:30:00', 'hora2' => '12:30:00', 'titulo' => 'Apresentação de trabalho'));
-    $db->insert('evento', array('data_inicial' => '2012-09-21', 'data_final' => '2012-09-21', 'hora1' => '09:30:00', 'hora2' => '22:30:00', 'titulo' => 'Shopping'));
-    $db->insert('evento', array('data_inicial' => '2012-09-19', 'data_final' => '2012-05-19', 'hora1' => '09:30:00', 'hora2' => '12:30:00', 'titulo' => 'Apresentação de TCC'));
+    $mes = date('m');
+    $dia = date('d');
+    $ano = date('Y');
+    $hoje = $ano . '-' . $mes . '-' . $dia;
+    $db->insert('evento', array('data_inicial' => $hoje, 'data_final' => $hoje, 'hora1' => '07:00:00', 'hora2' => '10:00:00', 'titulo' => 'Apresentação de TCC'));
+    $db->insert('evento', array('data_inicial' => $hoje, 'data_final' => $hoje, 'hora1' => '13:00:00', 'hora2' => '16:00:00', 'titulo' => 'Teste de sistema'));
+    $db->insert('evento', array('data_inicial' => $hoje, 'data_final' => $hoje, 'hora1' => '09:00:00', 'hora2' => '12:00:00', 'titulo' => 'Apresentação de trabalho'));
+    $db->insert('evento', array('data_inicial' => $hoje, 'data_final' => $hoje, 'hora1' => '14:00:00', 'hora2' => '20:00:00', 'titulo' => 'Aula'));
+    $db->insert('evento', array('data_inicial' => $hoje, 'data_final' => $hoje, 'hora1' => '21:00:00', 'hora2' => '22:00:00', 'titulo' => 'Pesquisa'));
+    $db->insert('evento', array('data_inicial' => $hoje, 'data_final' => $hoje, 'hora1' => '20:00:00', 'hora2' => '21:30:00', 'titulo' => 'Pesquisa'));
 
     /**
      * Insere os valores na tabela evento_usuario
      */
     $db->insert('evento_usuario', array('id_evento' => '1', 'id_professor' => '1'));
-    $db->insert('evento_usuario', array('id_evento' => '2', 'id_professor' => '2'));
-    $db->insert('evento_usuario', array('id_evento' => '3', 'id_professor' => '3'));
+    $db->insert('evento_usuario', array('id_evento' => '2', 'id_professor' => '1'));
+    $db->insert('evento_usuario', array('id_evento' => '3', 'id_professor' => '2'));
     $db->insert('evento_usuario', array('id_evento' => '4', 'id_professor' => '2'));
-    $db->insert('evento_usuario', array('id_evento' => '5', 'id_professor' => '4'));
-    $db->insert('evento_usuario', array('id_evento' => '6', 'id_professor' => '2'));
+    $db->insert('evento_usuario', array('id_evento' => '5', 'id_professor' => '2'));
+    $db->insert('evento_usuario', array('id_evento' => '6', 'id_professor' => '1'));
     
 endif;

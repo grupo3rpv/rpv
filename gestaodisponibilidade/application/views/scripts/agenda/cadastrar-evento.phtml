@@ -10,7 +10,7 @@
 <script src="<?= $this->baseUrl('/js/evento.js') ?>"></script>
 <style type="text/css">
     .over {
-        background: #03c;
+        background-color: red;
     }
 </style>
 <script type='text/javascript'>
@@ -41,13 +41,17 @@
         return data;
     }
     
-   function adicionarProfessor(nome){
+    function trocaData(data) {
+        //alert(data);
+        $("#dia").text(data);
+    }
+    
+    function adicionarProfessor(nome){
        var professores = new Array();
         <? foreach ($this->lista as $idProfessor => $nomeProfessor) {
             echo 'professores[' . $idProfessor . '] = "' . $nomeProfessor . '";';
         }?>
-        var x;
-        for (x in professores) {
+        for (var x in professores) {
             if (professores[x] == nome) {
                 
                 $.ajax({
@@ -55,18 +59,23 @@
                     context: this,
                     async: false,
                     success: function(data) {
+                        var profEventos = new Array();
                         var eventos = data.split("<->");
                         for (var y in eventos) {
                             var evento = eventos[y].split("|");
                             var i = 0;
-                            Evento.setIdEvento(evento[i++]);
-                            Evento.setTitulo(evento[i++]);
-                            Evento.setDataInicial(evento[i++]);
-                            Evento.setDataFinal(evento[i++]);
-                            Evento.setHora1(evento[i++]);
-                            Evento.setHora2(evento[i++]);
-                            Eventos.addEvento(Evento);
+                            var eve = new Evento();
+                            eve.setIdEvento(evento[i++]);
+                            eve.setTitulo(evento[i++]);
+                            eve.setDataInicial(evento[i++]);
+                            eve.setDataFinal(evento[i++]);
+                            eve.setHora1(evento[i++]);
+                            eve.setHora2(evento[i++]);
+                            Eventos.addEvento(eve);
+                            profEventos[y] = eve;
                         }
+                        professores[x].eventos = profEventos;
+                        //alert(professores[x].eventos);
                     }
                 });
                 
@@ -80,24 +89,61 @@
                 var professor = '<tr><td>' + nome + '</td>';
                 for (var j = 0; j < 24; j++) {
                     var horaCorreta = addZero(j);
-                    professor += '<td id="' + x + '-' + horaCorreta + ':00:00"></td>';
+                    professor += '<td id="' + x + '-' + horaCorreta + '"></td>';
                 }
                 professor += '</tr>';
-                $("tbody#profConvidado").append(professor);
+                $("table tbody").append(professor);
                 
                 for (var index in Eventos.eventos) {
-                    if (Eventos.eventos[index].dataInicial == $("#dia").text() || 
+                    var horas, hora, minutos = 0;
+                    
+                    if (getMinuto(Eventos.eventos[index].hora2) > 2) {
+                        minutos = 1;
+                    }
+                    
+                    // se a hora inicial e final eh no mesmo dia
+                    if (Eventos.eventos[index].dataInicial == $("#dia").text() && 
                         Eventos.eventos[index].dataFinal == $("#dia").text()) {
+                        
+                        horas = getHoraInt(Eventos.eventos[index].hora2) - getHoraInt(Eventos.eventos[index].hora1);
+                        horas += minutos;
+                        hora = parseInt(getHoraInt(Eventos.eventos[index].hora1));
+                        
+                    // se o evento começar no dia
+                    } else if (Eventos.eventos[index].dataInicial == $("#dia").text() &&
+                        Eventos.eventos[index].dataFinal != $("#dia").text()) {
+                        
+                        horas = 24 - getHora(Eventos.eventos[index].hora1);
+                        hora = parseInt(getHoraInt(Eventos.eventos[index].hora1));
+                    
+                    // se o evento terminar no dia
+                    } else if (Eventos.eventos[index].dataInicial != $("#dia").text() &&
+                        Eventos.eventos[index].dataFinal == $("#dia").text()) {
+
                         alert( Eventos.eventos[index].dataFinal)
                         var id = '"#' + x + '-' + getHora(Eventos.eventos[index].hora1) + ':00:00"';
                         alert(id);
+
                         
+                        horas = getHoraInt(Eventos.eventos[index].hora2);
+                        horas += minutos;
+                        hora = 0;
+
+                        
+                    }
+                    
+                    for (var abc = 0; abc < horas; abc++) {
+                        var soma = hora + abc
+                        var id = '#' + x + '-' + addZero(soma);
+                        //alert(id);
                         $(id).addClass('over');
+
                         $("#2-10:00:00").addClass('over');
                         $(id).css("background-color", "red");
+
                     }
+                    
                 }
-                
                 break;
             }
         }
@@ -124,16 +170,16 @@
 <form method="POST" action="<?= $this->baseUrl('agenda/add-evento') ?>">
     <div style="margin-left: 5%;width: 50%">
         Descrição do evento:  <input id="titulo" name="titulo" class="i-format" type="text" /><p/>
-        Data Inicial :<input class="subscr_email" id="data_inicial" name="data_inicial" type="text" /><p/>
+        Data Inicial :<input class="subscr_email" id="data_inicial" name="data_inicial" type="text" onblur="trocaData($('#data_inicial').val())" /><p/>
         Data Final   :<input class="subscr_email" id="data_final" name="data_final" type="text" /><p/>
-        Hora Inicial:  <input name="hora1"  class="subscr_email" type="text" id="hora1"  size="5" maxlength="5"><p/>
-        Hora Final:  <input name="hora2" class="subscr_email"  type="text" id="hora2"   size="5" maxlength="5"><p/>
-
-        Adicionar convidado:<input id="convidados" type="text" class="i-format" />
-        <a onclick="adicionarProfessor($('#convidados').val())" class="button">Adicionar</a><p/>
+        Hora Inicial:  <input name="hora1"  class="subscr_email" type="text" id="hora1"  size="5" maxlength="5" /><p/>
+        Hora Final:  <input name="hora2" class="subscr_email"  type="text" id="hora2"   size="5" maxlength="5" /><p/>
+        Privacidade: <input id="" name="privacidade" type="radio" value="publico" checked />Público <input id="" name="privacidade" type="radio" value="privado" />Privado
+        <br /><br />
+        Adicionar convidado: <input id="convidados" type="text" class="i-format" /><a onclick="adicionarProfessor($('#convidados').val())" class="button">Adicionar</a><p/>
         <div id="profConvidado">
             <center><span id="dia"></span></center>
-            <table id="profConvidado">
+            <table>
                 <thead>
                     <tr>
                         <td></td>
@@ -147,7 +193,7 @@
                         } ?>
                     </tr>
                 </thead>
-                <tbody id="profConvidado">
+                <tbody>
                 </tbody>
             </table>
         </div>
