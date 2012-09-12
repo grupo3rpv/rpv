@@ -35,8 +35,10 @@ class AgendaController extends Zend_Controller_Action {
     }
 
     public function addEventoAction() {
-        if ($this->getRequest()->isPost()) {
+
             $dados = $this->getRequest()->getParams();
+            var_dump(explode('|', $dados['professoresConvidados']));
+            var_dump($dados);die();
             $modelEvento = new Application_Model_DbTable_Evento();
             unset($dados['controller']);
             unset($dados['action']);
@@ -45,7 +47,7 @@ class AgendaController extends Zend_Controller_Action {
 
             $modelEvento->cadastraEvento($dados);
             $this->_redirect('/agenda/index');
-        }
+        
     }
 
     public function cadastrarEventoAction() {

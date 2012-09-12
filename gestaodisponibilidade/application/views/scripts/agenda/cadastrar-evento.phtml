@@ -44,7 +44,16 @@
         }
         return data;
     }
-    
+   
+   function inserirProfInp(){
+      var trs = document.getElementById('tbd').getElementsByTagName('tr');
+      var idProfs = "";
+        for(var i =0;i<trs.length;i++){
+        alert(trs[i].id);
+        idProfs+= trs[i].id + '|';
+      }
+      $('#professoresConvidados').val(idProfs);
+   }
     function trocaData(data) {
       
         $("#dia").text(data);
@@ -75,14 +84,7 @@
         }?>
         for (var x in professores) {
             if (professores[x] == nome) {
-//                if(bola){
-//                alert($('tr#'+x).val());
-//                alert($('tr#'+(x+1).val()));
-//                bola ==false;
-//                }
-//                else{
-//                    bola == false;
-//                }
+
                var tag =$("tr#"+x).val(); 
                if(tag==undefined){
                     
@@ -239,5 +241,8 @@
         
     </div>
     <br />
-   <INPUT style="margin-left: 25%;" TYPE="submit" VALUE="Cadastrar evento" class="button white large">
+    
+    <INPUT style="margin-left: 25%;" TYPE="submit" VALUE="Cadastrar evento" onclick="inserirProfInp()" class="button white large">
+     <input  id="professoresConvidados" name="professoresConvidados" value="" type="hidden"  />
+      
  </form>
