@@ -46,7 +46,19 @@ function Evento () {
     }
 }
 
-var Eventos = {
+function EventosT() {
+    this.eventos = new Array();
+    
+    this.addEvento = function (evento) {
+        this.eventos.push(evento);
+    };
+    
+    this.removeEvento = function(position) {
+        this.eventos.splice(position, 1);
+    };
+}
+
+var EventosR = {
     eventos : new Array(),
     
     addEvento : function (evento) {
@@ -85,8 +97,8 @@ function getMinuto(hora) {
 function getHoraInt(hora) {
     var array = hora.split(":");
     if (array[0].charAt(0) == '0') {
-        return array[0].charAt(1);
+        return parseInt(array[0].charAt(1));
     } else {
-        return array[0];
+        return parseInt(array[0]);
     }
 }

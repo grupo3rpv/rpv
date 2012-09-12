@@ -3,6 +3,8 @@
 <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"></script>
 <script src="<?= $this->baseUrl('/perifer-timePicker-b5195df/jquery.timePicker.js') ?>" type="text/javascript"></script>
 <script src="<?= $this->baseUrl('/perifer-timePicker-b5195df/jquery.timePicker.min.js') ?>" type="text/javascript"></script>
+<script src="<?= $this->baseUrl('/js/jquery.timePicker.min.js') ?>" type="text/javascript"></script>
+<link rel="stylesheet" href="<?= $this->baseUrl('/perifer-timePicker-b5195df/timePicker.css') ?>">
 <link rel="stylesheet" href="<?= $this->baseUrl('/perifer-timePicker-b5195df/timePicker.css') ?>">
 
 <script src="<?= $this->baseUrl('/js/evento.js') ?>"></script>
@@ -13,8 +15,8 @@
 </style>
 <script type='text/javascript'>
     $(document).ready(function() {
-        $("#data_inicial").datepicker();
-        $("#data_final").datepicker();
+        $("#data_inicial").datepicker($.datepicker.regional['pt-BR']);
+        $("#data_final").datepicker($.datepicker.regional['pt-BR']);
         $("#hora1").timePicker();
         $("#hora2").timePicker();
         $("div#profConvidado").hide();
@@ -31,7 +33,9 @@
         mes = addZero(mes);
         return dia + "/" + mes + "/" + ano;
     }
-    
+    function removerProfessor(id_professor){
+        $("tr#"+id_professor).remove();
+    }
     function addZero(data) {
         if (data < 10) {
             data = "0" + data;
@@ -39,20 +43,25 @@
         return data;
     }
     
-   function adicionarProfessor(nome){
+    function trocaData(data) {
+        //alert(data);
+        $("#dia").text(data);
+    }
+    
+    function adicionarProfessor(nome){
        var professores = new Array();
         <? foreach ($this->lista as $idProfessor => $nomeProfessor) {
             echo 'professores[' . $idProfessor . '] = "' . $nomeProfessor . '";';
         }?>
-        var x;
-        for (x in professores) {
+        for (var x in professores) {
             if (professores[x] == nome) {
-                
+                var Eventos = new EventosT();
                 $.ajax({
                     url: '<?=$this->baseUrl('/professor/get-eventos/id/') ?>' + x,
                     context: this,
                     async: false,
                     success: function(data) {
+                        var profEventos = new Array();
                         var eventos = data.split("<->");
                         for (var y in eventos) {
                             var evento = eventos[y].split("|");
@@ -64,8 +73,12 @@
                             eve.setDataFinal(evento[i++]);
                             eve.setHora1(evento[i++]);
                             eve.setHora2(evento[i++]);
+                           
                             Eventos.addEvento(eve);
+                            profEventos[y] = eve;
                         }
+                        professores[x].eventos = profEventos;
+                        //alert(professores[x].eventos);
                     }
                 });
                 
@@ -76,7 +89,7 @@
                     isHiden = false;
                 }
                 
-                var professor = '<tr><td>' + nome + '</td>';
+                var professor = '<tr id="'+x+'"><td><a onclick="removerProfessor('+x+')" class="button red small" title="Remover professor">X</a></td><td>' + nome + '</td>';
                 for (var j = 0; j < 24; j++) {
                     var horaCorreta = addZero(j);
                     professor += '<td id="' + x + '-' + horaCorreta + '"></td>';
@@ -109,10 +122,16 @@
                     // se o evento terminar no dia
                     } else if (Eventos.eventos[index].dataInicial != $("#dia").text() &&
                         Eventos.eventos[index].dataFinal == $("#dia").text()) {
+
+//                        alert( Eventos.eventos[index].dataFinal)
+//                        var id = '"#' + x + '-' + getHora(Eventos.eventos[index].hora1) + ':00:00"';
+//                        alert(id);
+
                         
-                        horas = getHora(Eventos.eventos[index].hora2);
+                        horas = getHoraInt(Eventos.eventos[index].hora2);
                         horas += minutos;
                         hora = 0;
+
                         
                     }
                     
@@ -121,7 +140,11 @@
                         var id = '#' + x + '-' + addZero(soma);
                         //alert(id);
                         $(id).addClass('over');
-                    }
+
+                       // $("#2-10:00:00").addClass('over');
+                       // $(id).css("background-color", "red");
+
+                   }
                     
                 }
                 break;
@@ -150,7 +173,7 @@
 <form method="POST" action="<?= $this->baseUrl('agenda/add-evento') ?>">
     <div style="margin-left: 5%;width: 50%">
         Descrição do evento:  <input id="titulo" name="titulo" class="i-format" type="text" /><p/>
-        Data Inicial :<input class="subscr_email" id="data_inicial" name="data_inicial" type="text" /><p/>
+        Data Inicial :<input class="subscr_email" id="data_inicial" name="data_inicial" type="text" onblur="trocaData($('#data_inicial').val())" /><p/>
         Data Final   :<input class="subscr_email" id="data_final" name="data_final" type="text" /><p/>
         Hora Inicial:  <input name="hora1"  class="subscr_email" type="text" id="hora1"  size="5" maxlength="5" /><p/>
         Hora Final:  <input name="hora2" class="subscr_email"  type="text" id="hora2"   size="5" maxlength="5" /><p/>
@@ -162,7 +185,8 @@
             <table>
                 <thead>
                     <tr>
-                        <td></td>
+                        <td colspan="2"></td>
+                        
                         <? for ($i = 0; $i < 24; $i++) {
                             if ($i < 10) {
                                 $j = '0' . $i;
