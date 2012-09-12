@@ -16,6 +16,7 @@
 </style>
 <script type='text/javascript'>
     $(document).ready(function() {
+        $('#alerta').hide();
         $("#data_inicial").datepicker($.datepicker.regional['pt-BR']);
         $("#data_final").datepicker($.datepicker.regional['pt-BR']);
         $("#hora1").timePicker();
@@ -47,14 +48,21 @@
     function trocaData(data) {
       
         $("#dia").text(data);
+        $('#alerta').hide();
+        $('#profConvidado').hide();
+        $('#tbd').remove();
+        $("table").append("<tbody id=tbd></tbody>");
+        
     }
     
     function adicionarProfessor(nome){
-       
+       var bola = true;
+                
       /*fornçando o usuario a inserir uma data inicial*/ 
       var dataIni =  $('#data_inicial').val() 
       if(dataIni ==""){
            $("input:text:eq(1):visible").focus();
+           $('#alerta').show();
           return;
       }
       else{
@@ -67,6 +75,19 @@
         }?>
         for (var x in professores) {
             if (professores[x] == nome) {
+                if(bola){
+                alert($('tr#'+x).val());
+                alert($('tr#'+(x+1).val()));
+                bola ==false;
+                }
+                else{
+                    bola == false;
+                }
+               var tag =$("tr#"+x).val(); 
+               if(tag==undefined){
+                    
+                }
+                
                 var Eventos = new EventosT();
                 $.ajax({
                     url: '<?=$this->baseUrl('/professor/get-eventos/id/') ?>' + x,
@@ -185,7 +206,7 @@
 <form method="POST" action="<?= $this->baseUrl('agenda/add-evento') ?>">
     <div style="margin-left: 5%;width: 50%">
         Descrição do evento:  <input id="titulo" name="titulo" class="i-format" type="text" /><p/>
-        Data Inicial :<input class="subscr_email" id="data_inicial" name="data_inicial" type="text" onblur="trocaData($('#data_inicial').val())" /><p/>
+        Data Inicial :<input class="subscr_email" id="data_inicial" name="data_inicial" type="text" onblur="trocaData($('#data_inicial').val())" /><div style="color: red;margin-left: 350px;"  id="alerta">Para adicionar um professor você devera selecionar uma data inicial.</div><p/>
         Data Final   :<input class="subscr_email" id="data_final" name="data_final" type="text" /><p/>
         Hora Inicial:  <input name="hora1"  class="subscr_email" type="text" id="hora1"  size="5" maxlength="5" /><p/>
         Hora Final:  <input name="hora2" class="subscr_email"  type="text" id="hora2"   size="5" maxlength="5" /><p/>
@@ -209,7 +230,7 @@
                         } ?>
                     </tr>
                 </thead>
-                <tbody>
+                <tbody id="tbd">
                 </tbody>
             </table>
         </div>
