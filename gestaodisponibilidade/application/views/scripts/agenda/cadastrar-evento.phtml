@@ -70,7 +70,7 @@
       var dataIni =  $('#data_inicial').val() 
       if(dataIni ==""){
            $("input:text:eq(1):visible").focus();
-           $('#alerta').show();
+           $('#alerta').show('slow');
           return;
       }
       else{
@@ -86,7 +86,7 @@
 
                //var tag =$("tr#"+x).val();
                var tag = $("#tbd:has(tr#"+x+")").val();
-               alert(tag);
+              
                if(tag==undefined){
                     
                 var Eventos = new EventosT();
