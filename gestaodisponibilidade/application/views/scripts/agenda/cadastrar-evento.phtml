@@ -84,8 +84,10 @@
         for (var x in professores) {
             if (professores[x] == nome) {
 
-               var tag =$("tr#"+x).val(); 
-               if(tag==undefined||tag==""){
+               //var tag =$("tr#"+x).val();
+               var tag = $("#tbd:has(tr#"+x+")").val();
+               alert(tag);
+               if(tag==undefined){
                     
                 var Eventos = new EventosT();
                 $.ajax({
