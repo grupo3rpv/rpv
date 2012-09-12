@@ -75,19 +75,17 @@
         }?>
         for (var x in professores) {
             if (professores[x] == nome) {
-                if(bola){
-                alert($('tr#'+x).val());
-                alert($('tr#'+(x+1).val()));
-                bola ==false;
-                }
-                else{
-                    bola == false;
-                }
+//                if(bola){
+//                alert($('tr#'+x).val());
+//                alert($('tr#'+(x+1).val()));
+//                bola ==false;
+//                }
+//                else{
+//                    bola == false;
+//                }
                var tag =$("tr#"+x).val(); 
                if(tag==undefined){
                     
-                }
-                
                 var Eventos = new EventosT();
                 $.ajax({
                     url: '<?=$this->baseUrl('/professor/get-eventos/id/') ?>' + x,
@@ -181,6 +179,10 @@
                     
                 }
                 break;
+             }
+             else{
+             alert("Este professor já está na lista!");
+             }
             }
         }
    }
