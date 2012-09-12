@@ -134,9 +134,10 @@
                 professor += '</tr>';
                 $("table tbody").append(professor);
                 
+                var titulo;
                 for (var index in Eventos.eventos) {
                     var horas, hora, minutos = 0;
-                    
+                    titulo=Eventos.eventos[index].titulo;
                     if (getMinuto(Eventos.eventos[index].hora2) > 2) {
                         minutos = 1;
                     }
@@ -177,7 +178,7 @@
                         var id = '#' + x + '-' + addZero(soma);
                         //alert(id);
                         $(id).addClass('over');
-                        $(id).text(Eventos.eventos[abc].titulo);
+                        $(id).text(titulo);
                        // $("#2-10:00:00").addClass('over');
                        // $(id).css("background-color", "red");
 
