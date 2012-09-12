@@ -45,11 +45,20 @@
     }
     
     function trocaData(data) {
-        //alert(data);
+      
         $("#dia").text(data);
     }
     
     function adicionarProfessor(nome){
+        
+      var dataIni =  $('#data_inicial').val() 
+      if(dataIni ==""){
+           $("input:text:eq(1):visible").focus();
+          return;
+      }
+      else{
+         $("#dia").text(dataIni);  
+      }
        var professores = new Array();
         <? foreach ($this->lista as $idProfessor => $nomeProfessor) {
             echo 'professores[' . $idProfessor . '] = "' . $nomeProfessor . '";';
