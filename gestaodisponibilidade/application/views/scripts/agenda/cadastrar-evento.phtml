@@ -11,7 +11,7 @@
 <script src="<?= $this->baseUrl('/js/evento.js') ?>"></script>
 <style type="text/css">
     .over {
-        background-color: red;
+        background-color: mediumseagreen;
     }
 </style>
 <script type='text/javascript'>
@@ -177,7 +177,7 @@
                         var id = '#' + x + '-' + addZero(soma);
                         //alert(id);
                         $(id).addClass('over');
-
+                        $(id).text(Eventos.eventos[abc].titulo);
                        // $("#2-10:00:00").addClass('over');
                        // $(id).css("background-color", "red");
 
