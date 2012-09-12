@@ -46,7 +46,19 @@ function Evento () {
     }
 }
 
-var Eventos = {
+function EventosT() {
+    this.eventos = new Array();
+    
+    this.addEvento = function (evento) {
+        this.eventos.push(evento);
+    };
+    
+    this.removeEvento = function(position) {
+        this.eventos.splice(position, 1);
+    };
+}
+
+var EventosR = {
     eventos : new Array(),
     
     addEvento : function (evento) {
@@ -57,18 +69,6 @@ var Eventos = {
         this.eventos.splice(position, 1);
     }
 }
-
-/*var Eventos = {
-    eventos : new Array(),
-    
-    addEvento : function (evento) {
-        this.eventos.push(evento);
-    },
-    
-    removeEvento : function(position) {
-        this.eventos.splice(position, 1);
-    }
-}*/
 
 function converteDataDBToPTBR(data) {
     data = data.replace(/\"/g, "");

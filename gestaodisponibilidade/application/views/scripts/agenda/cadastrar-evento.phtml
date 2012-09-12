@@ -33,7 +33,9 @@
         mes = addZero(mes);
         return dia + "/" + mes + "/" + ano;
     }
-    
+    function removerProfessor(id_professor){
+        $("tr#"+id_professor).remove();
+    }
     function addZero(data) {
         if (data < 10) {
             data = "0" + data;
@@ -53,7 +55,7 @@
         }?>
         for (var x in professores) {
             if (professores[x] == nome) {
-                
+                var Eventos = new EventosT();
                 $.ajax({
                     url: '<?=$this->baseUrl('/professor/get-eventos/id/') ?>' + x,
                     context: this,
@@ -71,6 +73,7 @@
                             eve.setDataFinal(evento[i++]);
                             eve.setHora1(evento[i++]);
                             eve.setHora2(evento[i++]);
+                           
                             Eventos.addEvento(eve);
                             profEventos[y] = eve;
                         }
@@ -86,7 +89,7 @@
                     isHiden = false;
                 }
                 
-                var professor = '<tr><td>' + nome + '</td>';
+                var professor = '<tr id="'+x+'"><td><a onclick="removerProfessor('+x+')" class="button red small" title="Remover professor">X</a></td><td>' + nome + '</td>';
                 for (var j = 0; j < 24; j++) {
                     var horaCorreta = addZero(j);
                     professor += '<td id="' + x + '-' + horaCorreta + '"></td>';
@@ -120,9 +123,9 @@
                     } else if (Eventos.eventos[index].dataInicial != $("#dia").text() &&
                         Eventos.eventos[index].dataFinal == $("#dia").text()) {
 
-                        alert( Eventos.eventos[index].dataFinal)
-                        var id = '"#' + x + '-' + getHora(Eventos.eventos[index].hora1) + ':00:00"';
-                        alert(id);
+//                        alert( Eventos.eventos[index].dataFinal)
+//                        var id = '"#' + x + '-' + getHora(Eventos.eventos[index].hora1) + ':00:00"';
+//                        alert(id);
 
                         
                         horas = getHoraInt(Eventos.eventos[index].hora2);
@@ -138,10 +141,10 @@
                         //alert(id);
                         $(id).addClass('over');
 
-                        $("#2-10:00:00").addClass('over');
-                        $(id).css("background-color", "red");
+                       // $("#2-10:00:00").addClass('over');
+                       // $(id).css("background-color", "red");
 
-                    }
+                   }
                     
                 }
                 break;
@@ -182,7 +185,8 @@
             <table>
                 <thead>
                     <tr>
-                        <td></td>
+                        <td colspan="2"></td>
+                        
                         <? for ($i = 0; $i < 24; $i++) {
                             if ($i < 10) {
                                 $j = '0' . $i;
