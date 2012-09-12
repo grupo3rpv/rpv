@@ -50,7 +50,8 @@
     }
     
     function adicionarProfessor(nome){
-        
+       
+      /*fornçando o usuario a inserir uma data inicial*/ 
       var dataIni =  $('#data_inicial').val() 
       if(dataIni ==""){
            $("input:text:eq(1):visible").focus();
@@ -59,6 +60,7 @@
       else{
          $("#dia").text(dataIni);  
       }
+      
        var professores = new Array();
         <? foreach ($this->lista as $idProfessor => $nomeProfessor) {
             echo 'professores[' . $idProfessor . '] = "' . $nomeProfessor . '";';
