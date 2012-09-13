@@ -11,7 +11,7 @@
 <script src="<?= $this->baseUrl('/js/evento.js') ?>"></script>
 <style type="text/css">
     .over {
-        background-color: red;
+        background-color: mediumseagreen;
     }
 </style>
 <script type='text/javascript'>
@@ -36,7 +36,10 @@
         return dia + "/" + mes + "/" + ano;
     }
     function removerProfessor(id_professor){
-        $("tr#"+id_professor).remove();
+        $("tr#"+id_professor).hide('slow',function(){
+            $(this).remove();
+        });
+        //$("tr#"+id_professor).remove();
     }
     function addZero(data) {
         if (data < 10) {
@@ -44,7 +47,16 @@
         }
         return data;
     }
-    
+   
+   function inserirProfInp(){
+      var trs = document.getElementById('tbd').getElementsByTagName('tr');
+      var idProfs = "";
+        for(var i =0;i<trs.length;i++){
+        alert(trs[i].id);
+        idProfs+= trs[i].id + '|';
+      }
+      $('#professoresConvidados').val(idProfs);
+   }
     function trocaData(data) {
       
         $("#dia").text(data);
@@ -56,13 +68,12 @@
     }
     
     function adicionarProfessor(nome){
-       var bola = true;
                 
       /*fornçando o usuario a inserir uma data inicial*/ 
       var dataIni =  $('#data_inicial').val() 
       if(dataIni ==""){
            $("input:text:eq(1):visible").focus();
-           $('#alerta').show();
+           $('#alerta').show('slow');
           return;
       }
       else{
@@ -75,15 +86,10 @@
         }?>
         for (var x in professores) {
             if (professores[x] == nome) {
-//                if(bola){
-//                alert($('tr#'+x).val());
-//                alert($('tr#'+(x+1).val()));
-//                bola ==false;
-//                }
-//                else{
-//                    bola == false;
-//                }
-               var tag =$("tr#"+x).val(); 
+
+               //var tag =$("tr#"+x).val();
+               var tag = $("#tbd:has(tr#"+x+")").val();
+              
                if(tag==undefined){
                     
                 var Eventos = new EventosT();
@@ -128,9 +134,10 @@
                 professor += '</tr>';
                 $("table tbody").append(professor);
                 
+                var titulo;
                 for (var index in Eventos.eventos) {
                     var horas, hora, minutos = 0;
-                    
+                    titulo=Eventos.eventos[index].titulo;
                     if (getMinuto(Eventos.eventos[index].hora2) > 2) {
                         minutos = 1;
                     }
@@ -171,7 +178,7 @@
                         var id = '#' + x + '-' + addZero(soma);
                         //alert(id);
                         $(id).addClass('over');
-
+                        $(id).text(titulo);
                        // $("#2-10:00:00").addClass('over');
                        // $(id).css("background-color", "red");
 
@@ -181,6 +188,7 @@
                 break;
              }
              else{
+             
              alert("Este professor já está na lista!");
              }
             }
@@ -216,7 +224,7 @@
         <br /><br />
         Adicionar convidado: <input id="convidados" type="text" class="i-format" /><a onclick="adicionarProfessor($('#convidados').val())" class="button">Adicionar</a><p/>
         <div id="profConvidado">
-            <center><span id="dia"></span></center>
+            <center><h3 id="dia"></h3></center>
             <table>
                 <thead>
                     <tr>
@@ -239,5 +247,8 @@
         
     </div>
     <br />
-   <INPUT style="margin-left: 25%;" TYPE="submit" VALUE="Cadastrar evento" class="button white large">
+    
+    <INPUT style="margin-left: 5%;" TYPE="submit" VALUE="Cadastrar evento" onclick="inserirProfInp()" class="button orange large">
+     <input  id="professoresConvidados" name="professoresConvidados" value="" type="hidden"  />
+      
  </form>
