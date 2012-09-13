@@ -248,6 +248,7 @@ ENGINE = InnoDB;
 CREATE  TABLE IF NOT EXISTS `evento_usuario` (
   `id_evento` INT NOT NULL ,
   `id_professor` INT NOT NULL ,
+  `convite` VARCHAR(45) NULL ,
   PRIMARY KEY (`id_evento`, `id_professor`) ,
   INDEX `fk_evento_has_usuario_usuario1` (`id_professor` ASC) ,
   INDEX `fk_evento_has_usuario_evento1` (`id_evento` ASC) ,
