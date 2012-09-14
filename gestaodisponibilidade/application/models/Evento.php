@@ -36,7 +36,9 @@ class Application_Model_Evento extends Zend_Db_Table_Row_Abstract {
     }
 
     public function getData_final() {
-        return $this->data_final;
+        list($ano, $dia, $mes) = explode("/", $this->data_final);
+        return $dia .'/'.$mes.'/'.$ano;
+        
     }
 
     public function setData_final($data_final) {
