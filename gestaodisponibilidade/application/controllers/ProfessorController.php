@@ -240,7 +240,8 @@ class ProfessorController extends Zend_Controller_Action {
             $arrayEventos .= $evento->getData_inicial() . '|';
             $arrayEventos .= $evento->getData_final() . '|';
             $arrayEventos .= $evento->getHora1() . '|';
-            $arrayEventos .= $evento->getHora2();
+            $arrayEventos .= $evento->getHora2() . '|';
+            $arrayEventos .= $evento->isPrivado();
         }
         echo $arrayEventos;
     }

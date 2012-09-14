@@ -67,11 +67,7 @@ class AgendaController extends Zend_Controller_Action {
                     $arrayEventosUsuarioConvidado['convite']='convidado';
                    
                     
-                    
-                    
-                    
-                    
-                    $modelProfessor = new Application_Model_DbTable_Professor();
+                     $modelProfessor = new Application_Model_DbTable_Professor();
                     $professor = $modelProfessor->listaProfessorPorID($id_professores[$index]);
                     
                     /*colocar emails falsos*/
@@ -125,7 +121,7 @@ class AgendaController extends Zend_Controller_Action {
         $id_evento = $this->getRequest()->getParam('34');
         $id_professor = $this->getRequest()->getParam('8634');
         
-        $modelEventoUsuario = new Application_Model_DbTable_EventoUsuario();
+        $modelEventoUsuario = new Application_Model_EventoUsuario();
         $dados['id_professor']=$id_professor;
         $dados['id_evento']=$id_evento;
         $modelEventoUsuario->eventoAceitoPorEmail($dados);
@@ -136,7 +132,7 @@ class AgendaController extends Zend_Controller_Action {
         $id_evento = $this->getRequest()->getParam('34');
         $id_professor = $this->getRequest()->getParam('8634');
         
-        $modelEventoUsuario = new Application_Model_DbTable_EventoUsuario();
+        $modelEventoUsuario = new Application_Model_EventoUsuario();
         $dados['id_professor']=$id_professor;
         $dados['id_evento']=$id_evento;
         $modelEventoUsuario->eventoRecusadoPorEmail($dados);
