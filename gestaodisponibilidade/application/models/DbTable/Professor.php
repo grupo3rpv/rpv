@@ -21,7 +21,7 @@ class Application_Model_DbTable_Professor extends Application_Model_DbTable_Usua
         $usuario->setId_usuario($dados['id_usuario']);
         $usuario->setNome($dados['nome']);
         $usuario->setMatricula($dados['matricula']);
-
+        $usuario->setEmail($dados['email']);
         $chave = $usuario->save();
 
         $areaProfessorModel = new Application_Model_DbTable_AreaProfessor();

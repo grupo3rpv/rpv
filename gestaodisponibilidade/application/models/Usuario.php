@@ -9,6 +9,14 @@ class Application_Model_Usuario extends Zend_Db_Table_Row_Abstract {
     
     protected $eventos;
 
+     public function getEmail() {
+        return $this->email;
+    }
+
+    public function setEmail($email) {
+        $this->email = $email;
+    }
+    
     public function getId_usuario() {
         return $this->id_usuario;
     }

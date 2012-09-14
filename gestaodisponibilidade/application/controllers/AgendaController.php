@@ -35,18 +35,56 @@ class AgendaController extends Zend_Controller_Action {
     }
 
     public function addEventoAction() {
-
+            $proprietario = 'proprietario';
             $dados = $this->getRequest()->getParams();
-            var_dump(explode('|', $dados['professoresConvidados']));
-            var_dump($dados);die();
-            $modelEvento = new Application_Model_DbTable_Evento();
             unset($dados['controller']);
             unset($dados['action']);
             unset($dados['module']);
-            $dados['id_professor'] = '1';
-
-            $modelEvento->cadastraEvento($dados);
-            $this->_redirect('/agenda/index');
+            
+            $id_professores = array();
+            $id_professores = explode('|', $dados['professoresConvidados']);
+            $ultimaPosicaoVetor =count($id_professores)-1;
+            unset($id_professores[$ultimaPosicaoVetor]);
+            $modelEvento = new Application_Model_DbTable_Evento();
+            $id_evento = $modelEvento->cadastraEvento($dados);
+            
+            $arrayEventoUsuarioProprietario = array();
+            $arrayEventoUsuarioProprietario['id_professor'] = '1';
+            $arrayEventoUsuarioProprietario['id_evento'] = $id_evento;
+            $arrayEventoUsuarioProprietario['convite']= $proprietario;
+            $modelEventoUsuario = new Application_Model_DbTable_EventoUsuario();
+            $modelEventoUsuario->cadastrarEventoUsuario($arrayEventoUsuarioProprietario);
+            
+            if(count($id_professores)>0){
+                for ($index = 0; $index < count($id_professores); $index++) {
+                    $arrayEventosUsuarioConvidado = array();
+                    $arrayEventosUsuarioConvidado['id_professor']=$id_professores[$index];
+                    $arrayEventosUsuarioConvidado['id_evento']=$id_evento;
+                    $arrayEventosUsuarioConvidado['convite']='convidado';
+                    $modelProfessor = new Application_Model_DbTable_Professor();
+                    $professor = $modelProfessor->listaProfessorPorID($id_professores[$index]);
+                    /*colocar emails falsos*/
+                    $email = $professor->getEmail();
+                    $mail = new Zend_Mail('utf8');
+                    $mail->setSubject("Você foi convidado para um evento")
+                    ->setFrom('contato.meucontrole@gmail.com')
+                    ->addTo($email)
+                    ->setBodyHtml($this->view->partial('templates/conviteevento.phtml',$arrayUser))
+                    ->send(); 
+                    var_dump($email);die();
+                    /*chamar função que manda o email*/
+                    $modelEventoUsuario->cadastrarEventoUsuario($arrayEventosUsuarioConvidado);
+                }
+            }
+            
+            
+           
+            
+           
+            
+//
+//            $modelEvento->cadastraEvento($dados);
+//            $this->_redirect('/agenda/index');
         
     }
 
