@@ -88,5 +88,7 @@ class Application_Model_DbTable_Evento extends Zend_Db_Table_Abstract {
         $select = $this->select()->where('id_professor = ?', $id);
         return $this->fetchAll($select);
     }
+    
+    
 
 }

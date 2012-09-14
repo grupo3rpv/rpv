@@ -1,4 +1,9 @@
-<?=$this->convidado?><br>
-<?=$this->proprietarioEvento?><div>lhe enviou um convite para uma reunião no dia</div><?=$this->dia?>
-iniciando as <?=$this->horaInicial?> até as <?=$this->horaFinal?> 
-
+<div style="border: 3px solid green;background-color: #dfdfdf;color: black; width: auto;height: 200px">
+<h2>Sr(a) <?=$this->convidado?>,</h2><br>
+<div><?=$this->proprietarioEvento?> lhe enviou um convite para uma reunião no dia <?=$this->dia?>, iniciando as <?=$this->horaInicial?> até as <?=$this->horaFinal?> do dia <?=$this->diaFinal?></div>
+<br/>
+<?$string1 = 'http://localhost/rpv/gestaodisponibilidade/public/agenda/confirmacao-evento/34/'.$this->id_evento.'/8634/'.$this->id_professor ?>
+<?$string2 = 'http://localhost/rpv/gestaodisponibilidade/public/agenda/recusar-evento/34/'.$this->id_evento.'/8634/'.$this->id_professor ?>
+<a href="<?=$string1?>" style="margin-left: 10px;border: 2px solid green;border-radius: 12px; text-decoration:none;color: white;font-size: 15px;background-color: greenyellow; width: 110px;height: 50px">Aceitar</a>
+<a href="<?=$string2?>" style="border: 2px solid red;border-radius: 12px;margin-left: 10px; text-decoration:none;color: white;font-size: 15px;background-color: #fb4e55;width: 110px;height: 50px">Recusar</a>
+</div>

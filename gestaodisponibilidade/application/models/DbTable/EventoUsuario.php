@@ -33,4 +33,26 @@ class Application_Model_DbTable_EventoUsuario extends Zend_Db_Table_Abstract {
         $modelEventosUsuario->save();
         
     }
+    
+    public function eventoAceitoPorEmail($dados){
+        $eventoUsuario = $this->fetchRow('id_evento ="'.$dados['id_evento'].'" and id_professor = "'.$dados['id_professor'].'"');
+        
+        if(count($eventoUsuario)>0){
+             /*@var $eventoUsuario Application_Model_EventoUsuario*/
+             $eventoUsuario->setConvite('confirmado');
+             $eventoUsuario->save(); 
+         }
+        
+    }
+    
+    public function eventoRecusadoPorEmail($dados){
+        $eventoUsuario = $this->fetchRow('id_evento ="'.$dados['id_evento'].'" and id_professor = "'.$dados['id_professor'].'"');
+        
+        if(count($eventoUsuario)>0){
+             /*@var $eventoUsuario Application_Model_EventoUsuario*/
+             $eventoUsuario->setConvite('recusado');
+             $eventoUsuario->save(); 
+         }
+        
+    }
 }
