@@ -60,7 +60,7 @@ class Application_Model_Evento extends Zend_Db_Table_Row_Abstract {
     }
     
     public function isPrivado() {
-        if ($this->privado == 1) {
+        if ($this->privado == 1 || $this->privado == true) {
             return true;
         } else {
             return false;
@@ -68,7 +68,11 @@ class Application_Model_Evento extends Zend_Db_Table_Row_Abstract {
     }
 
     public function setPrivado($privado) {
-        $this->privado = $privado;
+        if ($privado == 'privado' || $privado == 1 || $privado == true) {
+            $this->privado = true;
+        } else {
+            $this->privado = false;
+        }
     }
 
 }
