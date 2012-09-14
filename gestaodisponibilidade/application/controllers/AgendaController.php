@@ -67,7 +67,7 @@ class AgendaController extends Zend_Controller_Action {
                     $arrayEventosUsuarioConvidado['convite']='convidado';
                    
                     
-                     $modelProfessor = new Application_Model_DbTable_Professor();
+                    $modelProfessor = new Application_Model_DbTable_Professor();
                     $professor = $modelProfessor->listaProfessorPorID($id_professores[$index]);
                     
                     /*colocar emails falsos*/
