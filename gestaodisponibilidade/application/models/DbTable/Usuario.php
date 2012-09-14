@@ -29,7 +29,7 @@ class Application_Model_DbTable_Usuario extends Zend_Db_Table_Abstract {
         $usuario->setId_usuario($dados['id_usuario']);
         $usuario->setNome($dados['nome']);
         $usuario->setMatricula($dados['matricula']);
-
+       // $usuario->setEmail($email)
         $chave = $usuario->save();
 
 

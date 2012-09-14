@@ -7,7 +7,17 @@
  */
 class Application_Model_Evento extends Zend_Db_Table_Row_Abstract {
 
-    public function getId_evento() {
+   
+    
+    public function getPrivado() {
+        return $this->privado;
+    }
+
+    public function setPrivado($privado) {
+        $this->privado = $privado;
+    }
+
+     public function getId_evento() {
         return $this->id_evento;
     }
 
