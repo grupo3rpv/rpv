@@ -108,10 +108,10 @@ choques. Rotação de corpos rígidos. Gravitação.', 'carga_horaria' => '75h',
     /**
      * Insere valores na tabela usuario 
      */
-    $db->insert('usuario', array('id_tipo_usuario' => '1', 'nome' => 'Sergio Mergen', 'matricula' => '123456','email'=>'mergen.sergio@gmail.com'));
-    $db->insert('usuario', array('id_tipo_usuario' => '1', 'nome' => 'João Pablo', 'matricula' => '654321', 'email'=>'joaosilva@unipampa.edu.br'));
-    $db->insert('usuario', array('id_tipo_usuario' => '1', 'nome' => 'Aline Melo', 'matricula' => '9812749', 'email'=>'alinemello@unipampa.edu.br'));
-    $db->insert('usuario', array('id_tipo_usuario' => '2', 'nome' => 'Cleo Billa', 'matricula' => '346320', 'email'=>'cleobilla@unipampa.edu.br'));
+    $db->insert('usuario', array('id_tipo_usuario' => '1', 'nome' => 'Sergio Mergen', 'matricula' => '123456','email'=>'helisonreus@gmail.com'));
+    $db->insert('usuario', array('id_tipo_usuario' => '1', 'nome' => 'João Pablo', 'matricula' => '654321', 'email'=>'thiagockrug@gmail.com'));
+    $db->insert('usuario', array('id_tipo_usuario' => '1', 'nome' => 'Aline Melo', 'matricula' => '9812749', 'email'=>'brunovicellisax@gmail.com'));
+    $db->insert('usuario', array('id_tipo_usuario' => '2', 'nome' => 'Cleo Billa', 'matricula' => '346320', 'email'=>'marcelomaialopes@yahoo.com.br'));
 
     /**
      * Insere valores na tabela area_professor 

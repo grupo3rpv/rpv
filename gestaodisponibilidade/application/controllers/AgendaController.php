@@ -91,7 +91,7 @@ class AgendaController extends Zend_Controller_Action {
                      $mail = new Zend_Mail('utf8');
                      $mail->setSubject("Você foi convidado para um evento")
                     // colocar o email que deseja testar aq
-                    ->addTo('marcelomaialopes@yahoo.com.br')
+                    ->addTo('helisonreus@gmail.com')
                     ->setBodyHtml($this->view->partial('templates/conviteevento.phtml',$arrayEmail))
                     ->send(); 
 
