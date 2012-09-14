@@ -61,15 +61,27 @@ class AgendaController extends Zend_Controller_Action {
                     $arrayEventosUsuarioConvidado['id_professor']=$id_professores[$index];
                     $arrayEventosUsuarioConvidado['id_evento']=$id_evento;
                     $arrayEventosUsuarioConvidado['convite']='convidado';
+                   
+                    $arrayEmail = array();
+                    $arrayEmail['convidado'] ='Marcelo Maia';
+                    $arrayEmail['proprietarioEvento'] ='Helisson';
+                    $arrayEmail['dia'] ='10/10/10';
+                    $arrayEmail['horaInicial'] ='09:00';
+                    $arrayEmail['horaFinal'] ='11:00';
+                    
+                    
+                    
+                    
                     $modelProfessor = new Application_Model_DbTable_Professor();
                     $professor = $modelProfessor->listaProfessorPorID($id_professores[$index]);
                     /*colocar emails falsos*/
+                    /*Nome convidado, nome proprietario do evento, dia, hora inicial, hora final*/
                     $email = $professor->getEmail();
                     $mail = new Zend_Mail('utf8');
                     $mail->setSubject("Você foi convidado para um evento")
                     ->setFrom('contato.meucontrole@gmail.com')
-                    ->addTo($email)
-                    ->setBodyHtml($this->view->partial('templates/conviteevento.phtml',$arrayUser))
+                    ->addTo('brunodosax@hotmail.com')
+                    ->setBodyHtml($this->view->partial('templates/conviteevento.phtml',$arrayEmail))
                     ->send(); 
                     var_dump($email);die();
                     /*chamar função que manda o email*/
