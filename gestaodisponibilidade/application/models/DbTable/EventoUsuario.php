@@ -59,11 +59,17 @@ class Application_Model_DbTable_EventoUsuario extends Zend_Db_Table_Abstract {
         
     }
     
-    public function respostaEventoAceito($idProfProprietario,$dados,$idProfConvidado){
+    public function respostaEventoAceito($idProfProprietario,$idProfConvidado,$idEvento){
         $modelProfessor = new Application_Model_DbTable_Professor();
         $professorProprietario = $modelProfessor->listaProfessorPorID($idProfProprietario);
         $emailProprietario = $professorProprietario->getEmail();
-        $modelProfessor
+        $nomeProprietario = $professorProprietario->getNome();
+        
+        $professorConvidado = $modelProfessor->listaProfessorPorID($idProfConvidado);
+        $nomeProfessorConvidado = $professorConvidado->getNome();
+        
+        $modelEvento = new Application_Model_DbTable_Evento();
+        $modelEvento->listaEventosPorIdProfessor($idEvento);
         $view = new Zend_View();
         $view->setScriptPath(APPLICATION_PATH . '/views/scripts');
         $msg = $view->partial('templates/conviteeventoconfirmacao.phtml', $dados);
