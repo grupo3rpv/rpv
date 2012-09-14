@@ -1,23 +1,13 @@
 <?php
 
 /**
- * Description of Area
+ * Description of Evento
  *
  * @author Marcelo
  */
 class Application_Model_Evento extends Zend_Db_Table_Row_Abstract {
 
-   
-    
-    public function getPrivado() {
-        return $this->privado;
-    }
-
-    public function setPrivado($privado) {
-        $this->privado = $privado;
-    }
-
-     public function getId_evento() {
+    public function getId_evento() {
         return $this->id_evento;
     }
 
@@ -31,7 +21,7 @@ class Application_Model_Evento extends Zend_Db_Table_Row_Abstract {
 
     public function setData_inicial($data_inicial) {
         $data = $data_inicial;
-        list($mes, $dia, $ano) = explode('/', $data, 3);
+        list($dia, $mes, $ano) = explode('/', $data, 3);
         $this->data_inicial = $ano . '-' . $mes . '-' . $dia;
     }
 
@@ -41,7 +31,7 @@ class Application_Model_Evento extends Zend_Db_Table_Row_Abstract {
 
     public function setData_final($data_final) {
         $data = $data_final;
-        list($mes, $dia, $ano) = explode('/', $data);
+        list($dia, $mes, $ano) = explode('/', $data);
         $this->data_final = $ano . '-' . $mes . '-' . $dia;
     }
 
@@ -68,4 +58,17 @@ class Application_Model_Evento extends Zend_Db_Table_Row_Abstract {
     public function setTitulo($titulo) {
         $this->titulo = $titulo;
     }
+    
+    public function isPrivado() {
+        if ($this->privado == 1) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public function setPrivado($privado) {
+        $this->privado = $privado;
+    }
+
 }
