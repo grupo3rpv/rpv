@@ -88,7 +88,7 @@ class AgendaController extends Zend_Controller_Action {
                     $arrayEmail['id_evento'] =$id_evento;
                     $arrayEmail['id_professor'] =$professor->getId_usuario();
  
-                     $mail = new Zend_Mail('utf8');
+                     $mail = new Zend_Mail('utf-8');
                      $mail->setSubject("Você foi convidado para um evento")
                     // colocar o email que deseja testar aq
                     ->addTo($email)
