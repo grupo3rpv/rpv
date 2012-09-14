@@ -111,6 +111,7 @@
                             eve.setDataFinal(evento[i++]);
                             eve.setHora1(evento[i++]);
                             eve.setHora2(evento[i++]);
+                            eve.setPrivado(evento[i++]);
                            
                             Eventos.addEvento(eve);
                             profEventos[y] = eve;
@@ -135,10 +136,16 @@
                 professor += '</tr>';
                 $("table tbody").append(professor);
                 
-                var titulo;
+                
                 for (var index in Eventos.eventos) {
+                    var titulo;
                     var horas, hora, minutos = 0;
-                    titulo=Eventos.eventos[index].titulo;
+                    if (Eventos.eventos[index].privado == false) {
+                        titulo = Eventos.eventos[index].titulo;
+                    } else {
+                        titulo = "";
+                    }
+                    
                     if (getMinuto(Eventos.eventos[index].hora2) > 2) {
                         minutos = 1;
                     }
@@ -162,35 +169,25 @@
                     } else if (Eventos.eventos[index].dataInicial != $("#dia").text() &&
                         Eventos.eventos[index].dataFinal == $("#dia").text()) {
 
-//                        alert( Eventos.eventos[index].dataFinal)
-//                        var id = '"#' + x + '-' + getHora(Eventos.eventos[index].hora1) + ':00:00"';
-//                        alert(id);
-
-                        
                         horas = getHoraInt(Eventos.eventos[index].hora2);
                         horas += minutos;
                         hora = 0;
 
-                        
                     }
                     
                     for (var abc = 0; abc < horas; abc++) {
                         var soma = hora + abc
                         var id = '#' + x + '-' + addZero(soma);
-                        //alert(id);
+
                         $(id).addClass('over');
                         $(id).text(titulo);
-                       // $("#2-10:00:00").addClass('over');
-                       // $(id).css("background-color", "red");
-
                    }
                     
                 }
                 break;
              }
              else{
-             
-             alert("Este professor já está na lista!");
+                alert("Este professor já está na lista!");
              }
             }
         }

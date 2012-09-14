@@ -6,6 +6,7 @@ function Evento () {
     this.dataFinal = null;
     this.hora1 = null;
     this.hora2 = null;
+    this.privado = false;
     
     this.construct = function (idEvento, titulo, dataInicial, dataFinal, hora1, hora2) {
         this.idEvento = idEvento;
@@ -38,6 +39,10 @@ function Evento () {
     
     this.setHora2 = function (hora2) {
         this.hora2 = hora2;
+    }
+    
+    this.setPrivado = function (privado) {
+        this.privado = privado;
     }
     
     this.emString = function () {
