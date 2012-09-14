@@ -16,7 +16,8 @@ class Application_Model_Evento extends Zend_Db_Table_Row_Abstract {
     }
 
     public function getData_inicial() {
-        return $this->data_inicial;
+        list($ano, $mes, $dia) = explode("-", $this->data_inicial);
+        return $dia .'/'.$mes.'/'.$ano;
     }
 
     public function setData_inicial($data_inicial) {
@@ -62,7 +63,7 @@ class Application_Model_Evento extends Zend_Db_Table_Row_Abstract {
     }
     
     public function isPrivado() {
-        if ($this->privado == 1) {
+        if ($this->privado == 1 || $this->privado == true) {
             return true;
         } else {
             return false;
@@ -70,7 +71,11 @@ class Application_Model_Evento extends Zend_Db_Table_Row_Abstract {
     }
 
     public function setPrivado($privado) {
-        $this->privado = $privado;
+        if ($privado == 'privado' || $privado == 1 || $privado == true) {
+            $this->privado = true;
+        } else {
+            $this->privado = false;
+        }
     }
 
 }
