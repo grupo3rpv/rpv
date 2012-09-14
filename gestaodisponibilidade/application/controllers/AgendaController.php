@@ -7,7 +7,8 @@ class AgendaController extends Zend_Controller_Action {
     }
 
     public function indexAction() {
-        $id_professor = '1';
+         $id_professor = '1';
+         
         $arrayEventos = array();
 
         /* $modelProfessor = new Application_Model_DbTable_Professor();
@@ -50,6 +51,9 @@ class AgendaController extends Zend_Controller_Action {
             
             $arrayEventoUsuarioProprietario = array();
             $arrayEventoUsuarioProprietario['id_professor'] = '1';
+            $modelProf = new Application_Model_DbTable_Professor();
+            $nomeP = $modelProf->listaProfessorPorID('1');
+            $nomeProfessorProprietario = $nomeP->getNome();
             $arrayEventoUsuarioProprietario['id_evento'] = $id_evento;
             $arrayEventoUsuarioProprietario['convite']= $proprietario;
             $modelEventoUsuario = new Application_Model_DbTable_EventoUsuario();
@@ -62,34 +66,41 @@ class AgendaController extends Zend_Controller_Action {
                     $arrayEventosUsuarioConvidado['id_evento']=$id_evento;
                     $arrayEventosUsuarioConvidado['convite']='convidado';
                    
-                    $arrayEmail = array();
-                    $arrayEmail['convidado'] ='Marcelo Maia';
-                    $arrayEmail['proprietarioEvento'] ='Helisson';
-                    $arrayEmail['dia'] ='10/10/10';
-                    $arrayEmail['horaInicial'] ='09:00';
-                    $arrayEmail['horaFinal'] ='11:00';
+                    
                     
                     
                     
                     
                     $modelProfessor = new Application_Model_DbTable_Professor();
                     $professor = $modelProfessor->listaProfessorPorID($id_professores[$index]);
+                    
                     /*colocar emails falsos*/
                     /*Nome convidado, nome proprietario do evento, dia, hora inicial, hora final*/
                     $email = $professor->getEmail();
-                    $mail = new Zend_Mail('utf8');
-                    $mail->setSubject("Você foi convidado para um evento")
-                    ->setFrom('contato.meucontrole@gmail.com')
-                    ->addTo('brunodosax@hotmail.com')
+                    $nomeProfessorConvidado =$professor->getNome();
+                    $arrayEmail = array();
+                    $arrayEmail['convidado'] =$nomeProfessorConvidado;
+                    $arrayEmail['proprietarioEvento'] =$nomeProfessorProprietario;
+                    $arrayEmail['dia'] =$dados['data_inicial'];
+                    $arrayEmail['diaFinal'] =$dados['data_final'];
+                    $arrayEmail['horaInicial'] =$dados['hora1'];
+                    $arrayEmail['horaFinal'] =$dados['hora2'];
+                    $arrayEmail['id_evento'] =$id_evento;
+                    $arrayEmail['id_professor'] =$professor->getId_usuario();
+ 
+                     $mail = new Zend_Mail('utf8');
+                     $mail->setSubject("Você foi convidado para um evento")
+                    // colocar o email que deseja testar aq
+                    ->addTo('marcelomaialopes@yahoo.com.br')
                     ->setBodyHtml($this->view->partial('templates/conviteevento.phtml',$arrayEmail))
                     ->send(); 
-                    var_dump($email);die();
-                    /*chamar função que manda o email*/
+
+                     /*chamar função que manda o email*/
                     $modelEventoUsuario->cadastrarEventoUsuario($arrayEventosUsuarioConvidado);
                 }
             }
             
-            
+             
            
             
            
@@ -108,5 +119,27 @@ class AgendaController extends Zend_Controller_Action {
             $arrayProfessores[$item->getId_usuario()] = $item->getNome();
         }
         $this->view->lista = $arrayProfessores;
+    }
+    
+    public function confirmacaoEventoAction(){
+        $id_evento = $this->getRequest()->getParam('34');
+        $id_professor = $this->getRequest()->getParam('8634');
+        
+        $modelEventoUsuario = new Application_Model_DbTable_EventoUsuario();
+        $dados['id_professor']=$id_professor;
+        $dados['id_evento']=$id_evento;
+        $modelEventoUsuario->eventoAceitoPorEmail($dados);
+        
+    }
+    
+    public function recusarEventoAction(){
+        $id_evento = $this->getRequest()->getParam('34');
+        $id_professor = $this->getRequest()->getParam('8634');
+        
+        $modelEventoUsuario = new Application_Model_DbTable_EventoUsuario();
+        $dados['id_professor']=$id_professor;
+        $dados['id_evento']=$id_evento;
+        $modelEventoUsuario->eventoRecusadoPorEmail($dados);
+        
     }
 }
