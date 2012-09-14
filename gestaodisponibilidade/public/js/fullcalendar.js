@@ -62,7 +62,7 @@ var defaults = {
 	isRTL: false,
 	firstDay: 0,
 	monthNames: ['Janeiro','Fevereiro','Março','Abril','Maio','Junho','Julho','Agosto','Setembro','Outubro','Novembro','Dezembro'],
-	monthNamesShort: ['Jan','Feb','Mar','Abr','Mai','Jun','Jul','Ago','Set','Otu','Nov','Dez'],
+	monthNamesShort: ['Jan','Fev','Mar','Abr','Mai','Jun','Jul','Ago','Set','Out','Nov','Dez'],
 	dayNames: ['Domingo','Segunda','Terça','Quarta','Quinta','Sexta','Sabado'],
 	dayNamesShort: ['Dom','Seg','Ter','Qua','Qui','Sex','Sab'],
 	buttonText: {
@@ -70,10 +70,10 @@ var defaults = {
 		next: '&nbsp;&#9658;&nbsp;',
 		prevYear: '&nbsp;&lt;&lt;&nbsp;',
 		nextYear: '&nbsp;&gt;&gt;&nbsp;',
-		today: 'today',
-		month: 'month',
-		week: 'week',
-		day: 'day'
+		today: 'hoje',
+		month: 'mês',
+		week: 'semana',
+		day: 'dia'
 	},
 	
 	// jquery-ui theming
