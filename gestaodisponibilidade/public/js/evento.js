@@ -11,8 +11,8 @@ function Evento () {
     this.construct = function (idEvento, titulo, dataInicial, dataFinal, hora1, hora2) {
         this.idEvento = idEvento;
         this.titulo = titulo;
-        this.dataInicial = converteDataDBToPTBR(dataInicial);
-        this.dataFinal = converteDataDBToPTBR(dataFinal);
+        this.dataInicial = dataInicial; //converteDataDBToPTBR(dataInicial);
+        this.dataFinal = dataFinal; //converteDataDBToPTBR(dataFinal);
         this.hora1 = hora1;
         this.hora2 = hora2;
     }
@@ -26,11 +26,13 @@ function Evento () {
     }
     
     this.setDataInicial = function (dataInicial) {
-        this.dataInicial = converteDataDBToPTBR(dataInicial);
+        //this.dataInicial = converteDataDBToPTBR(dataInicial);
+        this.dataInicial = dataInicial;
     }
     
     this.setDataFinal = function (dataFinal) {
-        this.dataFinal = converteDataDBToPTBR(dataFinal);
+        //this.dataFinal = converteDataDBToPTBR(dataFinal);
+        this.dataFinal = dataFinal;
     }
     
     this.setHora1 = function (hora1) {

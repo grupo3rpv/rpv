@@ -225,7 +225,6 @@ class ProfessorController extends Zend_Controller_Action {
         $professorDAO = new Application_Model_DbTable_Usuario();
         $professor = $professorDAO->find($id)->current();
         $eventos = $professor->getEventos();
-        
         $arrayEventos = "";
         $isFirstTime = true;
         /* @var $evento Application_Model_Evento */
