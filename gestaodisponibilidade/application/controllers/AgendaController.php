@@ -7,13 +7,14 @@ class AgendaController extends Zend_Controller_Action {
     }
 
     public function indexAction() {
-        $id_professor = '1';
+        $idProfessor = $this->getRequest()->getParam('professor');
         $arrayEventos = array();
 
         $usuarioDAO = new Application_Model_DbTable_Usuario();
         /* @var $usuario Application_Model_Usuario */
-        $usuario = $usuarioDAO->find($id_professor)->current();
-        $listaEventos = $usuario->getEventos();
+        $usuario = $usuarioDAO->find($idProfessor)->current();
+        //$listaEventos = $usuario->getEventos();
+        $listaEventos = $usuario->getEventosConfirmados();
 
         foreach ($listaEventos as $value) {
             $arrayEventos['dataInicial'][] = $value['data_inicial'];
@@ -28,6 +29,7 @@ class AgendaController extends Zend_Controller_Action {
     }
 
     public function addEventoAction() {
+        $idProfessor = '1';
         $proprietario = 'proprietario';
         $dados = $this->getRequest()->getParams();
         unset($dados['controller']);
@@ -42,7 +44,7 @@ class AgendaController extends Zend_Controller_Action {
         $id_evento = $modelEvento->cadastraEvento($dados);
 
         $arrayEventoUsuarioProprietario = array();
-        $arrayEventoUsuarioProprietario['id_professor'] = '1';
+        $arrayEventoUsuarioProprietario['id_professor'] = $idProfessor;
         $modelProf = new Application_Model_DbTable_Professor();
         $nomeP = $modelProf->listaProfessorPorID('1');
         $nomeProfessorProprietario = $nomeP->getNome();
@@ -87,6 +89,8 @@ class AgendaController extends Zend_Controller_Action {
                 $modelEventoUsuario->cadastrarEventoUsuario($arrayEventosUsuarioConvidado);
             }
         }
+        
+        $this->_redirect('/agenda/index/professor/' . $idProfessor);
     }
 
     public function cadastrarEventoAction() {

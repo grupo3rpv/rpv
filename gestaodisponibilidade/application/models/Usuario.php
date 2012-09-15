@@ -40,8 +40,13 @@ class Application_Model_Usuario extends Zend_Db_Table_Row_Abstract {
         return $this->eventos;
     }
     
-    /*public function getEventos() {
-        
-        return $this->getEventos($select);
-    }*/
+    public function getEventosConfirmados() {
+        $select = $this->select()->where('id_professor = ?', $this->getId_usuario())
+                ->where('convite = ?', 'proprietario')
+                ->orWhere('convite = ?', 'confirmado')
+                ->orWhere('convite = ?', null)
+                ->orWhere('convite = ?', 'null');
+        $this->eventos = $this->findManyToManyRowset('Application_Model_DbTable_Evento', 'Application_Model_DbTable_EventoUsuario', null, null, $select);
+        return $this->eventos;
+    }
 }

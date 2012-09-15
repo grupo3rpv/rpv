@@ -70,7 +70,7 @@ class Application_Model_Evento extends Zend_Db_Table_Row_Abstract {
     }
 
     public function setPrivado($privado) {
-        if ($privado == 'privado' || $privado == 1 || $privado == true) {
+        if ($privado === 'privado' || $privado === 1 || $privado === true) {
             $this->privado = true;
         } else {
             $this->privado = false;
