@@ -90,7 +90,7 @@ class AgendaController extends Zend_Controller_Action {
             }
         }
         
-        $this->_redirect('/agenda/index/professor/' . $idProfessor);
+        //$this->_redirect('/agenda/index/professor/' . $idProfessor);
     }
 
     public function cadastrarEventoAction() {

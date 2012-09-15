@@ -148,12 +148,12 @@ choques. Rotação de corpos rígidos. Gravitação.', 'carga_horaria' => '75h',
     /**
      * Insere os valores na tabela evento_usuario
      */
-    $db->insert('evento_usuario', array('id_evento' => '1', 'id_professor' => '1'));
-    $db->insert('evento_usuario', array('id_evento' => '2', 'id_professor' => '1'));
-    $db->insert('evento_usuario', array('id_evento' => '3', 'id_professor' => '2'));
-    $db->insert('evento_usuario', array('id_evento' => '4', 'id_professor' => '2'));
-    $db->insert('evento_usuario', array('id_evento' => '5', 'id_professor' => '2'));
-    $db->insert('evento_usuario', array('id_evento' => '6', 'id_professor' => '1'));
+    $db->insert('evento_usuario', array('id_evento' => '1', 'id_professor' => '1', 'convite' => 'proprietario'));
+    $db->insert('evento_usuario', array('id_evento' => '2', 'id_professor' => '1', 'convite' => 'proprietario'));
+    $db->insert('evento_usuario', array('id_evento' => '3', 'id_professor' => '2', 'convite' => 'proprietario'));
+    $db->insert('evento_usuario', array('id_evento' => '4', 'id_professor' => '2', 'convite' => 'proprietario'));
+    $db->insert('evento_usuario', array('id_evento' => '5', 'id_professor' => '2', 'convite' => 'proprietario'));
+    $db->insert('evento_usuario', array('id_evento' => '6', 'id_professor' => '1', 'convite' => 'proprietario'));
     
 endif;
 
@@ -298,11 +298,11 @@ choques. Rotação de corpos rígidos. Gravitação.', 'carga_horaria' => '75h',
     /**
      * Insere os valores na tabela evento_usuario
      */
-    $db->insert('evento_usuario', array('id_evento' => '1', 'id_professor' => '1'));
-    $db->insert('evento_usuario', array('id_evento' => '2', 'id_professor' => '1'));
-    $db->insert('evento_usuario', array('id_evento' => '3', 'id_professor' => '2'));
-    $db->insert('evento_usuario', array('id_evento' => '4', 'id_professor' => '2'));
-    $db->insert('evento_usuario', array('id_evento' => '5', 'id_professor' => '2'));
-    $db->insert('evento_usuario', array('id_evento' => '6', 'id_professor' => '1'));
+    $db->insert('evento_usuario', array('id_evento' => '1', 'id_professor' => '1', 'convite' => 'proprietario'));
+    $db->insert('evento_usuario', array('id_evento' => '2', 'id_professor' => '1', 'convite' => 'proprietario'));
+    $db->insert('evento_usuario', array('id_evento' => '3', 'id_professor' => '2', 'convite' => 'proprietario'));
+    $db->insert('evento_usuario', array('id_evento' => '4', 'id_professor' => '2', 'convite' => 'proprietario'));
+    $db->insert('evento_usuario', array('id_evento' => '5', 'id_professor' => '2', 'convite' => 'proprietario'));
+    $db->insert('evento_usuario', array('id_evento' => '6', 'id_professor' => '1', 'convite' => 'proprietario'));
     
 endif;
