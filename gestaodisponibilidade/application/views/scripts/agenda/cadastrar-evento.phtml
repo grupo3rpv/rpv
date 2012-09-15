@@ -213,14 +213,20 @@
 
 <form method="POST" action="<?= $this->baseUrl('agenda/add-evento') ?>">
     <div style="margin-left: 5%;width: 50%">
-        Descrição do evento:  <input id="titulo" name="titulo" class="i-format" type="text" /><p/>
-        Data Inicial :<input class="subscr_email" id="data_inicial" name="data_inicial" type="text" onblur="trocaData($('#data_inicial').val())" /><div style="color: red;margin-left: 350px;"  id="alerta">Para adicionar um professor você devera selecionar uma data inicial.</div><p/>
-        Data Final   :<input class="subscr_email" id="data_final" name="data_final" type="text" /><p/>
-        Hora Inicial:  <input name="hora1"  class="subscr_email" type="text" id="hora1"  size="5" maxlength="5" /><p/>
-        Hora Final:  <input name="hora2" class="subscr_email"  type="text" id="hora2"   size="5" maxlength="5" /><p/>
-        Privacidade: <input id="privado" name="privado" type="radio" value="publico" checked />Público <input id="privado" name="privado" type="radio" value="privado" />Privado
-        <br /><br />
-        Adicionar convidado: <input id="convidados" type="text" class="i-format" /><a onclick="adicionarProfessor($('#convidados').val())" class="button">Adicionar</a><p/>
+        <p>Descrição do evento:  <input id="titulo" name="titulo" class="i-format" type="text" value="<?= $this->evento->getTitulo() ?>" /><p/>
+        <p>Data Inicial:<br /><input class="subscr_email" value="<? if ($this->existe) { echo ($this->evento->getData_inicial());} else { echo (""); } ?>" id="data_inicial" name="data_inicial" type="text" onblur="trocaData($('#data_inicial').val())" /><div style="color: red;margin-left: 350px;"  id="alerta">Para adicionar um professor você devera selecionar uma data inicial.</div><p/>
+        <p>Data Final:<br /><input class="subscr_email" value="<? if ($this->existe) { echo ($this->evento->getData_final());} else { echo (""); } ?>" id="data_final" name="data_final" type="text" /><p/>
+        <p>Hora Inicial:<br /><input name="hora1"  value="<? if ($this->existe) { echo ($this->evento->getHora1());} else { echo (""); } ?>" class="subscr_email" type="text" id="hora1"  size="5" maxlength="5" /><p/>
+        <p>Hora Final:<br /><input name="hora2" value="<? if ($this->existe) { echo ($this->evento->getHora2());} else { echo (""); } ?>" class="subscr_email"  type="text" id="hora2"   size="5" maxlength="5" /><p/>
+        <p>Privacidade:<br /><?
+        if ($this->existe == true && $this->evento->isPrivado() == true) {
+            echo '<input id="privado" name="privado" type="radio" value="publico" />Público <input id="privado" name="privado" type="radio" value="privado" checked />Privado';
+        } else {
+            echo '<input id="privado" name="privado" type="radio" value="publico" checked />Público <input id="privado" name="privado" type="radio" value="privado" />Privado';
+        }
+        ?></p>
+        <br />
+        <p>Adicionar convidado:<br /><input id="convidados" type="text" class="i-format" /><a onclick="adicionarProfessor($('#convidados').val())" class="button">Adicionar</a><p/>
         <div id="profConvidado">
             <center><h3 id="dia"></h3></center>
             <table>

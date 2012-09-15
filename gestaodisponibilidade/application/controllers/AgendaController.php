@@ -108,6 +108,17 @@ class AgendaController extends Zend_Controller_Action {
     }
 
     public function cadastrarEventoAction() {
+        $idEvento = $this->getRequest()->getParam('evento');
+        $eventoDAO = new Application_Model_DbTable_Evento();
+        if (isset($idEvento)) {
+            $evento = $eventoDAO->find($idEvento)->current();
+            $this->view->evento = $evento;
+            $this->view->existe = true;
+        } else {
+            $evento = $eventoDAO->createRow();
+            $this->view->existe = false;
+        }
+        
         $professores = new Application_Model_DbTable_Professor();
         $listaDeProfessores = $professores->listaUsuario();
         $arrayProfessores = array();
