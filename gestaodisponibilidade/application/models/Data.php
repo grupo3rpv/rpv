@@ -13,6 +13,7 @@ class Application_Model_Data
     const ZEND_REGULAR_TIME = 'HH:mm:ss';
     const ZEND_REGULAR_TIME_WITHOUT_SECONDS = 'HH:mm';
     const PHP_REGULAR_TIME = 'H:i:s';
+    const PHP_REGULAR_WEEK = 'N';
     const SEGUNDA_INT = 1;
     const TERCA_INT = 2;
     const QUARTA_INT = 3;
