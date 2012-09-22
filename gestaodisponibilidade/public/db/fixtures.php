@@ -98,20 +98,20 @@ choques. Rotação de corpos rígidos. Gravitação.', 'carga_horaria' => '75h',
     $db->insert('disciplina_curso', array('id_curso' => '4', 'id_disciplina' => '4'));
     $db->insert('disciplina_curso', array('id_curso' => '6', 'id_disciplina' => '5'));
     $db->insert('disciplina_curso', array('id_curso' => '6', 'id_disciplina' => '6'));
-    
+
     /**
      * Insere valores na tabela tipo_usuario
      */
     $db->insert('tipo_usuario', array('id_tipo_usuario' => '1', 'nome' => 'Professor'));
     $db->insert('tipo_usuario', array('id_tipo_usuario' => '2', 'nome' => 'Coordenador'));
-    
+
     /**
      * Insere valores na tabela usuario 
      */
-    $db->insert('usuario', array('id_tipo_usuario' => '1', 'nome' => 'Sergio Mergen', 'matricula' => '123456','email'=>'helisonreus@gmail.com'));
-    $db->insert('usuario', array('id_tipo_usuario' => '1', 'nome' => 'João Pablo', 'matricula' => '654321', 'email'=>'thiagockrug@gmail.com'));
-    $db->insert('usuario', array('id_tipo_usuario' => '1', 'nome' => 'Aline Melo', 'matricula' => '9812749', 'email'=>'brunovicellisax@gmail.com'));
-    $db->insert('usuario', array('id_tipo_usuario' => '2', 'nome' => 'Cleo Billa', 'matricula' => '346320', 'email'=>'marcelomaialopes@yahoo.com.br'));
+    $db->insert('usuario', array('id_tipo_usuario' => '1', 'nome' => 'Sergio Mergen', 'matricula' => '123456', 'email' => 'helisonreus@gmail.com'));
+    $db->insert('usuario', array('id_tipo_usuario' => '1', 'nome' => 'João Pablo', 'matricula' => '654321', 'email' => 'thiagockrug@gmail.com'));
+    $db->insert('usuario', array('id_tipo_usuario' => '1', 'nome' => 'Aline Melo', 'matricula' => '9812749', 'email' => 'brunovicellisax@gmail.com'));
+    $db->insert('usuario', array('id_tipo_usuario' => '2', 'nome' => 'Cleo Billa', 'matricula' => '346320', 'email' => 'marcelomaialopes@yahoo.com.br'));
 
     /**
      * Insere valores na tabela area_professor 
@@ -121,7 +121,7 @@ choques. Rotação de corpos rígidos. Gravitação.', 'carga_horaria' => '75h',
     $db->insert('area_professor', array('id_area' => '3', 'id_professor' => '1'));
     $db->insert('area_professor', array('id_area' => '2', 'id_professor' => '2'));
     $db->insert('area_professor', array('id_area' => '7', 'id_professor' => '2'));
-    
+
     /**
      * Insere valores na tabela nivel_interesse
      */
@@ -129,11 +129,10 @@ choques. Rotação de corpos rígidos. Gravitação.', 'carga_horaria' => '75h',
     $db->insert('nivel_interesse', array('id_professor' => '1', 'id_disciplina' => '4', 'nivel_interesse' => '4'));
     $db->insert('nivel_interesse', array('id_professor' => '2', 'id_disciplina' => '4', 'nivel_interesse' => '4'));
     $db->insert('nivel_interesse', array('id_professor' => '2', 'id_disciplina' => '2', 'nivel_interesse' => '5'));
-    
+
     /**
      * Insere valores na tabela evento 
      */
-
     $mes = date('m');
     $dia = date('d');
     $ano = date('Y');
@@ -162,7 +161,57 @@ choques. Rotação de corpos rígidos. Gravitação.', 'carga_horaria' => '75h',
     $db->insert('evento_usuario', array('id_evento' => '8', 'id_professor' => '3', 'convite' => 'proprietario'));
     $db->insert('evento_usuario', array('id_evento' => '9', 'id_professor' => '4', 'convite' => 'proprietario'));
     $db->insert('evento_usuario', array('id_evento' => '10', 'id_professor' => '4', 'convite' => 'proprietario'));
-    
+
+    /**
+     * Insere os valores na tabela turma 
+     */
+    $db->insert('turma', array('nome' => '1ºSemestre'));
+    $db->insert('turma', array('nome' => '2ºSemestre'));
+    $db->insert('turma', array('nome' => '3ºSemestre'));
+    $db->insert('turma', array('nome' => '4ºSemestre'));
+    $db->insert('turma', array('nome' => '5ºSemestre'));
+    $db->insert('turma', array('nome' => '6ºSemestre'));
+    $db->insert('turma', array('nome' => '7ºSemestre'));
+    $db->insert('turma', array('nome' => '8ºSemestre'));
+    $db->insert('turma', array('nome' => '9ºSemestre'));
+    $db->insert('turma', array('nome' => '10ºSemestre'));
+    $db->insert('turma', array('nome' => '11ºSemestre'));
+    $db->insert('turma', array('nome' => '12ºSemestre'));
+
+    /**
+     * Insere valores na tabela periodo_letivo 
+     */
+    $db->insert('periodo_letivo', array('nome' => '2010/1'));
+    $db->insert('periodo_letivo', array('nome' => '2010/2'));
+    $db->insert('periodo_letivo', array('nome' => '2011/1'));
+    $db->insert('periodo_letivo', array('nome' => '2011/2'));
+    $db->insert('periodo_letivo', array('nome' => '2012/1'));
+    $db->insert('periodo_letivo', array('nome' => '2012/2'));
+    $db->insert('periodo_letivo', array('nome' => '2013/1'));
+    $db->insert('periodo_letivo', array('nome' => '2013/2'));
+
+
+    /**
+     * Insere valores na tabela horario 
+     */
+    $mes = date('m');
+    $dia = date('d');
+    $ano = date('Y');
+    $hoje = $ano . '-' . $mes . '-' . $dia;
+    $db->insert('horario', array('id_turma' => '5', 'id_periodo_letivo' => '5', 'id_disciplina_curso' => '1', 'status' => '1', 'dia' => $hoje, 'hora_inicial' => '07:30:00', 'hora_final' => '11:30:00'));
+    $db->insert('horario', array('id_turma' => '5', 'id_periodo_letivo' => '5', 'id_disciplina_curso' => '2', 'status' => '1', 'dia' => $hoje, 'hora_inicial' => '13:30:00', 'hora_final' => '14:30:00'));
+    $db->insert('horario', array('id_turma' => '5', 'id_periodo_letivo' => '5', 'id_disciplina_curso' => '3', 'status' => '1', 'dia' => $hoje, 'hora_inicial' => '18:30:00', 'hora_final' => '20:30:00'));
+
+
+    /**
+     * Insere valores na tabela horario_professor 
+     */
+    $db->insert('horario_professor', array('id_professor' => '1', 'id_horario' => '1'));
+    $db->insert('horario_professor', array('id_professor' => '2', 'id_horario' => '2'));
+    $db->insert('horario_professor', array('id_professor' => '3', 'id_horario' => '3'));
+
+
+
 endif;
 
 if (APPLICATION_ENV == 'testing'):
@@ -258,19 +307,19 @@ choques. Rotação de corpos rígidos. Gravitação.', 'carga_horaria' => '75h',
     $db->insert('disciplina_curso', array('id_curso' => '6', 'id_disciplina' => '5'));
     $db->insert('disciplina_curso', array('id_curso' => '6', 'id_disciplina' => '6'));
 
-        /**
+    /**
      * Insere valores na tabela tipo_usuario
      */
     $db->insert('tipo_usuario', array('id_tipo_usuario' => '1', 'nome' => 'Professor'));
     $db->insert('tipo_usuario', array('id_tipo_usuario' => '2', 'nome' => 'Coordenador'));
-    
+
     /**
      * Insere valores na tabela usuario 
      */
-    $db->insert('usuario', array('id_tipo_usuario' => '1', 'nome' => 'Sergio Mergen', 'matricula' => '123456','email'=>'helisonreus@gmail.com'));
-    $db->insert('usuario', array('id_tipo_usuario' => '1', 'nome' => 'João Pablo', 'matricula' => '654321', 'email'=>'thiagockrug@gmail.com'));
-    $db->insert('usuario', array('id_tipo_usuario' => '1', 'nome' => 'Aline Melo', 'matricula' => '9812749', 'email'=>'brunovicellisax@gmail.com'));
-    $db->insert('usuario', array('id_tipo_usuario' => '2', 'nome' => 'Cleo Billa', 'matricula' => '346320', 'email'=>'marcelomaialopes@yahoo.com.br'));
+    $db->insert('usuario', array('id_tipo_usuario' => '1', 'nome' => 'Sergio Mergen', 'matricula' => '123456', 'email' => 'helisonreus@gmail.com'));
+    $db->insert('usuario', array('id_tipo_usuario' => '1', 'nome' => 'João Pablo', 'matricula' => '654321', 'email' => 'thiagockrug@gmail.com'));
+    $db->insert('usuario', array('id_tipo_usuario' => '1', 'nome' => 'Aline Melo', 'matricula' => '9812749', 'email' => 'brunovicellisax@gmail.com'));
+    $db->insert('usuario', array('id_tipo_usuario' => '2', 'nome' => 'Cleo Billa', 'matricula' => '346320', 'email' => 'marcelomaialopes@yahoo.com.br'));
 
     /**
      * Insere valores na tabela area_professor 
@@ -280,7 +329,7 @@ choques. Rotação de corpos rígidos. Gravitação.', 'carga_horaria' => '75h',
     $db->insert('area_professor', array('id_area' => '3', 'id_professor' => '1'));
     $db->insert('area_professor', array('id_area' => '2', 'id_professor' => '2'));
     $db->insert('area_professor', array('id_area' => '7', 'id_professor' => '2'));
-    
+
     /**
      * Insere valores na tabela nivel_interesse
      */
@@ -288,11 +337,10 @@ choques. Rotação de corpos rígidos. Gravitação.', 'carga_horaria' => '75h',
     $db->insert('nivel_interesse', array('id_professor' => '1', 'id_disciplina' => '4', 'nivel_interesse' => '4'));
     $db->insert('nivel_interesse', array('id_professor' => '2', 'id_disciplina' => '4', 'nivel_interesse' => '4'));
     $db->insert('nivel_interesse', array('id_professor' => '2', 'id_disciplina' => '2', 'nivel_interesse' => '5'));
-    
+
     /**
      * Insere valores na tabela evento 
      */
-
     $mes = date('m');
     $dia = date('d');
     $ano = date('Y');
@@ -321,6 +369,56 @@ choques. Rotação de corpos rígidos. Gravitação.', 'carga_horaria' => '75h',
     $db->insert('evento_usuario', array('id_evento' => '8', 'id_professor' => '3', 'convite' => 'proprietario'));
     $db->insert('evento_usuario', array('id_evento' => '9', 'id_professor' => '4', 'convite' => 'proprietario'));
     $db->insert('evento_usuario', array('id_evento' => '10', 'id_professor' => '4', 'convite' => 'proprietario'));
+
+    /**
+     * Insere os valores na tabela turma 
+     */
+    $db->insert('turma', array('nome' => '1ºSemestre'));
+    $db->insert('turma', array('nome' => '2ºSemestre'));
+    $db->insert('turma', array('nome' => '3ºSemestre'));
+    $db->insert('turma', array('nome' => '4ºSemestre'));
+    $db->insert('turma', array('nome' => '5ºSemestre'));
+    $db->insert('turma', array('nome' => '6ºSemestre'));
+    $db->insert('turma', array('nome' => '7ºSemestre'));
+    $db->insert('turma', array('nome' => '8ºSemestre'));
+    $db->insert('turma', array('nome' => '9ºSemestre'));
+    $db->insert('turma', array('nome' => '10ºSemestre'));
+    $db->insert('turma', array('nome' => '11ºSemestre'));
+    $db->insert('turma', array('nome' => '12ºSemestre'));
+
+    /**
+     * Insere valores na tabela periodo_letivo 
+     */
+    $db->insert('periodo_letivo', array('nome' => '2010/1'));
+    $db->insert('periodo_letivo', array('nome' => '2010/2'));
+    $db->insert('periodo_letivo', array('nome' => '2011/1'));
+    $db->insert('periodo_letivo', array('nome' => '2011/2'));
+    $db->insert('periodo_letivo', array('nome' => '2012/1'));
+    $db->insert('periodo_letivo', array('nome' => '2012/2'));
+    $db->insert('periodo_letivo', array('nome' => '2013/1'));
+    $db->insert('periodo_letivo', array('nome' => '2013/2'));
+
+
+  
+    /**
+     * Insere valores na tabela horario 
+     */
+    $mes = date('m');
+    $dia = date('d');
+    $ano = date('Y');
+    $hoje = $ano . '-' . $mes . '-' . $dia;
+    $db->insert('horario', array('id_turma' => '5', 'id_periodo_letivo' => '5', 'id_disciplina_curso' => '1', 'status' => '1', 'dia' => $hoje, 'hora_inicial' => '07:30:00', 'hora_final' => '11:30:00'));
+    $db->insert('horario', array('id_turma' => '5', 'id_periodo_letivo' => '5', 'id_disciplina_curso' => '2', 'status' => '1', 'dia' => $hoje, 'hora_inicial' => '13:30:00', 'hora_final' => '14:30:00'));
+    $db->insert('horario', array('id_turma' => '5', 'id_periodo_letivo' => '5', 'id_disciplina_curso' => '3', 'status' => '1', 'dia' => $hoje, 'hora_inicial' => '18:30:00', 'hora_final' => '20:30:00'));
+
+
+    /**
+     * Insere valores na tabela horario_professor 
+     */
+    $db->insert('horario_professor', array('id_professor' => '1', 'id_horario' => '1'));
+    $db->insert('horario_professor', array('id_professor' => '2', 'id_horario' => '2'));
+    $db->insert('horario_professor', array('id_professor' => '3', 'id_horario' => '3'));
+
     
     
 endif;

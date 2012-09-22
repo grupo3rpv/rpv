@@ -265,6 +265,82 @@ CREATE  TABLE IF NOT EXISTS `evento_usuario` (
 ENGINE = InnoDB;
 
 
+-- -----------------------------------------------------
+-- Table `turma`
+-- -----------------------------------------------------
+CREATE  TABLE IF NOT EXISTS `turma` (
+  `id_turma` INT NOT NULL AUTO_INCREMENT ,
+  `nome` VARCHAR(100) NULL ,
+  PRIMARY KEY (`id_turma`) )
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `periodo_letivo`
+-- -----------------------------------------------------
+CREATE  TABLE IF NOT EXISTS `periodo_letivo` (
+  `id_periodo_letivo` INT NOT NULL AUTO_INCREMENT ,
+  `nome` CHAR(6) NULL ,
+  PRIMARY KEY (`id_periodo_letivo`) )
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `horario`
+-- -----------------------------------------------------
+CREATE  TABLE IF NOT EXISTS `horario` (
+  `id_horario` INT NOT NULL AUTO_INCREMENT ,
+  `id_turma` INT NOT NULL ,
+  `id_periodo_letivo` INT NOT NULL ,
+  `id_disciplina_curso` INT NOT NULL ,
+  `status` TINYINT(1) NULL ,
+  `dia` DATE NULL ,
+  `hora_inicial` TIME NULL ,
+  `hora_final` TIME NULL ,
+  PRIMARY KEY (`id_horario`) ,
+  INDEX `fk_grade_horario_turma1` (`id_turma` ASC) ,
+  INDEX `fk_grade_horario_periodo1` (`id_periodo_letivo` ASC) ,
+  INDEX `fk_grade_horario_disciplina_curso1` (`id_disciplina_curso` ASC) ,
+  CONSTRAINT `fk_grade_horario_turma1`
+    FOREIGN KEY (`id_turma` )
+    REFERENCES `turma` (`id_turma` )
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_grade_horario_periodo1`
+    FOREIGN KEY (`id_periodo_letivo` )
+    REFERENCES `periodo_letivo` (`id_periodo_letivo` )
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_grade_horario_disciplina_curso1`
+    FOREIGN KEY (`id_disciplina_curso` )
+    REFERENCES `disciplina_curso` (`id_disciplina_curso` )
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `horario_professor`
+-- -----------------------------------------------------
+CREATE  TABLE IF NOT EXISTS `horario_professor` (
+  `id_professor` INT NOT NULL ,
+  `id_horario` INT NOT NULL ,
+  PRIMARY KEY (`id_professor`, `id_horario`) ,
+  INDEX `fk_usuario_has_horario_usuario1` (`id_professor` ASC) ,
+  INDEX `fk_horario_professor_horario1` (`id_horario` ASC) ,
+  CONSTRAINT `fk_usuario_has_horario_usuario1`
+    FOREIGN KEY (`id_professor` )
+    REFERENCES `usuario` (`id_usuario` )
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_horario_professor_horario1`
+    FOREIGN KEY (`id_horario` )
+    REFERENCES `horario` (`id_horario` )
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
 
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
