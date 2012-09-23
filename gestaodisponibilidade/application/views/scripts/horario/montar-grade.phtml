@@ -3,6 +3,7 @@
 <script type='text/javascript' src="<?= $this->baseUrl('/js/horario/turma.js') ?>" ></script>
 <script type='text/javascript' src="<?= $this->baseUrl('/js/horario/disciplina.js') ?>" ></script>
 <script type='text/javascript' src="<?= $this->baseUrl('/js/horario/professor.js') ?>" ></script>
+<script type='text/javascript' src="<?= $this->baseUrl('/js/horario/disponibilidade-aula.js') ?>" ></script>
 <script type='text/javascript'>
     $(document).ready(function() {
         getCursos('<?= $this->baseUrl('/horario/get-cursos/') ?>', '#cursos');
@@ -23,34 +24,76 @@
         var idDisciplina = $('#disciplinas').val();
         getProfessores('<?= $this->baseUrl('/horario/get-professores/disciplina/') ?>', '#professores', idDisciplina);
     }
+    
+    function getDisponibilidades() {
+        var idProfessor = $('#professores').val();
+        cleanColors();
+        getDisponibilidadeProfessor('<?= $this->baseUrl('/horario/get-disponibilidade-professor/professor/') ?>', idProfessor);
+    }
+    
+    function cleanColors() {
+        var diasHoras = [<?
+$dh = true;
+foreach ($this->horas as $hora) {
+    foreach ($this->dias as $dia) {
+        if ($dh) {
+            echo '"' . $hora . '-' . $dia . '"';
+            $dh = false;
+        } else {
+            echo ', "' . $hora . '-' . $dia . '"';
+        }
+    }
+}
+?>];
+            $.each(diasHoras, function() {
+                $("#" + this).removeClass('disp');
+                $("#" + this).removeClass('marc');
+            })
+        }
+        
+        function marcarHorario(seletor) {
+            $("#" + seletor).removeClass('disp');
+            $("#" + seletor).removeClass('marc');
+            $("#" + seletor).addClass('marc');
+            addHorario(null, seletor, null);
+        }
 </script>
+<style type="text/css">
+    .disp {
+        background-color: greenyellow;
+    }
+    .marc {
+        background-color: #ff9a22;
+    }
+</style>
 <form>
     <div id="selects" >
         <label>Período Letivo:</label><select id="periodosLetivos" title="Período Letivo" ><option label="" selected="selected" value=""></option></select>
         <label>Curso:</label><select id="cursos" title="Curso" onchange="getDisciplinasCurso()"><option label="" selected="selected" value=""></option></select>
         <label>Turma:</label><select id="turmas" title="Turma" ><option label="" selected="selected" value=""></option></select>
-        <label>Disciplina:</label><select id="disciplinas" title="Disciplina" onclick="getProfessoresNI()"><option label="" selected="selected" value=""></option></select>
-        <label>Professor:</label><select id="professores" title="Professor" ><option label="" selected="selected" value=""></option></select>
+        <label>Disciplina:</label><select id="disciplinas" title="Disciplina" onchange="getProfessoresNI()"><option label="" selected="selected" value=""></option></select>
+        <label>Professor:</label><select id="professores" title="Professor" onchange="getDisponibilidades()"><option label="" selected="selected" value=""></option></select>
     </div>
+    <div>Legenda: <div class="disp" style="height: 30px; width: 150px;">Horário disponível</div><div class="marc" style="height: 30px; width: 150px;">Horário já marcado</div></div>
     <div id="horarios" >
         <table>
             <thead>
                 <tr>
-                    <td></td>
-                    <td id="segunda">Segunda</td>
-                    <td id="terca">Terça</td>
-                    <td id="quarta">Quarta</td>
-                    <td id="quinta">Quinta</td>
-                    <td id="sexta">Sexta</td>
-                    <td id="sabado">Sábado</td>
+                    <th width="4%"></th>
+                    <th width="14%" id="segunda">Segunda</th>
+                    <th width="14%" id="terca">Terça</th>
+                    <th width="14%" id="quarta">Quarta</th>
+                    <th width="14%" id="quinta">Quinta</th>
+                    <th width="14%" id="sexta">Sexta</th>
+                    <th width="14%" id="sabado">Sábado</th>
                 </tr>
             </thead>
             <tbody>
                 <?
                 foreach ($this->horas as $hora) {
-                    echo '<tr id="' . $hora . '"><td>' . $hora . '</td>';
+                    echo '<tr id="' . $hora . '"><th>' . $hora . ':30</th>';
                     foreach ($this->dias as $dia) {
-                        echo '<td id="' . $dia . '-' . $hora . '"></td>';
+                        echo '<td id="' . $hora . '-' . $dia . '" onclick="marcarHorario(this.id)"></td>';
                     }
                     echo '</tr>';
                 }

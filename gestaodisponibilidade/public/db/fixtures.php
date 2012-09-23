@@ -210,6 +210,42 @@ choques. Rotação de corpos rígidos. Gravitação.', 'carga_horaria' => '75h',
     $db->insert('horario_professor', array('id_professor' => '2', 'id_horario' => '2'));
     $db->insert('horario_professor', array('id_professor' => '3', 'id_horario' => '3'));
 
+    /**
+     * Insere valores na tabela disponibilidade_aula
+     */
+    $db->insert('disponibilidade_aula', array('dia' => '', 'hora' => '', 'id_usuario' => '1'));
+    $db->insert('disponibilidade_aula', array('dia' => 'segunda', 'hora' => '07:30', 'id_usuario' => '1'));
+    $db->insert('disponibilidade_aula', array('dia' => 'terca', 'hora' => '07:30', 'id_usuario' => '1'));
+    $db->insert('disponibilidade_aula', array('dia' => 'quarta', 'hora' => '07:30', 'id_usuario' => '1'));
+    $db->insert('disponibilidade_aula', array('dia' => 'quinta', 'hora' => '07:30', 'id_usuario' => '1'));
+    $db->insert('disponibilidade_aula', array('dia' => 'sexta', 'hora' => '07:30', 'id_usuario' => '1'));
+    $db->insert('disponibilidade_aula', array('dia' => 'sabado', 'hora' => '07:30', 'id_usuario' => '1'));
+    $db->insert('disponibilidade_aula', array('dia' => 'segunda', 'hora' => '08:30', 'id_usuario' => '1'));
+    $db->insert('disponibilidade_aula', array('dia' => 'segunda', 'hora' => '09:30', 'id_usuario' => '1'));
+    $db->insert('disponibilidade_aula', array('dia' => 'segunda', 'hora' => '10:30', 'id_usuario' => '1'));
+    $db->insert('disponibilidade_aula', array('dia' => 'segunda', 'hora' => '11:30', 'id_usuario' => '1'));
+    $db->insert('disponibilidade_aula', array('dia' => 'segunda', 'hora' => '12:30', 'id_usuario' => '1'));
+    $db->insert('disponibilidade_aula', array('dia' => 'segunda', 'hora' => '14:30', 'id_usuario' => '1'));
+    $db->insert('disponibilidade_aula', array('dia' => 'segunda', 'hora' => '13:30', 'id_usuario' => '1'));
+    $db->insert('disponibilidade_aula', array('dia' => 'segunda', 'hora' => '15:30', 'id_usuario' => '1'));
+    $db->insert('disponibilidade_aula', array('dia' => 'segunda', 'hora' => '17:30', 'id_usuario' => '1'));
+    $db->insert('disponibilidade_aula', array('dia' => 'segunda', 'hora' => '16:30', 'id_usuario' => '1'));
+    $db->insert('disponibilidade_aula', array('dia' => 'segunda', 'hora' => '18:30', 'id_usuario' => '1'));
+    $db->insert('disponibilidade_aula', array('dia' => 'segunda', 'hora' => '19:30', 'id_usuario' => '1'));
+    $db->insert('disponibilidade_aula', array('dia' => 'segunda', 'hora' => '20:30', 'id_usuario' => '1'));
+    $db->insert('disponibilidade_aula', array('dia' => 'segunda', 'hora' => '21:30', 'id_usuario' => '1'));
+    $db->insert('disponibilidade_aula', array('dia' => 'terca', 'hora' => '09:30', 'id_usuario' => '1'));
+    $db->insert('disponibilidade_aula', array('dia' => 'quarta', 'hora' => '10:30', 'id_usuario' => '1'));
+    $db->insert('disponibilidade_aula', array('dia' => 'quinta', 'hora' => '11:30', 'id_usuario' => '1'));
+    $db->insert('disponibilidade_aula', array('dia' => 'sexta', 'hora' => '13:30', 'id_usuario' => '1'));
+    $db->insert('disponibilidade_aula', array('dia' => 'sabado', 'hora' => '14:30', 'id_usuario' => '1'));
+    $db->insert('disponibilidade_aula', array('dia' => 'sexta', 'hora' => '15:30', 'id_usuario' => '1'));
+    $db->insert('disponibilidade_aula', array('dia' => 'quinta', 'hora' => '16:30', 'id_usuario' => '1'));
+    $db->insert('disponibilidade_aula', array('dia' => 'quarta', 'hora' => '17:30', 'id_usuario' => '1'));
+    $db->insert('disponibilidade_aula', array('dia' => 'terca', 'hora' => '18:30', 'id_usuario' => '1'));
+    $db->insert('disponibilidade_aula', array('dia' => 'quarta', 'hora' => '19:30', 'id_usuario' => '1'));
+    $db->insert('disponibilidade_aula', array('dia' => 'quinta', 'hora' => '20:30', 'id_usuario' => '1'));
+    $db->insert('disponibilidade_aula', array('dia' => 'sexta', 'hora' => '21:30', 'id_usuario' => '1'));
 
 
 endif;
@@ -399,7 +435,7 @@ choques. Rotação de corpos rígidos. Gravitação.', 'carga_horaria' => '75h',
     $db->insert('periodo_letivo', array('nome' => '2013/2'));
 
 
-  
+
     /**
      * Insere valores na tabela horario 
      */
@@ -419,6 +455,40 @@ choques. Rotação de corpos rígidos. Gravitação.', 'carga_horaria' => '75h',
     $db->insert('horario_professor', array('id_professor' => '2', 'id_horario' => '2'));
     $db->insert('horario_professor', array('id_professor' => '3', 'id_horario' => '3'));
 
-    
+    /**
+     * Insere valores na tabela disponibilidade_aula
+     */
+    $db->insert('disponibilidade_aula', array('dia' => '', 'hora' => '', 'id_usuario' => '1'));
+    $db->insert('disponibilidade_aula', array('dia' => 'segunda', 'hora' => '07:30', 'id_usuario' => '1'));
+    $db->insert('disponibilidade_aula', array('dia' => 'terca', 'hora' => '07:30', 'id_usuario' => '1'));
+    $db->insert('disponibilidade_aula', array('dia' => 'quarta', 'hora' => '07:30', 'id_usuario' => '1'));
+    $db->insert('disponibilidade_aula', array('dia' => 'quinta', 'hora' => '07:30', 'id_usuario' => '1'));
+    $db->insert('disponibilidade_aula', array('dia' => 'sexta', 'hora' => '07:30', 'id_usuario' => '1'));
+    $db->insert('disponibilidade_aula', array('dia' => 'sabado', 'hora' => '07:30', 'id_usuario' => '1'));
+    $db->insert('disponibilidade_aula', array('dia' => 'segunda', 'hora' => '08:30', 'id_usuario' => '1'));
+    $db->insert('disponibilidade_aula', array('dia' => 'segunda', 'hora' => '09:30', 'id_usuario' => '1'));
+    $db->insert('disponibilidade_aula', array('dia' => 'segunda', 'hora' => '10:30', 'id_usuario' => '1'));
+    $db->insert('disponibilidade_aula', array('dia' => 'segunda', 'hora' => '11:30', 'id_usuario' => '1'));
+    $db->insert('disponibilidade_aula', array('dia' => 'segunda', 'hora' => '14:30', 'id_usuario' => '1'));
+    $db->insert('disponibilidade_aula', array('dia' => 'segunda', 'hora' => '13:30', 'id_usuario' => '1'));
+    $db->insert('disponibilidade_aula', array('dia' => 'segunda', 'hora' => '15:30', 'id_usuario' => '1'));
+    $db->insert('disponibilidade_aula', array('dia' => 'segunda', 'hora' => '17:30', 'id_usuario' => '1'));
+    $db->insert('disponibilidade_aula', array('dia' => 'segunda', 'hora' => '16:30', 'id_usuario' => '1'));
+    $db->insert('disponibilidade_aula', array('dia' => 'segunda', 'hora' => '18:30', 'id_usuario' => '1'));
+    $db->insert('disponibilidade_aula', array('dia' => 'segunda', 'hora' => '19:30', 'id_usuario' => '1'));
+    $db->insert('disponibilidade_aula', array('dia' => 'segunda', 'hora' => '20:30', 'id_usuario' => '1'));
+    $db->insert('disponibilidade_aula', array('dia' => 'segunda', 'hora' => '21:30', 'id_usuario' => '1'));
+    $db->insert('disponibilidade_aula', array('dia' => 'terca', 'hora' => '09:30', 'id_usuario' => '1'));
+    $db->insert('disponibilidade_aula', array('dia' => 'quarta', 'hora' => '10:30', 'id_usuario' => '1'));
+    $db->insert('disponibilidade_aula', array('dia' => 'quinta', 'hora' => '11:30', 'id_usuario' => '1'));
+    $db->insert('disponibilidade_aula', array('dia' => 'sexta', 'hora' => '13:30', 'id_usuario' => '1'));
+    $db->insert('disponibilidade_aula', array('dia' => 'sabado', 'hora' => '14:30', 'id_usuario' => '1'));
+    $db->insert('disponibilidade_aula', array('dia' => 'sexta', 'hora' => '15:30', 'id_usuario' => '1'));
+    $db->insert('disponibilidade_aula', array('dia' => 'quinta', 'hora' => '16:30', 'id_usuario' => '1'));
+    $db->insert('disponibilidade_aula', array('dia' => 'quarta', 'hora' => '17:30', 'id_usuario' => '1'));
+    $db->insert('disponibilidade_aula', array('dia' => 'terca', 'hora' => '18:30', 'id_usuario' => '1'));
+    $db->insert('disponibilidade_aula', array('dia' => 'quarta', 'hora' => '19:30', 'id_usuario' => '1'));
+    $db->insert('disponibilidade_aula', array('dia' => 'quinta', 'hora' => '20:30', 'id_usuario' => '1'));
+    $db->insert('disponibilidade_aula', array('dia' => 'sexta', 'hora' => '21:30', 'id_usuario' => '1'));
     
 endif;

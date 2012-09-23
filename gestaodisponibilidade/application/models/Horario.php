@@ -16,9 +16,8 @@ class Application_Model_Horario extends Zend_Db_Table_Row_Abstract {
         Application_Model_Data::QUINTA_STRING,
         Application_Model_Data::SEXTA_STRING,
         Application_Model_Data::SABADO_STRING);
-    private $horas = array('08:30', '09:30', '10:30', '11:30',
-        '12:30', '13:30', '14:30', '15:30', '16:30', '17:30',
-        '18:30', '19:30', '20:30', '21:30');
+    private $horas = array('07', '08', '09', '10', '11', '12', '13', '14', '15',
+        '16', '17', '18', '19', '20', '21');
 
     public function getTurma() {
         if (is_null($this->turma)) {

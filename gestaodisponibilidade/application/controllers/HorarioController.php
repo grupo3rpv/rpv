@@ -75,11 +75,59 @@ class HorarioController extends Zend_Controller_Action {
 
         $idDisciplina = $this->getRequest()->getParam('disciplina');
         if (is_numeric($idDisciplina)) {
-            $disciplinaDAO = new Application_Model_DbTable_Usuario();
-            /* @var $disciplina Application_Model_Disciplina */
-            $professores = $disciplinaDAO->getProfessoresComNiveisInteresse($idDisciplina)->toArray();
+            $usuarioDAO = new Application_Model_DbTable_Usuario();
+            $professores = $usuarioDAO->getProfessoresComNiveisInteresse($idDisciplina)->toArray();
 
             echo Zend_Json_Encoder::encode($professores);
+        } else {
+            echo '';
+        }
+    }
+
+    public function getDisponibilidadeProfessorAction() {
+        $this->_helper->layout->disableLayout();
+        $this->_helper->viewRenderer->setNoRender(true);
+
+        $idProfessor = $this->getRequest()->getParam('professor');
+        if (is_numeric($idProfessor)) {
+            $disponibilidadeDAO = new Application_Model_DbTable_DisponibilidadeAula();
+            $disponibilidades = $disponibilidadeDAO->listaDisponibilidadesPorId($idProfessor)->toArray();
+            $disp;
+            foreach ($disponibilidades as $disponibilidade) {
+                switch ($disponibilidade['dia']) {
+                    case 'segunda':
+                        $disponibilidade['dia'] = Application_Model_Data::SEGUNDA_STRING;
+                        break;
+                    
+                    case 'terca':
+                        $disponibilidade['dia'] = Application_Model_Data::TERCA_STRING;
+                        break;
+                    
+                    case 'quarta':
+                        $disponibilidade['dia'] = Application_Model_Data::QUARTA_STRING;
+                        break;
+                    
+                    case 'quinta':
+                        $disponibilidade['dia'] = Application_Model_Data::QUINTA_STRING;
+                        break;
+                    
+                    case 'sexta':
+                        $disponibilidade['dia'] = Application_Model_Data::SEXTA_STRING;
+                        break;
+                    
+                    case 'sabado':
+                        $disponibilidade['dia'] = Application_Model_Data::SABADO_STRING;
+                        break;
+
+                    default:
+                        break;
+                }
+                $horas = explode(':', $disponibilidade['hora']);
+                $disponibilidade['hora'] = $horas[0];
+                $disp[] = $disponibilidade;
+            }
+
+            echo Zend_Json_Encoder::encode($disp);
         } else {
             echo '';
         }
