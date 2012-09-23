@@ -1,10 +1,5 @@
 <?php
 
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
 /**
  * Description of CursoController
  *
@@ -72,27 +67,21 @@ class CursoController extends Zend_Controller_Action {
         $listaCurso = $modelCurso->listaCursoPor('nome asc');
         $this->view->listarTodos = $listaCurso;
     }
-    
-    public function disciplinaAction(){
-      
+
+    public function disciplinaAction() {
+
         $modelDisciplina = new Application_Model_DbTable_Disciplina();
         $id = $this->getRequest()->getParams(Application_Model_DbTable_Curso::getPrimaryKeyName());
         $modelDisciplinaCurso = new Application_Model_DbTable_DisciplinaCurso();
-        
-//        $idDisciplinas = $modelDisciplinaCurso->fetchAll('id_curso ='.$id['id']);
-//        var_dump($idDisciplinas);die();
-       
+
         $idDisciplinas = $modelDisciplinaCurso->getIdDisciplinas($id['id']);
-         $listaDisciplinas =  array();
-        
+        $listaDisciplinas = array();
+
         foreach ($idDisciplinas as $value) {
-            
-           $listaDisciplinas[] = $modelDisciplina->getCodigoPorId($value['id_disciplina']); 
+
+            $listaDisciplinas[] = $modelDisciplina->getCodigoPorId($value['id_disciplina']);
         }
-         $this->view->listarTodos = $listaDisciplinas;
-        
-       
+        $this->view->listarTodos = $listaDisciplinas;
     }
 
 }
-

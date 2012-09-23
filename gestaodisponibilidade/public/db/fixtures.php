@@ -165,18 +165,18 @@ choques. Rotação de corpos rígidos. Gravitação.', 'carga_horaria' => '75h',
     /**
      * Insere os valores na tabela turma 
      */
-    $db->insert('turma', array('nome' => '1ºSemestre'));
-    $db->insert('turma', array('nome' => '2ºSemestre'));
-    $db->insert('turma', array('nome' => '3ºSemestre'));
-    $db->insert('turma', array('nome' => '4ºSemestre'));
-    $db->insert('turma', array('nome' => '5ºSemestre'));
-    $db->insert('turma', array('nome' => '6ºSemestre'));
-    $db->insert('turma', array('nome' => '7ºSemestre'));
-    $db->insert('turma', array('nome' => '8ºSemestre'));
-    $db->insert('turma', array('nome' => '9ºSemestre'));
-    $db->insert('turma', array('nome' => '10ºSemestre'));
-    $db->insert('turma', array('nome' => '11ºSemestre'));
-    $db->insert('turma', array('nome' => '12ºSemestre'));
+    $db->insert('turma', array('nome' => '1º Semestre'));
+    $db->insert('turma', array('nome' => '2º Semestre'));
+    $db->insert('turma', array('nome' => '3º Semestre'));
+    $db->insert('turma', array('nome' => '4º Semestre'));
+    $db->insert('turma', array('nome' => '5º Semestre'));
+    $db->insert('turma', array('nome' => '6º Semestre'));
+    $db->insert('turma', array('nome' => '7º Semestre'));
+    $db->insert('turma', array('nome' => '8º Semestre'));
+    $db->insert('turma', array('nome' => '9º Semestre'));
+    $db->insert('turma', array('nome' => '10º Semestre'));
+    $db->insert('turma', array('nome' => '11º Semestre'));
+    $db->insert('turma', array('nome' => '12º Semestre'));
 
     /**
      * Insere valores na tabela periodo_letivo 

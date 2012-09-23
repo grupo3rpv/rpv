@@ -1,10 +1,5 @@
 <?php
 
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
 /**
  * Description of NivelInteresse
  *
@@ -14,35 +9,54 @@ class Application_Model_DbTable_NivelInteresse extends Zend_Db_Table_Abstract {
 
     protected $_name = 'nivel_interesse';
     protected $_rowClass = 'Application_Model_NivelInteresse';
+    protected $_dependentTables = array('Application_Model_DbTable_Professor', 'Application_Model_DbTable_Disciplina');
     protected $_referenceMap = array(
         'ProfessorNivelInteresse' => array(
             'refTableClass' => 'Application_Model_DbTable_Professor',
             'columns' => array('id_professor'),
             'refColumns' => 'id_professor'
+        ),
+        'DisciplinaNivelInteresse' => array(
+            'refTableClass' => 'Application_Model_DbTable_Disciplina',
+            'columns' => array('id_disciplina'),
+            'refColumns' => 'id_disciplina'
         )
     );
 
     public function getDadosPorId($id_professor) {
-
         $select = $this->select()->where('id_professor = ?', $id_professor);
+        return $this->fetchAll($select);
+    }
+    
+    public function getNiveisInteresseBy($idDisciplina) {
+        $select = $this->select()->where('id_disciplina = ?', $idDisciplina);
         return $this->fetchAll($select);
     }
 
     public function cadastraNivelInteresse(array $dados) {
-         $modelNivelInteresse = new Application_Model_DbTable_NivelInteresse();
+        $modelNivelInteresse = new Application_Model_DbTable_NivelInteresse();
         $rowNivelInteresse = $modelNivelInteresse->getDadosPorId($dados['id_professor']);
-       
+
         //verifica se ja possui niveis de interesse cadastrados
         if (count($rowNivelInteresse) > 0) {
             for ($index = 0; $index < 1; $index++) {
-            
-               foreach ($rowNivelInteresse as $item) {
-                if ( $item['id_disciplina']==$dados['id_disciplina']){
-                    unset($dados);
+
+                foreach ($rowNivelInteresse as $item) {
+                    if ($item['id_disciplina'] == $dados['id_disciplina']) {
+                        unset($dados);
+                    }
                 }
-                
-               }
-            if(count($dados)>0){   
+                if (count($dados) > 0) {
+                    $nivelInteresse = $this->createRow();
+
+                    $nivelInteresse->setId_professor($dados['id_professor']);
+                    $nivelInteresse->setNivelInteresse($dados['nivel_interesse']);
+                    $nivelInteresse->setId_disciplina($dados['id_disciplina']);
+                    $nivelInteresse->save();
+                    $return = true;
+                }
+            }
+        } else {
             $nivelInteresse = $this->createRow();
 
             $nivelInteresse->setId_professor($dados['id_professor']);
@@ -50,21 +64,9 @@ class Application_Model_DbTable_NivelInteresse extends Zend_Db_Table_Abstract {
             $nivelInteresse->setId_disciplina($dados['id_disciplina']);
             $nivelInteresse->save();
             $return = true;
-            }
-          }
-        }
-        else{
-        $nivelInteresse = $this->createRow();
 
-        $nivelInteresse->setId_professor($dados['id_professor']);
-        $nivelInteresse->setNivelInteresse($dados['nivel_interesse']);
-        $nivelInteresse->setId_disciplina($dados['id_disciplina']);
-        $nivelInteresse->save();
-        $return = true;
-
-        return $return;
+            return $return;
         }
-       
     }
 
     public function editarNivelInteresse(array $dados) {
@@ -104,5 +106,3 @@ class Application_Model_DbTable_NivelInteresse extends Zend_Db_Table_Abstract {
     }
 
 }
-
-?>

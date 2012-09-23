@@ -1,10 +1,5 @@
 <?php
 
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
 /**
  * Description of Area
  *
@@ -12,8 +7,6 @@
  */
 class Application_Model_DisponibilidadeAula extends Zend_Db_Table_Row_Abstract {
 
-
-    
     public function getId_disponibilidade_aula() {
         return $this->id_disponibilidade_aula;
     }
@@ -46,6 +39,4 @@ class Application_Model_DisponibilidadeAula extends Zend_Db_Table_Row_Abstract {
         $this->hora = $hora;
     }
 
-
-    
 }

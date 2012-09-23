@@ -7,8 +7,8 @@ class Application_Model_DbTable_DisciplinaCurso extends Zend_Db_Table_Abstract {
     protected $_primary = array('id_curso', 'id_disciplina');
     protected $_dependentTables = array('Application_Model_DbTable_Curso', 'Application_Model_DbTable_Disciplina');
 
-    public function getIdDisciplinas($id) {
-        $select = $this->select()->where('id_curso =?', $id);
+    public function getIdDisciplinas($idCurso) {
+        $select = $this->select()->where('id_curso = ?', $idCurso);
         return $this->fetchAll($select);
     }
 

@@ -23,13 +23,27 @@ class Application_Model_DbTable_Usuario extends Zend_Db_Table_Abstract {
         )
     );
 
+    public function getProfessoresComNiveisInteresse($idDisciplina) {
+        $select = $this->select();
+        $select->setIntegrityCheck(false);
+        $quoted = $select->getAdapter()->quoteInto('id_usuario = id_professor and id_disciplina = ?', $idDisciplina);
+        $select->from(array('u' => 'usuario'), array('u.id_usuario', 'u.nome',
+                    'coalesce(nivel_interesse, 0) as nivel_interesse'))
+                ->joinLeft('nivel_interesse', $quoted, '')
+                ->order('3 desc');
+
+        //echo $select->__toString();
+        $professores = $this->fetchAll($select);
+        return $professores;
+    }
+
     public function cadastrarUsuario($dados) {
         $usuario = $this->createRow();
         /* @var $usuario Application_Model_Usuario */
         $usuario->setId_usuario($dados['id_usuario']);
         $usuario->setNome($dados['nome']);
         $usuario->setMatricula($dados['matricula']);
-       // $usuario->setEmail($email)
+        // $usuario->setEmail($email)
         $chave = $usuario->save();
 
 
@@ -88,7 +102,8 @@ class Application_Model_DbTable_Usuario extends Zend_Db_Table_Abstract {
         $info = $model->info();
         return $info['primary'][1];
     }
-        public static function getValuesToSelectElement($order = 'nome asc') {
+
+    public static function getValuesToSelectElement($order = 'nome asc') {
         $class = get_called_class();
         $model = new $class;
         $info = $model->info();
@@ -100,6 +115,5 @@ class Application_Model_DbTable_Usuario extends Zend_Db_Table_Abstract {
         endforeach;
         return $resultArray;
     }
-
 
 }

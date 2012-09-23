@@ -7,14 +7,11 @@
  */
 class AreaProfessorController extends Zend_Controller_Action {
 
-    
-        public function init()
-    {
+    public function init() {
         /* Initialize action controller here */
     }
 
-    public function indexAction()
-    {
+    public function indexAction() {
         // action body
     }
 

@@ -1,10 +1,5 @@
 <?php
 
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
 /**
  * Description of AreaController
  *
@@ -21,7 +16,6 @@ class AreaController extends Zend_Controller_Action {
         $listaArea = $modelArea->listaAreaPor('nome asc');
         $this->view->listarTodos = $listaArea;
     }
-
 
     public function adicionarAreaAction() {
         $form = new Application_Form_Area();

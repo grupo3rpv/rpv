@@ -1,10 +1,5 @@
 <?php
 
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
 /**
  * Description of Disciplina
  *
@@ -27,34 +22,37 @@ class Application_Model_Disciplina extends Zend_Db_Table_Row_Abstract {
     public function setCodigo($codigo) {
         $this->codigo = $codigo;
     }
-        public function getNome() {
+
+    public function getNome() {
         return $this->nome;
     }
 
     public function setNome($nome) {
         $this->nome = $nome;
     }
-    
-    public function getEmenta(){
+
+    public function getEmenta() {
         return $this->ementa;
     }
-    public function setEmenta($ementa){
+
+    public function setEmenta($ementa) {
         $this->ementa = $ementa;
     }
-    public function getCarga_horaria(){
+
+    public function getCarga_horaria() {
         return $this->carga_horaria;
     }
-    public function setCarga_horaria($carga_horaria){
+
+    public function setCarga_horaria($carga_horaria) {
         $this->carga_horaria = $carga_horaria;
     }
-    public function getInfo_adicionais(){
+
+    public function getInfo_adicionais() {
         return $this->info_adicionais;
     }
-    public function setinfo_adicionais($info_adicionais){
+
+    public function setinfo_adicionais($info_adicionais) {
         $this->info_adicionais = $info_adicionais;
     }
-    
-    
-}
 
-?>
+}
