@@ -7,13 +7,13 @@ function getProfessores(url, seletor, disciplina) {
         async: false,
         success: function(data) {
             for (var i in data) {
-                addProfessor(seletor, data[i]);
+                addProf(seletor, data[i]);
             }
         }
     });
 }
 
-function addProfessor(seletor, professor) {
-    var option = '<option label="' + professor.nome + ' - ' + professor.nivel_interesse + '" value="' + professor.id_usuario + '"></option>';
+function addProf(seletor, professor) {
+    var option = '<option value="' + professor.id_usuario + '">' + professor.nome + ' - ' + professor.nivel_interesse + '</option>';
     $(seletor).append(option);
 }

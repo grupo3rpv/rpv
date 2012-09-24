@@ -14,6 +14,6 @@ function getPeriodosLetivos(url, seletor) {
 }
 
 function addPeriodoLetivo(seletor, periodoLetivo) {
-    var option = '<option label="' + periodoLetivo.nome + '" value="' + periodoLetivo.id_periodo_letivo + '"></option>';
+    var option = '<option value="' + periodoLetivo.id_periodo_letivo + '">' + periodoLetivo.nome + '</option>';
     $(seletor).append(option);
 }

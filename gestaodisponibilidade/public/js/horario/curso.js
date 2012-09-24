@@ -14,6 +14,6 @@ function getCursos(url, seletor) {
 }
 
 function addCurso(seletor, curso) {
-    var option = '<option label="' + curso.nome + '" value="' + curso.id_curso + '"></option>';
+    var option = '<option value="' + curso.id_curso + '">' + curso.nome + '</option>';
     $(seletor).append(option);
 }

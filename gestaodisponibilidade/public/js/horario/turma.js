@@ -14,6 +14,6 @@ function getTurmas(url, seletor) {
 }
 
 function addTurma(seletor, turma) {
-    var option = '<option label="' + turma.nome + '" value="' + turma.id_turma + '"></option>';
+    var option = '<option value="' + turma.id_turma + '">' + turma.nome + '</option>';
     $(seletor).append(option);
 }

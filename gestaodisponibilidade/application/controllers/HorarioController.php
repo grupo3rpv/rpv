@@ -132,5 +132,11 @@ class HorarioController extends Zend_Controller_Action {
             echo '';
         }
     }
+    
+    public function addHorarioAction() {
+        $params = $this->getRequest()->getParams();
+        var_dump($params);
+        echo "teste";
+    }
 
 }

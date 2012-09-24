@@ -4,6 +4,7 @@
 <script type='text/javascript' src="<?= $this->baseUrl('/js/horario/disciplina.js') ?>" ></script>
 <script type='text/javascript' src="<?= $this->baseUrl('/js/horario/professor.js') ?>" ></script>
 <script type='text/javascript' src="<?= $this->baseUrl('/js/horario/disponibilidade-aula.js') ?>" ></script>
+<script type='text/javascript' src="<?= $this->baseUrl('/js/horario/horario.js') ?>" ></script>
 <script type='text/javascript'>
     $(document).ready(function() {
         getCursos('<?= $this->baseUrl('/horario/get-cursos/') ?>', '#cursos');
@@ -55,7 +56,29 @@ foreach ($this->horas as $hora) {
             $("#" + seletor).removeClass('disp');
             $("#" + seletor).removeClass('marc');
             $("#" + seletor).addClass('marc');
-            addHorario(null, seletor, null);
+            $("#" + seletor).text('<img src="<?= $this->baseUrl('/images/colorbox/loading.gif') ?>" />');
+            
+            var horario = new Horario();
+            horario.curso = $('#cursos').val();
+            horario.dia = extractDia(seletor);
+            horario.disciplina = $('#disciplinas').val();
+            horario.periodoLetivo = $('#periodosLetivos').val();
+            horario.turma = $('#turmas').val();
+            horario.horaFinal = extractHora(seletor);
+            horario.horaInicial = extractHora(seletor);
+            var professor = $('#professores').val();
+            horario.addProfessor(professor);
+            
+            addHorario('<?= $this->baseUrl('/horario/add-horario/') ?>', seletor, horario);
+        }
+        
+        function extractDia(seletor) {
+            var dia = seletor.split("-");
+            return dia[1];
+        }
+        function extractHora(seletor) {
+            var dia = seletor.split("-");
+            return dia[0];
         }
 </script>
 <style type="text/css">

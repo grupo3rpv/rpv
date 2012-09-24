@@ -14,6 +14,6 @@ function getDisciplinasByCurso(url, seletor, curso) {
 }
 
 function addDisciplina(seletor, disciplina) {
-    var option = '<option label="' + disciplina.nome + '" value="' + disciplina.id_disciplina + '"></option>';
+    var option = '<option value="' + disciplina.id_disciplina + '">' + disciplina.nome + '</option>';
     $(seletor).append(option);
 }
