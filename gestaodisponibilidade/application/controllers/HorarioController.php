@@ -134,9 +134,26 @@ class HorarioController extends Zend_Controller_Action {
     }
     
     public function addHorarioAction() {
-        $params = $this->getRequest()->getParams();
-        var_dump($params);
-        echo "teste";
+        $this->_helper->layout->disableLayout();
+        $this->_helper->viewRenderer->setNoRender(true);
+        
+        $data = $this->getRequest()->getRawBody();
+        
+        $dados = Zend_Json_Decoder::decode($data);
+        
+        $horarioDAO = new Application_Model_DbTable_Horario();
+        /* @var $horario Application_Model_Horario */
+        $horario = $horarioDAO->createRow();
+        
+        $horario->setDia($dados['dia']);
+        $horario->setHora_final($dados['horaFinal']);
+        $horario->setHora_inicial($dados['horaInicial']);
+        $horario->setId_disciplina_curso($dados['disciplina']);
+        $horario->setId_periodo_letivo($dados['periodoLetivo']);
+        $horario->setId_turma($dados['turma']);
+        $horario->setStatus(0);
+        
+        echo Zend_Json_Encoder::encode($horario->toArray());
     }
 
 }

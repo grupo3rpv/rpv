@@ -164,6 +164,7 @@ class Application_Model_Horario extends Zend_Db_Table_Row_Abstract {
                 $dia = -1;
                 break;
         }
+        echo Zend_Json_Encoder::encode($dia);die();
         $dia = DateTime::createFromFormat(Application_Model_Data::PHP_REGULAR_WEEK, $dia);
         $this->dia = $dia->format(Application_Model_Data::PHP_DATABASE_DATE);
     }

@@ -1,14 +1,12 @@
 function addHorario(url, seletor, horario) {
-    alert(url);
     $.ajax({
         url: url,
         type: "POST",
         dataType: 'json',
-        data: horario,
+        data: JSON.stringify(horario),
         context: this,
         async: false,
         success: function(data) {
-            alert(data);
             $("#" + seletor).addClass('marc');
         }
     });
@@ -24,17 +22,6 @@ function Horario () {
     this.dia = null;
     this.horaInicial = null;
     this.horaFinal = null;
-    
-    this.construct = function (periodoLetivo, curso, turma, disciplina, professores, dia, horaInicial, horaFinal) {
-        this.periodoLetivo = periodoLetivo;
-        this.curso = curso;
-        this.turma = turma;
-        this.disciplina = disciplina;
-        this.professores = professores;
-        this.dia = dia;
-        this.horaInicial = horaInicial;
-        this.horaFinal = horaFinal;
-    }
     
     this.addProfessor = function (professor) {
         this.professores.push(professor);

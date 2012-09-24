@@ -30,9 +30,10 @@ class Application_Model_DbTable_Usuario extends Zend_Db_Table_Abstract {
         $select->from(array('u' => 'usuario'), array('u.id_usuario', 'u.nome',
                     'coalesce(nivel_interesse, 0) as nivel_interesse'))
                 ->joinLeft('nivel_interesse', $quoted, '')
-                ->order('3 desc');
+                ->order('3 desc')
+                ->order('2 asc');
 
-        //echo $select->__toString();
+        //echo $select->__toString();die();
         $professores = $this->fetchAll($select);
         return $professores;
     }

@@ -5,6 +5,7 @@
 <script type='text/javascript' src="<?= $this->baseUrl('/js/horario/professor.js') ?>" ></script>
 <script type='text/javascript' src="<?= $this->baseUrl('/js/horario/disponibilidade-aula.js') ?>" ></script>
 <script type='text/javascript' src="<?= $this->baseUrl('/js/horario/horario.js') ?>" ></script>
+<script type='text/javascript' src="<?= $this->baseUrl('/js/json2.js') ?>" ></script>
 <script type='text/javascript'>
     $(document).ready(function() {
         getCursos('<?= $this->baseUrl('/horario/get-cursos/') ?>', '#cursos');
@@ -13,26 +14,45 @@
     });
     
     function getDisciplinasCurso() {
-        $('#disciplinas').empty();
-        $('#disciplinas').append('<option label="" selected="selected" value=""></option>');
+        cleanSelect('#disciplinas');
+        cleanSelect('#professores');
+        clean();
         var idCurso = $('#cursos').val();
         getDisciplinasByCurso('<?= $this->baseUrl('/horario/get-disciplinas/curso/') ?>', '#disciplinas', idCurso);
     }
     
     function getProfessoresNI() {
-        $('#professores').empty();
-        $('#professores').append('<option label="" selected="selected" value=""></option>');
+        cleanSelect('#professores');
+        clean();
         var idDisciplina = $('#disciplinas').val();
         getProfessores('<?= $this->baseUrl('/horario/get-professores/disciplina/') ?>', '#professores', idDisciplina);
     }
     
     function getDisponibilidades() {
         var idProfessor = $('#professores').val();
-        cleanColors();
+        clean();
         getDisponibilidadeProfessor('<?= $this->baseUrl('/horario/get-disponibilidade-professor/professor/') ?>', idProfessor);
     }
     
-    function cleanColors() {
+    function cleanColors(select) {
+        $.each(select, function() {
+            $("#" + this).removeClass('disp');
+            $("#" + this).removeClass('marc');
+        });
+    }
+    
+    function cleanText(select) {
+        $.each(select, function() {
+            $("#" + this).empty();
+        });
+    }
+    
+    function cleanSelect(select) {
+        $(select).empty();
+        $(select).append('<option label="" selected="selected" value=""></option>');
+    }
+    
+    function clean() {
         var diasHoras = [<?
 $dh = true;
 foreach ($this->horas as $hora) {
@@ -46,17 +66,16 @@ foreach ($this->horas as $hora) {
     }
 }
 ?>];
-            $.each(diasHoras, function() {
-                $("#" + this).removeClass('disp');
-                $("#" + this).removeClass('marc');
-            })
+            cleanColors(diasHoras);
+            cleanText(diasHoras);
         }
         
         function marcarHorario(seletor) {
             $("#" + seletor).removeClass('disp');
             $("#" + seletor).removeClass('marc');
-            $("#" + seletor).addClass('marc');
-            $("#" + seletor).text('<img src="<?= $this->baseUrl('/images/colorbox/loading.gif') ?>" />');
+            //$("#" + seletor).addClass('marc');
+            $("#" + seletor).append('<img src="<?= $this->baseUrl('/images/loading.gif') ?>" />');
+            $("#" + seletor).append('<img src="<?= $this->baseUrl('/images/gato.gif') ?>" />');
             
             var horario = new Horario();
             horario.curso = $('#cursos').val();
