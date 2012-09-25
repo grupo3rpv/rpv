@@ -30,7 +30,7 @@ class Application_Model_DbTable_DisponibilidadeAula extends Zend_Db_Table_Abstra
     }
 
     public function listaDisponibilidadesPorId($id_usuario) {
-        $select = $this->select()->where('id_usuario = ' . $id_usuario);
+        $select = $this->select()->where('id_usuario = ?', $id_usuario);
         return $this->fetchAll($select);
     }
 }

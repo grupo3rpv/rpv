@@ -186,37 +186,38 @@ class ProfessorController extends Zend_Controller_Action {
     }
 
     public function disponibilidadeAulaAction() {
-       $id_usuario = $this->getRequest()->getParam('id_usuario');
-       $modelDisponibilidadeAula = new Application_Model_DbTable_DisponibilidadeAula();
-       
-       $this->view->listaDisponibilidades = $modelDisponibilidadeAula->listaDisponibilidadesPorId($id_usuario); 
+        $id_usuario = $this->getRequest()->getParam('id_usuario');
+        $modelDisponibilidadeAula = new Application_Model_DbTable_DisponibilidadeAula();
+        $this->view->id_usuario = $id_usuario;
+        $this->view->listaDisponibilidades = $modelDisponibilidadeAula->listaDisponibilidadesPorId($id_usuario);
     }
-    public function recebeDisponibilidadeAulaAction(){
+
+    public function recebeDisponibilidadeAulaAction() {
         $id_usuario = $this->getRequest()->getParam('id_usuario');
         $classe = $this->getRequest()->getParam('id');
         list($hora, $dia) = explode('-', $classe);
         $disponibilidadeAula = new Application_Model_DbTable_DisponibilidadeAula();
         $celula = $disponibilidadeAula->verificaCelulaSelecionada($id_usuario, $dia, $hora);
-        if($celula >0){
+        if ($celula > 0) {
             $disponibilidadeAula->removeDados($id_usuario, $dia, $hora);
         }
-        if($celula==0){
+        if ($celula == 0) {
             $disponibilidadeAula->gravarDados($id_usuario, $dia, $hora);
         }
     }
-    public function adicionarConvidadoAction(){
-        
-       $nome = $this->getRequest()->getParam('nome');
-       
-       $modelProfessor = new Application_Model_DbTable_Professor();
-       $professor = $modelProfessor->buscaProfessorPorNome($nome);
-       
-       $listaId =  array();
-       $listaId[]=$professor['id_usuario'];
-       $this->view->lista = $listaId;   
-       
+
+    public function adicionarConvidadoAction() {
+
+        $nome = $this->getRequest()->getParam('nome');
+
+        $modelProfessor = new Application_Model_DbTable_Professor();
+        $professor = $modelProfessor->buscaProfessorPorNome($nome);
+
+        $listaId = array();
+        $listaId[] = $professor['id_usuario'];
+        $this->view->lista = $listaId;
     }
-    
+
     public function getEventosAction() {
         $this->_helper->layout->disableLayout();
         $this->_helper->viewRenderer->setNoRender(true);
@@ -244,4 +245,5 @@ class ProfessorController extends Zend_Controller_Action {
         }
         echo $arrayEventos;
     }
+
 }

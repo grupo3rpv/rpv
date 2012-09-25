@@ -152,6 +152,7 @@ class HorarioController extends Zend_Controller_Action {
         $horario->setId_periodo_letivo($dados['periodoLetivo']);
         $horario->setId_turma($dados['turma']);
         $horario->setStatus(0);
+        $horario->save();
         
         echo Zend_Json_Encoder::encode($horario->toArray());
     }

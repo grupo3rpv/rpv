@@ -28,4 +28,11 @@ class Application_Model_Data
     const SEXTA_STRING = 'Sexta';
     const SABADO_STRING = 'Sábado';
     const DOMINGO_STRING = 'Domingo';
+    const MONDAY_STRING = 'Monday';
+    const TUESDAY_STRING = 'Tuesday';
+    const WEDNESDAY_STRING = 'Wednesday';
+    const THURSDAY_STRING = 'Thursday';
+    const FRIDAY_STRING = 'Friday';
+    const SATURDAY_STRING = 'Saturday';
+    const SUNDAY_STRING = 'Sunday';
 }

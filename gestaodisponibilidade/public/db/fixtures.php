@@ -213,7 +213,6 @@ choques. Rotação de corpos rígidos. Gravitação.', 'carga_horaria' => '75h',
     /**
      * Insere valores na tabela disponibilidade_aula
      */
-    $db->insert('disponibilidade_aula', array('dia' => '', 'hora' => '', 'id_usuario' => '1'));
     $db->insert('disponibilidade_aula', array('dia' => 'segunda', 'hora' => '07:30', 'id_usuario' => '1'));
     $db->insert('disponibilidade_aula', array('dia' => 'terca', 'hora' => '07:30', 'id_usuario' => '1'));
     $db->insert('disponibilidade_aula', array('dia' => 'quarta', 'hora' => '07:30', 'id_usuario' => '1'));
@@ -458,7 +457,6 @@ choques. Rotação de corpos rígidos. Gravitação.', 'carga_horaria' => '75h',
     /**
      * Insere valores na tabela disponibilidade_aula
      */
-    $db->insert('disponibilidade_aula', array('dia' => '', 'hora' => '', 'id_usuario' => '1'));
     $db->insert('disponibilidade_aula', array('dia' => 'segunda', 'hora' => '07:30', 'id_usuario' => '1'));
     $db->insert('disponibilidade_aula', array('dia' => 'terca', 'hora' => '07:30', 'id_usuario' => '1'));
     $db->insert('disponibilidade_aula', array('dia' => 'quarta', 'hora' => '07:30', 'id_usuario' => '1'));
@@ -469,6 +467,7 @@ choques. Rotação de corpos rígidos. Gravitação.', 'carga_horaria' => '75h',
     $db->insert('disponibilidade_aula', array('dia' => 'segunda', 'hora' => '09:30', 'id_usuario' => '1'));
     $db->insert('disponibilidade_aula', array('dia' => 'segunda', 'hora' => '10:30', 'id_usuario' => '1'));
     $db->insert('disponibilidade_aula', array('dia' => 'segunda', 'hora' => '11:30', 'id_usuario' => '1'));
+    $db->insert('disponibilidade_aula', array('dia' => 'segunda', 'hora' => '12:30', 'id_usuario' => '1'));
     $db->insert('disponibilidade_aula', array('dia' => 'segunda', 'hora' => '14:30', 'id_usuario' => '1'));
     $db->insert('disponibilidade_aula', array('dia' => 'segunda', 'hora' => '13:30', 'id_usuario' => '1'));
     $db->insert('disponibilidade_aula', array('dia' => 'segunda', 'hora' => '15:30', 'id_usuario' => '1'));

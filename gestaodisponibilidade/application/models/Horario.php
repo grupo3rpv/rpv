@@ -133,39 +133,38 @@ class Application_Model_Horario extends Zend_Db_Table_Row_Abstract {
     public function setDia($dia) {
         switch ($dia) {
             case Application_Model_Data::SEGUNDA_STRING:
-                $dia = Application_Model_Data::SEGUNDA_INT;
+                $dia = Application_Model_Data::MONDAY_STRING;
                 break;
 
             case Application_Model_Data::TERCA_STRING:
-                $dia = Application_Model_Data::TERCA_INT;
+                $dia = Application_Model_Data::TUESDAY_STRING;
                 break;
 
             case Application_Model_Data::QUARTA_STRING:
-                $dia = Application_Model_Data::QUARTA_INT;
+                $dia = Application_Model_Data::WEDNESDAY_STRING;
                 break;
 
             case Application_Model_Data::QUINTA_STRING:
-                $dia = Application_Model_Data::QUINTA_INT;
+                $dia = Application_Model_Data::THURSDAY_STRING;
                 break;
 
             case Application_Model_Data::SEXTA_STRING:
-                $dia = Application_Model_Data::SEXTA_INT;
+                $dia = Application_Model_Data::FRIDAY_STRING;
                 break;
 
             case Application_Model_Data::SABADO_STRING:
-                $dia = Application_Model_Data::SABADO_INT;
+                $dia = Application_Model_Data::SATURDAY_STRING;
                 break;
 
             case Application_Model_Data::DOMINGO_STRING:
-                $dia = Application_Model_Data::DOMINGO_INT;
+                $dia = Application_Model_Data::SUNDAY_STRING;
                 break;
 
             default:
                 $dia = -1;
                 break;
         }
-        echo Zend_Json_Encoder::encode($dia);die();
-        $dia = DateTime::createFromFormat(Application_Model_Data::PHP_REGULAR_WEEK, $dia);
+        $dia = DateTime::createFromFormat('l', $dia);
         $this->dia = $dia->format(Application_Model_Data::PHP_DATABASE_DATE);
     }
 

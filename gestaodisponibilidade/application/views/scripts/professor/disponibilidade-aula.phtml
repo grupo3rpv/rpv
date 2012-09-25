@@ -1,6 +1,3 @@
-
-<? $id_usuario = 1; ?>
-
 <script type="text/javascript">
     $(document).ready(function(){
         <? foreach ($this->listaDisponibilidades as $value) :?>
@@ -35,7 +32,7 @@
                 document.getElementById("txtHint").innerHTML=xmlhttp.responseText;
             }
         }
-        xmlhttp.open("GET","<?= $this->baseUrl('professor/recebe-disponibilidade-aula/') ?>?id_usuario=<?= $id_usuario ?>&id="+id,true);
+        xmlhttp.open("GET","<?= $this->baseUrl('professor/recebe-disponibilidade-aula/') ?>?id_usuario=<?= $this->id_usuario ?>&id="+id,true);
         xmlhttp.send();
    
         muda(id);
@@ -107,6 +104,15 @@
             <td class="branco" title="11:30-quinta" onclick="gravaDados(this.id)" id="11:30-quinta" align="center"></td>
             <td class="branco" title="11:30-sexta" onclick="gravaDados(this.id)" id="11:30-sexta" align="center"></td>
             <td class="branco" title="11:30-sabado" onclick="gravaDados(this.id)" id="11:30-sabado" align="center"></td>
+        </tr>
+        <tr>
+            <th align="center"> 12:30</th>
+            <td class="branco" title="11:30-sabado" onclick="gravaDados(this.id)" id="12:30-segunda" align="center"></td>
+            <td class="branco" title="11:30-terca" onclick="gravaDados(this.id)" id="12:30-terca" align="center"></td>
+            <td class="branco" title="11:30-quarta" onclick="gravaDados(this.id)" id="12:30-quarta" align="center"></td>
+            <td class="branco" title="11:30-quinta" onclick="gravaDados(this.id)" id="12:30-quinta" align="center"></td>
+            <td class="branco" title="11:30-sexta" onclick="gravaDados(this.id)" id="12:30-sexta" align="center"></td>
+            <td class="branco" title="11:30-sabado" onclick="gravaDados(this.id)" id="12:30-sabado" align="center"></td>
         </tr>
         <tr>
             <th align="center"> 13:30</th>
