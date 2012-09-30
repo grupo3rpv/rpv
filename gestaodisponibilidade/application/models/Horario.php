@@ -10,6 +10,7 @@ class Application_Model_Horario extends Zend_Db_Table_Row_Abstract {
     private $turma;
     private $periodoLetivo;
     private $disciplina;
+    
     private $dias = array(Application_Model_Data::SEGUNDA_STRING,
         Application_Model_Data::TERCA_STRING,
         Application_Model_Data::QUARTA_STRING,
@@ -44,6 +45,17 @@ class Application_Model_Horario extends Zend_Db_Table_Row_Abstract {
         return $this->disciplina;
     }
     
+    public function getIdHorario() {
+        return $this->id_horario;
+    }
+
+    public function setIdHorario($idHorario) {
+        if(is_numeric($idHorario))
+        $this->id_horario = $idHorario;
+       
+    }
+
+        
     public function getDias() {
         return $this->dias;
     }

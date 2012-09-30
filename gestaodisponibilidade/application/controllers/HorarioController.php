@@ -157,4 +157,11 @@ class HorarioController extends Zend_Controller_Action {
         echo Zend_Json_Encoder::encode($horario->toArray());
     }
 
+    public function removerHorarioAction(){
+        $this->_helper->layout->disableLayout();
+        $this->_helper->viewRenderer->setNoRender(true);
+        
+        $idHorario = $this->getRequest()->getParam('horario');
+        
+    }
 }
