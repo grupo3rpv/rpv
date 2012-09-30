@@ -10,7 +10,7 @@ class Application_Model_Horario extends Zend_Db_Table_Row_Abstract {
     private $turma;
     private $periodoLetivo;
     private $disciplina;
-    
+    private $professores;
     private $dias = array(Application_Model_Data::SEGUNDA_STRING,
         Application_Model_Data::TERCA_STRING,
         Application_Model_Data::QUARTA_STRING,
@@ -44,22 +44,22 @@ class Application_Model_Horario extends Zend_Db_Table_Row_Abstract {
         }
         return $this->disciplina;
     }
-    
+
     public function getIdHorario() {
         return $this->id_horario;
     }
 
     public function setIdHorario($idHorario) {
-        if(is_numeric($idHorario))
-        $this->id_horario = $idHorario;
-       
+        if (is_numeric($idHorario))
+            $this->id_horario = $idHorario;
+        else
+            throw new Zend_Exception;
     }
 
-        
     public function getDias() {
         return $this->dias;
     }
-    
+
     public function getHoras() {
         return $this->horas;
     }
@@ -194,6 +194,27 @@ class Application_Model_Horario extends Zend_Db_Table_Row_Abstract {
 
     public function setHora_final($horaFinal) {
         $this->hora_final = $horaFinal;
+    }
+
+    public function getProfessores() {
+        if (is_null($this->professores)) {
+            $this->professores = $this->findManyToManyRowset('Application_Model_DbTable_Usuario', 'Application_Model_DbTable_HorarioProfessor');
+        }
+        return $this->professores;
+    }
+
+    public function setProfessores($professores) {
+        $dbHorarioProfessor = new Application_Model_DbTable_HorarioProfessor();
+        foreach ($professores as $professor) {
+            if ($professor instanceof Application_Model_Usuario) {
+                $dbHorarioProfessor->insert(array($professor->getId_usuario(), $this->id_horario));
+            } else if (is_array($professor)) {
+                $dbHorarioProfessor->insert(array('id_usuario'=>$professor['id_usuario'], 'id_horario' => $this->id_horario));
+            } else {
+                throw new Zend_Exception;
+            }
+        }
+        $this->professores = $professores;
     }
 
 }

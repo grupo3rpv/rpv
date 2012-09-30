@@ -11,4 +11,6 @@ class Application_Model_DbTable_Horario extends Zend_Db_Table_Abstract {
     protected $_rowClass = 'Application_Model_Horario';
     protected $_primary = 'id_horario';
     
+    protected $_dependentTables = array('Application_Model_DbTable_HorarioProfessor');
+    
 }
