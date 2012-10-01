@@ -137,8 +137,9 @@ foreach ($this->horas as $hora) {
                 }
             }
             
-            function desmarcarHorario(idHorario) {
-                removerHorario('<?= $this->baseUrl('/horario/remover-horario/horario/') ?>', idHorario);
+            function desmarcarHorario(idHorario, seletor) {
+                console.log('desmarcando horario');
+                removerHorario('<?= $this->baseUrl('/horario/remover-horario/') ?>', idHorario, seletor);
             }
             
             function verificaCampos() {

@@ -168,7 +168,7 @@ class HorarioController extends Zend_Controller_Action {
         $this->_helper->layout->disableLayout();
         $this->_helper->viewRenderer->setNoRender(true);
         
-        $idHorario = $this->getRequest()->getParam('horario');
+        $idHorario = $this->getRequest()->getRawBody();
         
         $horarioProfessor = new Application_Model_DbTable_HorarioProfessor();
         $horarioProfessor->removerProfessoresdoHorario($idHorario);
