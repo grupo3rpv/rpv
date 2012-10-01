@@ -98,23 +98,23 @@ class HorarioController extends Zend_Controller_Action {
                     case 'segunda':
                         $disponibilidade['dia'] = Application_Model_Data::SEGUNDA_STRING;
                         break;
-                    
+
                     case 'terca':
                         $disponibilidade['dia'] = Application_Model_Data::TERCA_STRING;
                         break;
-                    
+
                     case 'quarta':
                         $disponibilidade['dia'] = Application_Model_Data::QUARTA_STRING;
                         break;
-                    
+
                     case 'quinta':
                         $disponibilidade['dia'] = Application_Model_Data::QUINTA_STRING;
                         break;
-                    
+
                     case 'sexta':
                         $disponibilidade['dia'] = Application_Model_Data::SEXTA_STRING;
                         break;
-                    
+
                     case 'sabado':
                         $disponibilidade['dia'] = Application_Model_Data::SABADO_STRING;
                         break;
@@ -132,53 +132,85 @@ class HorarioController extends Zend_Controller_Action {
             echo '';
         }
     }
-    
+
     public function addHorarioAction() {
         $this->_helper->layout->disableLayout();
         $this->_helper->viewRenderer->setNoRender(true);
-        
+
         $data = $this->getRequest()->getRawBody();
-        
+
         $dados = Zend_Json_Decoder::decode($data);
-        
+
+        $professorDAO = new Application_Model_DbTable_Usuario();
+        $horaInicial = $dados['horaInicial'];
+        if ($horaInicial < 10) {
+            $horaInicial = '0' . $horaInicial . ':30:00';
+        } else {
+            $horaInicial = $horaInicial . ':30:00';
+        }
+        $horarioValido = true;
         $professores;
         foreach ($dados['professores'] as $idProf) {
             $professores[]['id_usuario'] = $idProf;
+            $professor = $professorDAO->createRow();
+            $professor->setId_usuario($idProf);
+            $horarios = $professor->getHorarios();
+
+            /* @var $horario Application_Model_Horario */
+            foreach ($horarios as $horario) {
+                if ($horario->getHora_inicial() == $horaInicial &&
+                        $horario->getDia() == $dados['dia'] &&
+                        $horario->getPeriodoLetivo()->getId_periodo_letivo() == $dados['periodoLetivo']) {
+                    $saida = array('horarioValido' => false,
+                        'id_professor' => $professor->getId_usuario(),
+                        'hora' => $horaInicial,
+                        'dia' => $horario->getDia(),
+                        'periodoLetivo' => $horario->getPeriodoLetivo()->getId_periodo_letivo());
+                    $horarioValido = false;
+                    break;
+                }
+            }
         }
-        
-        
-        $horarioDAO = new Application_Model_DbTable_Horario();
-        /* @var $horario Application_Model_Horario */
-        $horario = $horarioDAO->createRow();
-        
-        $horario->setDia($dados['dia']);
-        $horario->setHora_final($dados['horaFinal'] . ':30:00');
-        $horario->setHora_inicial($dados['horaInicial'] . ':30:00');
-        $horario->setId_disciplina_curso($dados['disciplina']);
-        $horario->setId_periodo_letivo($dados['periodoLetivo']);
-        $horario->setId_turma($dados['turma']);
-        $horario->setStatus(0);
-        $horario->save();
-        $horario->setProfessores($professores); // precisa ser apos o save()
-        
-        echo Zend_Json_Encoder::encode($horario->toArray());
+
+        if ($horarioValido) {
+            $horarioDAO = new Application_Model_DbTable_Horario();
+            /* @var $horario Application_Model_Horario */
+            $horario = $horarioDAO->createRow();
+
+            $horario->setDia($dados['dia']);
+            $horario->setHora_final($dados['horaFinal'] . ':30:00');
+            $horario->setHora_inicial($dados['horaInicial'] . ':30:00');
+            $horario->setId_disciplina_curso($dados['disciplina']);
+            $horario->setId_periodo_letivo($dados['periodoLetivo']);
+            $horario->setId_turma($dados['turma']);
+            $horario->setStatus(0);
+            $horario->save();
+            $horario->setProfessores($professores); // precisa ser apos o save()
+
+            $saida = $horario->toArray();
+            $saida['horarioValido'] = true;
+            echo Zend_Json_Encoder::encode($saida);
+        } else {
+            echo Zend_Json_Encoder::encode($saida);
+        }
     }
 
-    public function removerHorarioAction(){
+    public function removerHorarioAction() {
         $this->_helper->layout->disableLayout();
         $this->_helper->viewRenderer->setNoRender(true);
-        
+
         $idHorario = $this->getRequest()->getRawBody();
-        
+
         $horarioProfessor = new Application_Model_DbTable_HorarioProfessor();
         $horarioProfessor->removerProfessoresdoHorario($idHorario);
-        
+
         $horarioDAO = new Application_Model_DbTable_Horario();
         /* @var $horario Application_Model_Horario */
         $horario = $horarioDAO->createRow();
         $horario->setIdHorario($idHorario);
         $linhasDeletadas = $horario->delete();
-        
+
         echo $linhasDeletadas;
     }
+
 }

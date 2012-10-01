@@ -7,7 +7,12 @@ function addHorario(url, seletor, horario) {
         context: this,
         async: true,
         success: function(data) {
-            addHorarioMarcado(seletor, data);
+            if (data.horarioValido == true) {
+                addHorarioMarcado(seletor, data);
+            } else {
+                $("#" + seletor).empty();
+                alert('Professor já está alocado neste horário');
+            }
         }
     });
 }
