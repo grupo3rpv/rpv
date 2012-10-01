@@ -24,4 +24,9 @@ class Application_Model_DbTable_HorarioProfessor extends Zend_Db_Table_Abstract 
         )
     );
     
+    public function removerProfessoresdoHorario($idHorario) {
+        $where = $this->getAdapter()->quoteInto('id_horario = ?', $idHorario);
+        return $this->delete($where);
+    }
+    
 }

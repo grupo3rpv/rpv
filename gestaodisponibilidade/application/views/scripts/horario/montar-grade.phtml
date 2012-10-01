@@ -101,12 +101,21 @@ foreach ($this->horas as $hora) {
 ?>];
                 cleanColors(diasHoras);
                 cleanText(diasHoras);
+                resetOnClicks(diasHoras);
+            }
+            
+            function resetOnClicks(select) {
+                $.each(select, function() {
+                    if (!$("#" + this).prop('onclick')) {
+                        $("#" + this).attr('onclick', 'marcarHorario(this.id)');
+                    }
+                });
             }
         
             function marcarHorario(seletor) {
                 if (verificaCampos()) {
-                    $("#" + seletor).removeClass('disp');
-                    $("#" + seletor).removeClass('marc');
+                    //$("#" + seletor).removeClass('disp');
+                    //$("#" + seletor).removeClass('marc');
                     //$("#" + seletor).addClass('marc');
                     $("#" + seletor).append('<img src="<?= $this->baseUrl('/images/loading.gif') ?>" />');
                     $("#" + seletor).append('<img src="<?= $this->baseUrl('/images/gato.gif') ?>" />');
@@ -122,10 +131,14 @@ foreach ($this->horas as $hora) {
                     var professor = $('#professores').val();
                     horario.addProfessor(professor);
             
-                    addHorario('<?= $this->baseUrl('/horario/add-horario/') ?>', '<?= $this->baseUrl('/horario/remover-horario/horario/') ?>', seletor, horario);
+                    addHorario('<?= $this->baseUrl('/horario/add-horario/') ?>', seletor, horario);
                 } else {
                     alert('Selecione todos os campos para poder adicionar um horário à grade!');
                 }
+            }
+            
+            function desmarcarHorario(idHorario) {
+                removerHorario('<?= $this->baseUrl('/horario/remover-horario/horario/') ?>', idHorario);
             }
             
             function verificaCampos() {
@@ -181,7 +194,7 @@ foreach ($this->horas as $hora) {
             <label>Turma:</label><select id="turmas" title="Turma" onchange="clean()"><option label="" selected="selected" value=""></option></select><br /><br />
             <label>Disciplina:</label><select id="disciplinas" title="Disciplina" onchange="getProfessoresNI()"><option label="" selected="selected" value=""></option></select>
             <label>Professor:</label><select id="professores" title="Professor" onchange="getDisponibilidades()"><option label="" selected="selected" value=""></option></select>
-            <a id="addSelect" onclick="addSelectProfessores()">Adicionar mais um professor</a>
+            <!--<a id="addSelect" onclick="addSelectProfessores()">Adicionar mais um professor</a>-->
         </div>
         <div class="legenda">Legenda: <div class="disp" style="height: 25px; width: 150px;">Horário disponível</div><div class="marc" style="height: 25px; width: 150px;">Horário já marcado</div></div>
     </div><br /><hr />
