@@ -117,9 +117,8 @@ foreach ($this->horas as $hora) {
                     //$("#" + seletor).removeClass('disp');
                     //$("#" + seletor).removeClass('marc');
                     //$("#" + seletor).addClass('marc');
-                    $("#" + seletor).append('<img src="<?= $this->baseUrl('/images/loading.gif') ?>" />');
-                    $("#" + seletor).append('<img src="<?= $this->baseUrl('/images/gato.gif') ?>" />');
-            
+                    loadingImg(seletor);
+                    
                     var horario = new Horario();
                     horario.curso = $('#cursos').val();
                     horario.dia = extractDia(seletor);
@@ -139,7 +138,13 @@ foreach ($this->horas as $hora) {
             
             function desmarcarHorario(idHorario, seletor) {
                 console.log('desmarcando horario');
+                loadingImg(seletor);
                 removerHorario('<?= $this->baseUrl('/horario/remover-horario/') ?>', idHorario, seletor);
+            }
+            
+            function loadingImg(seletor) {
+                $("#" + seletor).append('<img src="<?= $this->baseUrl('/images/loading.gif') ?>" />');
+                $("#" + seletor).append('<img src="<?= $this->baseUrl('/images/gato.gif') ?>" />');
             }
             
             function verificaCampos() {
