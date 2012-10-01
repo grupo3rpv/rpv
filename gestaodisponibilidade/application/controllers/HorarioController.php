@@ -141,18 +141,25 @@ class HorarioController extends Zend_Controller_Action {
         
         $dados = Zend_Json_Decoder::decode($data);
         
+        $professores;
+        foreach ($dados['professores'] as $idProf) {
+            $professores[]['id_usuario'] = $idProf;
+        }
+        
+        
         $horarioDAO = new Application_Model_DbTable_Horario();
         /* @var $horario Application_Model_Horario */
         $horario = $horarioDAO->createRow();
         
         $horario->setDia($dados['dia']);
-        $horario->setHora_final($dados['horaFinal']);
-        $horario->setHora_inicial($dados['horaInicial']);
+        $horario->setHora_final($dados['horaFinal'] . ':30:00');
+        $horario->setHora_inicial($dados['horaInicial'] . ':30:00');
         $horario->setId_disciplina_curso($dados['disciplina']);
         $horario->setId_periodo_letivo($dados['periodoLetivo']);
         $horario->setId_turma($dados['turma']);
         $horario->setStatus(0);
         $horario->save();
+        $horario->setProfessores($professores); // precisa ser apos o save()
         
         echo Zend_Json_Encoder::encode($horario->toArray());
     }
@@ -162,6 +169,6 @@ class HorarioController extends Zend_Controller_Action {
         $this->_helper->viewRenderer->setNoRender(true);
         
         $idHorario = $this->getRequest()->getParam('horario');
-        
+        echo $idHorario;
     }
 }

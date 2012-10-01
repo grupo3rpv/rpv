@@ -23,15 +23,27 @@
     
     function getProfessoresNI() {
         cleanSelect('#professores');
-        clean();
+        cleanDisponibilidades();
         var idDisciplina = $('#disciplinas').val();
         getProfessores('<?= $this->baseUrl('/horario/get-professores/disciplina/') ?>', '#professores', idDisciplina);
     }
     
     function getDisponibilidades() {
         var idProfessor = $('#professores').val();
-        clean();
+        cleanDisponibilidades();
         getDisponibilidadeProfessor('<?= $this->baseUrl('/horario/get-disponibilidade-professor/professor/') ?>', idProfessor);
+    }
+    
+    function addSelectProfessores() {
+        $('#selects').append('<label>Professor:</label>'
+            + '<select id="professores2" class="profMais" title="Professor" onchange="getDisponibilidades()">'
+            + '<option label="" selected="selected" value=""></option></select>'
+            + '<a class="profMais" onclick="removeSelectProfessores(this.class)">X</a>');
+        $('#addSelect').remove();
+    }
+    
+    function removeSelectProfessores(seletor) {
+        $('.' + seletor).remove;
     }
     
     function cleanColors(select) {
@@ -52,7 +64,7 @@
         $(select).append('<option label="" selected="selected" value=""></option>');
     }
     
-    function clean() {
+    function cleanDisponibilidades() {
         var diasHoras = [<?
 $dh = true;
 foreach ($this->horas as $hora) {
@@ -66,39 +78,88 @@ foreach ($this->horas as $hora) {
     }
 }
 ?>];
-            cleanColors(diasHoras);
-            cleanText(diasHoras);
+            $.each(diasHoras, function() {
+                if ($("#" + this).hasClass("disp")) {
+                    $("#" + this).removeClass();
+                }
+            });
         }
+    
+        function clean() {
+            var diasHoras = [<?
+$dh = true;
+foreach ($this->horas as $hora) {
+    foreach ($this->dias as $dia) {
+        if ($dh) {
+            echo '"' . $hora . '-' . $dia . '"';
+            $dh = false;
+        } else {
+            echo ', "' . $hora . '-' . $dia . '"';
+        }
+    }
+}
+?>];
+                cleanColors(diasHoras);
+                cleanText(diasHoras);
+            }
         
-        function marcarHorario(seletor) {
-            $("#" + seletor).removeClass('disp');
-            $("#" + seletor).removeClass('marc');
-            //$("#" + seletor).addClass('marc');
-            $("#" + seletor).append('<img src="<?= $this->baseUrl('/images/loading.gif') ?>" />');
-            $("#" + seletor).append('<img src="<?= $this->baseUrl('/images/gato.gif') ?>" />');
+            function marcarHorario(seletor) {
+                if (verificaCampos()) {
+                    $("#" + seletor).removeClass('disp');
+                    $("#" + seletor).removeClass('marc');
+                    //$("#" + seletor).addClass('marc');
+                    $("#" + seletor).append('<img src="<?= $this->baseUrl('/images/loading.gif') ?>" />');
+                    $("#" + seletor).append('<img src="<?= $this->baseUrl('/images/gato.gif') ?>" />');
             
-            var horario = new Horario();
-            horario.curso = $('#cursos').val();
-            horario.dia = extractDia(seletor);
-            horario.disciplina = $('#disciplinas').val();
-            horario.periodoLetivo = $('#periodosLetivos').val();
-            horario.turma = $('#turmas').val();
-            horario.horaFinal = extractHora(seletor);
-            horario.horaInicial = extractHora(seletor);
-            var professor = $('#professores').val();
-            horario.addProfessor(professor);
+                    var horario = new Horario();
+                    horario.curso = $('#cursos').val();
+                    horario.dia = extractDia(seletor);
+                    horario.disciplina = $('#disciplinas').val();
+                    horario.periodoLetivo = $('#periodosLetivos').val();
+                    horario.turma = $('#turmas').val();
+                    horario.horaFinal = (parseInt(extractHora(seletor)) + 1);
+                    horario.horaInicial = extractHora(seletor);
+                    var professor = $('#professores').val();
+                    horario.addProfessor(professor);
             
-            addHorario('<?= $this->baseUrl('/horario/add-horario/') ?>', seletor, horario);
-        }
+                    addHorario('<?= $this->baseUrl('/horario/add-horario/') ?>', '<?= $this->baseUrl('/horario/remover-horario/horario/') ?>', seletor, horario);
+                } else {
+                    alert('Selecione todos os campos para poder adicionar um horário à grade!');
+                }
+            }
+            
+            function verificaCampos() {
+                var verifica = true;
+                if ($('#periodosLetivos').val() == '') {
+                    verifica = false;
+                }
+                if ($('#cursos').val() == '') {
+                    verifica = false;
+                }
+                if ($('#turmas').val() == '') {
+                    verifica = false;
+                }
+                if ($('#disciplinas').val() == '') {
+                    verifica = false;
+                }
+                if ($('#professores').val() == '') {
+                    verifica = false;
+                }
+                return verifica;
+            }
         
-        function extractDia(seletor) {
-            var dia = seletor.split("-");
-            return dia[1];
-        }
-        function extractHora(seletor) {
-            var dia = seletor.split("-");
-            return dia[0];
-        }
+            function extractDia(seletor) {
+                var dia = seletor.split("-");
+                return dia[1];
+            }
+            function extractHora(seletor) {
+                var dia = seletor.split("-");
+                var hora = dia[0];
+                if (dia[0][0] == '0') {
+                    hora = dia[0][1];
+                }
+                return hora;
+            }
 </script>
 <style type="text/css">
     .disp {
@@ -114,14 +175,15 @@ foreach ($this->horas as $hora) {
 </style>
 <form>
     <div>
-    <div id="selects" >
-        <label>Período Letivo:</label><select id="periodosLetivos" title="Período Letivo" ><option label="" selected="selected" value=""></option></select>
-        <label>Curso:</label><select id="cursos" title="Curso" onchange="getDisciplinasCurso()"><option label="" selected="selected" value=""></option></select>
-        <label>Turma:</label><select id="turmas" title="Turma" ><option label="" selected="selected" value=""></option></select><br /><br />
-        <label>Disciplina:</label><select id="disciplinas" title="Disciplina" onchange="getProfessoresNI()"><option label="" selected="selected" value=""></option></select>
-        <label>Professor:</label><select id="professores" title="Professor" onchange="getDisponibilidades()"><option label="" selected="selected" value=""></option></select>
-    </div>
-    <div class="legenda">Legenda: <div class="disp" style="height: 25px; width: 150px;">Horário disponível</div><div class="marc" style="height: 25px; width: 150px;">Horário já marcado</div></div>
+        <div id="selects" >
+            <label>Período Letivo:</label><select id="periodosLetivos" title="Período Letivo" onchange="clean()"><option label="" selected="selected" value=""></option></select>
+            <label>Curso:</label><select id="cursos" title="Curso" onchange="getDisciplinasCurso()"><option label="" selected="selected" value=""></option></select>
+            <label>Turma:</label><select id="turmas" title="Turma" onchange="clean()"><option label="" selected="selected" value=""></option></select><br /><br />
+            <label>Disciplina:</label><select id="disciplinas" title="Disciplina" onchange="getProfessoresNI()"><option label="" selected="selected" value=""></option></select>
+            <label>Professor:</label><select id="professores" title="Professor" onchange="getDisponibilidades()"><option label="" selected="selected" value=""></option></select>
+            <a id="addSelect" onclick="addSelectProfessores()">Adicionar mais um professor</a>
+        </div>
+        <div class="legenda">Legenda: <div class="disp" style="height: 25px; width: 150px;">Horário disponível</div><div class="marc" style="height: 25px; width: 150px;">Horário já marcado</div></div>
     </div><br /><hr />
     <div id="horarios" >
         <table>

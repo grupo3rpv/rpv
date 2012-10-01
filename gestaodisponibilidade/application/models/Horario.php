@@ -207,14 +207,24 @@ class Application_Model_Horario extends Zend_Db_Table_Row_Abstract {
         $dbHorarioProfessor = new Application_Model_DbTable_HorarioProfessor();
         foreach ($professores as $professor) {
             if ($professor instanceof Application_Model_Usuario) {
-                $dbHorarioProfessor->insert(array($professor->getId_usuario(), $this->id_horario));
+                $dbHorarioProfessor->insert(array('id_professor' => $professor->getId_usuario(), 'id_horario' => $this->id_horario));
             } else if (is_array($professor)) {
-                $dbHorarioProfessor->insert(array('id_usuario'=>$professor['id_usuario'], 'id_horario' => $this->id_horario));
+                $dbHorarioProfessor->insert(array('id_professor' => $professor['id_usuario'], 'id_horario' => $this->id_horario));
             } else {
                 throw new Zend_Exception;
             }
         }
         $this->professores = $professores;
+    }
+    
+    public function toArray() {
+        $array = parent::toArray();
+        $professores = array();
+        for ($i = 0; $i < count($this->professores); $i++){
+            $professores[] = $this->professores[$i];
+        }
+        $array['professores'] = $professores;
+        return $array;
     }
 
 }
