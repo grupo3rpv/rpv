@@ -1,0 +1,48 @@
+<h3>Área do Coordenador</h3>
+<table> 
+    <thead> 
+        <tr> 
+            <!--<th>Areas de interesse</th> -->
+            <th>Disciplinas de Interesse</th> 
+            <th>Meus Dados</th> 
+            <th>Minha Agenda</th> 
+
+        </tr> 
+    </thead> 
+    <tbody> 
+        <tr> 
+            <!--<td>
+                <a class="button blue small" href="<= //$this->baseUrl('usuario/perfil/id_usuario/1') ?>">Visualizar</a>
+                <a class="button red small" href="<= //$this->baseUrl('usuario/perfil/id_usuario/1') ?>">Editar dados</a>
+            </td> -->
+            <td>
+                <a class="button blue small" href="<?= $this->baseUrl('professor/perfil') ?>">Visualizar</a>
+                <a class="button green small" href="<?= $this->baseUrl('professor/editar-nivel-interesse') ?>">Editar Dados</a>
+                <a class="button orange small" href="<?= $this->baseUrl('curso/listar-cursos') ?>">Adicionar Disciplinas</a>
+
+            </td>
+            <td>
+                <a class="button blue small" href="<?= $this->baseUrl('usuario/perfil/id_usuario/1') ?>">Visualizar</a>
+                <a class="button green small" href="<?= $this->baseUrl('usuario/perfil/id_usuario/1') ?>">Editar dados</a>
+            </td>
+            <td>
+                <a class="button blue small" href="<?= $this->baseUrl('agenda/index/professor/1') ?>">Visualizar</a>
+                <a class="button orange small" href="<?= $this->baseUrl('agenda/cadastrar-evento') ?>">Cadastrar Evento</a>
+            </td>
+
+
+        </tr> 
+
+        <tr> 
+
+            <th>Horários Disponíveis de Aula</th> 
+
+
+        </tr> 
+        <tr>
+            <td>
+                <a class="button orange small" href="<?= $this->baseUrl('professor/disponibilidade-aula/id_usuario/1') ?>">Marcar Horários</a>
+            </td>
+        </tr>
+    </tbody>
+</table>

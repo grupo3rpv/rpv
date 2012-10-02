@@ -1,11 +1,11 @@
-<p><a href="<?= $this->baseUrl('/disciplina/cadastrar-disciplina') ?>">Cadastrar Disciplina</a></p>
+<p><a class="button orange" href="<?= $this->baseUrl('/disciplina/cadastrar-disciplina') ?>">Cadastrar Disciplina</a></p>
 <table class="style2"> 
     <thead> 
         <tr> 
-            <th>Codigo</th>
+            <th>Código</th>
             <th>Nome</th>
             <th>Ementa</th>
-            <th colspan ="2">Acao</th>
+            <th colspan ="2">Ação</th>
         </tr> 
     </thead> 
     <tbody> 
@@ -16,10 +16,10 @@
                 <td><?= $item->getNome() ?></td>
                 <td><?= $item->getEmenta() ?></td>
                 <td>
-                    <a href="<?= $this->baseUrl('/disciplina/editar-disciplina/id_disciplina/') ?><?= $item->getId_disciplina() ?>">Editar</a>
+                    <a class="button green small" href="<?= $this->baseUrl('/disciplina/editar-disciplina/id_disciplina/') ?><?= $item->getId_disciplina() ?>">Editar</a>
                 </td>
                 <td>
-                    <a href="<?= $this->baseUrl('/disciplina/remover-disciplina/id_disciplina/') ?><?= $item->getId_disciplina() ?>">Remover</a>
+                    <a class="button red small"     href="<?= $this->baseUrl('/disciplina/remover-disciplina/id_disciplina/') ?><?= $item->getId_disciplina() ?>">Remover</a>
                 </td>
             </tr>
         <? endforeach; ?>

@@ -4,13 +4,13 @@
 
         <thead> 
             <tr> 
-                <th>Codigo</th>
+                <th>Código</th>
                 <th>Nome</th>
                 <th>Ementa</th>
-                <th>Nivel de interesse</th>
+                <th>Nível de interesse</th>
             </tr> 
         </thead> 
-        <tbody> < var_dump($this->arrayListaAtualizada);die(); ?>
+        <tbody> 
             <? $cont = count($this->arrayListaAtualizada['codigo']); ?>  
             <? for ($i = 0; $i < $cont; $i++): ?>
                 <tr> 
@@ -86,5 +86,5 @@
         <? endfor; ?>  
         </tbody>
     </table>
-    <INPUT TYPE="submit" VALUE="Salvar alteração" class="button black xlarge">
+    <INPUT TYPE="submit" VALUE="Salvar alteração" class="button orange large">
 </form>
