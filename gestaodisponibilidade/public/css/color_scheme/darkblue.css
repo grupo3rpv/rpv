@@ -11,7 +11,7 @@ a:hover{ color: #356081; }
 
 /* Passive hedings link color */
 h1a, h2 a, h3 a, h4 a , h5 a, h6a{
-	color: #444;
+	color: #639AF1;
 }
 
 /* Text select color */
@@ -23,7 +23,7 @@ text-shadow: none;
 
 /* Header and footer background color */
 header.main_header {
-background-color: #243440;
+    background-color: #000;
 }
 
 /* Page title color */
