@@ -13,7 +13,7 @@ Tip: you can copy (don't cut text, just copy and paste it here) the necesay styl
 	From a1 to a31 patterns are not repeatable. That are bacround images. You must set "background-repeat: no-repeat;"
  */
 header.main_header {
-background-image: url(../images/pattern/2.png);
+background-image: url(../images/gato.gif);
 background-repeat: repeat;
 background-position: center top;
 }
