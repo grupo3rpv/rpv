@@ -1,12 +1,12 @@
 
 
-<p><a href="<?= $this->baseUrl('/area/adicionar-area/') ?>">Adicionar Area</a></p>
+<p><a class="button orange" href="<?= $this->baseUrl('/area/adicionar-area/') ?>">Adicionar Área</a></p>
 
 <table class="style2"> 
     <thead> 
         <tr> 
             <th>Nome</th>
-            <th>Descricao</th>
+            <th>Descrição</th>
             <th colspan="2">Ação</th>
 
 
@@ -20,10 +20,10 @@
 
 
                 <td>
-                    <a href="<?= $this->baseUrl('/area/editar-area/id_area/') ?><?= $item->getId_area() ?>">Editar</a>
+                    <a class="button green small" href="<?= $this->baseUrl('/area/editar-area/id_area/') ?><?= $item->getId_area() ?>">Editar</a>
                 </td>
                 <td>
-                    <a href="<?= $this->baseUrl('/area/remover-area/id_area/') ?><?= $item->getId_area() ?>">Remover</a>
+                    <a class="button red small" href="<?= $this->baseUrl('/area/remover-area/id_area/') ?><?= $item->getId_area() ?>">Remover</a>
                 </td>
             </tr>
         <? endforeach; ?>

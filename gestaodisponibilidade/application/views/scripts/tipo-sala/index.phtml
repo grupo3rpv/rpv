@@ -1,29 +1,29 @@
- <section class="container">
-                            <div class="top">
-                                <!--					<a class="logo" href="./index.html">Gestão de disponibilidade</a>-->
-                                <nav id="horizontal">
-                                    <ul id="nav">
-                                                                   
-                                        </li>
-                                        <li><a href="<?= $this->baseUrl('/equipamento/index/') ?>">Equipamentos</a><span></span></a>
-                                        </li>
-                                        <li>
-                                        <a href="<?= $this->baseUrl('secretaria/index') ?>">Salas</a><span></span></a>
-                                        </li>
-                                        <li>
-                                         <a href="<?= $this->baseUrl('tipo-sala/index') ?>">Tipos de Salas</a><span></span></a>
-                                        </li>                              
+<section class="container">
+    <div class="top">
+
+        <nav id="horizontal">
+            <ul id="nav">
+
+                </li>
+                <li><a href="<?= $this->baseUrl('/equipamento/index/') ?>">Equipamentos</a><span></span></a>
+                </li>
+                <li>
+                    <a href="<?= $this->baseUrl('secretaria/index') ?>">Salas</a><span></span></a>
+                </li>
+                <li>
+                    <a href="<?= $this->baseUrl('tipo-sala/index') ?>">Tipos de Salas</a><span></span></a>
+                </li>                              
 
 
-                                    </ul>
-                                </nav><!-- End of menu -->
-                            </div>
-                        </section>
+            </ul>
+        </nav><!-- End of menu -->
+    </div>
+</section>
 <p><a class="button orange" href="<?= $this->baseUrl('/tipo-sala/cadastrar-tipo-sala') ?>">Cadastrar Categoria de Sala</a></p>
 <table class="style2"> 
     <thead> 
         <tr> 
-            
+
             <th>Descrição</th>
             <th colspan=2>Ação</th>
         </tr> 
@@ -31,7 +31,7 @@
     <tbody> 
         <? foreach ($this->listaTipoSala as $item): ?> 
             <tr> 
-                
+
                 <td><?= $item->getDescricao() ?></td>
                 <td>
                     <a class="button green small" href="<?= $this->baseUrl('/tipo-sala/editar-tipo-sala/id_tipo_sala/') ?><?= $item->getId_tipo_sala() ?>">Editar</a>
