@@ -1,3 +1,16 @@
+AgendaController
+ [x] Add evento action
+ [x] Cadastrar evento action
+ [x] Confirmacao evento action
+ [x] Recusar evento action
+
+PHPUnit_Framework_Warning
+ [ ] Warning
+
+ProfessorController
+ [x] Disponibilidade aula action
+ [x] Recebe disponibilidade aula action
+
 PHPUnit_Framework_Warning
  [ ] Warning
 
@@ -24,14 +37,34 @@ Application_Model_Disciplina
  [x] testGet carga horaria falha
  [x] testGet info adicionais
 
+Application_Model_DisponibilidadeAula
+ [x] Get dia
+ [ ] Set dia
+ [x] Get hora
+ [ ] Set hora
+
 Application_Model_EquipamentoSala
- [ ] testGetId equipamento sala
- [ ] testGetNumero sala
- [ ] Get quantidade
+ [x] testGetId equipamento sala
+ [x] testGetNumero sala
+ [x] Get quantidade
 
 Application_Model_Equipamento
  [x] testgetId equipamento
  [x] Get descricao
+
+Application_Model_Evento
+ [ ] Cadastra evento
+ [x] Cadastra evento data com letra
+ [x] Cadastra evento final atrasado
+ [x] Cadastra evento mes 13
+ [x] Cadastra evento mesma hora
+ [x] testGetId evento
+ [x] Get data inicial
+ [x] Get data final
+ [x] Get hora
+
+Application_Model_EventoUsuario
+ [ ] Cadastra evento reuniao
 
 Application_Model_NivelInteresse
  [ ] Cadastro nivel interesse
@@ -47,11 +80,17 @@ Application_Model_Sala
  [x] testGetStatus disponibilidade
  [x] Get responsavel
  [x] testCapacidade desc
- [ ] Cadastra sala
+ [x] Cadastra sala
  [ ] Alterar sala
  [ ] Remover sala
 
 Application_Model_TipoSala
  [x] Get descricao
  [x] testGetId sala
+
+Application_Model_DbTable_DisponibilidadeAula
+ [ ] Gravar dados
+ [x] Remove dados
+ [x] Verifica celula selecionada
+ [x] Lista disponibilidades por id
 

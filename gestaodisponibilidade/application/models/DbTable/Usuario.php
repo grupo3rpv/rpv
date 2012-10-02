@@ -117,5 +117,12 @@ class Application_Model_DbTable_Usuario extends Zend_Db_Table_Abstract {
         endforeach;
         return $resultArray;
     }
+    
+      public function getUsuarioPorEmail($email){
+             $select = $this->select()->where('email =?',$email);
+             
+             return $this->fetchRow($select);
+             
+         }
 
 }

@@ -9,7 +9,25 @@ class Application_Model_Usuario extends Zend_Db_Table_Row_Abstract {
 
     protected $eventos;
 
-    public function getEmail() {
+   
+    
+    public function getTipo_usuario() {
+        return $this->tipo_usuario;
+    }
+
+    public function setTipo_usuario($tipo_usuario) {
+        $this->tipo_usuario = $tipo_usuario;
+    }
+
+    public function getSenha() {
+        return $this->senha;
+    }
+
+    public function setSenha($senha) {
+        $this->senha = $senha;
+    }
+
+        public function getEmail() {
         return $this->email;
     }
 

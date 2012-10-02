@@ -29,7 +29,7 @@
         {
             if (xmlhttp.readyState==4 && xmlhttp.status==200)
             {
-                document.getElementById("txtHint").innerHTML=xmlhttp.responseText;
+                document.getElementById("resposta").innerHTML="Contato enviado com sucesso";
             }
         }
         xmlhttp.open("GET","<?= $this->baseUrl('professor/recebe-disponibilidade-aula/') ?>?id_usuario=<?= $this->id_usuario ?>&id="+id,true);
