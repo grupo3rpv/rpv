@@ -102,16 +102,17 @@ choques. Rotação de corpos rígidos. Gravitação.', 'carga_horaria' => '75h',
     /**
      * Insere valores na tabela tipo_usuario
      */
-    $db->insert('tipo_usuario', array('id_tipo_usuario' => '1', 'nome' => 'Professor'));
-    $db->insert('tipo_usuario', array('id_tipo_usuario' => '2', 'nome' => 'Coordenador'));
+    /*$db->insert('tipo_usuario', array('id_tipo_usuario' => '1', 'nome' => 'Professor'));
+    $db->insert('tipo_usuario', array('id_tipo_usuario' => '2', 'nome' => 'Coordenador'));*/
 
     /**
      * Insere valores na tabela usuario 
      */
-    $db->insert('usuario', array('id_tipo_usuario' => '1', 'nome' => 'Sergio Mergen', 'matricula' => '123456', 'email' => 'helisonreus@gmail.com'));
-    $db->insert('usuario', array('id_tipo_usuario' => '1', 'nome' => 'João Pablo', 'matricula' => '654321', 'email' => 'thiagockrug@gmail.com'));
-    $db->insert('usuario', array('id_tipo_usuario' => '1', 'nome' => 'Aline Melo', 'matricula' => '9812749', 'email' => 'brunovicellisax@gmail.com'));
-    $db->insert('usuario', array('id_tipo_usuario' => '2', 'nome' => 'Cleo Billa', 'matricula' => '346320', 'email' => 'marcelomaialopes@yahoo.com.br'));
+    $db->insert('usuario', array('nome' => 'Sergio Mergen', 'matricula' => '123456', 'email' => 'helisonreus@gmail.com', 'senha' => '1234567', 'tipo_usuario' => 'professor'));
+    $db->insert('usuario', array('nome' => 'João Pablo', 'matricula' => '654321', 'email' => 'thiagockrug@gmail.com', 'senha' => '1234567', 'tipo_usuario' => 'professor'));
+    $db->insert('usuario', array('nome' => 'Aline Melo', 'matricula' => '9812749', 'email' => 'brunovicellisax@gmail.com', 'senha' => '1234567', 'tipo_usuario' => 'professor'));
+    $db->insert('usuario', array('nome' => 'Cleo Billa', 'matricula' => '346320', 'email' => 'marcelomaialopes@yahoo.com.br', 'senha' => '1234567', 'tipo_usuario' => 'coordenador'));
+    $db->insert('usuario', array('nome' => 'Rudi Porto', 'matricula' => '3978452', 'email' => 'brunovicellisax@gmail.com', 'senha' => '1234567', 'tipo_usuario' => 'secretario'));
 
     /**
      * Insere valores na tabela area_professor 
@@ -345,16 +346,17 @@ choques. Rotação de corpos rígidos. Gravitação.', 'carga_horaria' => '75h',
     /**
      * Insere valores na tabela tipo_usuario
      */
-    $db->insert('tipo_usuario', array('id_tipo_usuario' => '1', 'nome' => 'Professor'));
-    $db->insert('tipo_usuario', array('id_tipo_usuario' => '2', 'nome' => 'Coordenador'));
+    /*$db->insert('tipo_usuario', array('id_tipo_usuario' => '1', 'nome' => 'Professor'));
+    $db->insert('tipo_usuario', array('id_tipo_usuario' => '2', 'nome' => 'Coordenador'));*/
 
     /**
      * Insere valores na tabela usuario 
      */
-    $db->insert('usuario', array('id_tipo_usuario' => '1', 'nome' => 'Sergio Mergen', 'matricula' => '123456', 'email' => 'helisonreus@gmail.com'));
-    $db->insert('usuario', array('id_tipo_usuario' => '1', 'nome' => 'João Pablo', 'matricula' => '654321', 'email' => 'thiagockrug@gmail.com'));
-    $db->insert('usuario', array('id_tipo_usuario' => '1', 'nome' => 'Aline Melo', 'matricula' => '9812749', 'email' => 'brunovicellisax@gmail.com'));
-    $db->insert('usuario', array('id_tipo_usuario' => '2', 'nome' => 'Cleo Billa', 'matricula' => '346320', 'email' => 'marcelomaialopes@yahoo.com.br'));
+    $db->insert('usuario', array('nome' => 'Sergio Mergen', 'matricula' => '123456', 'email' => 'helisonreus@gmail.com', 'senha' => '1234567', 'tipo_usuario' => 'professor'));
+    $db->insert('usuario', array('nome' => 'João Pablo', 'matricula' => '654321', 'email' => 'thiagockrug@gmail.com', 'senha' => '1234567', 'tipo_usuario' => 'professor'));
+    $db->insert('usuario', array('nome' => 'Aline Melo', 'matricula' => '9812749', 'email' => 'brunovicellisax@gmail.com', 'senha' => '1234567', 'tipo_usuario' => 'professor'));
+    $db->insert('usuario', array('nome' => 'Cleo Billa', 'matricula' => '346320', 'email' => 'marcelomaialopes@yahoo.com.br', 'senha' => '1234567', 'tipo_usuario' => 'coordenador'));
+    $db->insert('usuario', array('nome' => 'Rudi Porto', 'matricula' => '3978452', 'email' => 'brunovicellisax@gmail.com', 'senha' => '1234567', 'tipo_usuario' => 'secretario'));
 
     /**
      * Insere valores na tabela area_professor 
