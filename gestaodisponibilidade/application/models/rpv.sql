@@ -123,31 +123,16 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `tipo_usuario`
--- -----------------------------------------------------
-CREATE  TABLE IF NOT EXISTS `tipo_usuario` (
-  `id_tipo_usuario` INT NOT NULL AUTO_INCREMENT ,
-  `nome` VARCHAR(100) NULL ,
-  PRIMARY KEY (`id_tipo_usuario`) )
-ENGINE = InnoDB;
-
-
--- -----------------------------------------------------
 -- Table `usuario`
 -- -----------------------------------------------------
 CREATE  TABLE IF NOT EXISTS `usuario` (
   `id_usuario` INT NOT NULL AUTO_INCREMENT ,
-  `id_tipo_usuario` INT NOT NULL ,
   `nome` VARCHAR(255) NOT NULL ,
   `matricula` CHAR(12) NULL ,
   `email` VARCHAR(255) NOT NULL ,
-  PRIMARY KEY (`id_usuario`) ,
-  INDEX `fk_usuario_tipo_usuario1` (`id_tipo_usuario` ASC) ,
-  CONSTRAINT `fk_usuario_tipo_usuario1`
-    FOREIGN KEY (`id_tipo_usuario` )
-    REFERENCES `tipo_usuario` (`id_tipo_usuario` )
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+  `senha` VARCHAR(45) NULL ,
+  `tipo_usuario` VARCHAR(40) NOT NULL ,
+  PRIMARY KEY (`id_usuario`) )
 ENGINE = InnoDB;
 
 
