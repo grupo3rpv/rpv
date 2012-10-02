@@ -1,29 +1,32 @@
- <section class="container">
-                            <div class="top">
-                                <!--					<a class="logo" href="./index.html">Gestão de disponibilidade</a>-->
-                                <nav id="horizontal">
-                                    <ul id="nav">
-                                                                   
-                                        </li>
-                                        <li><a href="<?= $this->baseUrl('/equipamento/index/') ?>">Equipamentos</a><span></span></a>
-                                        </li>
-                                        <li>
-                                        <a href="<?= $this->baseUrl('secretaria/index') ?>">Salas</a><span></span></a>
-                                        </li>
-                                        <li>
-                                         <a href="<?= $this->baseUrl('tipo-sala/index') ?>">Tipos de Salas</a><span></span></a>
-                                        </li>                              
+<h3>Área do Coordenador</h3>
+<table> 
+    <thead> 
+        <tr> 
+            <!--<th>Areas de interesse</th> -->
+            <th>Equipamentos</th> 
+            <th>Salas</th> 
+            <th>Tipos de Salas</th> 
+
+        </tr> 
+    </thead> 
+    <tbody> 
+        <tr> 
+            <td>
+                <a class="button blue small" href="<?= $this->baseUrl('/equipamento/index/') ?>">Gerenciar Equipamentos</a>
+
+            </td>
+            <td>
+                <a class="button blue small" href="<?= $this->baseUrl('/secretaria/index/') ?>">Gerenciar Salas</a>
+            </td>
+            <td>
+                <a class="button blue small" href="<?= $this->baseUrl('/tipo-sala/index/') ?>">Gerenciar Tipos de Sala</a>
+            </td>
 
 
-                                    </ul>
-                                </nav><!-- End of menu -->
-                            </div>
-                        </section>
-			
-				<div class="grid_12 placeslider">
-					
-					<div class="clear"></div>
-				</div>
+        </tr> 
+
+    </tbody>
+</table>
 				
 				
 				
