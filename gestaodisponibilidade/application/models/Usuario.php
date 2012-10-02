@@ -6,17 +6,35 @@
  * @author Helison
  */
 class Application_Model_Usuario extends Zend_Db_Table_Row_Abstract {
-    
+
     protected $eventos;
 
-     public function getEmail() {
+   
+    
+    public function getTipo_usuario() {
+        return $this->tipo_usuario;
+    }
+
+    public function setTipo_usuario($tipo_usuario) {
+        $this->tipo_usuario = $tipo_usuario;
+    }
+
+    public function getSenha() {
+        return $this->senha;
+    }
+
+    public function setSenha($senha) {
+        $this->senha = $senha;
+    }
+
+        public function getEmail() {
         return $this->email;
     }
 
     public function setEmail($email) {
         $this->email = $email;
     }
-    
+
     public function getId_usuario() {
         return $this->id_usuario;
     }
@@ -39,7 +57,7 @@ class Application_Model_Usuario extends Zend_Db_Table_Row_Abstract {
         }
         return $this->eventos;
     }
-    
+
     public function getEventosConfirmados() {
         $select = $this->select()->where('id_professor = ?', $this->getId_usuario())
                 ->where('convite = ?', 'proprietario')
@@ -47,4 +65,9 @@ class Application_Model_Usuario extends Zend_Db_Table_Row_Abstract {
         $this->eventos = $this->findManyToManyRowset('Application_Model_DbTable_Evento', 'Application_Model_DbTable_EventoUsuario', null, null, $select);
         return $this->eventos;
     }
+
+    public function getHorarios() {
+        return $this->findManyToManyRowset('Application_Model_DbTable_Horario', 'Application_Model_DbTable_HorarioProfessor');
+    }
+
 }
