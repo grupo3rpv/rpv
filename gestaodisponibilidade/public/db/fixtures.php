@@ -112,7 +112,7 @@ choques. Rotação de corpos rígidos. Gravitação.', 'carga_horaria' => '75h',
     $db->insert('usuario', array('nome' => 'João Pablo', 'matricula' => '654321', 'email' => 'thiagockrug@gmail.com', 'senha' => '1234567', 'tipo_usuario' => 'professor'));
     $db->insert('usuario', array('nome' => 'Aline Melo', 'matricula' => '9812749', 'email' => 'brunovicellisax@gmail.com', 'senha' => '1234567', 'tipo_usuario' => 'professor'));
     $db->insert('usuario', array('nome' => 'Cleo Billa', 'matricula' => '346320', 'email' => 'marcelomaialopes@yahoo.com.br', 'senha' => '1234567', 'tipo_usuario' => 'coordenador'));
-    $db->insert('usuario', array('nome' => 'Rudi Porto', 'matricula' => '3978452', 'email' => 'brunovicellisax@gmail.com', 'senha' => '1234567', 'tipo_usuario' => 'secretario'));
+    $db->insert('usuario', array('nome' => 'Rudi Porto', 'matricula' => '3978452', 'email' => 'helisonrt@gmail.com', 'senha' => '1234567', 'tipo_usuario' => 'secretario'));
 
     /**
      * Insere valores na tabela area_professor 
@@ -356,7 +356,7 @@ choques. Rotação de corpos rígidos. Gravitação.', 'carga_horaria' => '75h',
     $db->insert('usuario', array('nome' => 'João Pablo', 'matricula' => '654321', 'email' => 'thiagockrug@gmail.com', 'senha' => '1234567', 'tipo_usuario' => 'professor'));
     $db->insert('usuario', array('nome' => 'Aline Melo', 'matricula' => '9812749', 'email' => 'brunovicellisax@gmail.com', 'senha' => '1234567', 'tipo_usuario' => 'professor'));
     $db->insert('usuario', array('nome' => 'Cleo Billa', 'matricula' => '346320', 'email' => 'marcelomaialopes@yahoo.com.br', 'senha' => '1234567', 'tipo_usuario' => 'coordenador'));
-    $db->insert('usuario', array('nome' => 'Rudi Porto', 'matricula' => '3978452', 'email' => 'brunovicellisax@gmail.com', 'senha' => '1234567', 'tipo_usuario' => 'secretario'));
+    $db->insert('usuario', array('nome' => 'Rudi Porto', 'matricula' => '3978452', 'email' => 'helisonrt@hotmail.com', 'senha' => '1234567', 'tipo_usuario' => 'secretario'));
 
     /**
      * Insere valores na tabela area_professor 
