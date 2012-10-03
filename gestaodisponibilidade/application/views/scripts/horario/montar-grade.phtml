@@ -19,6 +19,14 @@
         clean();
         var idCurso = $('#cursos').val();
         getDisciplinasByCurso('<?= $this->baseUrl('/horario/get-disciplinas/curso/') ?>', '#disciplinas', idCurso);
+        getHorariosGrade();
+    }
+    
+    function cleanGrade() {
+        $('#disciplinas').val('');
+        $('#professores').val('');
+        clean();
+        getHorariosGrade();
     }
     
     function getProfessoresNI() {
@@ -32,6 +40,26 @@
         var idProfessor = $('#professores').val();
         cleanDisponibilidades();
         getDisponibilidadeProfessor('<?= $this->baseUrl('/horario/get-disponibilidade-professor/professor/') ?>', idProfessor);
+    }
+    
+    function getHorariosGrade() {
+        if (verificaCamposGrade()) {
+            getHorarios('<?= $this->baseUrl('/horario/get-horarios/') ?>', $('#periodosLetivos').val(), $('#cursos').val(), $('#turmas').val());
+        }
+    }
+    
+    function verificaCamposGrade() {
+        var verifica = true;
+        if ($('#periodosLetivos').val() == '') {
+            verifica = false;
+        }
+        if ($('#cursos').val() == '') {
+            verifica = false;
+        }
+        if ($('#turmas').val() == '') {
+            verifica = false;
+        }
+        return verifica;
     }
     
     function addSelectProfessores() {
@@ -195,9 +223,9 @@ foreach ($this->horas as $hora) {
 <form>
     <div>
         <div id="selects" >
-            <label>Período Letivo:</label><select id="periodosLetivos" title="Período Letivo" onchange="clean()"><option label="" selected="selected" value=""></option></select>
+            <label>Período Letivo:</label><select id="periodosLetivos" title="Período Letivo" onchange="cleanGrade()"><option label="" selected="selected" value=""></option></select>
             <label>Curso:</label><select id="cursos" title="Curso" onchange="getDisciplinasCurso()"><option label="" selected="selected" value=""></option></select>
-            <label>Turma:</label><select id="turmas" title="Turma" onchange="clean()"><option label="" selected="selected" value=""></option></select><br /><br />
+            <label>Turma:</label><select id="turmas" title="Turma" onchange="cleanGrade()"><option label="" selected="selected" value=""></option></select><br /><br />
             <label>Disciplina:</label><select id="disciplinas" title="Disciplina" onchange="getProfessoresNI()"><option label="" selected="selected" value=""></option></select>
             <label>Professor:</label><select id="professores" title="Professor" onchange="getDisponibilidades()"><option label="" selected="selected" value=""></option></select>
             <!--<a id="addSelect" onclick="addSelectProfessores()">Adicionar mais um professor</a>-->

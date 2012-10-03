@@ -105,8 +105,8 @@ class Application_Model_Horario extends Zend_Db_Table_Row_Abstract {
     }
 
     public function getDia() {
-        $dia = DateTime::createFromFormat(Application_Model_Data::PHP_DATABASE_DATE, $this->dia);
-        $dia = $dia->format(Application_Model_Data::PHP_REGULAR_WEEK);
+        $d = DateTime::createFromFormat(Application_Model_Data::PHP_DATABASE_DATE, $this->dia);
+        $dia = $d->format(Application_Model_Data::PHP_REGULAR_WEEK);
         switch ($dia) {
             case Application_Model_Data::SEGUNDA_INT:
                 return Application_Model_Data::SEGUNDA_STRING;
@@ -219,8 +219,10 @@ class Application_Model_Horario extends Zend_Db_Table_Row_Abstract {
     
     public function toArray() {
         $array = parent::toArray();
+        //$array['dia'] = $this->getDia();
         $professores = array();
         for ($i = 0; $i < count($this->professores); $i++){
+            //$professores[] = $this->professores[$i]->toArray();
             $professores[] = $this->professores[$i];
         }
         $array['professores'] = $professores;
