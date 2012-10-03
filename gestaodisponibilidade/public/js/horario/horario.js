@@ -7,10 +7,10 @@ function addHorario(url, seletor, horario) {
         context: this,
         async: true,
         success: function(data) {
+            $("#" + seletor).empty();
             if (data.horarioValido == true) {
                 addHorarioMarcado(seletor, data);
             } else {
-                $("#" + seletor).empty();
                 alert('Professor já está alocado neste horário');
             }
         }
@@ -19,12 +19,13 @@ function addHorario(url, seletor, horario) {
 
 function addHorarioMarcado(seletor, horario) {
     $("#" + seletor).removeAttr("onclick");
-    $("#" + seletor).empty();
     //$("#" + seletor).addClass('marc');
     var disciplina = searchDisciplina(horario.id_disciplina_curso);
+    //console.log(horario.professores);
     var professores = searchProfessores(horario.professores);
     $("#" + seletor).append(disciplina);
     for (var i in professores) {
+        //console.log(professores[i]);
         $("#" + seletor).append('<br />' + professores[i]);
     }
     $("#" + seletor).append('<br /><a class="button red small" onclick="desmarcarHorario(' + horario.id_horario + ', \'' + seletor + '\')">X</a>');
@@ -48,6 +49,47 @@ function removerHorario(url, idHorario, seletor) {
             }
         }
     });
+}
+
+function getHorarios(url, periodoLetivo, curso, turma) {
+//    console.log('url: ' + url);
+//    console.log('Periodo letivo: ' + periodoLetivo);
+//    console.log('Curso: ' + curso);
+//    console.log('Turma: ' + turma);
+    var dados = {'periodoLetivo' : periodoLetivo,
+        'curso' : curso,
+        'turma' : turma}
+    $.ajax({
+        url: url,
+        type: "POST",
+        dataType: 'json',
+        data: JSON.stringify(dados),
+        context: this,
+        async: true,
+        success: function(data) {
+            for (var i in data) {
+                console.log(data[i]);
+                var seletor = extractSeletor(data[i]);
+                console.log(seletor);
+                addHorarioMarcado2(seletor, data[i]);
+            }
+        }
+    });
+}
+
+function addHorarioMarcado2(seletor, horario) {
+    $("#" + seletor).removeAttr("onclick");
+    var disciplina = searchDisciplina(horario.id_disciplina_curso);
+    $("#" + seletor).append(disciplina);
+    for (var i in horario.professores) {
+        $("#" + seletor).append('<br />' + horario.professores[i].nome);
+    }
+    $("#" + seletor).append('<br /><a class="button red small" onclick="desmarcarHorario(' + horario.id_horario + ', \'' + seletor + '\')">X</a>');
+}
+
+function extractSeletor(horario) {
+    var horaInicial = horario.hora_inicial.split(':');
+    return horaInicial[0] + '-' + horario.dia;
 }
 
 function Horario () {

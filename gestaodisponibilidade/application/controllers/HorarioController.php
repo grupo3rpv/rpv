@@ -156,16 +156,16 @@ class HorarioController extends Zend_Controller_Action {
             $professor->setId_usuario($idProf);
             $horarios = $professor->getHorarios();
 
-            /* @var $horario Application_Model_Horario */
-            foreach ($horarios as $horario) {
-                if ($horario->getHora_inicial() == $horaInicial &&
-                        $horario->getDia() == $dados['dia'] &&
-                        $horario->getPeriodoLetivo()->getId_periodo_letivo() == $dados['periodoLetivo']) {
+            /* @var $horario1 Application_Model_Horario */
+            foreach ($horarios as $horario1) {
+                if ($horario1->getHora_inicial() == $horaInicial &&
+                        $horario1->getDia() == $dados['dia'] &&
+                        $horario1->getPeriodoLetivo()->getId_periodo_letivo() == $dados['periodoLetivo']) {
                     $saida = array('horarioValido' => false,
                         'id_professor' => $professor->getId_usuario(),
                         'hora' => $horaInicial,
-                        'dia' => $horario->getDia(),
-                        'periodoLetivo' => $horario->getPeriodoLetivo()->getId_periodo_letivo());
+                        'dia' => $horario1->getDia(),
+                        'periodoLetivo' => $horario1->getPeriodoLetivo()->getId_periodo_letivo());
                     $horarioValido = false;
                     break;
                 }
@@ -211,6 +211,32 @@ class HorarioController extends Zend_Controller_Action {
         $linhasDeletadas = $horario->delete();
 
         echo $linhasDeletadas;
+    }
+
+    public function getHorariosAction() {
+        $this->_helper->layout->disableLayout();
+        $this->_helper->viewRenderer->setNoRender(true);
+
+        $data = $this->getRequest()->getRawBody();
+        $dados = Zend_Json_Decoder::decode($data);
+
+        $horarioDAO = new Application_Model_DbTable_Horario();
+        $horariosGrade = $horarioDAO->getHorariosGrade($dados['periodoLetivo'], $dados['curso'], $dados['turma']);
+        /* @var $horarioGrade Application_Model_Horario */
+        foreach ($horariosGrade as $horarioGrade) {
+            $professores = $horarioGrade->getProfessores();
+            $dia = $horarioGrade->getDia();
+            $horario = $horarioGrade->toArray();
+            $horario['dia'] = $dia;
+            $horario['professores'] = '';
+            foreach ($professores as $professor) {
+                $horario['professores'][] = $professor->toArray();
+            }
+            $horarios[] = $horario;
+        }
+
+        $saida = Zend_Json_Encoder::encode($horarios);
+        echo $saida;
     }
 
 }
