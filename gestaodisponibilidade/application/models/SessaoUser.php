@@ -1,29 +1,20 @@
 <?php
 
-class Application_Model_SessaoUser extends Zend_Db_Table_Row_Abstract
-{
+class Application_Model_SessaoUser extends Zend_Db_Table_Row_Abstract {
 
-         
-     private $sessionUser;
-     
-      function __construct() {
+    private $sessionUser;
+
+    function __construct() {
         $this->sessionUser = new Zend_Session_Namespace('mymoneyUser');
-       }
-    
-     public function getSession() {
-         return $this->sessionUser->dadosUser;
-     }
+    }
 
-     public function inserirDados($dados){
-           $this->sessionUser->unsetAll();
-           $this->sessionUser->dadosUser = $dados; 
-     }
-      
-     
+    public function getSession() {
+        return $this->sessionUser->dadosUser;
+    }
 
-
-
-
+    public function inserirDados($dados) {
+        $this->sessionUser->unsetAll();
+        $this->sessionUser->dadosUser = $dados;
+    }
 
 }
-

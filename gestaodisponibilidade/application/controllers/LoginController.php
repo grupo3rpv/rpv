@@ -16,10 +16,7 @@ class LoginController extends Zend_Controller_Action {
                 $modelSessao = new Application_Model_SessaoAcesso();
                 $modelSessao->inserirDados($array);
 
-
                 $dados = $login->getValues();
-
-
 
                 $db = Zend_Db_Table::getDefaultAdapter();
 
@@ -34,7 +31,6 @@ class LoginController extends Zend_Controller_Action {
 
                 $result = $authAdapter->authenticate();
                 if ($result->isValid()) {
-
                     $auth = Zend_Auth::getInstance();
                     $storage = $auth->getStorage();
                     $storage->write($authAdapter->getResultRowObject(array('id_usuario', 'nome', 'tipo_usuario')));
@@ -54,7 +50,7 @@ class LoginController extends Zend_Controller_Action {
             $modelSessaoUsuario = new Application_Model_SessaoUser();
             $modelSessaoUsuario->inserirDados($usuario);
             if ($usuario->getTipo_usuario() == 'secretario') {
-                $this->_redirect('/Cadastros');
+                $this->_redirect('/cadastros');
             }
             if ($usuario->getTipo_usuario() == 'professor') {
                 $this->_redirect('/area-professor');
@@ -82,4 +78,3 @@ class LoginController extends Zend_Controller_Action {
     }
 
 }
-

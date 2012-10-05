@@ -10,7 +10,7 @@ class Application_Model_DbTable_Usuario extends Zend_Db_Table_Abstract {
     protected $_name = 'usuario';
     protected $_rowClass = 'Application_Model_Usuario';
     protected $_primary = 'id_usuario';
-    protected $_dependentTables = array('Application_Model_DbTable_EventoUsuario','Application_Model_DbTable_HorarioProfessor');
+    protected $_dependentTables = array('Application_Model_DbTable_EventoUsuario', 'Application_Model_DbTable_HorarioProfessor');
     protected $_referenceMap = array(
         'UsuarioDisciplina' => array(
             'refTableClass' => 'Application_Model_DbTable_Disciplina',
@@ -119,12 +119,10 @@ class Application_Model_DbTable_Usuario extends Zend_Db_Table_Abstract {
         endforeach;
         return $resultArray;
     }
-    
-      public function getUsuarioPorEmail($email){
-             $select = $this->select()->where('email =?',$email);
-             
-             return $this->fetchRow($select);
-             
-         }
+
+    public function getUsuarioPorEmail($email) {
+        $select = $this->select()->where('email = ?', $email);
+        return $this->fetchRow($select);
+    }
 
 }
