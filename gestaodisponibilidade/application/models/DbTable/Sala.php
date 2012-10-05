@@ -96,7 +96,9 @@ class Application_Model_DbTable_Sala extends Zend_Db_Table_Abstract {
         return $info['primary'][1];
     }
     
-    public function removerSala($idSala) {
+    public function removerSala($idSala, $numeroSala) {
+        $equipamentoSala = new Application_Model_DbTable_EquipamentoSala();
+        $equipamentoSala->removerEquipamentosDaSala($numeroSala);
         $sala = $this->find($idSala)->current();
         return $sala->delete();
     }
