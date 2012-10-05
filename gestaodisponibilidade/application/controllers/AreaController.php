@@ -28,7 +28,7 @@ class AreaController extends Zend_Controller_Action {
                 $model = new Application_Model_DbTable_Area();
                 $model->cadastraArea($dados);
 
-                $this->_redirect('/Area/index');
+                $this->_redirect('/area/index');
             }
         }
         $this->view->form = $form;
