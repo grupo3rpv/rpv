@@ -7,7 +7,9 @@ class AgendaController extends Zend_Controller_Action {
     }
 
     public function indexAction() {
-        $idProfessor = $this->getRequest()->getParam('professor');
+        $sessionUsuario = new Application_Model_SessaoUser();
+        $usuario = $sessionUsuario->getSession();
+        $idProfessor =$usuario->getId_usuario();
         $arrayEventos = array();
 
         $usuarioDAO = new Application_Model_DbTable_Usuario();
@@ -29,7 +31,10 @@ class AgendaController extends Zend_Controller_Action {
     }
 
     public function addEventoAction() {
-        $idProfessor = '1';
+       $sessionUsuario = new Application_Model_SessaoUser();
+        $usuario = $sessionUsuario->getSession();
+        $idProfessor =$usuario->getId_usuario();
+       
         $proprietario = 'proprietario';
         $dados = $this->getRequest()->getParams();
         unset($dados['controller']);
@@ -46,7 +51,7 @@ class AgendaController extends Zend_Controller_Action {
         $arrayEventoUsuarioProprietario = array();
         $arrayEventoUsuarioProprietario['id_professor'] = $idProfessor;
         $modelProf = new Application_Model_DbTable_Professor();
-        $nomeP = $modelProf->listaProfessorPorID('1');
+        $nomeP = $modelProf->listaProfessorPorID($idProfessor);
         $nomeProfessorProprietario = $nomeP->getNome();
         $arrayEventoUsuarioProprietario['id_evento'] = $id_evento;
         $arrayEventoUsuarioProprietario['convite'] = $proprietario;

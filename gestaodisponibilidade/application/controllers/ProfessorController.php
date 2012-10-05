@@ -78,7 +78,7 @@ class ProfessorController extends Zend_Controller_Action {
         $professorModel->removerProfessor($idUsuario);
         $this->_redirect('/professor/index');
     }
-
+    
     public function nivelInteresseAction() {
         if ($this->getRequest()->isPost()) {
             $dados = $this->getRequest()->getParams();
