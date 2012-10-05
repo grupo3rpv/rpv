@@ -27,7 +27,7 @@ class Application_Form_Login extends Zend_Form {
         $this->addElement($senha);
 
         $logar = new Zend_Form_Element_Submit('submit');
-        $logar->setLabel('Logar')
+        $logar->setLabel('Entrar')
                 ->setAttrib('class', 'button white large');
         $this->addElement($logar);
 
