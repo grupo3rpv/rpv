@@ -48,5 +48,10 @@ class Application_Model_DbTable_EquipamentoSala extends Zend_Db_Table_Abstract {
             $equipamentos->getRow($i)->delete();
         }
     }
+    
+    public function removerSalasDoEquipamento($idEquipamento) {
+        $where = $this->getAdapter()->quoteInto('id_equipamento_sala = ?', $idEquipamento);
+        return $this->delete($where);
+    }
 
 }

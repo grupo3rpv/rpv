@@ -57,8 +57,14 @@ class Application_Model_DbTable_Equipamento extends Zend_Db_Table_Abstract {
     }
     
     public function removerEquipamento($idEquipamento) {
-        $equipamento = $this->find($idEquipamento)->current();
-        return $equipamento->delete();
+        $equipamentoSala = new Application_Model_DbTable_EquipamentoSala();
+        $linhasDeletadas = $equipamentoSala->removerSalasDoEquipamento($idEquipamento);
+        if ($linhasDeletadas > 0) {
+            $equipamento = $this->find($idEquipamento)->current();
+            return $equipamento->delete();
+        } else {
+            throw new Zend_Exception('Problema ao remover equipamentos da sala!');
+        }
     }
 }
 
