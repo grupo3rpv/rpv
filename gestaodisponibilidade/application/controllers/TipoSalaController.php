@@ -63,9 +63,8 @@ class TipoSalaController extends Zend_Controller_Action {
     public function removerTipoSalaAction() {
         $id_tipo_sala = $this->_getParam('id_tipo_sala');
         $tipoSalaModel = new Application_Model_DbTable_TipoSala();
-        $tipoSalaModel->removerTipoSala( $id_tipo_sala);
+        $tipoSalaModel->removerTipoSala($id_tipo_sala);
         $this->_redirect('/tipo-sala/index');
     }
 
 }
-
