@@ -142,6 +142,7 @@ foreach ($this->horas as $hora) {
         
             function marcarHorario(seletor) {
                 if (verificaCampos()) {
+                    $("#" + seletor).removeAttr("onclick");
                     //$("#" + seletor).removeClass('disp');
                     //$("#" + seletor).removeClass('marc');
                     //$("#" + seletor).addClass('marc');
