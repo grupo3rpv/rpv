@@ -3,7 +3,7 @@
 class LoginController extends Zend_Controller_Action {
 
     public function init() {
-        //$this->_helper->layout->setLayout('apresentacao');
+        
     }
 
     public function logarAction() {
@@ -51,12 +51,12 @@ class LoginController extends Zend_Controller_Action {
             $modelSessaoUsuario->inserirDados($usuario);
             if ($usuario->getTipo_usuario() == 'secretario') {
                 $this->_redirect('/cadastros');
-            }
-            if ($usuario->getTipo_usuario() == 'professor') {
+            } else if ($usuario->getTipo_usuario() == 'professor') {
                 $this->_redirect('/area-professor');
-            }
-            if ($usuario->getTipo_usuario() == 'coordenador') {
+            } else if ($usuario->getTipo_usuario() == 'coordenador') {
                 $this->_redirect('/area-coordenador');
+            } else if ($usuario->getTipo_usuario() == 'admin') {
+                $this->_redirect('/index');
             }
         }
 
