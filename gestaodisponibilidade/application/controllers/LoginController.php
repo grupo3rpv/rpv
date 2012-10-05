@@ -56,7 +56,7 @@ class LoginController extends Zend_Controller_Action {
             } else if ($usuario->getTipo_usuario() == 'coordenador') {
                 $this->_redirect('/area-coordenador');
             } else if ($usuario->getTipo_usuario() == 'admin') {
-                $this->_redirect('/index');
+                $this->_redirect('/admin');
             }
         }
 
