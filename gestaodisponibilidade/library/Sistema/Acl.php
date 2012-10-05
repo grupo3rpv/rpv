@@ -50,7 +50,7 @@ class Sistema_Acl extends Zend_Controller_Plugin_Abstract {
         $acl->allow('coordenador', 'area');
         $acl->allow('coordenador', 'login');
         $acl->allow('coordenador', 'area-coordenador');
-//        $acl->allow('coordernador', 'disciplina');
+        $acl->allow('coordernador', 'disciplina');
         //$acl->allow('secretario', 'area-coordenador');
 
         $acl->allow(null, 'login', array('logar', 'acesso-negado', 'sair'));
