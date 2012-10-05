@@ -27,7 +27,7 @@ class Application_Model_DbTable_Usuario extends Zend_Db_Table_Abstract {
     public function getProfessoresComNiveisInteresse($idDisciplina) {
         $select = $this->select();
         $select->setIntegrityCheck(false);
-        $quoted = $select->getAdapter()->quoteInto('id_usuario = id_professor and tipo_usuario = "professor" and id_disciplina = ?', $idDisciplina);
+        $quoted = $select->getAdapter()->quoteInto('id_usuario = id_professor and (tipo_usuario = "professor" or  tipo_usuario = "coordenador") and id_disciplina = ?', $idDisciplina);
         $select->from(array('u' => 'usuario'), array('u.id_usuario', 'u.nome',
                     'coalesce(nivel_interesse, 0) as nivel_interesse'))
                 ->joinLeft('nivel_interesse', $quoted, '')

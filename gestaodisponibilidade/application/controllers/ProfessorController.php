@@ -80,6 +80,10 @@ class ProfessorController extends Zend_Controller_Action {
     }
     
     public function nivelInteresseAction() {
+        $sessionUsuario = new Application_Model_SessaoUser();
+        $usuario = $sessionUsuario->getSession();
+        $idProfessor =$usuario->getId_usuario();
+        
         if ($this->getRequest()->isPost()) {
             $dados = $this->getRequest()->getParams();
             $modelDisciplina = new Application_Model_DbTable_Disciplina();
@@ -94,7 +98,7 @@ class ProfessorController extends Zend_Controller_Action {
                 $disciplina = $modelDisciplina->listaDisciplinaPorCodigo($key);
                 $lista['id_disciplina'] = $disciplina->getId_disciplina();
                 $lista['nivel_interesse'] = $item[$key];
-                $lista['id_professor'] = 1;
+                $lista['id_professor'] = $idProfessor;
                 $modelNivelInteresse->cadastraNivelInteresse($lista);
                 unset($lista);
                 ///var_dump($lista);die();
@@ -125,7 +129,7 @@ class ProfessorController extends Zend_Controller_Action {
     }
 
     public function perfilAction() {
-         $sessionUsuario = new Application_Model_SessaoUser();
+        $sessionUsuario = new Application_Model_SessaoUser();
         $usuario = $sessionUsuario->getSession();
         $idProfessor =$usuario->getId_usuario();
         $modelNivelInteresse = new Application_Model_DbTable_NivelInteresse();

@@ -42,7 +42,7 @@ class Sistema_Acl extends Zend_Controller_Plugin_Abstract {
         $acl->allow('professor', 'area-professor');
         $acl->allow('professor', 'usuario', array('perfil'));
         $acl->allow('professor', 'agenda', array('index', 'cadastrar-evento', 'add-evento', 'confirmacao-evento', 'recusar-evento'));
-        $acl->allow('professor', 'professor',array('nivel-interesse','nivel-interesse-edit','perfil','editar-nivel-interesse','recebe-disponibilidade-aula','adicionar-convidados','get-eventos'));
+        $acl->allow('professor', 'professor',array('disponibilidade-aula','nivel-interesse','nivel-interesse-edit','perfil','editar-nivel-interesse','recebe-disponibilidade-aula','adicionar-convidados','get-eventos'));
         $acl->allow('professor', 'curso',array('listar-cursos','disciplina'));
         $acl->allow('professor', 'index');
 

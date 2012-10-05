@@ -97,11 +97,11 @@ class HorarioController extends Zend_Controller_Action {
     public function getDisponibilidadeProfessorAction() {
         $this->_helper->layout->disableLayout();
         $this->_helper->viewRenderer->setNoRender(true);
-        $sessionUsuario = new Application_Model_SessaoUser();
-        $usuario = $sessionUsuario->getSession();
-        $idProfessor =$usuario->getId_usuario();
+//        $sessionUsuario = new Application_Model_SessaoUser();
+//        $usuario = $sessionUsuario->getSession();
+//        $idProfessor =$usuario->getId_usuario();
       
-        //$idProfessor = $this->getRequest()->getParam('professor');
+        $idProfessor = $this->getRequest()->getParam('professor');
         if (is_numeric($idProfessor)) {
             $disponibilidadeDAO = new Application_Model_DbTable_DisponibilidadeAula();
             $disponibilidades = $disponibilidadeDAO->listaDisponibilidadesPorId($idProfessor)->toArray();
