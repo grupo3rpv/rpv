@@ -22,8 +22,10 @@ class UsuarioController extends Zend_Controller_Action {
 
     public function perfilAction() {
         $form = new Application_Form_Usuario();
-
-        $numero = $this->getRequest()->getParam(Application_Model_DbTable_Professor::getPrimaryKeyName());
+         $sessionUsuario = new Application_Model_SessaoUser();
+        $usuario = $sessionUsuario->getSession();
+        $numero =$usuario->getId_usuario();
+        //$numero = $this->getRequest()->getParam(Application_Model_DbTable_Professor::getPrimaryKeyName());
         $professorModel = new Application_Model_DbTable_Professor();
 
         $professor = $professorModel->find($numero)->current();

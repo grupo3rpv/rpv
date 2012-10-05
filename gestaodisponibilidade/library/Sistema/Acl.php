@@ -30,8 +30,7 @@ class Sistema_Acl extends Zend_Controller_Plugin_Abstract {
         //Secretario
         $acl->allow('secretario', 'curso', array('adicionar-curso', 'editar-curso', 'remover'));
         $acl->allow('secretario', 'equipamento');
-        $acl->allow('secretario', 'sala');
-        $acl->allow('secretario', 'disciplina');
+       // $acl->allow('secretario', 'sala');
         $acl->allow('secretario', 'secretaria');
         $acl->allow('secretario', 'cadastros');
         $acl->allow('secretario', 'login');
@@ -42,8 +41,8 @@ class Sistema_Acl extends Zend_Controller_Plugin_Abstract {
         $acl->allow('professor', 'area-professor');
         $acl->allow('professor', 'usuario', array('perfil'));
         $acl->allow('professor', 'agenda', array('index', 'cadastrar-evento', 'add-evento', 'confirmacao-evento', 'recusar-evento'));
-        $acl->allow('professor', 'professor');
-        $acl->allow('professor', 'curso', array('listar-curso'));
+        $acl->allow('professor', 'professor',array('nive-interesse','nivel-interesse-edit','perfil','editar-nivel-interesse','recebe-disponibilidade-aula','adicionar-convidados','get-eventos'));
+        $acl->allow('professor', 'curso','listar-cursos');
         $acl->allow('professor', 'index');
 
         //coordenador
@@ -51,6 +50,7 @@ class Sistema_Acl extends Zend_Controller_Plugin_Abstract {
         $acl->allow('coordenador', 'area');
         $acl->allow('coordenador', 'login');
         $acl->allow('coordenador', 'area-coordenador');
+        $acl->allow('coordernador', 'disciplina');
         //$acl->allow('secretario', 'area-coordenador');
 
         $acl->allow(null, 'login', array('logar', 'acesso-negado', 'sair'));
