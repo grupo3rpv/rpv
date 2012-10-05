@@ -72,8 +72,13 @@ class SecretariaController extends Zend_Controller_Action {
     public function removerSalaAction() {
         $idSala = $this->_getParam('id_sala');
         $salaModel = new Application_Model_DbTable_Sala();
-        $salaModel->removerSala($idSala);
-        $this->_redirect('/secretaria/index');
+        $sala = $salaModel->find($idSala)->current();
+        $linhasDeletadas = $salaModel->removerSala($idSala, $sala->getNumero());
+        if ($linhasDeletadas > 0) {
+            $this->_redirect('/secretaria/index');
+        } else {
+            throw new Zend_Exception('Problema ao remover sala!');
+        }
     }
 
 }

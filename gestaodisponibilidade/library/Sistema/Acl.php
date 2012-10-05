@@ -26,6 +26,7 @@ class Sistema_Acl extends Zend_Controller_Plugin_Abstract {
         $acl->add(new Zend_Acl_Resource('area-coordenador'));
         $acl->add(new Zend_Acl_Resource('usuario'));
         $acl->add(new Zend_Acl_Resource('tipo-sala'));
+        $acl->add(new Zend_Acl_Resource('admin'));
 
         //Secretario
         $acl->allow('secretario', 'curso', array('adicionar-curso', 'editar-curso', 'remover'));
@@ -52,7 +53,9 @@ class Sistema_Acl extends Zend_Controller_Plugin_Abstract {
         $acl->allow('coordenador', 'area-coordenador');
         //$acl->allow('coordernador','disciplina');
         //$acl->allow('secretario', 'area-coordenador');
-
+        //admin
+        $acl->allow('admin', 'admin');
+        
         $acl->allow(null, 'login', array('logar', 'acesso-negado', 'sair'));
 
         $auth = Zend_Auth::getInstance();
