@@ -1,17 +1,12 @@
 <?php
 
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
 /**
  * Description of Sessao
  *
  * @author Marcelo
  */
 class Application_Model_Sessao {
-   
+
     private $session;
 
     function __construct() {
@@ -20,27 +15,17 @@ class Application_Model_Sessao {
             $this->session->disciplinas = array();
         }
     }
-    
-     public function getDisciplinas() {
+
+    public function getDisciplinas() {
         return $this->session->disciplinas;
     }
-    
-    
 
-    /**
-     *
-     * @param type $produtos 
-     */
     public function setDisciplinas($disciplina) {
         $this->session->disciplinas = $disciplina;
     }
-    
 
-    public function addDisciplinas($disciplina){
-        $this->session->disciplinas[]=$disciplina;
+    public function addDisciplinas($disciplina) {
+        $this->session->disciplinas[] = $disciplina;
     }
 
-
 }
-
-?>

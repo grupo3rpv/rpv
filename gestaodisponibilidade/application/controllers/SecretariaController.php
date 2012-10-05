@@ -8,7 +8,7 @@ class SecretariaController extends Zend_Controller_Action {
 
     public function indexAction() {
         $modelSala = new Application_Model_DbTable_Sala();
-        $listaSalas = $modelSala->listaSala();        
+        $listaSalas = $modelSala->listaSala();
         $this->view->listaSalas = $listaSalas;
     }
 
@@ -67,4 +67,3 @@ class SecretariaController extends Zend_Controller_Action {
     }
 
 }
-
