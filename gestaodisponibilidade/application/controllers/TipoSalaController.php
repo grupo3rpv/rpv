@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 <?php
 
 class TipoSalaController extends Zend_Controller_Action {
