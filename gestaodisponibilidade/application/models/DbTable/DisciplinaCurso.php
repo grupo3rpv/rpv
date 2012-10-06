@@ -31,5 +31,10 @@ class Application_Model_DbTable_DisciplinaCurso extends Zend_Db_Table_Abstract {
             $cursos->getRow($i)->delete();
         }
     }
+    
+    public function getDisciplinaCurso($idCurso, $idDisciplina) {
+        $select = $this->select()->where('id_curso = ?', $idCurso)->where('id_disciplina = ?', $idDisciplina);
+        return $this->fetchAll($select);
+    }
 
 }

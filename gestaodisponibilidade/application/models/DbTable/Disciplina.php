@@ -1,10 +1,5 @@
 <?php
 
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
 /**
  * Description of Disciplina
  *
@@ -97,8 +92,33 @@ class Application_Model_DbTable_Disciplina extends Zend_Db_Table_Abstract {
         $chave = $disciplina->save();
 
         $disciplinaCursoModel = new Application_Model_DbTable_DisciplinaCurso();
-        $this->removerCursosDaDisciplina($disciplinaCursoModel, $disciplina);
-        $this->cadastrarDisciplinaCurso($dados, $disciplinaCursoModel, $chave);
+        $cursos = $disciplinaCursoModel->getIdCursos($chave);
+        foreach ($dados['id_curso'] as $key => $value) {
+            $cadastrar = true;
+            foreach ($cursos as $curso) {
+                if ($curso->getId_curso() == $value) {
+                    $cadastrar = false;
+                    break;
+                }
+            }
+            if ($cadastrar) {
+                $disciplinaCursoModel->cadastraDisciplinaCurso(array('id_curso' => $value, 'id_disciplina' => $chave));
+            }
+        }
+
+        $cursos = $disciplinaCursoModel->getIdCursos($chave);
+        foreach ($cursos as $curso) {
+            $remover = true;
+            foreach ($dados['id_curso'] as $key => $value) {
+                if ($curso->getId_curso() == $value) {
+                    $remover = false;
+                    break;
+                }
+            }
+            if ($remover) {
+                $disciplinaCursoModel->removerCursosDaDisciplina($curso->getId_disciplina());
+            }
+        }
 
         return $chave;
     }
@@ -108,17 +128,6 @@ class Application_Model_DbTable_Disciplina extends Zend_Db_Table_Abstract {
         $disciplinaCursoModel = new Application_Model_DbTable_DisciplinaCurso();
         $this->removerCursosDaDisciplina($disciplinaCursoModel, $disciplina);
         return $disciplina->delete();
-    }
-
-    private function cadastrarDisciplinaCurso($dados, $disciplinaCursoModel, $chave) {
-        foreach ($dados['id_curso'] as $key => $value) {
-            $disciplinaCursoModel->cadastraDisciplinaCurso(array(
-                'id_curso' => $value, 'id_disciplina' => $chave));
-        }
-    }
-
-    private function removerCursosDaDisciplina($disciplinaCursoModel, $disciplina) {
-        $disciplinaCursoModel->removerCursosDaDisciplina($disciplina->getId_disciplina());
     }
 
 }

@@ -1,17 +1,12 @@
 <?php
 
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
 /**
  * Description of Disciplina
  *
  * @author Helison
  */
 class Application_Form_Disciplina extends Zend_Form {
-    
+
     public function init() {
         $this->setMethod('POST');
 
@@ -22,14 +17,14 @@ class Application_Form_Disciplina extends Zend_Form {
                 ->addFilter(new Zend_Filter_StripTags())
                 ->setAllowEmpty(false);
         $this->addElement($element);
-        
+
         $element = new Zend_Form_Element_Text('codigo');
         $element->setLabel('Codigo: ')
                 ->setAttrib('class', 'i-format')
                 ->setRequired(true)
                 ->setAllowEmpty(false);
         $this->addElement($element);
-        
+
         $element = new Zend_Form_Element_Text('nome');
         $element->setLabel('Nome: ')
                 ->setAttrib('class', 'i-format')
@@ -48,16 +43,16 @@ class Application_Form_Disciplina extends Zend_Form {
         $element->setLabel('Carga Horária: ')
                 ->setAttrib('class', 'i-format');
         $this->addElement($element);
-        
+
         $element = new Zend_Form_Element_Text('info_adicionais');
         $element->setLabel('Informações Adicionais: ')
                 ->setAttrib('class', 'i-format');
         $this->addElement($element);
-        
+
         $element = new Zend_Form_Element_MultiCheckbox(Application_Model_DbTable_Curso::getPrimaryKeyName());
         $element->setLabel('Selecione os cursos dessa disciplina: ');
         $this->addElement($element);
-        
+
         /**
          * Cria no formulario o botão de "enviar" define tambem o tamanho do mesmo.
          */
@@ -68,6 +63,4 @@ class Application_Form_Disciplina extends Zend_Form {
         $this->addElement($element);
     }
 
-
 }
-
