@@ -252,10 +252,10 @@ class ProfessorController extends Zend_Controller_Action {
     public function getEventosAction() {
         $this->_helper->layout->disableLayout();
         $this->_helper->viewRenderer->setNoRender(true);
-         $sessionUsuario = new Application_Model_SessaoUser();
-        $usuario = $sessionUsuario->getSession();
-        $id=$usuario->getId_usuario();
-        //$id = $this->getRequest()->getParam('id');
+//         $sessionUsuario = new Application_Model_SessaoUser();
+//        $usuario = $sessionUsuario->getSession();
+//        $id=$usuario->getId_usuario();
+        $id = $this->getRequest()->getParam('id');
         $professorDAO = new Application_Model_DbTable_Usuario();
         $professor = $professorDAO->find($id)->current();
         $eventos = $professor->getEventos();

@@ -211,7 +211,7 @@
 	});
 </script>
 
-<form method="POST" action="<?= $this->baseUrl('agenda/add-evento') ?>">
+<form method="POST" action="<? if ($this->existe) { echo ($this->baseUrl('agenda/add-evento/evento/') . $this->evento->getId_evento());} else { echo ($this->baseUrl('agenda/add-evento/')); } ?>">
     <div style="margin-left: 5%;width: 50%">
         <p>Descrição do evento:  <input id="titulo" name="titulo" class="i-format" type="text" value="<? if ($this->existe) { echo ($this->evento->getTitulo());} else { echo (""); } ?>" /><p/>
         <p>Data Inicial:<br /><input class="subscr_email" value="<? if ($this->existe) { echo ($this->evento->getData_inicial());} else { echo (""); } ?>" id="data_inicial" name="data_inicial" type="text" onblur="trocaData($('#data_inicial').val())" /><div style="color: red;margin-left: 350px;"  id="alerta">Para adicionar um professor você devera selecionar uma data inicial.</div><p/>
@@ -256,3 +256,13 @@
      <input  id="professoresConvidados" name="professoresConvidados" value="" type="hidden"  />
       
  </form>
+<nav id="horizontal">
+    <ul id="nav">
+
+        <li>
+            <a href="<?= $this->baseUrl('login/sair/') ?>">Sair</a><span></span></a>
+        </li>
+
+
+    </ul>
+</nav>
