@@ -18,15 +18,15 @@
 <!--            <th colspan="2">Ação</th>-->
         </tr> 
     </thead> 
-    
-        <tbody> 
-            <tr> 
-               
-                <td><?= $this->professor['nome'] ?></td> 
-                 <td><?= $this->professor['matricula'] ?></td> 
-                 </tr>
-        </tbody>
-    
+
+    <tbody> 
+        <tr> 
+
+            <td><?= $this->professor['nome'] ?></td> 
+            <td><?= $this->professor['matricula'] ?></td> 
+        </tr>
+    </tbody>
+
 </table>
 
 
@@ -40,29 +40,29 @@
 <!--            <th colspan="2">Ação</th>-->
         </tr> 
     </thead> 
-       <tbody>
-       <? for ($i =0;  $i<count($this->listaDisciplinas['codigo']); $i++): ?>
-          <? for ($i =0;  $i<count($this->listaDisciplinas['nome']); $i++): ?>
-             <? for ($i =0;  $i<count($this->listaDisciplinas['nivel_interesse']); $i++): ?>
-           
-            <tr>
-               <td><?= $this->listaDisciplinas['codigo'][$i] ?></td> 
-              <td><?= $this->listaDisciplinas['nome'][$i] ?></td> 
-              <td><?= $this->listaDisciplinas['nivel_interesse'][$i] ?></td> 
-             
-             
-            </tr>
-      <? endfor; ?>  
-      <? endfor; ?>  
-      <? endfor; ?> 
-         
-                  
-     
-       
-         
-               
-        </tbody>
+    <tbody>
+        <? for ($i = 0; $i < count($this->listaDisciplinas['codigo']); $i++): ?>
+            <? for ($i = 0; $i < count($this->listaDisciplinas['nome']); $i++): ?>
+                <? for ($i = 0; $i < count($this->listaDisciplinas['nivel_interesse']); $i++): ?>
 
-   
+                    <tr>
+                        <td><?= $this->listaDisciplinas['codigo'][$i] ?></td> 
+                        <td><?= $this->listaDisciplinas['nome'][$i] ?></td> 
+                        <td><?= $this->listaDisciplinas['nivel_interesse'][$i] ?></td> 
+
+
+                    </tr>
+                <? endfor; ?>  
+            <? endfor; ?>  
+        <? endfor; ?> 
+
+
+
+
+
+
+    </tbody>
+
+
 </table>
 
