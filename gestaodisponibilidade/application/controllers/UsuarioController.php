@@ -41,7 +41,7 @@ class UsuarioController extends Zend_Controller_Action {
                 $dados = $form->getValues();
                 $professorModel->editarProfessor($dados);
 
-                $this->_redirect('/usuario/perfil/id_usuario/' . $numero);
+                $this->_redirect('/area-professor/');
             }
         }
 
