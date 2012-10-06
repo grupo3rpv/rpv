@@ -16,6 +16,7 @@
             <th>Disciplinas de Interesse</th> 
             <th>Meus Dados</th> 
             <th>Minha Agenda</th> 
+            
 
         </tr> 
     </thead> 
@@ -32,11 +33,11 @@
 
             </td>
             <td>
-                <a class="button blue small" href="<?= $this->baseUrl('usuario/perfil/id_usuario/1') ?>">Visualizar</a>
-                <a class="button green small" href="<?= $this->baseUrl('usuario/perfil/id_usuario/1') ?>">Editar dados</a>
+                <a class="button blue small" href="<?= $this->baseUrl('usuario/perfil/') ?>">Visualizar</a>
+                <a class="button green small" href="<?= $this->baseUrl('usuario/perfil/') ?>">Editar dados</a>
             </td>
             <td>
-                <a class="button blue small" href="<?= $this->baseUrl('agenda/index/professor/1') ?>">Visualizar</a>
+                <a class="button blue small" href="<?= $this->baseUrl('agenda/index/') ?>">Visualizar</a>
                 <a class="button orange small" href="<?= $this->baseUrl('agenda/cadastrar-evento') ?>">Cadastrar Evento</a>
             </td>
 
@@ -47,6 +48,7 @@
 
             <th>Horários Disponíveis de Aula</th> 
             <th>Montar Grade de Horários</th>
+            <th>Gerenciar disciplinas</th> 
 
 
         </tr> 
@@ -57,6 +59,10 @@
             <td>
                 <a class="button orange small" href="<?= $this->baseUrl('horario/montar-grade') ?>">Montar Grade</a>
             </td>
+            <td>
+                <a class="button orange small" href="<?= $this->baseUrl('disciplina/') ?>">Gerenciar disciplinas</a>
+            </td>
         </tr>
+      
     </tbody>
 </table>
