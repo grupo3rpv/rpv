@@ -10,6 +10,7 @@ class AreaProfessorController extends Zend_Controller_Action {
     public function init() {
         if (Zend_Auth::getInstance()->hasIdentity()) {
             $entity = Zend_Auth::getInstance()->getIdentity();
+            
             if ($entity->tipo_usuario == 'professor' ||
                     $entity->tipo_usuario == 'coordenador' ||
                     $entity->tipo_usuario == 'admin') {

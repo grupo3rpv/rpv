@@ -10,6 +10,10 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap {
     public function _initResources() {
         $this->bootstrap('view');
         $this->bootstrap('db');
+          $view = $this->getResource('view');
+         if (Zend_Auth::getInstance()->hasIdentity()) {
+            $view->identity = Zend_Auth::getInstance()->getIdentity();
+        }
     }
 
     protected function _initRotas() {
