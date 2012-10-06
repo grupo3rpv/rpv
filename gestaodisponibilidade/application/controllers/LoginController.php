@@ -51,6 +51,8 @@ class LoginController extends Zend_Controller_Action {
             $modelSessaoUsuario->inserirDados($usuario);
            
             $urlRequisitante = $this->getRequest()->getRequestUri();
+            $url = substr($urlRequisitante, 34, 300);
+            //var_dump($url);die();
             if($urlRequisitante =="/rpv/gestaodisponibilidade/public/login/logar" ){
               
                 if ($usuario->getTipo_usuario() == 'secretario') {
@@ -64,7 +66,7 @@ class LoginController extends Zend_Controller_Action {
                 }  
             }
             else{
-                $this->_redirect($urlRequisitante);
+                $this->_redirect($url);
             }
            
             
