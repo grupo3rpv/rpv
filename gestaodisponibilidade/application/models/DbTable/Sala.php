@@ -67,6 +67,7 @@ class Application_Model_DbTable_Sala extends Zend_Db_Table_Abstract {
      */
     public function editarSala(array $dados) {
         $sala = $this->find($dados['numero'])->current();
+        //var_dump($sala);die();
         /* @var $sala Application_Model_Sala */
         //$sala->setNumero($dados['numero']);
         $sala->setDescricao($dados['descricao']);

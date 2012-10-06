@@ -65,11 +65,7 @@ class EquipamentoController extends Zend_Controller_Action {
         $idEquipamento = $this->_getParam('id_equipamento');
         $equipamentoModel = new Application_Model_DbTable_Equipamento();
         $linhasDeletadas = $equipamentoModel->removerEquipamento($idEquipamento);
-        if ($linhasDeletadas > 0) {
-            $this->_redirect('/equipamento/index');
-        } else {
-            throw new Zend_Exception('Problema ao remover equipamento!');
-        }
+        $this->_redirect('/equipamento/index');
     }
 
 }

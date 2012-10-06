@@ -56,7 +56,6 @@ class SecretariaController extends Zend_Controller_Action {
             $i++;
         }
         $arraySala['id_equipamento'] = $equipamentos;
-        
         $form->populate($arraySala);
         if ($this->getRequest()->isPost()) {
             if ($form->isValid($_POST)) {

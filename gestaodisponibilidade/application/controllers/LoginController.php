@@ -49,6 +49,8 @@ class LoginController extends Zend_Controller_Action {
             $usuario = $modelUsuario->getUsuarioPorEmail($dados['email']);
             $modelSessaoUsuario = new Application_Model_SessaoUser();
             $modelSessaoUsuario->inserirDados($usuario);
+            $request = $this->getRequest();
+            var_dump($this->getRequest()->getRequestUri());die();
             if ($usuario->getTipo_usuario() == 'secretario') {
                 $this->_redirect('/cadastros');
             } else if ($usuario->getTipo_usuario() == 'professor') {

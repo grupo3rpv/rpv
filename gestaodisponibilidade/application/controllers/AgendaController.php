@@ -19,6 +19,7 @@ class AgendaController extends Zend_Controller_Action {
     public function indexAction() {
         $sessionUsuario = new Application_Model_SessaoUser();
         $usuario = $sessionUsuario->getSession();
+        
         $idProfessor =$usuario->getId_usuario();
         $arrayEventos = array();
 
@@ -41,8 +42,9 @@ class AgendaController extends Zend_Controller_Action {
     }
 
     public function addEventoAction() {
-       $sessionUsuario = new Application_Model_SessaoUser();
+        $sessionUsuario = new Application_Model_SessaoUser();
         $usuario = $sessionUsuario->getSession();
+        
         $idProfessor =$usuario->getId_usuario();
        
         $proprietario = 'proprietario';
@@ -109,6 +111,7 @@ class AgendaController extends Zend_Controller_Action {
     }
 
     public function cadastrarEventoAction() {
+         
         $idEvento = $this->getRequest()->getParam('evento');
         $eventoDAO = new Application_Model_DbTable_Evento();
         if (isset($idEvento)) {
