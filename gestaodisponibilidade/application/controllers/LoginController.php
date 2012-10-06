@@ -49,17 +49,25 @@ class LoginController extends Zend_Controller_Action {
             $usuario = $modelUsuario->getUsuarioPorEmail($dados['email']);
             $modelSessaoUsuario = new Application_Model_SessaoUser();
             $modelSessaoUsuario->inserirDados($usuario);
-            $request = $this->getRequest();
-            var_dump($this->getRequest()->getRequestUri());die();
-            if ($usuario->getTipo_usuario() == 'secretario') {
-                $this->_redirect('/cadastros');
-            } else if ($usuario->getTipo_usuario() == 'professor') {
-                $this->_redirect('/area-professor');
-            } else if ($usuario->getTipo_usuario() == 'coordenador') {
-                $this->_redirect('/area-coordenador');
-            } else if ($usuario->getTipo_usuario() == 'admin') {
-                $this->_redirect('/admin');
+           
+            $urlRequisitante = $this->getRequest()->getRequestUri();
+            if($urlRequisitante =="/rpv/gestaodisponibilidade/public/login/logar" ){
+              
+                if ($usuario->getTipo_usuario() == 'secretario') {
+                    $this->_redirect('/cadastros');
+                } else if ($usuario->getTipo_usuario() == 'professor') {
+                    $this->_redirect('/area-professor');
+                } else if ($usuario->getTipo_usuario() == 'coordenador') {
+                    $this->_redirect('/area-coordenador');
+                } else if ($usuario->getTipo_usuario() == 'admin') {
+                    $this->_redirect('/admin');
+                }  
             }
+            else{
+                $this->_redirect($urlRequisitante);
+            }
+           
+            
         }
 
         $this->view->login = $login;
