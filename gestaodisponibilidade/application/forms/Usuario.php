@@ -63,7 +63,7 @@ class Application_Form_Usuario extends Zend_Form {
         $element->setLabel('Atualizar dados')
                 ->setAttrib('size', '50')
                 ->setAttrib('onClick', 'selecionarTodosElementos()')
-                ->setAttrib('class', 'button normal blue');
+                ->setAttrib('class', 'button normal orange');
         $this->addElement($element);
     }
 
