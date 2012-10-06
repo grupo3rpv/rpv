@@ -53,6 +53,7 @@ class Application_Model_DbTable_Evento extends Zend_Db_Table_Abstract {
 
         $evento = $this->createRow();
         /*@var $evento Application_Model_Evento*/
+        //$evento->setId_evento($dados['evento']);
         $evento->setData_inicial($dados['data_inicial']);
         $evento->setData_final($dados['data_inicial']);
         $evento->setHora1($dados['hora1']);

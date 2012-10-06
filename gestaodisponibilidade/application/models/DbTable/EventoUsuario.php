@@ -34,8 +34,15 @@ class Application_Model_DbTable_EventoUsuario extends Zend_Db_Table_Abstract {
         
     }
     
+    public function getUsuarios($idEvento) {
+        $where = $this->getAdapter()->quoteInto('id_evento = ?', $idEvento);
+        return $this->fetchAll($where);
+    }
     
-    
-   
+    public function getUsuariosNaoProprietarios($idEvento) {
+        $select = $this->select()->where('id_evento = ?', $idEvento)->where('convite != ?', 'proprietario');
+        //echo $select->__toString();die();
+        return $this->fetchAll($select);
+    }
 
 }

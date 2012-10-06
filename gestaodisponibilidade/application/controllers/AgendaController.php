@@ -8,6 +8,7 @@ class AgendaController extends Zend_Controller_Action {
             if ($entity->tipo_usuario == 'professor' ||
                     $entity->tipo_usuario == 'coordenador' ||
                     $entity->tipo_usuario == 'admin') {
+                
             } else {
                 $this->_redirect('/login/acesso-negado/');
             }
@@ -19,7 +20,7 @@ class AgendaController extends Zend_Controller_Action {
     public function indexAction() {
         $sessionUsuario = new Application_Model_SessaoUser();
         $usuario = $sessionUsuario->getSession();
-        $idProfessor =$usuario->getId_usuario();
+        $idProfessor = $usuario->getId_usuario();
         $arrayEventos = array();
 
         $usuarioDAO = new Application_Model_DbTable_Usuario();
@@ -41,71 +42,90 @@ class AgendaController extends Zend_Controller_Action {
     }
 
     public function addEventoAction() {
-       $sessionUsuario = new Application_Model_SessaoUser();
+        $sessionUsuario = new Application_Model_SessaoUser();
         $usuario = $sessionUsuario->getSession();
-        $idProfessor =$usuario->getId_usuario();
-       
+        $idProfessor = $usuario->getId_usuario();
+
         $proprietario = 'proprietario';
         $dados = $this->getRequest()->getParams();
-        unset($dados['controller']);
-        unset($dados['action']);
-        unset($dados['module']);
+        $idEvento = $dados['evento'];
 
-        $id_professores = array();
-        $id_professores = explode('|', $dados['professoresConvidados']);
-        $ultimaPosicaoVetor = count($id_professores) - 1;
-        unset($id_professores[$ultimaPosicaoVetor]);
-        $modelEvento = new Application_Model_DbTable_Evento();
-        $id_evento = $modelEvento->cadastraEvento($dados);
+        if (isset($idEvento)) {
+            $eventoUsuarioDAO = new Application_Model_DbTable_EventoUsuario();
+            $usuariosConvidados = $eventoUsuarioDAO->getUsuariosNaoProprietarios($idEvento);
+            if (count($usuariosConvidados) == 0 || is_null($usuariosConvidados)) {
+                $modelEvento = new Application_Model_DbTable_Evento();
+                $evento = $modelEvento->find($idEvento)->current();
+                $evento->setData_inicial($dados['data_inicial']);
+                $evento->setData_final($dados['data_inicial']);
+                $evento->setHora1($dados['hora1']);
+                $evento->setHora2($dados['hora2']);
+                $evento->setTitulo($dados['titulo']);
+                $evento->setPrivado($dados['privado']);
 
-        $arrayEventoUsuarioProprietario = array();
-        $arrayEventoUsuarioProprietario['id_professor'] = $idProfessor;
-        $modelProf = new Application_Model_DbTable_Professor();
-        $nomeP = $modelProf->listaProfessorPorID($idProfessor);
-        $nomeProfessorProprietario = $nomeP->getNome();
-        $arrayEventoUsuarioProprietario['id_evento'] = $id_evento;
-        $arrayEventoUsuarioProprietario['convite'] = $proprietario;
-        $modelEventoUsuario = new Application_Model_DbTable_EventoUsuario();
-        $modelEventoUsuario->cadastrarEventoUsuario($arrayEventoUsuarioProprietario);
-
-        if (count($id_professores) > 0) {
-            for ($index = 0; $index < count($id_professores); $index++) {
-                $arrayEventosUsuarioConvidado = array();
-                $arrayEventosUsuarioConvidado['id_professor'] = $id_professores[$index];
-                $arrayEventosUsuarioConvidado['id_evento'] = $id_evento;
-                $arrayEventosUsuarioConvidado['convite'] = 'convidado';
-
-
-                $modelProfessor = new Application_Model_DbTable_Professor();
-                $professor = $modelProfessor->listaProfessorPorID($id_professores[$index]);
-
-                /* colocar emails falsos */
-                /* Nome convidado, nome proprietario do evento, dia, hora inicial, hora final */
-                $email = $professor->getEmail();
-                $nomeProfessorConvidado = $professor->getNome();
-                $arrayEmail = array();
-                $arrayEmail['convidado'] = $nomeProfessorConvidado;
-                $arrayEmail['proprietarioEvento'] = $nomeProfessorProprietario;
-                $arrayEmail['dia'] = $dados['data_inicial'];
-                $arrayEmail['diaFinal'] = $dados['data_final'];
-                $arrayEmail['horaInicial'] = $dados['hora1'];
-                $arrayEmail['horaFinal'] = $dados['hora2'];
-                $arrayEmail['id_evento'] = $id_evento;
-                $arrayEmail['id_professor'] = $professor->getId_usuario();
-
-                $mail = new Zend_Mail('utf-8');
-                $mail->setSubject("Você foi convidado para um evento")
-                        // colocar o email que deseja testar aq
-                        ->addTo($email)
-                        ->setBodyHtml($this->view->partial('templates/conviteevento.phtml', $arrayEmail))
-                        ->send();
-
-                /* chamar função que manda o email */
-                $modelEventoUsuario->cadastrarEventoUsuario($arrayEventosUsuarioConvidado);
+                $evento->save();
+                $this->_redirect('/agenda/index/');
             }
+        } else {
+            unset($dados['controller']);
+            unset($dados['action']);
+            unset($dados['module']);
+
+            $id_professores = array();
+            $id_professores = explode('|', $dados['professoresConvidados']);
+            $ultimaPosicaoVetor = count($id_professores) - 1;
+            unset($id_professores[$ultimaPosicaoVetor]);
+            $modelEvento = new Application_Model_DbTable_Evento();
+            $id_evento = $modelEvento->cadastraEvento($dados);
+
+            $arrayEventoUsuarioProprietario = array();
+            $arrayEventoUsuarioProprietario['id_professor'] = $idProfessor;
+            $modelProf = new Application_Model_DbTable_Professor();
+            $nomeP = $modelProf->listaProfessorPorID($idProfessor);
+            $nomeProfessorProprietario = $nomeP->getNome();
+            $arrayEventoUsuarioProprietario['id_evento'] = $id_evento;
+            $arrayEventoUsuarioProprietario['convite'] = $proprietario;
+            $modelEventoUsuario = new Application_Model_DbTable_EventoUsuario();
+            $modelEventoUsuario->cadastrarEventoUsuario($arrayEventoUsuarioProprietario);
+
+            if (count($id_professores) > 0) {
+                for ($index = 0; $index < count($id_professores); $index++) {
+                    $arrayEventosUsuarioConvidado = array();
+                    $arrayEventosUsuarioConvidado['id_professor'] = $id_professores[$index];
+                    $arrayEventosUsuarioConvidado['id_evento'] = $id_evento;
+                    $arrayEventosUsuarioConvidado['convite'] = 'convidado';
+
+
+                    $modelProfessor = new Application_Model_DbTable_Professor();
+                    $professor = $modelProfessor->listaProfessorPorID($id_professores[$index]);
+
+                    /* colocar emails falsos */
+                    /* Nome convidado, nome proprietario do evento, dia, hora inicial, hora final */
+                    $email = $professor->getEmail();
+                    $nomeProfessorConvidado = $professor->getNome();
+                    $arrayEmail = array();
+                    $arrayEmail['convidado'] = $nomeProfessorConvidado;
+                    $arrayEmail['proprietarioEvento'] = $nomeProfessorProprietario;
+                    $arrayEmail['dia'] = $dados['data_inicial'];
+                    $arrayEmail['diaFinal'] = $dados['data_final'];
+                    $arrayEmail['horaInicial'] = $dados['hora1'];
+                    $arrayEmail['horaFinal'] = $dados['hora2'];
+                    $arrayEmail['id_evento'] = $id_evento;
+                    $arrayEmail['id_professor'] = $professor->getId_usuario();
+
+                    $mail = new Zend_Mail('utf-8');
+                    $mail->setSubject("Você foi convidado para um evento")
+                            // colocar o email que deseja testar aq
+                            ->addTo($email)
+                            ->setBodyHtml($this->view->partial('templates/conviteevento.phtml', $arrayEmail))
+                            ->send();
+
+                    /* chamar função que manda o email */
+                    $modelEventoUsuario->cadastrarEventoUsuario($arrayEventosUsuarioConvidado);
+                }
+            }
+            $this->_redirect('/agenda/index/');
         }
-        
-        //$this->_redirect('/agenda/index/professor/' . $idProfessor);
     }
 
     public function cadastrarEventoAction() {
