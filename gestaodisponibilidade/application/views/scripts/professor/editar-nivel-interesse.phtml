@@ -20,79 +20,90 @@
             </tr> 
         </thead> 
         <tbody> 
-            <? $cont = count($this->arrayListaAtualizada['codigo']); ?>  
-            <? for ($i = 0; $i < $cont; $i++): ?>
-                <tr> 
-                    <td><?= $this->arrayListaAtualizada['codigo'][$i] ?></td>
-                    <td><?= $this->arrayListaAtualizada['nome'][$i] ?></td>
-                    <td><?= $this->arrayListaAtualizada['ementa'][$i] ?></td>
-                    <? if ($this->arrayListaAtualizada['nivel_interesse'][$i] == 0): ?>
-                        <td>
-                            <input type="radio" name="<?= $this->arrayListaAtualizada['codigo'][$i] ?>" value="1"  /> 1 <br />
-                            <input type="radio" name="<?= $this->arrayListaAtualizada['codigo'][$i] ?>" value="2" /> 2 <br />
-                            <input type="radio" name="<?= $this->arrayListaAtualizada['codigo'][$i] ?>" value="3" /> 3 <br />
-                            <input type="radio" name="<?= $this->arrayListaAtualizada['codigo'][$i] ?>" value="4" /> 4 <br />
-                            <input type="radio" name="<?= $this->arrayListaAtualizada['codigo'][$i] ?>" value="5" /> 5 <br />
-                            <br/>
-                        </td>
+            <? $c = count($this->arrayListaAtualizada);
+            if ($c > 0) {
+                $cont = count($this->arrayListaAtualizada['codigo']);
+                for ($i = 0; $i < $cont; $i++):
+                    ?>
+                    <tr> 
+                        <td><?= $this->arrayListaAtualizada['codigo'][$i] ?></td>
+                        <td><?= $this->arrayListaAtualizada['nome'][$i] ?></td>
+                        <td><?= $this->arrayListaAtualizada['ementa'][$i] ?></td>
+                        <? if ($this->arrayListaAtualizada['nivel_interesse'][$i] == 0): ?>
+                            <td>
+                                <input type="radio" name="<?= $this->arrayListaAtualizada['codigo'][$i] ?>" value="0" checked="" /> 0 <br />
+                                <input type="radio" name="<?= $this->arrayListaAtualizada['codigo'][$i] ?>" value="1" /> 1 <br />
+                                <input type="radio" name="<?= $this->arrayListaAtualizada['codigo'][$i] ?>" value="2" /> 2 <br />
+                                <input type="radio" name="<?= $this->arrayListaAtualizada['codigo'][$i] ?>" value="3" /> 3 <br />
+                                <input type="radio" name="<?= $this->arrayListaAtualizada['codigo'][$i] ?>" value="4" /> 4 <br />
+                                <input type="radio" name="<?= $this->arrayListaAtualizada['codigo'][$i] ?>" value="5" /> 5 <br />
+                                <br/>
+                            </td>
+                        </tr>
+                    <? endif; ?>  
+                    <? if ($this->arrayListaAtualizada['nivel_interesse'][$i] == 1): ?>
+                    <td>
+                        <input type="radio" name="<?= $this->arrayListaAtualizada['codigo'][$i] ?>" value="0" /> 0 <br />
+                        <input type="radio" name="<?= $this->arrayListaAtualizada['codigo'][$i] ?>" value="1"  checked="" /> 1 <br />
+                        <input type="radio" name="<?= $this->arrayListaAtualizada['codigo'][$i] ?>" value="2" /> 2 <br />
+                        <input type="radio" name="<?= $this->arrayListaAtualizada['codigo'][$i] ?>" value="3" /> 3 <br />
+                        <input type="radio" name="<?= $this->arrayListaAtualizada['codigo'][$i] ?>" value="4" /> 4 <br />
+                        <input type="radio" name="<?= $this->arrayListaAtualizada['codigo'][$i] ?>" value="5" /> 5 <br />
+                        <br/>
+                    </td>
                     </tr>
                 <? endif; ?>  
-                <? if ($this->arrayListaAtualizada['nivel_interesse'][$i] == 1): ?>
-                <td>
-                    <input type="radio" name="<?= $this->arrayListaAtualizada['codigo'][$i] ?>" value="1"  checked="" /> 1 <br />
-                    <input type="radio" name="<?= $this->arrayListaAtualizada['codigo'][$i] ?>" value="2" /> 2 <br />
-                    <input type="radio" name="<?= $this->arrayListaAtualizada['codigo'][$i] ?>" value="3" /> 3 <br />
-                    <input type="radio" name="<?= $this->arrayListaAtualizada['codigo'][$i] ?>" value="4" /> 4 <br />
-                    <input type="radio" name="<?= $this->arrayListaAtualizada['codigo'][$i] ?>" value="5" /> 5 <br />
-                    <br/>
-                </td>
-                </tr>
-            <? endif; ?>  
-            <? if ($this->arrayListaAtualizada['nivel_interesse'][$i] == 2): ?>
-                <td>
-                    <input type="radio" name="<?= $this->arrayListaAtualizada['codigo'][$i] ?>" value="1"   /> 1 <br />
-                    <input type="radio" name="<?= $this->arrayListaAtualizada['codigo'][$i] ?>" value="2" checked=""/> 2 <br />
-                    <input type="radio" name="<?= $this->arrayListaAtualizada['codigo'][$i] ?>" value="3" /> 3 <br />
-                    <input type="radio" name="<?= $this->arrayListaAtualizada['codigo'][$i] ?>" value="4" /> 4 <br />
-                    <input type="radio" name="<?= $this->arrayListaAtualizada['codigo'][$i] ?>" value="5" /> 5 <br />
-                    <br/>
-                </td>
-                </tr>
-            <? endif; ?>  
-            <? if ($this->arrayListaAtualizada['nivel_interesse'][$i] == 3): ?>
-                <td>
-                    <input type="radio" name="<?= $this->arrayListaAtualizada['codigo'][$i] ?>" value="1"   /> 1 <br />
-                    <input type="radio" name="<?= $this->arrayListaAtualizada['codigo'][$i] ?>" value="2" /> 2 <br />
-                    <input type="radio" name="<?= $this->arrayListaAtualizada['codigo'][$i] ?>" value="3" checked=""/> 3 <br />
-                    <input type="radio" name="<?= $this->arrayListaAtualizada['codigo'][$i] ?>" value="4" />4 <br />
-                    <input type="radio" name="<?= $this->arrayListaAtualizada['codigo'][$i] ?>" value="5" /> 5 <br />
-                    <br/>
-                </td>
-                </tr>
-            <? endif; ?>  
-            <? if ($this->arrayListaAtualizada['nivel_interesse'][$i] == 4): ?>
-                <td>
-                    <input type="radio" name="<?= $this->arrayListaAtualizada['codigo'][$i] ?>" value="1"   /> 1 <br />
-                    <input type="radio" name="<?= $this->arrayListaAtualizada['codigo'][$i] ?>" value="2" /> 2 <br />
-                    <input type="radio" name="<?= $this->arrayListaAtualizada['codigo'][$i] ?>" value="3" /> 3 <br />
-                    <input type="radio" name="<?= $this->arrayListaAtualizada['codigo'][$i] ?>" value="4" checked=""/> 4 <br />
-                    <input type="radio" name="<?= $this->arrayListaAtualizada['codigo'][$i] ?>" value="5" /> 5 <br />
-                    <br/>
-                </td>
-                </tr>
-            <? endif; ?> 
-            <? if ($this->arrayListaAtualizada['nivel_interesse'][$i] == 5): ?>
-                <td>
-                    <input type="radio" name="<?= $this->arrayListaAtualizada['codigo'][$i] ?>" value="1"   /> 1 <br />
-                    <input type="radio" name="<?= $this->arrayListaAtualizada['codigo'][$i] ?>" value="2" /> 2 <br />
-                    <input type="radio" name="<?= $this->arrayListaAtualizada['codigo'][$i] ?>" value="3" /> 3 <br />
-                    <input type="radio" name="<?= $this->arrayListaAtualizada['codigo'][$i] ?>" value="4" /> 4 <br />
-                    <input type="radio" name="<?= $this->arrayListaAtualizada['codigo'][$i] ?>" value="5" checked=""/> 5 <br />
-                    <br/>
-                </td>
-                </tr>
-            <? endif; ?> 
-        <? endfor; ?>  
+                <? if ($this->arrayListaAtualizada['nivel_interesse'][$i] == 2): ?>
+                    <td>
+                        <input type="radio" name="<?= $this->arrayListaAtualizada['codigo'][$i] ?>" value="0" /> 0 <br />
+                        <input type="radio" name="<?= $this->arrayListaAtualizada['codigo'][$i] ?>" value="1"   /> 1 <br />
+                        <input type="radio" name="<?= $this->arrayListaAtualizada['codigo'][$i] ?>" value="2" checked=""/> 2 <br />
+                        <input type="radio" name="<?= $this->arrayListaAtualizada['codigo'][$i] ?>" value="3" /> 3 <br />
+                        <input type="radio" name="<?= $this->arrayListaAtualizada['codigo'][$i] ?>" value="4" /> 4 <br />
+                        <input type="radio" name="<?= $this->arrayListaAtualizada['codigo'][$i] ?>" value="5" /> 5 <br />
+                        <br/>
+                    </td>
+                    </tr>
+                <? endif; ?>  
+                <? if ($this->arrayListaAtualizada['nivel_interesse'][$i] == 3): ?>
+                    <td>
+                        <input type="radio" name="<?= $this->arrayListaAtualizada['codigo'][$i] ?>" value="0" /> 0 <br />
+                        <input type="radio" name="<?= $this->arrayListaAtualizada['codigo'][$i] ?>" value="1"   /> 1 <br />
+                        <input type="radio" name="<?= $this->arrayListaAtualizada['codigo'][$i] ?>" value="2" /> 2 <br />
+                        <input type="radio" name="<?= $this->arrayListaAtualizada['codigo'][$i] ?>" value="3" checked=""/> 3 <br />
+                        <input type="radio" name="<?= $this->arrayListaAtualizada['codigo'][$i] ?>" value="4" />4 <br />
+                        <input type="radio" name="<?= $this->arrayListaAtualizada['codigo'][$i] ?>" value="5" /> 5 <br />
+                        <br/>
+                    </td>
+                    </tr>
+                <? endif; ?>  
+                <? if ($this->arrayListaAtualizada['nivel_interesse'][$i] == 4): ?>
+                    <td>
+                        <input type="radio" name="<?= $this->arrayListaAtualizada['codigo'][$i] ?>" value="0" /> 0 <br />
+                        <input type="radio" name="<?= $this->arrayListaAtualizada['codigo'][$i] ?>" value="1" /> 1 <br />
+                        <input type="radio" name="<?= $this->arrayListaAtualizada['codigo'][$i] ?>" value="2" /> 2 <br />
+                        <input type="radio" name="<?= $this->arrayListaAtualizada['codigo'][$i] ?>" value="3" /> 3 <br />
+                        <input type="radio" name="<?= $this->arrayListaAtualizada['codigo'][$i] ?>" value="4" checked=""/> 4 <br />
+                        <input type="radio" name="<?= $this->arrayListaAtualizada['codigo'][$i] ?>" value="5" /> 5 <br />
+                        <br/>
+                    </td>
+                    </tr>
+                <? endif; ?> 
+                <? if ($this->arrayListaAtualizada['nivel_interesse'][$i] == 5): ?>
+                    <td>
+                        <input type="radio" name="<?= $this->arrayListaAtualizada['codigo'][$i] ?>" value="0" /> 0 <br />
+                        <input type="radio" name="<?= $this->arrayListaAtualizada['codigo'][$i] ?>" value="1" /> 1 <br />
+                        <input type="radio" name="<?= $this->arrayListaAtualizada['codigo'][$i] ?>" value="2" /> 2 <br />
+                        <input type="radio" name="<?= $this->arrayListaAtualizada['codigo'][$i] ?>" value="3" /> 3 <br />
+                        <input type="radio" name="<?= $this->arrayListaAtualizada['codigo'][$i] ?>" value="4" /> 4 <br />
+                        <input type="radio" name="<?= $this->arrayListaAtualizada['codigo'][$i] ?>" value="5" checked=""/> 5 <br />
+                        <br/>
+                    </td>
+                    </tr>
+                <? endif; ?> 
+            <? endfor;
+        }
+        ?>  
         </tbody>
     </table>
     <INPUT TYPE="submit" VALUE="Salvar alteração" class="button orange large">

@@ -78,12 +78,12 @@ class ProfessorController extends Zend_Controller_Action {
         $professorModel->removerProfessor($idUsuario);
         $this->_redirect('/professor/index');
     }
-    
+
     public function nivelInteresseAction() {
         $sessionUsuario = new Application_Model_SessaoUser();
         $usuario = $sessionUsuario->getSession();
-        $idProfessor =$usuario->getId_usuario();
-        
+        $idProfessor = $usuario->getId_usuario();
+
         if ($this->getRequest()->isPost()) {
             $dados = $this->getRequest()->getParams();
             $modelDisciplina = new Application_Model_DbTable_Disciplina();
@@ -111,8 +111,8 @@ class ProfessorController extends Zend_Controller_Action {
     public function nivelInteresseEditAction() {
         $sessionUsuario = new Application_Model_SessaoUser();
         $usuario = $sessionUsuario->getSession();
-        $idProfessor =$usuario->getId_usuario();
-        
+        $idProfessor = $usuario->getId_usuario();
+
         if ($this->getRequest()->isPost()) {
             $dados = $this->getRequest()->getParams();
             $modelNivelInteresse = new Application_Model_DbTable_NivelInteresse();
@@ -131,10 +131,10 @@ class ProfessorController extends Zend_Controller_Action {
     public function perfilAction() {
         $sessionUsuario = new Application_Model_SessaoUser();
         $usuario = $sessionUsuario->getSession();
-        $idProfessor =$usuario->getId_usuario();
+        $idProfessor = $usuario->getId_usuario();
         $modelNivelInteresse = new Application_Model_DbTable_NivelInteresse();
         $rowNivelInteresse = $modelNivelInteresse->getDadosPorId($idProfessor);
-        
+
         $modelProfessor = new Application_Model_DbTable_Professor();
         $professor = $modelProfessor->listaProfessorPorID($idProfessor);
         $this->view->professor = $professor;
@@ -162,8 +162,8 @@ class ProfessorController extends Zend_Controller_Action {
     public function editarNivelInteresseAction() {
         $sessionUsuario = new Application_Model_SessaoUser();
         $usuario = $sessionUsuario->getSession();
-        $idProfessor =$usuario->getId_usuario();
-       
+        $idProfessor = $usuario->getId_usuario();
+
         $modelNivelInteresse = new Application_Model_DbTable_NivelInteresse();
         $rowNivelInteresse = $modelNivelInteresse->getDadosPorId($idProfessor);
 
@@ -195,25 +195,26 @@ class ProfessorController extends Zend_Controller_Action {
         $allDisciplinas = $disciplinaModel->listarTodos();
 
         foreach ($allDisciplinas as $value) {
+            if (count($listadisciplinas) > 0) {
+                for ($index1 = 0; $index1 < count($listadisciplinas['codigo']); $index1++) {
 
-            for ($index1 = 0; $index1 < count($listadisciplinas['codigo']); $index1++) {
-
-                if ($value['codigo'] == $listadisciplinas['codigo'][$index1]) {
-                    $arrayListaAtualizada['codigo'][] = $value['codigo'];
-                    $arrayListaAtualizada['ementa'][] = $value['ementa'];
-                    $arrayListaAtualizada['nome'][] = $value['nome'];
-                    $arrayListaAtualizada['nivel_interesse'][] = $listadisciplinas['nivel_interesse'][$index1];
+                    if ($value['codigo'] == $listadisciplinas['codigo'][$index1]) {
+                        $arrayListaAtualizada['codigo'][] = $value['codigo'];
+                        $arrayListaAtualizada['ementa'][] = $value['ementa'];
+                        $arrayListaAtualizada['nome'][] = $value['nome'];
+                        $arrayListaAtualizada['nivel_interesse'][] = $listadisciplinas['nivel_interesse'][$index1];
+                    }
                 }
             }
         }
-
+        
         $this->view->arrayListaAtualizada = $arrayListaAtualizada;
     }
 
     public function disponibilidadeAulaAction() {
         $sessionUsuario = new Application_Model_SessaoUser();
         $usuario = $sessionUsuario->getSession();
-        $id_usuario =$usuario->getId_usuario();
+        $id_usuario = $usuario->getId_usuario();
         //$id_usuario = $this->getRequest()->getParam('id_usuario');
         $modelDisponibilidadeAula = new Application_Model_DbTable_DisponibilidadeAula();
         $this->view->id_usuario = $id_usuario;
@@ -223,7 +224,7 @@ class ProfessorController extends Zend_Controller_Action {
     public function recebeDisponibilidadeAulaAction() {
         $sessionUsuario = new Application_Model_SessaoUser();
         $usuario = $sessionUsuario->getSession();
-        $id_usuario =$usuario->getId_usuario();
+        $id_usuario = $usuario->getId_usuario();
         //$id_usuario = $this->getRequest()->getParam('id_usuario');
         $classe = $this->getRequest()->getParam('id');
         list($hora, $dia) = explode('-', $classe);
